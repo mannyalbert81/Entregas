@@ -115,8 +115,7 @@ if ($_GET['id_usuarios']!=0)
 							  entidades.id_entidades = ccomprobantes.id_entidades";
 
  
- 
- 
+
 $sql=$cabeceraSql.$detallesql;
 
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
