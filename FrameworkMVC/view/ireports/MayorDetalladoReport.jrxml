@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-11-15T10:15:54 -->
+<!-- 2016-11-15T15:43:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PlanCuentasReport1" pageWidth="612" pageHeight="792" columnWidth="574" leftMargin="19" rightMargin="19" topMargin="20" bottomMargin="20" uuid="4f25a6e3-46bc-4f25-9dcf-c96bea25f92e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FrameworkMVC\view\ireports\ContabilidadDataAdapter.xml"/>
@@ -27,11 +27,11 @@
 	<field name="concepto_ccomprobantes" class="java.lang.String"/>
 	<field name="codigo_plan_cuentas" class="java.lang.String"/>
 	<field name="nombre_plan_cuentas" class="java.lang.String"/>
-	<field name="saldo_fin_plan_cuentas" class="java.lang.String"/>
-	<field name="debe_mayor" class="java.lang.String"/>
-	<field name="haber_mayor" class="java.lang.String"/>
-	<field name="saldo_mayor" class="java.lang.String"/>
-	<field name="saldo_ini_mayor" class="java.lang.String"/>
+	<field name="saldo_fin_plan_cuentas" class="java.lang.Double"/>
+	<field name="debe_mayor" class="java.lang.Double"/>
+	<field name="haber_mayor" class="java.lang.Double"/>
+	<field name="saldo_mayor" class="java.lang.Double"/>
+	<field name="saldo_ini_mayor" class="java.lang.Double"/>
 	<field name="fecha_ccomprobantes" class="java.sql.Date"/>
 	<field name="n_plan_cuentas" class="java.lang.String"/>
 	<variable name="suma_debe" class="java.lang.String" resetType="Group" resetGroup="Group1" incrementType="Group" incrementGroup="Group1" calculation="Sum">
