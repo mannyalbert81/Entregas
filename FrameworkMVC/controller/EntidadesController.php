@@ -130,15 +130,35 @@ class EntidadesController extends ControladorBase{
 				$_direccion_entidades = $_POST["direccion_entidades"];
 				$_ciudad_entidades = $_POST["ciudad_entidades"];
 				
-				$funcion = "ins_entidades";
-				$parametros = "'$_ruc_entidades', '$_nombre_entidades', '$_telefono_entidades', '$_direccion_entidades', '$_ciudad_entidades'";
+				//imagen
+				$parametros ="";
+				if(isset($_FILES["logo_entidades"]))
+				{
+					$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos/';
 					
+					$nombre = $_FILES['logo_entidades']['name'];
+										
+					move_uploaded_file($_FILES['logo_entidades']['tmp_name'],$directorio.$nombre);
+					
+					$_data_logo_entidades = file_get_contents($directorio.$nombre);
+					
+					$_logo_entidades = pg_escape_bytea($_data_logo_entidades);
+					
+					$parametros = "'$_ruc_entidades', '$_nombre_entidades', '$_telefono_entidades', '$_direccion_entidades', '$_ciudad_entidades','{$_logo_entidades}'";
+				}else{
+					
+					$parametros = "'$_ruc_entidades', '$_nombre_entidades', '$_telefono_entidades', '$_direccion_entidades', '$_ciudad_entidades'";
+				}
+				
+				$funcion = "ins_entidades";
+									
 				$entidades->setFuncion($funcion);
 		
 				$entidades->setParametros($parametros);
-		
-		
+				
+						
 				$resultado=$entidades->Insert();
+				
 		
 				//$this->view("Error",array(
 				//"resultado"=>"entro"
@@ -229,6 +249,14 @@ class EntidadesController extends ControladorBase{
 		}
 					
 	
+	}
+	
+	
+			
+	public function Imagen_php(){
+		echo '<div>';
+		echo '<input type="image" name="image" src="./view/DevuelveImagen.php?id_valor=3&id_nombre=id_entidades&tabla=entidades&campo=logo_entidades"  alt="13" width="80" height="60" >';
+		echo '</div>';
 	}
 	
 	

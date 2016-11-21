@@ -1,0 +1,286 @@
+codigo;cuenta
+1.;ACTIVO
+1.1.;ACTIVO CORRIENTE
+1.1.1.;DISPONIBLES
+1.1.1.1.;CAJA
+1.1.1.1.01;Caja General
+1.1.1.1.02;Caja Chica
+1.1.1.1.03;Fondo Rotativo
+1.1.1.2.;BANCOS
+1.1.1.2.01;Banco del Pichincha
+1.1.1.2.02;Banco Pichincha Corporativa
+1.1.1.2.99;Pagos Anticipados 
+1.1.1.3.;INVERSIONES FINANCIERAS TEMPORALES
+1.1.1.3.01;Polizas
+1.1.2.;EXIGIBLES
+1.1.2.1.;CLIENTES
+1.1.2.1.01;Cuentas por Cobrar Clientes
+1.1.2.1.99;(-) Provision Cuentas Incobrables
+1.1.2.2.;OTRAS CUENTAS POR COBRAR
+1.1.2.2.01;Anticipos y Quincenas
+1.1.2.2.02;Prestamos IESS Empleados
+1.1.2.2.03;Anticipo Asesoria 
+1.1.2.2.04;IESS Por Cobrar Empleados
+1.1.2.2.05;Prestamos Empleados
+1.1.2.2.06;Cuentas por Cobrar Empleados
+1.1.2.2.07;Cuentas por Cobrar SOTEC
+1.1.2.2.08;Cuentas por Cobrar SEARCH DOCUMENT
+1.1.2.2.99;Cuentas por Cobrar Asesoria
+1.1.2.3.;CREDITO TRIBUTARIO IVA
+1.1.2.3.01;12% Compras (Bienes y Servicios)
+1.1.2.3.02;14% Compras ( Bienes y Servicios)
+1.1.2.3.03;Anticipo IVA Retenido 30%
+1.1.2.3.04;Anticipo IVA Retenido 70%
+1.1.2.3.05;Anticipo IVA Retenido 100%
+1.1.2.3.06;Credito Tributario IVA
+1.1.2.4.;CREDITO TRIBUTARIO RENTA AÑOS ANTERIORES
+1.1.2.4.01;Anticipo Impuesto a la Renta
+1.1.2.4.02;Saldo a Favor del Impuesto a la Renta
+1.1.2.5.;CREDITO TRIBUTARIO RENTA AÑO CORRIENTE
+1.1.2.5.01;Retenciones en la Fuente del Impuesto a la Renta
+1.1.3.;REALIZABLES
+1.1.3.1.;INVENTARIO PARA LA VENTA
+1.1.3.1.01;Inventario Gravado 0%
+1.1.3.1.02;Inventario Gravado 12%
+1.1.3.2.;INVENTARIO PARA EL CONSUMO
+1.1.3.2.01;Inventario Suministros y materiales
+1.1.3.2.02;Inventario de Herramientas y Accesorios
+1.1.4.;Gastos Anticipados
+1.1.4.1.;Gastos Anticipados
+1.1.4.1.01;Seguros Pagados por Anticipados
+1.1.4.1.02;Arriendos pagados por Anticipados
+1.1.4.1.03;Publicidad pagada por Anticipado
+1.1.4.1.04;Dividendos Pagados por Anticipado
+1.1.4.2.;OTROS ACTIVOS
+1.1.4.2.01;Otros Activos Corrientes
+1.2.;ACTIVO FIJO
+1.2.1.;NO DEPRECIABLE
+1.2.1.1.;TERRENOS
+1.2.1.1.01;Terrenos
+1.2.2.;DEPRECIABLES
+1.2.2.1.;EDIFICIOS
+1.2.2.1.01;Edificio 
+1.2.2.1.02;(-) Depreciación Acumulada de Edificios
+1.2.2.2.;MUEBLES Y ENSERES
+1.2.2.2.01;Muebles y enseres
+1.2.2.2.02;(-) Depreciación Acumulada de Muebles y Enseres
+1.2.2.3.;EQUIPO DE OFICINA
+1.2.2.3.01;Equipo de Oficina
+1.2.2.3.02;(-) Depreciacion Acumulada de Equipo de Oficina
+1.2.2.4.;EQUIPO DE COMPUTO
+1.2.2.4.01;Equipo de Computo
+1.2.2.4.02;(-) Depreciacion Acumulada de Equipo de Computo
+1.2.2.5.;VEHÍCULOS
+1.2.2.5.01;Vehículos
+1.2.2.5.02;(-) Depreciacion Acumulada de Vehículos
+1.2.3.;INTANGIBLES
+1.2.3.1.;MARCAS, PATENTES, DERECHO DE LLAVE
+1.2.3.1.01;Marcas 
+1.2.3.1.02;Patentes
+1.2.3.1.03;Derechos de Llave
+1.2.3.1.04;Derechos de Autor
+1.2.3.1.99;(-) Amortizacion Acumulada Activos Fijos Intangibl
+1.3.;ACTIVO DIFERIDO
+1.3.1.;CARGOS DIFERIDOS
+1.3.1.1.;GASTOS DE CONSTITUCION
+1.3.1.1.01;Gastos de Constitucion
+1.3.1.1.99;(-) Amortizacion Acumulada de Gastos de Constituci
+1.3.1.2.;GASTOS DE INSTALACION
+1.3.1.2.01;Gastos de Instalación
+1.3.1.2.99;(-) Amortizacion Acumulada de Gastos de Instalació
+2.;PASIVO
+2.1. ;PASIVO CORRIENTE O CORTO PLAZO
+2.1.1.;PROVEEDORES
+2.1.1.1.;PROVEEDORES LOCALES
+2.1.1.1.01;Proveedores Locales de Bienes
+2.1.2.;OBLIGACIONES POR PAGAR
+2.1.2.1.;IMPUESTOS POR PAGAR
+2.1.2.1.01;0% Otras compras de bienes y servicios no sujetas 
+2.1.2.1.02;0% Pagos con tarjeta de crédito 
+2.1.2.1.03;1% Retencion en la Fuente por Pagar
+2.1.2.1.05;2% Retencion en la Fuente por Pagar
+2.1.2.1.06;8% Retencion en la Fuente por Pagar
+2.1.2.1.07;10% Retencion en la Fuente por Pagar
+2.1.2.1.08;1% Seguros y reaseguros (primas y cesiones) del 10
+2.1.2.1.09;1% Por energía eléctrica
+2.1.2.1.10;1% Por actividades de construcción de obra materia
+2.1.2.1.11;2% Servicios predomina la mano de obra
+2.1.2.1.12;2% Por pagos a través de liquidación de compra (ni
+2.1.2.1.13;2% Otras retenciones aplicables el 2%
+2.1.2.1.14;8% Servicios predomina el intelecto no relacionado
+2.1.2.1.15;8% Comisiones y demás pagos por servicios predomin
+2.1.2.1.16;8% Pagos a notarios y registradores de la propieda
+2.1.2.1.17;8% Pagos a deportistas, entrenadores, árbitros, mi
+2.1.2.1.18;8% Pagos a artistas por sus actividades ejercidas 
+2.1.2.1.19;8% Honorarios y demás pagos por servicios de docen
+2.1.2.1.20;8% Regalías por concepto de franquicias de acuerdo
+2.1.2.1.21;8% Cánones, derechos de autor,  marcas, patentes y
+2.1.2.1.22;8% Regalías por concepto de franquicias de acuerdo
+2.1.2.1.23;8% Cánones, derechos de autor,  marcas, patentes y
+2.1.2.1.24;8% Por arrendamiento bienes inmuebles
+2.1.2.1.25;10% Honorarios profesionales y demás pagos por ser
+2.1.2.1.26;10% Utilización o aprovechamiento de la imagen o r
+2.1.2.1.27;12% IVA Ventas Locales (Bienes y Servicios)
+2.1.2.1.28;IVA Retenido por Pagar 30%
+2.1.2.1.29;IVA Retenido por Pagar 70%
+2.1.2.1.30;IVA Retenido por Pagar 100%
+2.1.2.1.47;Impuesto a la Renta por Pagar
+2.1.2.2.;OBLIGACIONES IESS
+2.1.2.2.01;Aporte Personal IESS 9.45% por Pagar
+2.1.2.2.02;Aporte Patronal IESS 12.15% por Pagar
+2.1.2.2.03;Fondo de Reserva Por Pagar
+2.1.2.2.04;Préstamo IESS por Pagar
+2.1.2.3.;OBLIGACIONES LABORALES
+2.1.2.3.01;Sueldos por Pagar
+2.1.2.3.02;Beneficios Sociales por Pagar
+2.1.2.3.03;15% Participacion Trabajadores por Pagar
+2.1.2.3.04;Jubilación Patronal por Pagar
+2.1.2.3.05;Liquidaciones por Pagar
+2.1.2.4.;OBLIGACIONES FINANCIERAS
+2.1.2.4.01;Sobre Giros Bancarios por Pagar
+2.1.2.5.;OBLIGACIONES PATRIMONIALES
+2.1.2.5.01;Dividendos Por Pagar
+2.1.2.5.02;Préstamos a Socios o Crédito a Mutuo por Pagar
+2.1.2.9.;OBLIGACIONES VARIAS
+2.1.2.9.01;Tribunal de Menores por Pagar
+2.1.2.9.02;Prestamos Asesoria
+2.1.2.9.03;Prestamos por Pagar 
+2.1.2.9.04;Prestamos de Terceros por Pagar
+2.1.2.9.05;Prestamos de Terceros por Pagar I.A.
+2.1.2.9.06;Prestamos de Terceros por Pagar L.R.
+2.2. ;PASIVO A LARGO PLAZO
+2.2.1.;OBLIGACIONES A LARGO PLAZO
+2.2.1.1.;PRESTAMOS BANCARIOS
+2.2.1.1.01;Préstamos Bancarios por Pagar
+2.2.1.2.;HIPOTECAS POR PAGAR
+2.2.1.2.01;Hipotecas por Pagar
+3.;PATRIMONIO
+3.1;CAPITAL
+3.1.1.;CAPITAL SOCIAL
+3.1.1.1.;CAPITAL SUSCRITO PAGADO
+3.2;RESERVAS
+3.2.1.;RESERVAS
+3.2.1.1.;RESERVAS
+3.2.1.1.01;Reserva Legal 
+3.2.1.1.02;Reserva Facultativa
+3.2.1.1.03;Reserva Estatutaria
+3.2.1.2.;RESERVAS DE CAPITAL
+3.2.1.2.01;Aportes para Futuras Capitalizaciones
+3.2.1.2.02;Reservas por Revalorización de Patrimonio
+3.3;RESULTADOS
+3.3.1;RESULTADOS
+3.3.1.1.;UTILIDADES
+3.3.1.1.01;Utilidad No distribuida Ejercicios Anteriores
+3.3.1.1.02;Utilidad del Ejercicio
+3.3.1.2.;PERDIDAS
+3.3.1.2.01;(-) Perdida del Ejercicio Acumulada
+3.3.1.2.02;(-) Perdida del Ejercicio
+4.;INGRESOS
+4.1;INGRESOS OPERACIONALES
+4.1.1.;VENTAS
+4.1.1.1.01; Servicios de Arriendo Fotocopiadoras
+4.1.1.1.02; Servicios de Digitalizacion 
+4.1.1.2.;OTRAS VENTAS
+4.1.1.2.01;Servicios de Digitalizacion Archivo 
+4.1.1.2.02;Proyectos en Ejecucion
+4.1.1.3.;DEVOLUCIONES EN VENTAS
+4.1.1.3.01;Devoluciones en Ventas Gravadas 0%
+4.1.1.3.02;Devoluciones en Ventas Gravadas 12%
+4.1.1.4.;OTROS RECARGOS EN VENTAS
+4.1.1.4.01;Flete en Ventas
+4.1.1.4.02;Otros Recargos en Ventas
+4.2;INGRESOS NO OPERACIONALES
+4.2.1.;INGRESOS NO OPERACIONALES
+4.2.1.1.;INGRESOS FINANCIEROS
+4.2.1.1.01;Rendimientos Financieros
+4.2.1.1.02;Intereses Ganados
+4.2.1.2.;OTROS INGRESOS
+4.2.1.2.01;Utilidad en Venta Activos Fijos
+4.2.1.2.02;Ingresos Provenientes del Exterior
+5.;EGRESOS
+5.1.;EGRESOS OPERACIONALES
+5.1.1.;COSTOS
+5.1.1.1.;COSTO DE VENTAS
+5.1.1.1.01;Costo de Ventas Gravadas 0%
+5.1.1.1.02;Costo de Ventas Gravadas 12%
+5.1.1.2.;DESCUENTO EN COMPRAS
+5.1.1.2.01;Descuentos en Compras Gravadas 0%
+5.1.1.2.02;Descuentos en Compras Gravadas 12%
+5.1.1.3.;DEVOLUCION EN COMPRAS
+5.1.1.3.01;Devoluciones en Compras Gravadas 0%
+5.1.1.3.02;Devoluciones en Compras Gravadas 12%
+5.1.1.4.;RECARGO EN COMPRAS
+5.1.1.4.01;Flete en Compras
+5.1.1.4.02;Otros Cargos en Compras
+5.1.2.;GASTOS DE VENTA Y ADMINISTRATIVOS
+5.1.2.1.;GASTOS DE PERSONAL
+5.1.2.1.01;Gasto Sueldos
+5.1.2.1.02;Gasto Horas Extras
+5.1.2.1.03;Gasto Décimo Tercer Sueldo
+5.1.2.1.04;Gasto Décimo Cuarto Sueldo
+5.1.2.1.05;Gasto Fondo de Reserva
+5.1.2.1.06;Gasto Vacaciones
+5.1.2.1.07;Gasto Aporte Patronal
+5.1.2.1.08;Gasto Uniformes
+5.1.2.1.09;Gasto Movilización
+5.1.2.1.10;Gasto Alimentación 
+5.1.2.1.11;Gasto Jubilación Patronal
+5.1.2.1.12;Gasto Atencion Medica
+5.1.2.1.13;Gasto Provision Para Jubilacion Patronal
+5.1.2.1.14;Gasto Comision
+5.1.2.2.;GASTOS EN LOCALES E INSTALACIONES
+5.1.2.2.01;Gasto Depreciacion de Edificios
+5.1.2.2.02;Gasto Depreciacion Muebles y Enseres
+5.1.2.2.03;Gasto Depreciacion Equipo de Oficina
+5.1.2.2.04;Gasto Depreciacion Equipo de Computo
+5.1.2.2.05;Gasto Depreciacion de Vehículos
+5.1.2.2.06;Gasto Mantenimiento Equipos Computacion 
+5.1.3.;GASTOS GENERALES
+5.1.3.3.;GASTOS GENERALES
+5.1.3.3.01;Gasto Salarios y Demas Remuneraciones
+5.1.3.3.02;Gasto Servicios Prestados
+5.1.3.3.03;Gasto Honorarios
+5.1.3.3.04;Gasto Arrendamiento de Bienes Inmuebles Personas N
+5.1.3.3.05;Gasto Arrendamiento de Bienes Inmuebles Sociedades
+5.1.3.3.06;Gasto Honorarios Asistencia Legal 
+5.1.3.3.07;Gasto Promocion y Publicidad
+5.1.3.3.08;Gasto Combustibles
+5.1.3.3.09;Gasto Lubricantes
+5.1.3.3.12;Gasto Seguros y Reaseguros (Primas y Cesiones)
+5.1.3.3.13;Gasto Suministros
+5.1.3.3.14;Gasto Transporte
+5.1.3.3.15;Gasto Hospedaje
+5.1.3.3.16;Gastos de Viaje
+5.1.3.3.17;Gasto Agua
+5.1.3.3.18;Gasto Energia Electrica
+5.1.3.3.19;Gastos Telecomunicaciones
+5.1.3.3.20;Gasto Internet
+5.1.3.3.21;Gasto Notarios y Registros de la Propiedad o Merca
+5.1.3.3.22;Gasto Impuestos, Contribuciones y Otros
+5.1.3.3.23;Gasto Depreciacion de Activos Fijos
+5.1.3.3.24;Gasto Deprecioacion Acelerada de Vehículos, Equipo
+5.1.3.3.25;Gasto Amortizacion (Inversiones e Intangibles)
+5.1.3.3.26;Gasto Provision Cuentas Incobrables
+5.1.3.3.27;Gasto Servicios Bancarios
+5.1.3.3.28;Gasto Intereses Pagados a Terceros Locales
+5.1.3.3.29;Gastos sujetos de reembolso locales(informativo)
+5.1.3.3.30;Gasto Provisiones Deducibles
+5.1.3.3.31;Otros Gastos Locales
+5.1.3.3.32;IVA que se Carga al Gasto
+5.1.3.3.33;Pérdida en Venta de Activos Fijos
+5.1.3.3.34;Pérdida en Cartera
+5.1.3.3.35;Gasto de Seguridad
+5.1.3.3.36;Gasto Materiales de Trabajo
+5.1.3.3.37;Gasto Atenciones Sociales 
+5.1.3.3.38;Gasto Cafeteria
+5.1.3.3.39;Gasto Materiales de Oficina 
+5.1.3.3.40;Gasto Servicios de Limpieza
+5.1.3.3.41;Gasto Incentivos
+5.1.3.3.42;Gasto Gestor Documental Centro Seguros
+5.1.3.3.43;Gasto Infraestructura 
+5.1.3.3.44;Gasto Bono Navidad
+5.1.3.3.45;MANTENIMINETO DE INSTALACIONES
+5.2;EGRESOS NO OPERACIONALES
+5.2.1.;GASTOS NO OPERACIONALES
+5.2.1.1.;GASTOS FINANCIEROS
+5.2.1.2.;OTROS GASTOS

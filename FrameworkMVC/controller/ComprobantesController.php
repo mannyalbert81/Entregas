@@ -846,104 +846,114 @@ class ComprobantesController extends ControladorBase{
 	
 					$resultSet=$ccomprobantes->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
-	
 					
-					/*
-					foreach($resultSet as $res)
+					//comienza paginacion
+					
+					
+					$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+					
+					if($action == 'ajax')
 					{
-						$registrosTotales = $registrosTotales + 1 ;
-					}
-	
-	
-				}
-				else{
-						
-						
-					$registrosTotales = 0;
-					$hojasTotales = 0;
-	
-	
-					$arraySel = "";
-					$resultSet = "";
-						
-				}
-				///aqui va la paginacion  ///
-				$articulosTotales = 0;
-				$paginasTotales = 0;
-				$paginaActual = 0;
-				$ultima_pagina = 1;
-					
-				if(isset($_POST["pagina"])){
-	
-					// en caso que haya datos, los casteamos a int
-					$paginaActual = (int)$_POST["pagina"];
-					$ultima_pagina = (int)$_POST["ultima_pagina"] - 5;
-				}
-	
-				if(isset($_POST["siguiente_pagina"])){
-	
-					// en caso que haya datos, los casteamos a int
-					$ultima_pagina = (int)$_POST["ultima_pagina"];
-				}
-	
-					
-				if(isset($_POST["anterior_pagina"])){
-	
-	
-					$ultima_pagina = (int)$_POST["ultima_pagina"] - 10;
-	
-	
-				}
-	
-	
-				if ($resultSet != "")
-				{
-	
-					foreach($resultSet as $res)
-					{
-						$articulosTotales = $articulosTotales + 1;
-					}
-	
-	
-					$articulosPorPagina = 50;
-	
-					$paginasTotales = ceil($articulosTotales / $articulosPorPagina);
-	
-	
-					// el número de la página actual no puede ser menor a 0
-					if($paginaActual < 1){
-						$paginaActual = 1;
-					}
-					else if($paginaActual > $paginasTotales){ // tampoco mayor la cantidad de páginas totales
-						$paginaActual = $paginasTotales;
-					}
-	
-					// obtenemos cuál es el artículo inicial para la consulta
-					$articuloInicial = ($paginaActual - 1) * $articulosPorPagina;
-	
-					//agregamos el limit
-					$limit = " LIMIT   '$articulosPorPagina' OFFSET '$articuloInicial'";
-	
-					//volvemos a pedir el resultset con la pginacion
-	
-					$resultSet=$ccomprobantes->getCondicionesPag($columnas ,$tablas ,$where_to,  $id, $limit );
-	
-	*/
-	
-				}
-	
-	
-	
-	/*		$this->view("ReporteComprobantes",array(
-						"resultSet"=>$resultSet, "resultTipCom"=> $resultTipCom,
-						"resultEnt"=>$resultEnt,
-						"arraySel"=>$arraySel, "paginasTotales"=>$paginasTotales,
-						"registrosTotales"=> $registrosTotales,"pagina_actual"=>$paginaActual, "ultima_pagina"=>$ultima_pagina
+						$html="";
+						$resultSet=$ccomprobantes->getCantidad("*", $tablas, $where_to);
+						$cantidadResult=(int)$resultSet[0]->total;
+							
+						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+							
+						$per_page = 50; //la cantidad de registros que desea mostrar
+						$adjacents  = 9; //brecha entre páginas después de varios adyacentes
+						$offset = ($page - 1) * $per_page;
+							
+						$limit = " LIMIT   '$per_page' OFFSET '$offset'";
 							
 							
-				));
+						$resultSet=$ccomprobantes->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
+							
+						$count_query   = $cantidadResult;
+							
+						$total_pages = ceil($cantidadResult/$per_page);
+							
+						if ($cantidadResult>0)
+						{
+					
+							//<th style="color:#456789;font-size:80%;"></th>
+								
+							$html.='<div class="pull-left">';
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='</div><br>';
+							$html.='<section style="height:425px; overflow-y:scroll;">';
+							$html.='<table class="table table-hover">';
+							$html.='<thead>';
+							$html.='<tr class="info">';
+							$html.='<th>Tipo</th>';
+							$html.='<th>Concepto</th>';
+							$html.='<th>Entidad</th>';
+							$html.='<th>Valor</th>';
+							$html.='<th>Fecha</th>';
+							$html.='<th>Numero de Comprobante</th>';
+							$html.='<th>Forma de Pago</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+					
+							foreach ($resultSet as $res)
+							{
+								//<td style="color:#000000;font-size:80%;"> <?php echo ;</td>
+									
+								$html.='<tr>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_tipo_comprobantes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->concepto_ccomprobantes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_entidades.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->valor_letras.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->fecha_ccomprobantes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->numero_ccomprobantes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_forma_pago.'</td>';
+								$html.='</tr>';
+									
+							}
+					
+							$html.='</tbody>';
+							$html.='</table>';
+							$html.='</section>';
+							$html.='<div class="table-pagination pull-right">';
+							$html.=''. $this->paginate("index.php", $page, $total_pages, $adjacents).'';
+							$html.='</div>';
+							$html.='</section>';
+					
+								
+						}else{
+								
+							$html.='<div class="alert alert-warning alert-dismissable">';
+							$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+							$html.='<h4>Aviso!!!</h4> No hay datos para mostrar';
+							$html.='</div>';
+								
+						}
+							
+						echo $html;
+						die();
+						
+					}
+					
+					if(isset($_POST['reporte']))
+					{
+						//local depende del visual
+						//http://localhost:5748/
+						//externa
+						//http://localhost:5748/
+						//crecion cadena de parametros
+						$parametros="";
+						echo "<IFRAME SRC=\"http://localhost:5748/Php/Inicio.aspx?id_entidades='$id_entidades'\" WIDTH=\"100%\" HEIGHT=\"100%\" FRAMEBORDER=\"1\">";
+						echo "</iframes>";
+
+					//header ("Location:http://192.168.0.112:3015/Php/Inicio.aspx");
+					die();
+					}
+					
 	
-				*/
+		}
+	
 				
 				$this->view("ReporteComprobantes",array(
 						"resultSet"=>$resultSet, "resultTipCom"=> $resultTipCom,
@@ -977,6 +987,69 @@ class ComprobantesController extends ControladorBase{
 	
 	}
 	
+	public function paginate($reload, $page, $tpages, $adjacents) {
+	
+		$prevlabel = "&lsaquo; Prev";
+		$nextlabel = "Next &rsaquo;";
+		$out = '<ul class="pagination pagination-large">';
+	
+		// previous label
+	
+		if($page==1) {
+			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+		} else if($page==2) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_comprobantes(1)'>$prevlabel</a></span></li>";
+		}else {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_comprobantes(".($page-1).")'>$prevlabel</a></span></li>";
+	
+		}
+	
+		// first label
+		if($page>($adjacents+1)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes(1)'>1</a></li>";
+		}
+		// interval
+		if($page>($adjacents+2)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// pages
+	
+		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+		for($i=$pmin; $i<=$pmax; $i++) {
+			if($i==$page) {
+				$out.= "<li class='active'><a>$i</a></li>";
+			}else if($i==1) {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes(1)'>$i</a></li>";
+			}else {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes(".$i.")'>$i</a></li>";
+			}
+		}
+	
+		// interval
+	
+		if($page<($tpages-$adjacents-1)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// last
+	
+		if($page<($tpages-$adjacents)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes($tpages)'>$tpages</a></li>";
+		}
+	
+		// next
+	
+		if($page<$tpages) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_comprobantes(".($page+1).")'>$nextlabel</a></span></li>";
+		}else {
+			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+		}
+	
+		$out.= "</ul>";
+		return $out;
+	}
     
 	
 	

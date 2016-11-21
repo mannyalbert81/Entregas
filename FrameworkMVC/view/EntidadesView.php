@@ -1,4 +1,4 @@
-<?php include("view/modulos/modal.php"); ?>
+<?php //include("view/modulos/modal.php"); ?>
 <?php include("view/modulos/head.php"); ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -123,6 +123,13 @@
 		    <div class="form-group">
                                   <label for="ciudad_entidades" class="control-label">Ciudad</label>
                                   <input type="text" class="form-control" id="ciudad_entidades" name="ciudad_entidades" value=""  placeholder="Ciudad">
+                                  <span class="help-block"></span>
+            </div>
+		    </div>
+		    <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="logo_entidades" class="control-label">Ciudad</label>
+                                  <input type="file" class="form-control" id="logo_entidades" name="logo_entidades">
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -292,7 +299,7 @@
              <br>
 			 <br>
 			 <br> 
-  
+
        
              <footer class="col-lg-12">
 			 <?php include("view/modulos/footer.php"); ?>
