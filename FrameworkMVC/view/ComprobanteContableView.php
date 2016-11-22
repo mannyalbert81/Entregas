@@ -182,6 +182,7 @@
       		$_dato=unserialize($a);
       
       		$sel_concepto_ccomprobantes=$_dato['array_concepto_ccomprobantes'];
+      		$sel_fecha_ccomprobantes=$_dato['array_fecha_ccomprobantes'];
       		
       	}
       
@@ -316,7 +317,7 @@
              <div class="col-xs-2 col-md-2">
              
                                   <label for="id_plan_cuentas" class="control-label" >#Cuenta: </label>
-                                  <input type="text" class="form-control" id="id_plan_cuentas" name="id_plan_cuentas" value="" onkeyup="validacion('id_plan_cuentas');" placeholder="Search">
+                                  <input type="text" class="form-control" id="id_plan_cuentas" name="id_plan_cuentas" value=""  placeholder="Search">
                                   <input type="hidden" class="form-control" id="plan_cuentas" name="plan_cuentas" value=""  placeholder="Search">
                                   <span class="help-block"></span>
              </div>
@@ -325,7 +326,7 @@
 		     <div class="form-group">
 		     <div class="col-xs-3 col-md-3">                     
                                   <label for="nombre_plan_cuentas" class="control-label">Nombre: </label>
-                                  <input type="text" class="form-control" id="nombre_plan_cuentas" name="nombre_plan_cuentas" value="" onkeyup="validacion('nombre_plan_cuentas');" placeholder="Search">
+                                  <input type="text" class="form-control" id="nombre_plan_cuentas" name="nombre_plan_cuentas" value=""  placeholder="Search">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -333,7 +334,7 @@
 		     <div class="form-group">
              <div class="col-xs-3 col-md-3">
 		                          <label for="descripcion_dcomprobantes" class="control-label">Descripción: </label>
-                                  <input type="text" class="form-control" id="descripcion_dcomprobantes" name="descripcion_dcomprobantes" value="" onkeyup="validacion('descripcion_dcomprobantes');" placeholder="">
+                                  <input type="text" class="form-control" id="descripcion_dcomprobantes" name="descripcion_dcomprobantes" value=""  placeholder="">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -341,14 +342,14 @@
 		     <div class="form-group">
              <div class="col-xs-2 col-md-2">
 		                          <label for="debe_dcomprobantes" class="control-label">Debe: </label>
-                                  <input type="text" class="form-control" id="debe_dcomprobantes" name="debe_dcomprobantes" value="" onkeypress="return numeros(event)" onkeyup="validacion('debe_dcomprobantes');" placeholder=""  onfocus="validardebe(this);">
+                                  <input type="text" class="form-control" id="debe_dcomprobantes" name="debe_dcomprobantes" value="" onkeypress="return numeros(event)"  placeholder=""  onfocus="validardebe(this);">
                                   <span class="help-block"></span>
              </div>
 		     </div>
 		     <div class="form-group">
              <div class="col-xs-2 col-md-2">
 		                          <label for="haber_dcomprobantes" class="control-label">Haber: </label>
-                                  <input type="text" class="form-control" id="haber_dcomprobantes" name="haber_dcomprobantes" value="" onkeypress="return numeros(event)" onkeyup="validacion('haber_dcomprobantes');" placeholder="" onfocus="validardebe(this);">
+                                  <input type="text" class="form-control" id="haber_dcomprobantes" name="haber_dcomprobantes" value="" onkeypress="return numeros(event)"  placeholder="" onfocus="validardebe(this);">
                                   <span class="help-block"></span>
              </div>
 		     </div>
