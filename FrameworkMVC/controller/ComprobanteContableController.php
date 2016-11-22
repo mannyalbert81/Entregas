@@ -209,6 +209,8 @@ class ComprobanteContableController extends ControladorBase{
    	$resultado = null;
    	$permisos_rol=new PermisosRolesModel();
    
+   	$plan_cuentas= new PlanCuentasModel();
+   	 
    	$forma_pago = new FormaPagoModel();
    	$consecutivos = new ConsecutivosModel();
     $ccomprobantes = new CComprobantesModel();

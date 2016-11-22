@@ -141,6 +141,18 @@ class EntidadBase{
     	return $resultSet;
     }
     
+    public function getCondiciones_noind($columnas ,$tablas , $where){
+    	 
+    	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where ");
+    	$resultSet = array();
+    	while ($row = pg_fetch_object($query)) {
+    		$resultSet[]=$row;
+    	}
+    
+    	return $resultSet;
+    }
+    
+    
     public function getCondicionesDesc($columnas ,$tablas , $where, $id){
     	 
     	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where ORDER BY $id  DESC");
@@ -824,6 +836,7 @@ class EntidadBase{
     	$_saldo_mayor = 0;
     	$_n_plan_cuentas = '';
     	$_saldo_fin_plan_cuentas = 0;
+    	$_id_entidades = 0;
     	
     	///buscamos la naturaleza e la cuenta
     	$where =  "id_plan_cuentas= '$_id_plan_cuentas' ";
@@ -832,7 +845,7 @@ class EntidadBase{
    		{
    			$_n_plan_cuentas =  $res->n_plan_cuentas;
    			$_saldo_fin_plan_cuentas =  $res->saldo_fin_plan_cuentas;
-   			
+   		    $_id_entidades = 	$res->id_entidades; 
    		}
     	if ($_n_plan_cuentas == 'D')
     	{
@@ -870,7 +883,196 @@ class EntidadBase{
     	$plan_cuentas->setParametros($parametros);
     
     	$resultadoT=$plan_cuentas->Insert();
+    	
+    	
+    	
+    	///actualizo saldos de grupo
+    	$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
+    	
     }
+
+    
+    
+    public  function CuadraPlanCuentas($_id_entidades)
+    {
+    	$plan_cuentas = new PlanCuentasModel();
+    	$_id_plan_cuentas = 0;
+    	$_saldo_fin_plan_cuentas = 0;
+    	$_nivel_plan_cuentas = 0;
+    	$_codigo_plan_cuentas = '';
+    	///buscamos el ultimo nivel
+    	$where =  "id_entidades= '$_id_entidades' ORDER BY  nivel_plan_cuentas ";
+    	$resultNivel =  $plan_cuentas->getBy($where);
+    	foreach($resultNivel as $res)
+    	{
+    		$_nivel_plan_cuentas =  $res->nivel_plan_cuentas;
+    	
+    	}
+    	if ($_nivel_plan_cuentas == 5)
+    	{
+    		///buscamos los niveles 4
+    		$where4 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '4' ORDER BY  codigo_plan_cuentas ";
+    		$resultPlan4 =  $plan_cuentas->getBy($where4);
+    		foreach($resultPlan4 as $res)
+    		{
+    			$_id_plan_cuentas = $res->id_plan_cuentas;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    			
+    			
+    			///buscamos los 5 de este 4
+    			$columna5 = ' SUM(saldo_fin_plan_cuentas) AS saldo_fin_plan_cuentas ';
+    			$tabla5 = 'plan_cuentas';
+    			$where5 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '5' AND substring(codigo_plan_cuentas from 1 for 8) = '$_codigo_plan_cuentas' ";
+    		
+    			////sumamos
+    			$resultPlan5 =  $plan_cuentas->getCondiciones_noind($columna5, $tabla5, $where5);
+    			foreach($resultPlan5 as $res)
+    			{
+    				$_saldo_fin_plan_cuentas =  $res->saldo_fin_plan_cuentas;
+    			}
+    		
+    			//actualizamos
+    			try {
+    				$plan_cuentas->UpdateBy(" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' " );
+    				
+    			} catch (Exception $e) {
+    				
+    				echo "Error en 4 ->". $e;
+    			}	
+    			
+    			
+    			
+    			
+    			 
+    		}
+    		
+    		
+    		///suo de nivel recorro los 3
+    		$where3 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '3' ORDER BY  codigo_plan_cuentas ";
+    		$resultPlan3 =  $plan_cuentas->getBy($where3);
+    		foreach($resultPlan3 as $res)
+    		{
+    			$_id_plan_cuentas = $res->id_plan_cuentas;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    			 
+    			 
+    			///buscamos los 4 de este 3
+    			$columna4 = ' SUM(saldo_fin_plan_cuentas) AS saldo_fin_plan_cuentas ';
+    			$tabla4 = 'plan_cuentas';
+    			$where4 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '4' AND substring(codigo_plan_cuentas from 1 for 6) = '$_codigo_plan_cuentas' ";
+    		
+    			////sumamos
+    			$resultPlan4 =  $plan_cuentas->getCondiciones_noind($columna4, $tabla4, $where4);
+    			$_saldo_fin_plan_cuentas = 0;
+    			foreach($resultPlan4 as $res)
+    			{
+    				$_saldo_fin_plan_cuentas =  $res->saldo_fin_plan_cuentas;
+    			}
+    		
+    			//actualizamos
+    		
+    		try {
+    				$plan_cuentas->UpdateBy(" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' " );
+    				
+    			} catch (Exception $e) {
+    				
+    				echo "Error en 3 ->". $e;
+    			}	
+    			 
+    			 
+    			 
+    		
+    		}
+    		
+    		
+    		
+
+    		///suo de nivel recorro los 2
+    		$where2 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '2' ORDER BY  codigo_plan_cuentas ";
+    		$resultPlan2 =  $plan_cuentas->getBy($where2);
+    		foreach($resultPlan2 as $res)
+    		{
+    			$_id_plan_cuentas = $res->id_plan_cuentas;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    		
+    		
+    			///buscamos los 3 de este 2
+    			$columna3 = ' SUM(saldo_fin_plan_cuentas) AS saldo_fin_plan_cuentas ';
+    			$tabla3 = 'plan_cuentas';
+    			$where3 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '3' AND substring(codigo_plan_cuentas from 1 for 4) = '$_codigo_plan_cuentas' ";
+    		
+    			////sumamos
+    			$resultPlan3 =  $plan_cuentas->getCondiciones_noind($columna3, $tabla3, $where3);
+    			$_saldo_fin_plan_cuentas = 0;
+    			foreach($resultPlan3 as $res)
+    			{
+    				$_saldo_fin_plan_cuentas =  $res->saldo_fin_plan_cuentas;
+    			}
+    		
+    			//actualizamos
+    		
+    			try {
+    				$plan_cuentas->UpdateBy(" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' " );
+    			
+    			} catch (Exception $e) {
+    			
+    				echo "Error en 2 ->". $e;
+    			}
+    			 	
+    		
+    		
+    		}
+    		
+    		
+			
+    		
+
+    		///suo de nivel recorro los 1
+    		$where1 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '1' ORDER BY  codigo_plan_cuentas ";
+    		$resultPlan1 =  $plan_cuentas->getBy($where1);
+    		foreach($resultPlan1 as $res)
+    		{
+    			$_id_plan_cuentas = $res->id_plan_cuentas;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    		
+    		
+    			///buscamos los 3 de este 2
+    			$columna2 = ' SUM(saldo_fin_plan_cuentas) AS saldo_fin_plan_cuentas ';
+    			$tabla2 = 'plan_cuentas';
+    			$where2 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '2' AND substring(codigo_plan_cuentas from 1 for 2) = '$_codigo_plan_cuentas' ";
+    		
+    			////sumamos
+    			$resultPlan2 =  $plan_cuentas->getCondiciones_noind($columna2, $tabla2, $where2);
+    			$_saldo_fin_plan_cuentas = 0;
+    			foreach($resultPlan2 as $res)
+    			{
+    				$_saldo_fin_plan_cuentas =  $res->saldo_fin_plan_cuentas;
+    			}
+    		
+    			//actualizamos
+    		
+    			try {
+    				//$plan_cuentas->UpdateBy(" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' " );
+    			
+    			} catch (Exception $e) {
+    			
+    				echo "Error en 1 ->". $e;
+    			}
+    			 
+    		
+    		
+    		
+    		}
+    		
+    		
+    		
+    		
+    	}
+    	
+    	
+    	
+    }
+    
     
 }
 ?>
