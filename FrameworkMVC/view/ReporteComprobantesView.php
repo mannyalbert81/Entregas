@@ -1,5 +1,4 @@
- <?php require_once 'config/global.php';?>
- <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="es">
 
       <head>
@@ -205,7 +204,7 @@
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
   		    
 		 <button type="button" id="buscar" name="buscar" value="Buscar"   class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-search"></i></button>
-		 <button type="submit" id="reporte" name="reporte" value="reporte"   class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
+		 <button type="submit" id="reporte" name="reporte" value="reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
 	  
 	  <?php if(!empty($resultSet))  {?>
 	  <a href="<?php echo IP_REPORTE; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success"><i class="glyphicon glyphicon-download-alt"></i></a>
@@ -225,20 +224,37 @@
 		 
 		 <div class="col-lg-12">
 		 
-	      <div class="col-lg-12">
-		 <div class="col-lg-10"></div>
-		 <div class="col-lg-2">
-		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
-		 </div>
-		 </div>
 		 <div class="col-lg-12">
 		 
 		 <div style="height: 200px; display: block;">
 		
-		 <h4 style="color:#ec971f;">Datos Juicios</h4>
-			  <div >					
+		 <h4 style="color:#ec971f;"></h4>
+			  <div>					
 					<div id="comprobantes" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
-					<div class="div_comprobantes" ></div><!-- Datos ajax Final -->
+					<div class="div_comprobantes" >
+					 <div class="pull-left"> 
+							 <span class="form-control"><strong>Registros: </strong>0</span> 
+							 <input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>
+							 </div><br> 
+							 <section style="height:50px;"> 
+							 <table class="table table-hover"> 
+							 <thead> 
+							 <tr class="info"> 
+							 <th>Tipo</th> 
+							 <th>Concepto</th> 
+							 <th>Entidad</th> 
+							 <th>Valor</th> 
+							 <th>Fecha</th> 
+							 <th>Numero de Comprobante</th> 
+							 <th>Forma de Pago</th> 
+							 </tr> 
+							 </thead> 
+							 <tbody> 
+							 </tbody>
+							 </table>
+							 </section>
+					</div><!-- Datos ajax Final -->
+					
 		      </div>
 		       <br>
 				  

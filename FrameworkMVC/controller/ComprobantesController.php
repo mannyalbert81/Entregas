@@ -844,7 +844,7 @@ class ComprobantesController extends ControladorBase{
 					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3. $where_4;
 	
 	
-					$resultSet=$ccomprobantes->getCondiciones($columnas ,$tablas , $where_to, $id);
+					//$resultSet=$ccomprobantes->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
 					
 					//comienza paginacion
@@ -938,17 +938,31 @@ class ComprobantesController extends ControladorBase{
 					
 					if(isset($_POST['reporte']))
 					{
-						//local depende del visual
-						//http://localhost:5748/
-						//externa
-						//http://localhost:5748/
-						//crecion cadena de parametros
-						$parametros="";
-						echo "<IFRAME SRC=\"http://localhost:59584/Php/Contendor/conMayorDetallado.aspx?id_entidades='$id_entidades'&tipo_comprobantes='$id_tipo_comprobantes'&num_comprobantes='$numero_ccomprobantes'&ref_doc_comprobantes='$referencia_doc_ccomprobantes'&fecha_desde='$fechadesde'&fecha_hasta='$fechahasta'\" WIDTH=\"100%\" HEIGHT=\"100%\" FRAMEBORDER=\"1\">";
-						echo "</iframes>";
-
-					//header ("Location:http://192.168.0.112:3015/Php/Inicio.aspx");
-					die();
+						
+						//parametros q van al servidor de reportes
+						
+						$parametros = array();
+						
+						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+						$parametros['id_tipo_comprobantes']=(isset($_POST['id_tipo_comprobantes']))?trim($_POST['id_tipo_comprobantes']):'';
+						$parametros['numero_ccomprobantes']=(isset($_POST['numero_ccomprobantes']))?trim($_POST['numero_ccomprobantes']):'';
+						$parametros['referencia_doc_ccomprobantes']=(isset($_POST['referencia_doc_ccomprobantes']))?trim($_POST['referencia_doc_ccomprobantes']):'';
+						$parametros['fecha_desde']=(isset($_POST['fecha_desde']))?trim($_POST['fecha_desde']):'';
+						$parametros['fecha_hasta']=(isset($_POST['fecha_hasta']))?trim($_POST['fecha_hasta']):'';
+						
+						//para local 
+						$pagina="conComprobantes.aspx";
+												
+						$conexion_rpt = array();
+						$conexion_rpt['pagina']=$pagina;
+						$conexion_rpt['port']="59584";
+						
+						$this->view("ReporteRpt", array(
+								"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+						));
+						
+						die();
+						
 					}
 					
 	

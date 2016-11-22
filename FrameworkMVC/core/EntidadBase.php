@@ -152,6 +152,17 @@ class EntidadBase{
     	return $resultSet;
     }
     
+    public function getCondiciones_GrupBy_OrderBy($columnas ,$tablas , $where , $grupo, $orden){
+    
+    	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where GROUP BY $grupo ORDER BY $orden  DESC");
+    	$resultSet = array();
+    	while ($row = pg_fetch_object($query)) {
+    		$resultSet[]=$row;
+    	}
+    
+    	return $resultSet;
+    }
+    
     
     public function getCondicionesDesc($columnas ,$tablas , $where, $id){
     	 
