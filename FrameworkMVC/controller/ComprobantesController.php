@@ -944,7 +944,7 @@ class ComprobantesController extends ControladorBase{
 						//http://localhost:5748/
 						//crecion cadena de parametros
 						$parametros="";
-						echo "<IFRAME SRC=\"http://localhost:5748/Php/Inicio.aspx?id_entidades='$id_entidades'\" WIDTH=\"100%\" HEIGHT=\"100%\" FRAMEBORDER=\"1\">";
+						echo "<IFRAME SRC=\"http://localhost:59584/Php/Contendor/conMayorDetallado.aspx?id_entidades='$id_entidades'&tipo_comprobantes='$id_tipo_comprobantes'&num_comprobantes='$numero_ccomprobantes'&ref_doc_comprobantes='$referencia_doc_ccomprobantes'&fecha_desde='$fechadesde'&fecha_hasta='$fechahasta'\" WIDTH=\"100%\" HEIGHT=\"100%\" FRAMEBORDER=\"1\">";
 						echo "</iframes>";
 
 					//header ("Location:http://192.168.0.112:3015/Php/Inicio.aspx");
