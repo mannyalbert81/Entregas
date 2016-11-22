@@ -56,6 +56,56 @@
 			   });
 			});
         </script>
+        
+    <script type="text/javascript">
+	$(document).ready(function(){
+		//load_juicios(1);
+
+		$("#buscar").click(function(){
+
+			load_mayor_general(1);
+			
+			});
+	});
+
+	
+	function load_mayor_general(pagina){
+		
+		//iniciar variables
+		 var con_id_entidades=$("#id_entidades").val();
+		 var con_id_tipo_comprobantes=$("#id_tipo_comprobantes").val();
+		 var con_reporte=$("#reporte").val();
+		 var con_fecha_desde=$("#fecha_desde").val();
+		 var con_fecha_hasta=$("#fecha_hasta").val();
+
+		  var con_datos={
+				  id_entidades:con_id_entidades,
+				  id_tipo_comprobantes:con_id_tipo_comprobantes,
+				  reporte:con_reporte,
+				  fecha_desde:con_fecha_desde,
+				  fecha_hasta:con_fecha_hasta,
+				  action:'ajax',
+				  page:pagina
+				  };
+
+
+		$("#comprobantes").fadeIn('slow');
+		$.ajax({
+			url:"<?php echo $helper->url("MayorGeneral","MayorGeneral");?>",
+            type : "POST",
+            async: true,			
+			data: con_datos,
+			 beforeSend: function(objeto){
+			$("#mayor_general").html('<img src="view/images/ajax-loader.gif"> Cargando...');
+			},
+			success:function(data){
+				$(".div_mayor_general").html(data).fadeIn('slow');
+				$("#mayor_general").html("");
+			}
+		})
+	}
+	
+	</script>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -93,7 +143,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("MayorGeneral","MayorGeneral"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("MayorGeneral","MayorGeneral"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
@@ -147,17 +197,18 @@
 		</div>
 		 
   			</div>
+  		 <div class="col-lg-12">
+		 <div class="col-lg-12">
+	     </div>
+	     </div>
   		
-  		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
+  		<div class="col-lg-12" style="text-align: center; margin-top: 30px">
   		    
-		 <button type="submit" id="buscar" name="buscar" value="Buscar"   class="btn btn-info" style="margin-top: 10px;"/><i class="glyphicon glyphicon-search"></i></button>     
+		 <button type="button" id="buscar" name="buscar" value="Buscar"   class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-search"></i></button>
+		 <button type="submit" id="reporte_rpt" name="reporte_rpt" value="Reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
 	  
-	  <?php if(!empty($resultSet))  {?>
-		 <a href="/contabilidad/FrameworkMVC/view/ireports/ContMayorReport.php?id_entidades=<?php  echo $sel_id_entidades ?>&id_tipo_comprobantes=<?php  echo $sel_id_tipo_comprobantes?>&reporte=<?php  echo $sel_reporte?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>&id_usuarios=<?php echo $_SESSION['id_usuarios'];?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success"><i class="glyphicon glyphicon-download-alt"></i></a>
-	  <?php } else {?>
-		  <?php } ?>
-	
-		  </div>
+	 
+	     </div>
 		 
 		</div>
         	
@@ -166,12 +217,22 @@
 		 
 		 <div class="col-lg-12">
 		 
-	      <div class="col-lg-12">
-		 <div class="col-lg-10"></div>
-		 <div class="col-lg-2">
-		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+	     <div class="col-lg-12">
+	     
+	     <div style="height: 200px; display: block;">
+		
+		 <h4 style="color:#ec971f;"></h4>
+			  <div>					
+					<div id="mayor_general" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div class="div_mayor_general" ></div><!-- Datos ajax Final -->
+		      </div>
+		       <br>
+				  
 		 </div>
+		 
 		 </div>
+		 
+		 <?php /* ?> 
 		 <div class="col-lg-12">
 		
 		 
@@ -254,6 +315,7 @@
 		 
 		 </div>
 		 
+		 <?php */?>
 		 
 		 </div>
 		 
