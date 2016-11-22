@@ -104,6 +104,9 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("MayorGeneral",$controladores) ?>">
 			<a href="index.php?controller=MayorGeneral&action=MayorGeneral"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Mayor General</span> </a>
 			</li>
+			<li style="<?php echo getcontrolador("TipoCierre",$controladores) ?>">
+			<a href="index.php?controller=TipoCierre&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Cierre </span> </a>
+			</li>
 </ul>
 </li>
         

@@ -207,7 +207,7 @@
 			                	<div class="right">
 			                    <a href="<?php echo $helper->url("PermisosRoles","borrarId"); ?>&id_permisos_rol=<?php echo $res->id_permisos_rol; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
 			                </div>
-			                <hr/>
+			                
 		               </td>
 		    		</tr>
 		        <?php } } ?>
