@@ -129,6 +129,9 @@ class MayorGeneralController extends ControladorBase{
 						
 					if($action == 'ajax')
 					{
+						//echo $columnas.'<br>'.$tablas.'<br>'.$where_to;
+						//die();
+						
 						$html="";
 						$resultSet=$ccomprobantes->getCantidad("*", $tablas, $where_to);
 						$cantidadResult=(int)$resultSet[0]->total;
@@ -225,6 +228,7 @@ class MayorGeneralController extends ControladorBase{
 						$parametros['fecha_desde']=(isset($_POST['fecha_desde']))?trim($_POST['fecha_desde']):'';
 						$parametros['fecha_hasta']=(isset($_POST['fecha_hasta']))?trim($_POST['fecha_hasta']):'';
 						$parametros['reporte']=(isset($_POST['fecha_hasta']))?trim($_POST['reporte']):'';
+						$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
 						
 						//para local 
 						$pagina="conMayorDetallado.aspx";
