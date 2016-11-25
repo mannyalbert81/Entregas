@@ -898,7 +898,7 @@ class EntidadBase{
     	
     	
     	///actualizo saldos de grupo
-    	$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
+    	//$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
     	
     }
 

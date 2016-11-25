@@ -147,48 +147,54 @@
             
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-            
-             <div class="col-md-4 col-lg-4 col-xs-4" style="margin-top: 5px">
-					           <select name="id_entidades" id="id_entidades"  class="form-control" readonly>
-                                  <?php foreach($resultEnt as $res) {?>
-										<option value="<?php echo $res->id_entidades; ?>" ><?php echo $res->nombre_entidades; ?> </option>
+            <div class="row">
+		    <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="id_entidades" class="control-label">Entidades</label>
+                                  <select name="id_entidades" id="id_entidades"  class="form-control" >
+                                 	<?php foreach($resultEnt as $res) {?>
+										<option value="<?php echo $res->id_entidades; ?>" <?php if ($res->id_entidades == $resEdit->id_entidades )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_entidades; ?> </option>
 							        <?php } ?>
 								   </select> 
-                                  <span class="help-block"></span>	
+                                  <span class="help-block"></span>
+            </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="nombre_tipo_cierre" class="control-label">Tipo Cierre</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_cierre" name="nombre_tipo_cierre" value="<?php echo $resEdit->nombre_tipo_cierre; ?>"  placeholder="Tipo Cierre">
+                                  <span class="help-block"></span>
+            </div>
+		    </div>
+			</div>
              
-             </div>
-        
-			   
-			   <div class="row">
-		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombres tipos de Cierre</p>
-			  	<input type="text"  name="nombre_tipo_Cierre" id="nombre_tipo_cierre" value="<?php echo $resEdit->nombre_tipo_cierre; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_tipo_cierre"  value="<?php echo $resEdit->id_tipo_cierre; ?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			   </div>
-		    
+             
+            
 		     <?php } } else {?>
-		     
-		     <div class="col-md-4 col-lg-4 col-xs-4" style="margin-top: 5px">
-			<select name="id_entidades" id="id_entidades"  class="form-control" readonly>
-            <?php foreach($resultEnt as $res) {?>
-			<option value="<?php echo $res->id_entidades; ?>" ><?php echo $res->nombre_entidades; ?> </option>
-			<?php } ?>
-			</select> 
-                                  
-             
-             </div>
 		    
 		    
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres tipos de Cierre</p>
-			  	<input type="text"  name="nombre_tipo_cierre" id="nombre_tipo_cierre" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			 </div>
-
+		    <div class="row">
+		    <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="id_entidades" class="control-label">Entidades</label>
+                                  <select name="id_entidades" id="id_entidades"  class="form-control" >
+                                 	<?php foreach($resultEnt as $res) {?>
+										<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+							        <?php } ?>
+								   </select> 
+                                  <span class="help-block"></span>
+            </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="nombre_tipo_cierre" class="control-label">Tipo Cierre</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_cierre" name="nombre_tipo_cierre" value=""  placeholder="Tipo Cierre">
+                                  <span class="help-block"></span>
+            </div>
+		    </div>
+			</div>
+		    
+		    
 		    <hr>
 		    
 		   
@@ -197,8 +203,8 @@
 		     
 		     
 		       <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+			  <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" >
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar"  class="btn btn-success"/>
 			  </div>
 			</div>     
                
@@ -226,7 +232,9 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_cierre; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_cierre; ?>     </td> 
 		           	   <td>
-			           		
+			           		<div class="right">
+			                    <a href="<?php echo $helper->url("TipoCierre","index"); ?>&id_tipo_cierre=<?php echo $res->id_tipo_cierre; ?>" class="btn btn-warning" onClick="Borrar()"style="font-size:65%;">Editar</a>
+			                </div>
 			            
 			             </td>
 			             <td>   

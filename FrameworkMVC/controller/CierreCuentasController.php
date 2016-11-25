@@ -94,24 +94,23 @@ class CierreCuentasController extends ControladorBase{
    		
    		$date = new DateTime($_fecha_cierre_mes);
    		
-   		$anio = date("Y",$date);
    		
-   		$mes = date("m",$date);
+   		$anio = $date->format("Y");
+   		
+   		$mes = $date->format("m");
+   		
+   		
    		//poner parametros de anio y mes
    		$resultFechaCierre = $cierre_mes->getBy(" EXTRACT(YEAR FROM fecha_cierre_mes) = '$anio' AND
    		TO_CHAR(fecha_cierre_mes,'MM') = '$mes' AND id_entidades='$_id_entidades'");
    		
    		if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
    		
-   		var_dump($_fecha_cierre) ;
-   		var_dump($anio);
-   		var_dump($mes);
-   		die();
-   		
-   		if($_fecha_cierre == $_fecha_cierre_mes)
+   		   		
+   		if($_fecha_cierre!='' || $_fecha_cierre== null)
    		{
    			$this->view("Error",array(
-   					"resultado"=>"No pudimos procesar el requerimiento, vuelva a intertarlo utilizando una fecha diferente de cierre, ya existe un cierre el ".$_fecha_cierre
+   					"resultado"=>"No pudimos procesar el requerimiento, vuelva a intertarlo utilizando una fecha diferente de cierre, ya existe un cierre en el anio ".$anio." y mes ".$mes
   
    			));
    			exit();
@@ -168,6 +167,8 @@ class CierreCuentasController extends ControladorBase{
    				$cierre_mes->setFuncion($funcion);
    				$cierre_mes->setParametros($parametros);
    				$resultado=$cierre_mes->Insert();
+   				
+   				$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
    				
    				$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
    				$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;   				
