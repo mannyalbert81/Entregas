@@ -189,12 +189,8 @@ class CierreCuentasController extends ControladorBase{
    					try
    					{
    						$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   						
    						$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   						
    						$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   						
-   						
    						$_suma_debe_mayor = (float)$res->suma_debe;
    						$_suma_haber_mayor = (float)$res->suma_haber;
    							
