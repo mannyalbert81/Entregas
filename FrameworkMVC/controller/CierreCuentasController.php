@@ -179,7 +179,7 @@ class CierreCuentasController extends ControladorBase{
 						  usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
 				
    				$grupo = "mayor.id_plan_cuentas";
-   				$id="mayor.id_plan_cuentas";
+   				$id="mayor.creado";
    				$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
    					
    				
