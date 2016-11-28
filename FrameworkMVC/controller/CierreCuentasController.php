@@ -102,7 +102,7 @@ class CierreCuentasController extends ControladorBase{
    		$resultFechaCierre = $cierre_mes->getBy(" EXTRACT(YEAR FROM fecha_cierre_mes) = '$anio' AND
    		TO_CHAR(fecha_cierre_mes,'MM') = '$mes' AND id_entidades='$_id_entidades'");
    		
-   		//if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
+   	   if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
    		
    	
    		if (isset ($_POST["id_tipo_cierre"]))
@@ -149,6 +149,7 @@ class CierreCuentasController extends ControladorBase{
    					{
    						$_id_plan_cuentas = $res->id_plan_cuentas;
    						
+   						
    						$funcion = "ins_cuentas_cierre_mes";
    						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo'";
    						$cuentas_cierre_mes->setFuncion($funcion);
@@ -181,17 +182,23 @@ class CierreCuentasController extends ControladorBase{
    				$grupo = "mayor.id_plan_cuentas";
    				$id="mayor.creado";
    				$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
-   					
+   				
    				
    				foreach($resultCuentasMayor as $res)
    				{
    					try
    					{
    						$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
+   						
+   						$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
+   						
+   						$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
+   						
+   						
    						$_suma_debe_mayor = (float)$res->suma_debe;
    						$_suma_haber_mayor = (float)$res->suma_haber;
    							
-   						$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor'";
+   						$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor',saldo_final_ene='$_saldo_mayor'";
    						$tabla = "cuentas_cierre_mes";
    						$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
    						$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
