@@ -138,7 +138,7 @@ class CierreCuentasController extends ControladorBase{
    			// prueba cierra mes
    			
    			$columnas ='plan_cuentas.id_plan_cuentas,entidades.id_entidades,
-						plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_fin_plan_cuentas,
+						plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_mayor,
 						SUM(mayor.debe_mayor) as "suma_debe", SUM(mayor.haber_mayor) as "suma_haber"';
    			$tablas ="public.plan_cuentas 
 					INNER JOIN public.entidades 
@@ -152,7 +152,7 @@ class CierreCuentasController extends ControladorBase{
    			$grupo="plan_cuentas.id_plan_cuentas, 
 				   entidades.id_entidades, 
 				   plan_cuentas.saldo_plan_cuentas, 
-				   plan_cuentas.saldo_fin_plan_cuentas";
+				   plan_cuentas.saldo_mayor";
    			$orden="plan_cuentas.id_plan_cuentas";
    			$resultCuentas=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas ,$tablas ,$where, $grupo, $orden);
    			   			
@@ -176,14 +176,17 @@ class CierreCuentasController extends ControladorBase{
    				$traza=new TrazasModel();
    				
    				foreach($resultCuentas as $res)
-   				{   					
+   				{   
+   					
+   					
    					try
    					{
    						$_id_plan_cuentas = $res->id_plan_cuentas;
    						$_saldo_inicial = $res->saldo_plan_cuentas;
    						$_debe = (float)$res->suma_debe;
    						$_haber = (float)$res->suma_haber;
-   						$_saldo_final = $res->saldo_fin_plan_cuentas;
+   						$_saldo_final = $res->saldo_mayor;
+   						
    						
    						/*
    						$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
@@ -225,7 +228,7 @@ class CierreCuentasController extends ControladorBase{
    
    		}	
    		
-   		}
+   	 }
    		
    		$this->redirect("CierreCuentas","index");
    	}
