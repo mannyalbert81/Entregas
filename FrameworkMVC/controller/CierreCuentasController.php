@@ -99,14 +99,14 @@ class CierreCuentasController extends ControladorBase{
    		
    		$mes = $date->format("m");
    		
-   		
+   		$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
    		//poner parametros de anio y mes
    		$resultFechaCierre = $cierre_mes->getBy(" EXTRACT(YEAR FROM fecha_cierre_mes) = '$anio' AND
    		TO_CHAR(fecha_cierre_mes,'MM') = '$mes' AND id_entidades='$_id_entidades'");
    		
    		if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
    		
-   		   		
+   		 /*  		
    		if($_fecha_cierre!='' || $_fecha_cierre== null)
    		{
    			$this->view("Error",array(
@@ -117,7 +117,7 @@ class CierreCuentasController extends ControladorBase{
    			
    		}else{
    		
-   			
+   		*/	
    		if (isset ($_POST["id_tipo_cierre"]))
    		{
    			/*
@@ -137,7 +137,7 @@ class CierreCuentasController extends ControladorBase{
    			// prueba cierra mes
    			
    			$columnas ='plan_cuentas.id_plan_cuentas,entidades.id_entidades,
-						plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_fin_plan_cuentas,
+						plan_cuentas.saldo_plan_cuentas, mayor.saldo_mayor,
 						SUM(mayor.debe_mayor) as "suma_debe", SUM(mayor.haber_mayor) as "suma_haber"';
    			$tablas ="public.plan_cuentas 
 					INNER JOIN public.entidades 
@@ -151,7 +151,7 @@ class CierreCuentasController extends ControladorBase{
    			$grupo="plan_cuentas.id_plan_cuentas, 
 				   entidades.id_entidades, 
 				   plan_cuentas.saldo_plan_cuentas, 
-				   plan_cuentas.saldo_fin_plan_cuentas";
+				   mayor.saldo_mayor";
    			$orden="plan_cuentas.id_plan_cuentas";
    			$resultCuentas=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas ,$tablas ,$where, $grupo, $orden);
    			   			
@@ -168,7 +168,7 @@ class CierreCuentasController extends ControladorBase{
    				$cierre_mes->setParametros($parametros);
    				$resultado=$cierre_mes->Insert();
    				
-   				$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
+   				
    				
    				$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
    				$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;   				
@@ -180,24 +180,22 @@ class CierreCuentasController extends ControladorBase{
    				{   					
    					try
    					{
+   						
    						$_id_plan_cuentas = $res->id_plan_cuentas;
-   						$_saldo_inicial = $res->saldo_plan_cuentas;
    						$_debe = (float)$res->suma_debe;
    						$_haber = (float)$res->suma_haber;
-   						$_saldo_final = $res->saldo_fin_plan_cuentas;
-   						
+   						$_saldo_final = (float)$res->saldo_mayor;
+   						//$_saldo_final =end($resultCuentas);
    						/*
    						$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
    						$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;
    						 */ 						
    						
    						$funcion = "ins_cuentas_cierre_mes";
-   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas','$_saldo_inicial', '$_debe', '$_haber', '$_saldo_final'";
+   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$_debe', '$_haber', '$_saldo_final'";
    						$cuentas_cierre_mes->setFuncion($funcion);
    						$cuentas_cierre_mes->setParametros($parametros);
    						$resultado=$cuentas_cierre_mes->Insert();
-   						
-   							
    						
    						
    						$_nombre_controlador = "CierreCuentas";
@@ -226,7 +224,7 @@ class CierreCuentasController extends ControladorBase{
    
    		}	
    		
-   		}
+   		//}
    		
    		$this->redirect("CierreCuentas","index");
    	}
