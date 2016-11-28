@@ -93,10 +93,7 @@ class CierreCuentasController extends ControladorBase{
    		$_fecha_cierre_mes=$_POST['fecha_cierre_mes'];
    		
    		$date = new DateTime($_fecha_cierre_mes);
-   		
-   		
    		$anio = $date->format("Y");
-   		
    		$mes = $date->format("m");
    		
    		
@@ -120,22 +117,8 @@ class CierreCuentasController extends ControladorBase{
    		*/	
    		if (isset ($_POST["id_tipo_cierre"]))
    		{
-   			/*
-   			$columnas ="plan_cuentas.id_plan_cuentas, entidades.id_entidades, plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_fin_plan_cuentas, SUM(mayor.debe_mayor) as suma_debe, SUM(mayor.haber_mayor) as suma_haber";
-   			$tablas ="public.plan_cuentas, 
-					  public.usuarios, 
-					  public.entidades, 
-					  public.mayor";
-   			$where =" plan_cuentas.id_entidades = entidades.id_entidades AND
-					  usuarios.id_entidades = entidades.id_entidades AND
-					  mayor.id_plan_cuentas = plan_cuentas.id_plan_cuentas AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
-   			$grupo="plan_cuentas.id_plan_cuentas, entidades.id_entidades, plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_fin_plan_cuentas";
-   			$orden="plan_cuentas.id_plan_cuentas";
-   			$resultCuentas=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas ,$tablas ,$where, $grupo, $orden);
-   			*/
-   			
-   			// prueba cierra mes
-   			
+   		
+   		
    			$columnas ='plan_cuentas.id_plan_cuentas,entidades.id_entidades,
 						plan_cuentas.saldo_plan_cuentas, mayor.saldo_mayor,
 						SUM(mayor.debe_mayor) as "suma_debe", SUM(mayor.haber_mayor) as "suma_haber"';
@@ -168,13 +151,13 @@ class CierreCuentasController extends ControladorBase{
    				$cierre_mes->setParametros($parametros);
    				$resultado=$cierre_mes->Insert();
    				
-   				$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
+   				//$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
    				
    				$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
    				$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;   				
    				
    				set_time_limit(60);
-   				$traza=new TrazasModel();
+   				
    				
    				foreach($resultCuentas as $res)
    				{   					
@@ -186,22 +169,6 @@ class CierreCuentasController extends ControladorBase{
    						$_haber = (float)$res->suma_haber;
    						$_saldo_final = (float)$res->saldo_mayor;
    						//$_saldo_final =end($resultCuentas);
-   						/*
-   						$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
-   						$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;
-   						 */ 						
-   						
-   						$funcion = "ins_cuentas_cierre_mes";
-   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$_debe', '$_haber', '$_saldo_final'";
-   						$cuentas_cierre_mes->setFuncion($funcion);
-   						$cuentas_cierre_mes->setParametros($parametros);
-   						$resultado=$cuentas_cierre_mes->Insert();
-   						
-   						
-   						$_nombre_controlador = "CierreCuentas";
-   						$_accion_trazas  = "CerrarCuentas";
-   						$_parametros_trazas = $_id_plan_cuentas;
-   						$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
    						
    					   
    					} catch (Exception $e)
@@ -212,7 +179,19 @@ class CierreCuentasController extends ControladorBase{
    						exit();
    					}
    						
-   				}					
+   				}	
+   				
+   				$funcion = "ins_cuentas_cierre_mes";
+   				$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$_debe', '$_haber', '$_saldo_final'";
+   				$cuentas_cierre_mes->setFuncion($funcion);
+   				$cuentas_cierre_mes->setParametros($parametros);
+   				$resultado=$cuentas_cierre_mes->Insert();
+   					
+   				$traza=new TrazasModel();
+   				$_nombre_controlador = "CierreCuentas";
+   				$_accion_trazas  = "CerrarCuentas";
+   				$_parametros_trazas = $_id_plan_cuentas;
+   				$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
    					
    					
    			}
