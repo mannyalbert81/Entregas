@@ -99,7 +99,7 @@ class CierreCuentasController extends ControladorBase{
    		
    		$mes = $date->format("m");
    		
-   		$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
+   		
    		//poner parametros de anio y mes
    		$resultFechaCierre = $cierre_mes->getBy(" EXTRACT(YEAR FROM fecha_cierre_mes) = '$anio' AND
    		TO_CHAR(fecha_cierre_mes,'MM') = '$mes' AND id_entidades='$_id_entidades'");
@@ -168,7 +168,7 @@ class CierreCuentasController extends ControladorBase{
    				$cierre_mes->setParametros($parametros);
    				$resultado=$cierre_mes->Insert();
    				
-   				
+   				$resulCuadra = $plan_cuentas->CuadraPlanCuentas($_id_entidades);
    				
    				$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
    				$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;   				
