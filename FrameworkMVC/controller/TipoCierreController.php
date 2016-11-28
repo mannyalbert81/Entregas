@@ -10,24 +10,41 @@ class TipoCierreController extends ControladorBase{
 
 	public function index(){
 	
-		//Creamos el objeto usuario
-     	$tipo_cierre= new TipoCierreModel(); 
-		
-	   //Conseguimos todos los usuarios
-		$resultSet=$tipo_cierre->getAll("id_tipo_cierre");
-				
-		$resultEdit = "";
-
 		
 		session_start();
-
-	
+        
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$resultEdit = "";
+			$id_usuarios=$_SESSION["id_usuarios"];
+			
+			
 			$tipo_cierre= new TipoCierreModel();
 			
+			//Conseguimos todos los usuarios
+			$columnas_set="tipo_cierre.id_tipo_cierre,
+				  tipo_cierre.nombre_tipo_cierre,
+				  entidades.nombre_entidades";
+			$tablas_set="public.tipo_cierre,
+				  public.entidades,
+				  public.usuarios";
+			$where_set="entidades.id_entidades = tipo_cierre.id_entidades AND
+			usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios'";
+			$id_set="entidades.nombre_entidades";
+			$resultSet= $tipo_cierre->getCondiciones($columnas_set, $tablas_set, $where_set, $id_set);
+			
+			
+			
+			$tipo_cierre= new TipoCierreModel();
 			$entidades=new EntidadesModel();
-			$resultEnt = $entidades->getBy("nombre_entidades='MUNDO DIGITAL'");
+			
+			$columnas="entidades.id_entidades, entidades.nombre_entidades";
+			$tablas="public.usuarios, public.entidades";
+			$where="usuarios.id_entidades=entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios'";
+			$id="id_entidades";
+			$resultEnt= $entidades->getCondiciones($columnas, $tablas, $where, $id);
+			
+			
 			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoCierre";
@@ -47,12 +64,12 @@ class TipoCierreController extends ControladorBase{
 					{
 					
 						$_id_tipo_cierre = $_GET["id_tipo_cierre"];
-						$columnas = " id_tipo_cierre, nombre_tipo_cierre";
-						$tablas   = "tipo_cierre";
-						$where    = "id_tipo_cierre = '$_id_tipo_cierre' "; 
-						$id       = "nombre_tipo_cierre";
+						$columnas_set1 = "tipo_cierre.id_tipo_cierre, tipo_cierre.nombre_tipo_cierre, entidades.nombre_entidades, entidades.id_entidades";
+						$tablas_set1   = "public.tipo_cierre, public.entidades";
+						$where_set1    = "tipo_cierre.id_entidades = entidades.id_entidades AND tipo_cierre.id_tipo_cierre = '$_id_tipo_cierre' "; 
+						$id_set1       = "nombre_tipo_cierre";
 							
-						$resultEdit = $tipo_cierre->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $tipo_cierre->getCondiciones($columnas_set1 ,$tablas_set1 ,$where_set1, $id_set1);
 
 						$traza=new TrazasModel();
 						$_nombre_controlador = "TipoCierre";
@@ -74,7 +91,7 @@ class TipoCierreController extends ControladorBase{
 		
 				
 				$this->view("TipoCierre",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnt"=>$resultEnt,
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnt"=>$resultEnt
 			
 				));
 		
@@ -129,6 +146,16 @@ class TipoCierreController extends ControladorBase{
 				$_nombre_tipo_cierre = $_POST["nombre_tipo_cierre"];
 				$_id_entidades = $_POST["id_entidades"];
 				
+				if($_nombre_tipo_cierre==""){
+					
+					
+				}
+				else{
+					
+					
+				
+				
+				
 				if(isset($_POST["id_tipo_cierre"])) 
 				{
 					
@@ -163,10 +190,10 @@ class TipoCierreController extends ControladorBase{
 				
 				}
 			 
-			 
+				}
 		
 			}
-			$this->redirect("tipo_cierre", "index");
+			$this->redirect("TipoCierre", "index");
 
 		}
 		else

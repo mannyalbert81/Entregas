@@ -4,15 +4,6 @@ ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 
 
-//include_once('class/phpjasperxml/class/tcpdf/tcpdf.php');
-//include_once("class/phpjasperxml/class/PHPJasperXML.inc.php");
-
-//include_once ('class/phpjasperxml/setting.php');
-
-
-
-//include_once('setting.php');//no se puede enviar nada mas que el reporte, NINGUN espacio o caracter previo al repote
-
 class UsuariosController extends ControladorBase{
     
     public function __construct() {
@@ -278,29 +269,22 @@ public function index(){
 		    {
 		    
 		    	//para la foto
-		    	 
 		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos/';
-		    	 
 		    	$nombre = $_FILES['imagen_usuarios']['name'];
 		    	$tipo = $_FILES['imagen_usuarios']['type'];
 		    	$tamano = $_FILES['imagen_usuarios']['size'];
 		    	 
 		    	// temporal al directorio definitivo
-		    	 
 		    	move_uploaded_file($_FILES['imagen_usuarios']['tmp_name'],$directorio.$nombre);
-		    	 
 		    	$data = file_get_contents($directorio.$nombre);
-		    	 
 		    	$imagen_usuarios = pg_escape_bytea($data);
 		    
 		    
 	
 			$funcion = "ins_usuarios";
-			
 			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios', '$_id_ciudad', '$imagen_usuarios','$_id_entidad'";
 			$usuarios->setFuncion($funcion);
-	
-			$usuarios->setParametros($parametros);
+	        $usuarios->setParametros($parametros);
 	        $resultado=$usuarios->Insert();
 		    
 		    }
@@ -311,17 +295,14 @@ public function index(){
 		    	$colval = " nombre_usuarios = '$_nombre_usuario',  clave_usuarios = '$_clave_usuario', telefono_usuarios = '$_telefono_usuario', celular_usuarios = '$_celular_usuario', correo_usuarios = '$_correo_usuario', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuarios = '$_usuario_usuario', id_ciudad = '$_id_ciudad' , id_entidades = '$_id_entidad'  ";
 		    	$tabla = "usuarios";
 		    	$where = "cedula_usuarios = '$_cedula_usuarios'    ";
-		    
-		    	$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
+		        $resultado=$usuarios->UpdateBy($colval, $tabla, $where);
 		    	 
 		    }
 			
 	
 		}
 		$this->redirect("Usuarios", "index");
-		
-		
-	}
+	    }
 	
 	public function borrarId()
 	{
@@ -329,9 +310,7 @@ public function index(){
 		if(isset($_GET["id_usuarios"]))
 		{
 			$id_usuario=(int)$_GET["id_usuarios"];
-	
-			$usuarios=new UsuariosModel();
-				
+	        $usuarios=new UsuariosModel();
 			$usuarios->deleteBy(" id_usuarios",$id_usuario);
 				
 			$traza=new TrazasModel();

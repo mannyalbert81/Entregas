@@ -74,10 +74,13 @@
                                   <select name="id_tipo_cierre" id="id_tipo_cierre"  class="form-control">
                                     <?php foreach($resultTipCierre as $res) {?>
 										<option value="<?php echo $res->id_tipo_cierre; ?>"  ><?php echo $res->nombre_tipo_cierre; ?> </option>
-										 <input type="hidden" class="form-control" id="id_entidades" name="id_entidades" value="<?php echo $res->id_entidades; ?>">
-							        <?php } ?>
+									<?php } ?>
 								   </select> 
-                                  <span class="help-block"></span>
+								  <?php foreach($resultTipCierre as $res) {?>
+										<input type="hidden" class="form-control" id="id_entidades" name="id_entidades" value="<?php echo $res->id_entidades; ?>">
+							    	<?php } ?>
+								    
+								  <span class="help-block"></span>
              </div>
              </div>
 		     

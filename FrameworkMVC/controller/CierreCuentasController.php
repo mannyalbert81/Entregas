@@ -78,6 +78,7 @@ class CierreCuentasController extends ControladorBase{
     $cuentas_cierre_mes = new CuentasCierreMesModel();
     $entidades = new EntidadesModel(); 
     $plan_cuentas = new PlanCuentasModel();
+    $mayor = new MayorModel();
     
    	$nombre_controladores = "CierreCuentas";
    	$id_rol= $_SESSION['id_rol'];
@@ -93,48 +94,33 @@ class CierreCuentasController extends ControladorBase{
    		$_fecha_cierre_mes=$_POST['fecha_cierre_mes'];
    		
    		$date = new DateTime($_fecha_cierre_mes);
+   		$anio = $date->format("Y");
+   		$mes = $date->format("m");
    		
-   		$anio = date("Y",$date);
    		
-   		$mes = date("m",$date);
    		//poner parametros de anio y mes
    		$resultFechaCierre = $cierre_mes->getBy(" EXTRACT(YEAR FROM fecha_cierre_mes) = '$anio' AND
    		TO_CHAR(fecha_cierre_mes,'MM') = '$mes' AND id_entidades='$_id_entidades'");
    		
-   		if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
+   		//if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
    		
-   		var_dump($_fecha_cierre) ;
-   		var_dump($anio);
-   		var_dump($mes);
-   		die();
-   		
-   		if($_fecha_cierre == $_fecha_cierre_mes)
-   		{
-   			$this->view("Error",array(
-   					"resultado"=>"No pudimos procesar el requerimiento, vuelva a intertarlo utilizando una fecha diferente de cierre, ya existe un cierre el ".$_fecha_cierre
-  
-   			));
-   			exit();
-   			
-   		}else{
-   		
-   			
+   	
    		if (isset ($_POST["id_tipo_cierre"]))
    		{
-   			/*
-   			$columnas ="plan_cuentas.id_plan_cuentas, entidades.id_entidades, plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_fin_plan_cuentas, SUM(mayor.debe_mayor) as suma_debe, SUM(mayor.haber_mayor) as suma_haber";
-   			$tablas ="public.plan_cuentas, 
-					  public.usuarios, 
+   		
+   			$columnas="plan_cuentas.id_plan_cuentas, 
+					  plan_cuentas.id_entidades, 
+					  plan_cuentas.codigo_plan_cuentas, 
+					  plan_cuentas.nombre_plan_cuentas";
+   		
+   			$tablas=" public.plan_cuentas, 
 					  public.entidades, 
-					  public.mayor";
-   			$where =" plan_cuentas.id_entidades = entidades.id_entidades AND
-					  usuarios.id_entidades = entidades.id_entidades AND
-					  mayor.id_plan_cuentas = plan_cuentas.id_plan_cuentas AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
-   			$grupo="plan_cuentas.id_plan_cuentas, entidades.id_entidades, plan_cuentas.saldo_plan_cuentas, plan_cuentas.saldo_fin_plan_cuentas";
-   			$orden="plan_cuentas.id_plan_cuentas";
-   			$resultCuentas=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas ,$tablas ,$where, $grupo, $orden);
-   			*/
+					  public.usuarios";
+   			$where="entidades.id_entidades = plan_cuentas.id_entidades AND
+					  usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
+   			$id=" plan_cuentas.codigo_plan_cuentas";
    			
+<<<<<<< HEAD
    			// prueba cierra mes
    			
    			$columnas ='plan_cuentas.id_plan_cuentas,entidades.id_entidades,
@@ -157,8 +143,15 @@ class CierreCuentasController extends ControladorBase{
    			$resultCuentas=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas ,$tablas ,$where, $grupo, $orden);
    			   			
    			// termina prueba cierra mes
+=======
+   			$resultCuentas = $plan_cuentas->getCondiciones($columnas ,$tablas ,$where, $id);
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad
    			
    			
+   		   $debe=(float)0;
+   		   $haber=(float)0;
+   		   $saldo=(float)0;
+   		   
    			
    			try
    			{
@@ -173,7 +166,7 @@ class CierreCuentasController extends ControladorBase{
    				$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;   				
    				
    				set_time_limit(60);
-   				$traza=new TrazasModel();
+   				
    				
    				foreach($resultCuentas as $res)
    				{   
@@ -182,6 +175,7 @@ class CierreCuentasController extends ControladorBase{
    					try
    					{
    						$_id_plan_cuentas = $res->id_plan_cuentas;
+<<<<<<< HEAD
    						$_saldo_inicial = $res->saldo_plan_cuentas;
    						$_debe = (float)$res->suma_debe;
    						$_haber = (float)$res->suma_haber;
@@ -192,21 +186,14 @@ class CierreCuentasController extends ControladorBase{
    						$resultCierre = $cierre_mes->getBy("id_entidades ='$_id_entidades' AND id_usuario_creador='$_id_usuarios' AND fecha_cierre_mes='$_fecha_cierre_mes'");
    						$_id_cierre_mes=$resultCierre[0]->id_cierre_mes;
    						 */ 						
+=======
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad
    						
    						$funcion = "ins_cuentas_cierre_mes";
-   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas','$_saldo_inicial', '$_debe', '$_haber', '$_saldo_final'";
+   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo'";
    						$cuentas_cierre_mes->setFuncion($funcion);
    						$cuentas_cierre_mes->setParametros($parametros);
    						$resultado=$cuentas_cierre_mes->Insert();
-   						
-   							
-   						
-   						
-   						$_nombre_controlador = "CierreCuentas";
-   						$_accion_trazas  = "CerrarCuentas";
-   						$_parametros_trazas = $_id_plan_cuentas;
-   						$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-   						
    					   
    					} catch (Exception $e)
    					{
@@ -216,8 +203,52 @@ class CierreCuentasController extends ControladorBase{
    						exit();
    					}
    						
-   				}					
+   				}	
+   				
+   				$columnas_mayor="mayor.id_plan_cuentas, 
+						  SUM(mayor.debe_mayor) as suma_debe, 
+						  SUM(mayor.haber_mayor) as suma_haber";
+   				         
+   				$tablas_mayor="public.mayor, 
+						  public.plan_cuentas, 
+						  public.entidades, 
+						  public.usuarios";
+   				
+   				$where_mayor="plan_cuentas.id_plan_cuentas = mayor.id_plan_cuentas AND
+						  entidades.id_entidades = plan_cuentas.id_entidades AND
+						  usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
+				
+   				$grupo = "mayor.id_plan_cuentas";
+   				$id="mayor.id_plan_cuentas";
+   				$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
    					
+   				
+   				foreach($resultCuentasMayor as $res)
+   				{
+   					try
+   					{
+   						$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
+   						$_suma_debe_mayor = (float)$res->suma_debe;
+   						$_suma_haber_mayor = (float)$res->suma_haber;
+   							
+   						$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor'";
+   						$tabla = "cuentas_cierre_mes";
+   						$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
+   						$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
+   							
+   					} catch (Exception $e)
+   					{
+   						$this->view("Error",array(
+   								"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
+   						));
+   						exit();
+   					}
+   						
+   				}
+   				
+   				
+   				
+   				
    					
    			}
    			catch (Exception $e)
@@ -228,7 +259,11 @@ class CierreCuentasController extends ControladorBase{
    
    		}	
    		
+<<<<<<< HEAD
    	 }
+=======
+   		//}
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad
    		
    		$this->redirect("CierreCuentas","index");
    	}

@@ -136,6 +136,9 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("CierreCuentas",$controladores) ?>">
           <a href="index.php?controller=CierreCuentas&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Cerrar Cuentas</span> </a>
           </li>
+          <li style="<?php echo getcontrolador("BalanceComprobacion",$controladores) ?>">
+          <a href="index.php?controller=BalanceComprobacion&action=BalanceComprobacion"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobacion</span> </a>
+          </li>
           
 </ul>
 </li>
