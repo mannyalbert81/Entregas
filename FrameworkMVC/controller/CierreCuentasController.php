@@ -36,7 +36,7 @@ class CierreCuentasController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
-				
+				//jhkjh
 					
 					$this->view("CierreCuentas",array(
 							
