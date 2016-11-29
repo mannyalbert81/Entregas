@@ -1081,8 +1081,309 @@ class EntidadBase{
     	}
     	
     	
+
+    	
+    	
     	
     }
+    
+    
+    
+    
+    
+    
+    
+
+
+    public  function CierrePlanCuentas($_id_entidades, $_year)
+    {
+    	$plan_cuentas = new PlanCuentasModel();
+    	$_id_plan_cuentas = 0;
+    	$_saldo_fin_plan_cuentas = 0;
+    	$_nivel_plan_cuentas = 0;
+    	$_codigo_plan_cuentas = '';
+    	$_id_cuentas_cierre_mes = 0;
+    	///buscamos el ultimo nivel
+    	
+    	$_saldo_final_ene  = 0;
+    	$_saldo_final_feb = 0;
+    	$_saldo_final_mar = 0;
+    	$_saldo_final_abr = 0;
+    	$_saldo_final_may = 0;
+    	$_saldo_final_jun = 0;
+    	$_saldo_final_jul = 0;
+    	$_saldo_final_ago = 0;
+    	$_saldo_final_sep = 0;
+    	$_saldo_final_oct = 0;
+    	$_saldo_final_nov = 0;
+    	$_saldo_final_dic = 0;
+    	
+    	$columnas = 'plan_cuentas.nivel_plan_cuentas';
+    	$tablas = 'plan_cuentas, cuentas_cierre_mes'; 
+    	$id = "plan_cuentas.nivel_plan_cuentas";
+    	$where =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND plan_cuentas.id_entidades= '$_id_entidades' AND cuentas_cierre_mes.year = '$_year' ";
+    	$resultNivel =  $plan_cuentas->getCondiciones($columnas, $tablas, $where, $id);
+    	foreach($resultNivel as $res)
+    	{
+    		$_nivel_plan_cuentas =  $res->nivel_plan_cuentas;
+    		 
+    	}
+    	if ($_nivel_plan_cuentas == 5)
+    	{
+    		///buscamos los niveles 4
+    		
+    		$columnas4 = 'plan_cuentas.codigo_plan_cuentas, cuentas_cierre_mes.id_cuentas_cierre_mes, plan_cuentas.nivel_plan_cuentas';
+    		$tablas4 = 'plan_cuentas, cuentas_cierre_mes';
+    		$id4 = "plan_cuentas.codigo_plan_cuentas";
+    		$where4 =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND cuentas_cierre_mes.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '4' AND plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas  AND cuentas_cierre_mes.year = '$_year'";
+    
+    		$resultPlan4 = $plan_cuentas->getCondiciones($columnas4, $tablas4, $where4, $id4);
+    		
+    		foreach($resultPlan4 as $res)
+    		{
+    			$_id_cuentas_cierre_mes = $res->id_cuentas_cierre_mes;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    			 
+    			 
+    			///buscamos los 5 de este 4
+    			
+    			$columnas5 = 'SUM(cuentas_cierre_mes.saldo_final_ene) AS saldo_final_ene, SUM(cuentas_cierre_mes.saldo_final_feb) AS saldo_final_feb, SUM(cuentas_cierre_mes.saldo_final_mar) AS saldo_final_mar , SUM(cuentas_cierre_mes.saldo_final_abr) AS saldo_final_abr, SUM(cuentas_cierre_mes.saldo_final_may) AS saldo_final_may, SUM(cuentas_cierre_mes.saldo_final_jun) AS saldo_final_jun, SUM(cuentas_cierre_mes.saldo_final_jul) AS saldo_final_jul, SUM(cuentas_cierre_mes.saldo_final_ago) AS saldo_final_ago, SUM(cuentas_cierre_mes.saldo_final_sep) AS saldo_final_sep, SUM(cuentas_cierre_mes.saldo_final_oct) AS saldo_final_oct, SUM(cuentas_cierre_mes.saldo_final_nov) AS saldo_final_nov, SUM(cuentas_cierre_mes.saldo_final_dic) AS saldo_final_dic    ';
+    			$tablas5 = 'plan_cuentas, cuentas_cierre_mes';
+    			$where5 =  "plan_cuentas.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '5' AND substring(plan_cuentas.codigo_plan_cuentas from 1 for 8) = '$_codigo_plan_cuentas' AND  plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND  cuentas_cierre_mes.year = '$_year'  ";
+    			
+    			////sumamos
+    			$resultPlan5 =  $plan_cuentas->getCondiciones_noind($columna5, $tabla5, $where5);
+    			foreach($resultPlan5 as $res)
+    			{
+    				
+    				$_saldo_final_ene  = $res->saldo_final_ene;
+    				$_saldo_final_feb = $res->saldo_final_feb;
+			    	$_saldo_final_mar = $res->saldo_final_mar;
+			    	$_saldo_final_abr = $res->saldo_final_abr;
+			    	$_saldo_final_may = $res->saldo_final_may;
+			    	$_saldo_final_jun = $res->saldo_final_jun;
+			    	$_saldo_final_jul = $res->saldo_final_jul;
+			    	$_saldo_final_ago = $res->saldo_final_ago;
+			    	$_saldo_final_sep = $res->saldo_final_sep;
+			    	$_saldo_final_oct = $res->saldo_final_otc;
+			    	$_saldo_final_nov = $res->saldo_final_nov;
+			    	$_saldo_final_dic = $res->saldo_final_dic;
+    				
+    			}
+    
+    			//actualizamos
+    			try {
+    				//" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' " 
+    				$colval = "   $saldo_final_ene = '$_saldo_final_ene', $saldo_final_feb = '$_saldo_final_feb' , $saldo_final_mar = '$_saldo_final_mar' , $saldo_final_abr = '$_saldo_final_abr' , $saldo_final_may = '$_saldo_final_may' , $saldo_final_jun = '$_saldo_final_jun' , $saldo_final_jul = '$_saldo_final_jul' , $saldo_final_ago = '$_saldo_final_ago' , $saldo_final_sep = '$_saldo_final_sep' , $saldo_final_oct = '$_saldo_final_oct' , $saldo_final_nov = '$_saldo_final_nov' , $saldo_final_dic = '$_saldo_final_dic'               ";
+    				$tabla  = "cuentas_cierre_mes";
+    				$where  = " id_cuentas_cierre_mes = '$_id_cuentas_cierre_mes' AND year = '$_year' "; 
+    				$plan_cuentas->UpdateBy($colval, $tabla, $where);
+    
+    			} catch (Exception $e) {
+    
+    				echo "Error en 4 ->". $e;
+    			}
+    			 
+    			 
+    			 
+    			 
+    
+    		}
+    
+    		
+    		
+    		
+    		
+    
+    		///suo de nivel recorro los 3
+    
+    
+    		$columnas3 = 'plan_cuentas.codigo_plan_cuentas, cuentas_cierre_mes.id_cuentas_cierre_mes, plan_cuentas.nivel_plan_cuentas';
+    		$tablas3 = 'plan_cuentas, cuentas_cierre_mes';
+    		$id3 = "plan_cuentas.codigo_plan_cuentas";
+    		$where3 =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND cuentas_cierre_mes.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '3' AND plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas  AND cuentas_cierre_mes.year = '$_year'";
+    
+    		$resultPlan3 = $plan_cuentas->getCondiciones($columnas3, $tablas3, $where3, $id3);
+    		
+    		foreach($resultPlan3 as $res)
+    		{
+    			$_id_cuentas_cierre_mes = $res->id_cuentas_cierre_mes;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    			 
+    		
+    		
+    			///buscamos los 5 de este 4
+    			 
+    			$columnas4 = 'SUM(cuentas_cierre_mes.saldo_final_ene) AS saldo_final_ene, SUM(cuentas_cierre_mes.saldo_final_feb) AS saldo_final_feb, SUM(cuentas_cierre_mes.saldo_final_mar) AS saldo_final_mar , SUM(cuentas_cierre_mes.saldo_final_abr) AS saldo_final_abr, SUM(cuentas_cierre_mes.saldo_final_may) AS saldo_final_may, SUM(cuentas_cierre_mes.saldo_final_jun) AS saldo_final_jun, SUM(cuentas_cierre_mes.saldo_final_jul) AS saldo_final_jul, SUM(cuentas_cierre_mes.saldo_final_ago) AS saldo_final_ago, SUM(cuentas_cierre_mes.saldo_final_sep) AS saldo_final_sep, SUM(cuentas_cierre_mes.saldo_final_oct) AS saldo_final_oct, SUM(cuentas_cierre_mes.saldo_final_nov) AS saldo_final_nov, SUM(cuentas_cierre_mes.saldo_final_dic) AS saldo_final_dic    ';
+    			$tablas4 = 'plan_cuentas, cuentas_cierre_mes';
+    			$where4 =  "plan_cuentas.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '4' AND substring(plan_cuentas.codigo_plan_cuentas from 1 for 8) = '$_codigo_plan_cuentas' AND  plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND  cuentas_cierre_mes.year = '$_year'  ";
+    			 
+    			////sumamos
+    			$resultPlan4 =  $plan_cuentas->getCondiciones_noind($columna4, $tabla4, $where4);
+    			foreach($resultPlan5 as $res)
+    			{
+    		
+    				$_saldo_final_ene  = $res->saldo_final_ene;
+    				$_saldo_final_feb = $res->saldo_final_feb;
+    				$_saldo_final_mar = $res->saldo_final_mar;
+    				$_saldo_final_abr = $res->saldo_final_abr;
+    				$_saldo_final_may = $res->saldo_final_may;
+    				$_saldo_final_jun = $res->saldo_final_jun;
+    				$_saldo_final_jul = $res->saldo_final_jul;
+    				$_saldo_final_ago = $res->saldo_final_ago;
+    				$_saldo_final_sep = $res->saldo_final_sep;
+    				$_saldo_final_oct = $res->saldo_final_otc;
+    				$_saldo_final_nov = $res->saldo_final_nov;
+    				$_saldo_final_dic = $res->saldo_final_dic;
+    		
+    			}
+    		
+    			//actualizamos
+    			try {
+    				//" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' "
+    				$colval = "   $saldo_final_ene = '$_saldo_final_ene', $saldo_final_feb = '$_saldo_final_feb' , $saldo_final_mar = '$_saldo_final_mar' , $saldo_final_abr = '$_saldo_final_abr' , $saldo_final_may = '$_saldo_final_may' , $saldo_final_jun = '$_saldo_final_jun' , $saldo_final_jul = '$_saldo_final_jul' , $saldo_final_ago = '$_saldo_final_ago' , $saldo_final_sep = '$_saldo_final_sep' , $saldo_final_oct = '$_saldo_final_oct' , $saldo_final_nov = '$_saldo_final_nov' , $saldo_final_dic = '$_saldo_final_dic'               ";
+    				$tabla  = "cuentas_cierre_mes";
+    				$where  = " id_cuentas_cierre_mes = '$_id_cuentas_cierre_mes' AND year = '$_year' ";
+    				$plan_cuentas->UpdateBy($colval, $tabla, $where);
+    		
+    			} catch (Exception $e) {
+    		
+    				echo "Error en 3 ->". $e;
+    			}
+    		
+    		
+    			
+    		}
+    		
+    		
+    		
+    		
+    
+    
+    
+    		///suo de nivel recorro los 2
+    
+    		$columnas2 = 'plan_cuentas.codigo_plan_cuentas, cuentas_cierre_mes.id_cuentas_cierre_mes, plan_cuentas.nivel_plan_cuentas';
+    		$tablas2 = 'plan_cuentas, cuentas_cierre_mes';
+    		$id2 = "plan_cuentas.codigo_plan_cuentas";
+    		$where2 =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND cuentas_cierre_mes.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '2' AND plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas  AND cuentas_cierre_mes.year = '$_year'";
+    
+    		$resultPlan2 = $plan_cuentas->getCondiciones($columnas2, $tablas2, $where2, $id2);
+    		
+    		foreach($resultPlan2 as $res)
+    		{
+    			$_id_cuentas_cierre_mes = $res->id_cuentas_cierre_mes;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    		
+    		
+    			///buscamos los 5 de este 4
+    			 
+    			$columnas3 = 'SUM(cuentas_cierre_mes.saldo_final_ene) AS saldo_final_ene, SUM(cuentas_cierre_mes.saldo_final_feb) AS saldo_final_feb, SUM(cuentas_cierre_mes.saldo_final_mar) AS saldo_final_mar , SUM(cuentas_cierre_mes.saldo_final_abr) AS saldo_final_abr, SUM(cuentas_cierre_mes.saldo_final_may) AS saldo_final_may, SUM(cuentas_cierre_mes.saldo_final_jun) AS saldo_final_jun, SUM(cuentas_cierre_mes.saldo_final_jul) AS saldo_final_jul, SUM(cuentas_cierre_mes.saldo_final_ago) AS saldo_final_ago, SUM(cuentas_cierre_mes.saldo_final_sep) AS saldo_final_sep, SUM(cuentas_cierre_mes.saldo_final_oct) AS saldo_final_oct, SUM(cuentas_cierre_mes.saldo_final_nov) AS saldo_final_nov, SUM(cuentas_cierre_mes.saldo_final_dic) AS saldo_final_dic    ';
+    			$tablas3 = 'plan_cuentas, cuentas_cierre_mes';
+    			$where3 =  "plan_cuentas.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '3' AND substring(plan_cuentas.codigo_plan_cuentas from 1 for 8) = '$_codigo_plan_cuentas' AND  plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND  cuentas_cierre_mes.year = '$_year'  ";
+    			 
+    			////sumamos
+    			$resultPlan3 =  $plan_cuentas->getCondiciones_noind($columna3, $tabla3, $where3);
+    			foreach($resultPlan3 as $res)
+    			{
+    		
+    				$_saldo_final_ene  = $res->saldo_final_ene;
+    				$_saldo_final_feb = $res->saldo_final_feb;
+    				$_saldo_final_mar = $res->saldo_final_mar;
+    				$_saldo_final_abr = $res->saldo_final_abr;
+    				$_saldo_final_may = $res->saldo_final_may;
+    				$_saldo_final_jun = $res->saldo_final_jun;
+    				$_saldo_final_jul = $res->saldo_final_jul;
+    				$_saldo_final_ago = $res->saldo_final_ago;
+    				$_saldo_final_sep = $res->saldo_final_sep;
+    				$_saldo_final_oct = $res->saldo_final_otc;
+    				$_saldo_final_nov = $res->saldo_final_nov;
+    				$_saldo_final_dic = $res->saldo_final_dic;
+    		
+    			}
+    		
+    			//actualizamos
+    			try {
+    				//" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' "
+    				$colval = "   $saldo_final_ene = '$_saldo_final_ene', $saldo_final_feb = '$_saldo_final_feb' , $saldo_final_mar = '$_saldo_final_mar' , $saldo_final_abr = '$_saldo_final_abr' , $saldo_final_may = '$_saldo_final_may' , $saldo_final_jun = '$_saldo_final_jun' , $saldo_final_jul = '$_saldo_final_jul' , $saldo_final_ago = '$_saldo_final_ago' , $saldo_final_sep = '$_saldo_final_sep' , $saldo_final_oct = '$_saldo_final_oct' , $saldo_final_nov = '$_saldo_final_nov' , $saldo_final_dic = '$_saldo_final_dic'               ";
+    				$tabla  = "cuentas_cierre_mes";
+    				$where  = " id_cuentas_cierre_mes = '$_id_cuentas_cierre_mes' AND year = '$_year' ";
+    				$plan_cuentas->UpdateBy($colval, $tabla, $where);
+    		
+    			} catch (Exception $e) {
+    		
+    				echo "Error en 3 ->". $e;
+    			}
+    		
+    		}
+    		
+    		///suo de nivel recorro los 1
+    		
+    		
+    		
+    
+    		$columnas1 = 'plan_cuentas.codigo_plan_cuentas, cuentas_cierre_mes.id_cuentas_cierre_mes, plan_cuentas.nivel_plan_cuentas';
+    		$tablas1 = 'plan_cuentas, cuentas_cierre_mes';
+    		$id1 = "plan_cuentas.codigo_plan_cuentas";
+    		$where1 =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND cuentas_cierre_mes.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '1' AND plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas  AND cuentas_cierre_mes.year = '$_year'";
+    
+    		$resultPlan1 = $plan_cuentas->getCondiciones($columnas1, $tablas1, $where1, $id1);
+    		
+    		foreach($resultPlan1 as $res)
+    		{
+    			$_id_cuentas_cierre_mes = $res->id_cuentas_cierre_mes;
+    			$_codigo_plan_cuentas =  $res->codigo_plan_cuentas;
+    		
+    		
+    		
+    			///buscamos los 5 de este 4
+    			 
+    			$columnas2 = 'SUM(cuentas_cierre_mes.saldo_final_ene) AS saldo_final_ene, SUM(cuentas_cierre_mes.saldo_final_feb) AS saldo_final_feb, SUM(cuentas_cierre_mes.saldo_final_mar) AS saldo_final_mar , SUM(cuentas_cierre_mes.saldo_final_abr) AS saldo_final_abr, SUM(cuentas_cierre_mes.saldo_final_may) AS saldo_final_may, SUM(cuentas_cierre_mes.saldo_final_jun) AS saldo_final_jun, SUM(cuentas_cierre_mes.saldo_final_jul) AS saldo_final_jul, SUM(cuentas_cierre_mes.saldo_final_ago) AS saldo_final_ago, SUM(cuentas_cierre_mes.saldo_final_sep) AS saldo_final_sep, SUM(cuentas_cierre_mes.saldo_final_oct) AS saldo_final_oct, SUM(cuentas_cierre_mes.saldo_final_nov) AS saldo_final_nov, SUM(cuentas_cierre_mes.saldo_final_dic) AS saldo_final_dic    ';
+    			$tablas2 = 'plan_cuentas, cuentas_cierre_mes';
+    			$where2 =  "plan_cuentas.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '5' AND substring(plan_cuentas.codigo_plan_cuentas from 1 for 8) = '$_codigo_plan_cuentas' AND  plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND  cuentas_cierre_mes.year = '$_year'  ";
+    			 
+    			////sumamos
+    			$resultPlan2 =  $plan_cuentas->getCondiciones_noind($columna2, $tabla2, $where2);
+    			foreach($resultPlan2 as $res)
+    			{
+    		
+    				$_saldo_final_ene  = $res->saldo_final_ene;
+    				$_saldo_final_feb = $res->saldo_final_feb;
+    				$_saldo_final_mar = $res->saldo_final_mar;
+    				$_saldo_final_abr = $res->saldo_final_abr;
+    				$_saldo_final_may = $res->saldo_final_may;
+    				$_saldo_final_jun = $res->saldo_final_jun;
+    				$_saldo_final_jul = $res->saldo_final_jul;
+    				$_saldo_final_ago = $res->saldo_final_ago;
+    				$_saldo_final_sep = $res->saldo_final_sep;
+    				$_saldo_final_oct = $res->saldo_final_otc;
+    				$_saldo_final_nov = $res->saldo_final_nov;
+    				$_saldo_final_dic = $res->saldo_final_dic;
+    		
+    			}
+    		
+    			//actualizamos
+    			try {
+    				//" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' "
+    				$colval = "   $saldo_final_ene = '$_saldo_final_ene', $saldo_final_feb = '$_saldo_final_feb' , $saldo_final_mar = '$_saldo_final_mar' , $saldo_final_abr = '$_saldo_final_abr' , $saldo_final_may = '$_saldo_final_may' , $saldo_final_jun = '$_saldo_final_jun' , $saldo_final_jul = '$_saldo_final_jul' , $saldo_final_ago = '$_saldo_final_ago' , $saldo_final_sep = '$_saldo_final_sep' , $saldo_final_oct = '$_saldo_final_oct' , $saldo_final_nov = '$_saldo_final_nov' , $saldo_final_dic = '$_saldo_final_dic'               ";
+    				$tabla  = "cuentas_cierre_mes";
+    				$where  = " id_cuentas_cierre_mes = '$_id_cuentas_cierre_mes' AND year = '$_year' ";
+    				$plan_cuentas->UpdateBy($colval, $tabla, $where);
+    		
+    			} catch (Exception $e) {
+    		
+    				echo "Error en 2 ->". $e;
+    			}
+    		
+    		
+    		}
+    	}
+    
+    
+    	
+    }
+    	
+    	 
     
     
 }
