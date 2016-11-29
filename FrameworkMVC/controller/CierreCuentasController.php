@@ -212,6 +212,7 @@ class CierreCuentasController extends ControladorBase{
    						));
    						exit();
    					}
+   					
    				    }
    				
    				    $result="";

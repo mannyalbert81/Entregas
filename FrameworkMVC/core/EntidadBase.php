@@ -1117,10 +1117,13 @@ class EntidadBase{
     	$_saldo_final_nov = 0;
     	$_saldo_final_dic = 0;
     	
+    	
     	$columnas = 'plan_cuentas.nivel_plan_cuentas';
     	$tablas = 'plan_cuentas, cuentas_cierre_mes'; 
     	$id = "plan_cuentas.nivel_plan_cuentas";
     	$where =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND plan_cuentas.id_entidades= '$_id_entidades' AND cuentas_cierre_mes.year = '$_year' ";
+    	
+    	
     	$resultNivel =  $plan_cuentas->getCondiciones($columnas, $tablas, $where, $id);
     	foreach($resultNivel as $res)
     	{
@@ -1191,7 +1194,7 @@ class EntidadBase{
     
     		
     		
-    		
+    		/*
     		
     
     		///suo de nivel recorro los 3
@@ -1376,6 +1379,8 @@ class EntidadBase{
     		
     		
     		}
+    		
+    		*/
     	}
     
     
