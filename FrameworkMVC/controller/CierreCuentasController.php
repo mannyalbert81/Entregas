@@ -213,19 +213,31 @@ class CierreCuentasController extends ControladorBase{
    						exit();
    					}
    					
-   				    }
+   				}
    				
-   				    $result="";
-   				    $result = $cuentas_cierre_mes->CierrePlanCuentas($_id_entidades, $anio);
-   				    
-   			     }
+   				   
+   			}
    			
    			catch (Exception $e)
    			{
    
    			}
+   		
    			
-            }	
+   			try {
+   					
+   				$result="";
+   				$result = $cuentas_cierre_mes->CierrePlanCuentas($_id_entidades, $anio);
+   				
+   				
+   			} catch (Exception $e) 
+   			{
+   				echo "Erro al Cuadrar Balances: " + $e;
+   			}
+   				
+   			
+   			
+   		}	
    		
    		//}
    		
