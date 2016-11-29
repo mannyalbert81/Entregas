@@ -222,6 +222,7 @@ class CierreCuentasController extends ControladorBase{
    			{
    
    			}
+   			
    		
    			
    			try {
