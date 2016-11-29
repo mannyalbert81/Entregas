@@ -1237,28 +1237,28 @@ class EntidadBase{
     			 
     			////sumamos
     			$resultPlan4 =  $plan_cuentas->getCondiciones_noind($columnas4, $tablas4, $where4);
-    			foreach($resultPlan5 as $res)
+    			foreach($resultPlan4 as $res)
     			{
     		
-    				$_saldo_final_ene  = $res->saldo_final_ene;
-    				$_saldo_final_feb = $res->saldo_final_feb;
-    				$_saldo_final_mar = $res->saldo_final_mar;
-    				$_saldo_final_abr = $res->saldo_final_abr;
-    				$_saldo_final_may = $res->saldo_final_may;
-    				$_saldo_final_jun = $res->saldo_final_jun;
-    				$_saldo_final_jul = $res->saldo_final_jul;
-    				$_saldo_final_ago = $res->saldo_final_ago;
-    				$_saldo_final_sep = $res->saldo_final_sep;
-    				$_saldo_final_oct = $res->saldo_final_oct;
-    				$_saldo_final_nov = $res->saldo_final_nov;
-    				$_saldo_final_dic = $res->saldo_final_dic;
+    				$_saldo_final_ene = (float)$res->saldo_final_ene;
+    				$_saldo_final_feb = (float)$res->saldo_final_feb;
+    				$_saldo_final_mar = (float)$res->saldo_final_mar;
+    				$_saldo_final_abr = (float)$res->saldo_final_abr;
+    				$_saldo_final_may = (float)$res->saldo_final_may;
+    				$_saldo_final_jun = (float)$res->saldo_final_jun;
+    				$_saldo_final_jul = (float)$res->saldo_final_jul;
+    				$_saldo_final_ago = (float)$res->saldo_final_ago;
+    				$_saldo_final_sep = (float)$res->saldo_final_sep;
+    				$_saldo_final_oct = (float)$res->saldo_final_oct;
+    				$_saldo_final_nov = (float)$res->saldo_final_nov;
+    				$_saldo_final_dic = (float)$res->saldo_final_dic;
     		
     			}
     		
     			//actualizamos
     			try {
     				//" saldo_fin_plan_cuentas = '$_saldo_fin_plan_cuentas' " , "plan_cuentas", "id_plan_cuentas = '$_id_plan_cuentas' "
-    				$colval = "   saldo_final_ene = '$_saldo_final_ene', saldo_final_feb = '$_saldo_final_feb' , saldo_final_mar = '$_saldo_final_mar' , saldo_final_abr = '$_saldo_final_abr' , saldo_final_may = '$_saldo_final_may' , saldo_final_jun = '$_saldo_final_jun' , saldo_final_jul = '$_saldo_final_jul' , saldo_final_ago = '$_saldo_final_ago' , saldo_final_sep = '$_saldo_final_sep' , saldo_final_oct = '$_saldo_final_oct' , saldo_final_nov = '$_saldo_final_nov' , saldo_final_dic = '$_saldo_final_dic'               ";
+    				$colval = " saldo_final_ene = '$_saldo_final_ene', saldo_final_feb = '$_saldo_final_feb' , saldo_final_mar = '$_saldo_final_mar' , saldo_final_abr = '$_saldo_final_abr' , saldo_final_may = '$_saldo_final_may' , saldo_final_jun = '$_saldo_final_jun' , saldo_final_jul = '$_saldo_final_jul' , saldo_final_ago = '$_saldo_final_ago' , saldo_final_sep = '$_saldo_final_sep' , saldo_final_oct = '$_saldo_final_oct' , saldo_final_nov = '$_saldo_final_nov' , saldo_final_dic = '$_saldo_final_dic'               ";
     				$tabla  = "cuentas_cierre_mes";
     				$where  = " id_cuentas_cierre_mes = '$_id_cuentas_cierre_mes' AND year = '$_year' ";
     				$plan_cuentas->UpdateBy($colval, $tabla, $where);
@@ -1276,7 +1276,7 @@ class EntidadBase{
     		
     		
     
-    /*
+    
     
     		///suo de nivel recorro los 2
     
@@ -1318,18 +1318,18 @@ class EntidadBase{
     			foreach($resultPlan3 as $res)
     			{
     		
-    				$_saldo_final_ene  = $res->saldo_final_ene;
-    				$_saldo_final_feb = $res->saldo_final_feb;
-    				$_saldo_final_mar = $res->saldo_final_mar;
-    				$_saldo_final_abr = $res->saldo_final_abr;
-    				$_saldo_final_may = $res->saldo_final_may;
-    				$_saldo_final_jun = $res->saldo_final_jun;
-    				$_saldo_final_jul = $res->saldo_final_jul;
-    				$_saldo_final_ago = $res->saldo_final_ago;
-    				$_saldo_final_sep = $res->saldo_final_sep;
-    				$_saldo_final_oct = $res->saldo_final_oct;
-    				$_saldo_final_nov = $res->saldo_final_nov;
-    				$_saldo_final_dic = $res->saldo_final_dic;
+    				$_saldo_final_ene  = (float)$res->saldo_final_ene;
+    				$_saldo_final_feb = (float)$res->saldo_final_feb;
+    				$_saldo_final_mar = (float)$res->saldo_final_mar;
+    				$_saldo_final_abr = (float)$res->saldo_final_abr;
+    				$_saldo_final_may = (float)$res->saldo_final_may;
+    				$_saldo_final_jun = (float)$res->saldo_final_jun;
+    				$_saldo_final_jul = (float)$res->saldo_final_jul;
+    				$_saldo_final_ago = (float)$res->saldo_final_ago;
+    				$_saldo_final_sep = (float)$res->saldo_final_sep;
+    				$_saldo_final_oct = (float)$res->saldo_final_oct;
+    				$_saldo_final_nov = (float)$res->saldo_final_nov;
+    				$_saldo_final_dic = (float)$res->saldo_final_dic;
     		
     			}
     		
@@ -1390,18 +1390,18 @@ class EntidadBase{
     			foreach($resultPlan2 as $res)
     			{
     		
-    				$_saldo_final_ene  = $res->saldo_final_ene;
-    				$_saldo_final_feb = $res->saldo_final_feb;
-    				$_saldo_final_mar = $res->saldo_final_mar;
-    				$_saldo_final_abr = $res->saldo_final_abr;
-    				$_saldo_final_may = $res->saldo_final_may;
-    				$_saldo_final_jun = $res->saldo_final_jun;
-    				$_saldo_final_jul = $res->saldo_final_jul;
-    				$_saldo_final_ago = $res->saldo_final_ago;
-    				$_saldo_final_sep = $res->saldo_final_sep;
-    				$_saldo_final_oct = $res->saldo_final_oct;
-    				$_saldo_final_nov = $res->saldo_final_nov;
-    				$_saldo_final_dic = $res->saldo_final_dic;
+    				$_saldo_final_ene  = (float)$res->saldo_final_ene;
+    				$_saldo_final_feb = (float)$res->saldo_final_feb;
+    				$_saldo_final_mar = (float)$res->saldo_final_mar;
+    				$_saldo_final_abr = (float)$res->saldo_final_abr;
+    				$_saldo_final_may = (float)$res->saldo_final_may;
+    				$_saldo_final_jun = (float)$res->saldo_final_jun;
+    				$_saldo_final_jul = (float)$res->saldo_final_jul;
+    				$_saldo_final_ago = (float)$res->saldo_final_ago;
+    				$_saldo_final_sep = (float)$res->saldo_final_sep;
+    				$_saldo_final_oct = (float)$res->saldo_final_oct;
+    				$_saldo_final_nov = (float)$res->saldo_final_nov;
+    				$_saldo_final_dic = (float)$res->saldo_final_dic;
     		
     			}
     		
@@ -1421,7 +1421,7 @@ class EntidadBase{
     		
     		}
     
-    	*/	
+    	
     	}
     
     
