@@ -164,6 +164,8 @@ class EntidadBase{
     }
     
     
+   
+    
     public function getCondicionesDesc($columnas ,$tablas , $where, $id){
     	 
     	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where ORDER BY $id  DESC");
@@ -1086,9 +1088,6 @@ class EntidadBase{
     	
     	
     }
-    
-    
-    
     
     
     

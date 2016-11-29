@@ -102,6 +102,7 @@ class CierreCuentasController extends ControladorBase{
    		$resultFechaCierre = $cierre_mes->getBy(" EXTRACT(YEAR FROM fecha_cierre_mes) = '$anio' AND
    		TO_CHAR(fecha_cierre_mes,'MM') = '$mes' AND id_entidades='$_id_entidades'");
    		
+   		
    	   if(!empty($resultFechaCierre)){$_fecha_cierre=$resultFechaCierre[0]->fecha_cierre_mes;}
    		
    	
@@ -151,7 +152,7 @@ class CierreCuentasController extends ControladorBase{
    						
    						
    						$funcion = "ins_cuentas_cierre_mes";
-   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo'";
+   						$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo', '$anio'";
    						$cuentas_cierre_mes->setFuncion($funcion);
    						$cuentas_cierre_mes->setParametros($parametros);
    						$resultado=$cuentas_cierre_mes->Insert();
@@ -180,14 +181,18 @@ class CierreCuentasController extends ControladorBase{
 						  usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
 				
    				$grupo = "mayor.id_plan_cuentas";
-   				$id="mayor.creado";
+   				$id="mayor.id_plan_cuentas";
+   				
    				$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
+   				
    				
    				
    				foreach($resultCuentasMayor as $res)
    				{
    					try
    					{
+   						
+   					
    						$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
    						$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
    						$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
@@ -198,7 +203,8 @@ class CierreCuentasController extends ControladorBase{
    						$tabla = "cuentas_cierre_mes";
    						$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
    						$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   							
+   				
+   						
    					} catch (Exception $e)
    					{
    						$this->view("Error",array(
@@ -206,21 +212,19 @@ class CierreCuentasController extends ControladorBase{
    						));
    						exit();
    					}
-   						
-   				}
+   				    }
    				
-   				
-   				
-   				
-   					
-   			}
+   				    $result="";
+   				    $result = $cuentas_cierre_mes->CierrePlanCuentas($_id_entidades, $anio);
+   				    
+   			     }
+   			
    			catch (Exception $e)
    			{
    
    			}
-   		
-   
-   		}	
+   			
+            }	
    		
    		//}
    		
