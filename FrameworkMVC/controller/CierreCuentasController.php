@@ -259,20 +259,12 @@ class CierreCuentasController extends ControladorBase{
    			
    				}
    			
-<<<<<<< HEAD
-   				catch (Exception $e)
-   				{
-   					 
-   				}
-   				 
-=======
+
    			catch (Exception $e)
    			{
    
    			}
-   			
-   		
->>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad
+   	
    			
    				try {
    			
