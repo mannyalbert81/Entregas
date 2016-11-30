@@ -244,7 +244,14 @@ class BalanceComprobacionController extends ControladorBase{
 						$parametros['reporte']=(isset($_POST['fecha_hasta']))?trim($_POST['reporte']):'';
 						
 						//para local 
-						$pagina="conBalanceComprobacionDetallado.aspx";
+						$pagina="";
+						
+						//para localizar el reporte
+						if($_POST['reporte']=='detallado')
+						{   $pagina="conBalanceComprobacionDetallado.aspx";
+						}else if($_POST['reporte']=='simplificado'){
+							$pagina="conBalanceComprobacionSimplificado.aspx";
+						}
 												
 						$conexion_rpt = array();
 						$conexion_rpt['pagina']=$pagina;
