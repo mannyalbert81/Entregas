@@ -14,10 +14,6 @@
 		  <script src="view/js/bootstrapValidator.min.js"></script>
 		  <script src="view/js/ValidarCierreCuentas.js"></script>
 	      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-          
-	     
-        
-		
 	 
           <script type="text/javascript">
 		jQuery(function($){
@@ -48,7 +44,8 @@
 		</script> 
 		         
      </head>
-      <body class="cuerpo">
+     
+     <body class="cuerpo">
     
        <?php include("view/modulos/menu.php"); ?>
   
