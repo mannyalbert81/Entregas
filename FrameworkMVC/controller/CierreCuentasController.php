@@ -117,9 +117,6 @@ class CierreCuentasController extends ControladorBase{
    					$haber=(float)0;
    					$saldo=(float)0;
    					
-   					try
-   					{
-   							
    						//set_time_limit(60);
    						$funcion_cuentas_cierre_mes = "";
    						$columna = "";
@@ -188,67 +185,81 @@ class CierreCuentasController extends ControladorBase{
    						if(!empty($resultCuentas_cierre))
    						{
    						    $cta_cerrada = $resultCuentas_cierre[0]->$columna;
+   						    
    						    if($cta_cerrada=='t')
    						    {
-   						    	die('mes cerrado');
-   						    	
-   						    	
+   						    	echo $cta_cerrada;
+   						    	die();
    						    }else{
-   						    	die('mes sin cerrar');
+   						    	
+   						    	
+   						    	$columnas_mayor="mayor.id_plan_cuentas,
+						  		SUM(mayor.debe_mayor) as suma_debe,
+						  		SUM(mayor.haber_mayor) as suma_haber";
+   						    	
+   						    	$tablas_mayor="public.mayor,
+						  		public.plan_cuentas,
+						 		public.entidades,
+						  		public.usuarios";
+   						    	
+   						    	$where_mayor="plan_cuentas.id_plan_cuentas = mayor.id_plan_cuentas AND
+   						    	entidades.id_entidades = plan_cuentas.id_entidades AND
+   						    	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'
+   						    	AND entidades.id_entidades='$_id_entidades'  AND TO_CHAR(fecha_mayor,'MM') = '$mes' AND
+   						    	EXTRACT(YEAR FROM fecha_mayor) = '$anio'";
+   						    	
+   						    	$grupo = "mayor.id_plan_cuentas";
+   						    	$id="mayor.id_plan_cuentas";
+   						    	
+   						    	$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
+   						    	
+   						    	foreach($resultCuentasMayor as $res)
+   						    	{
+   						    		try
+   						    		{
+   						    	
+   						    			$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
+   						    			$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
+   						    			$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
+   						    			$_suma_debe_mayor = (float)$res->suma_debe;
+   						    			$_suma_haber_mayor = (float)$res->suma_haber;
+   						    	
+   						    			$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor',saldo_final_ene='$_saldo_mayor'";
+   						    			$tabla = "cuentas_cierre_mes";
+   						    			$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$id_cierre_mes'";
+   						    			$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
+   						    	
+   						    	
+   						    		} catch (Exception $e)
+   						    		{
+   						    			echo $e;
+   						    		}
+   						    	
+   						    	}   						      
+   						    	
+   						    	try {
+   						    	
+	   						    		$result="";
+	   						    		$result = $cuentas_cierre_mes->CierrePlanCuentas($_id_entidades, $anio);
+		   						    } catch (Exception $e)
+		   						    	{
+		   						    		echo "Erro al Cuadrar Balances: " + $e;
+		   						    	}
    						    }
    							
    						}else 
    						{
+   								
    							
-   						}
-   						
-   						//echo $funcion_cuentas_cierre_mes;
-   						//var_dump($resultCuentas_cierre);
-   						//die();
-   						
-   							
-   					
-   							
-   						$columnas_mayor="mayor.id_plan_cuentas,
-						  SUM(mayor.debe_mayor) as suma_debe,
-						  SUM(mayor.haber_mayor) as suma_haber";
-   					
-   						$tablas_mayor="public.mayor,
-						  public.plan_cuentas,
-						  public.entidades,
-						  public.usuarios";
-   							
-   						$where_mayor="plan_cuentas.id_plan_cuentas = mayor.id_plan_cuentas AND
-   						entidades.id_entidades = plan_cuentas.id_entidades AND
-   						usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'
-   						AND entidades.id_entidades='$_id_entidades'  AND TO_CHAR(fecha_mayor,'MM') = '$mes' AND
-   						EXTRACT(YEAR FROM fecha_mayor) = '$anio'";
-   					
-   						$grupo = "mayor.id_plan_cuentas";
-   						$id="mayor.id_plan_cuentas";
-   							
-   						$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
-   							
-   							
-   							
-   						foreach($resultCuentasMayor as $res)
-   						{
    							try
    							{
+   								$_id_plan_cuentas = $res->id_plan_cuentas;
    									
-   					
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   					
-   								$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor',saldo_final_ene='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
+   								$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo', '$anio'";
+   								$cuentas_cierre_mes->setFuncion($funcion_cuentas_cierre_mes);
+   								$cuentas_cierre_mes->setParametros($parametros);
+   								$resultado=$cuentas_cierre_mes->Insert();
+   							
    							} catch (Exception $e)
    							{
    								$this->view("Error",array(
@@ -256,26 +267,71 @@ class CierreCuentasController extends ControladorBase{
    								));
    								exit();
    							}
-   					
-   						}
    							
-   					
-   					}
-   					
-   					catch (Exception $e)
-   					{
-   						 
-   					}
-   					
-   					
-   					try {
-   					
-   						$result="";
-   						$result = $cuentas_cierre_mes->CierrePlanCuentas($_id_entidades, $anio);
-   					} catch (Exception $e)
-   					{
-   						echo "Erro al Cuadrar Balances: " + $e;
-   					}
+   							
+   							$columnas_mayor="mayor.id_plan_cuentas,
+						    SUM(mayor.debe_mayor) as suma_debe,
+						    SUM(mayor.haber_mayor) as suma_haber";
+   							
+   							$tablas_mayor="public.mayor,
+						    public.plan_cuentas,
+						    public.entidades,
+						    public.usuarios";
+   							
+   							$where_mayor="plan_cuentas.id_plan_cuentas = mayor.id_plan_cuentas AND
+   							entidades.id_entidades = plan_cuentas.id_entidades AND
+   							usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'
+   							AND entidades.id_entidades='$_id_entidades'  AND TO_CHAR(fecha_mayor,'MM') = '$mes' AND
+   							EXTRACT(YEAR FROM fecha_mayor) = '$anio'";
+   							
+   							$grupo = "mayor.id_plan_cuentas";
+   							$id="mayor.id_plan_cuentas";
+   							
+   							$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
+   							
+   							
+   							
+   							foreach($resultCuentasMayor as $res)
+   							{
+   								try
+   								{
+   							
+   							
+   									$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
+   									$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
+   									$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
+   									$_suma_debe_mayor = (float)$res->suma_debe;
+   									$_suma_haber_mayor = (float)$res->suma_haber;
+   							
+   									$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor',saldo_final_ene='$_saldo_mayor'";
+   									$tabla = "cuentas_cierre_mes";
+   									$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
+   									$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
+   							
+   							
+   								} catch (Exception $e)
+   								{
+   									$this->view("Error",array(
+   											"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
+   									));
+   									exit();
+   								}
+   							
+   							}
+   							
+   							
+   							try {
+   							
+   								$result="";
+   								$result = $cuentas_cierre_mes->CierrePlanCuentas($_id_entidades, $anio);
+   							} catch (Exception $e)
+   							{
+   								echo "Erro al Cuadrar Balances: " + $e;
+   							}
+   							
+   						}
+   						
+   						
    					
    				
    				}
@@ -316,49 +372,49 @@ class CierreCuentasController extends ControladorBase{
    						
    					//set_time_limit(60);
    					
-   					$funcion = "";
+   					$funcion_cuentas_cierre_mes = "";
    					$mes = (int)$mes;
    					
    					switch ($mes)
    					{
    						case 1:
-   							$funcion="ins_cuentas_cierre_mes_ene";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_ene";
    							break;
    						case 2:
-   							$funcion="ins_cuentas_cierre_mes_feb";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_feb";
    							break;
    						case 3:
-   							$funcion="ins_cuentas_cierre_mes_mar";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_mar";
    							break;
    						case 4:
-   							$funcion="ins_cuentas_cierre_mes_abr";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_abr";
    							break;
    						case 5:
-   							$funcion="ins_cuentas_cierre_mes_may";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_may";
    							break;
    						case 6:
-   							$funcion="ins_cuentas_cierre_mes_jun";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_jun";
    							break;
    						case 7:
-   							$funcion="ins_cuentas_cierre_mes_jul";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_jul";
    							break;
    						case 8:
-   							$funcion="ins_cuentas_cierre_mes_ago";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_ago";
    							break;
    						case 9:
-   							$funcion="ins_cuentas_cierre_mes_sep";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_sep";
    							break;
    						case 10:
-   							$funcion="ins_cuentas_cierre_mes_oct";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_oct";
    							break;
    						case 11:
-   							$funcion="ins_cuentas_cierre_mes_nov";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_nov";
    							break;
    						case 12:
-   							$funcion="ins_cuentas_cierre_mes_dic";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_dic";
    							break;
    						default:
-   							$funcion="ins_cuentas_cierre_mes_ene";
+   							$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_ene";
    							break;
    					}
    					
@@ -366,19 +422,12 @@ class CierreCuentasController extends ControladorBase{
    					{
    						try
    						{
-   							
-   							$_fecha_mayor = getdate();
-   							$_fecha_año=$_fecha_mayor['year'];
-   							$_fecha_mes=$_fecha_mayor['mon'];
-   							$_fecha_dia=$_fecha_mayor['mday'];
-   							
-   							$_fecha_actual=$_fecha_año.'-'.$_fecha_mes.'-'.$_fecha_dia;
-   							$_cerrado_cuentas_cierre_mes=true;
-   							
-   							
    							$_id_plan_cuentas = $res->id_plan_cuentas;
-   							$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo', '$anio, '$_fecha_actual', '$_cerrado_cuentas_cierre_mes'";
-   							$cuentas_cierre_mes->setFuncion($funcion);
+   							//parametros
+   							//_id_cierre_mes integer, _id_plan_cuentas integer, _debe_dic numeric, _haber_dic numeric, _saldo_final_dic numeric, _year character varying,
+   							//_fecha_dic_cuentas_cierre_mes date, _cerrado_dic_cuentas_cierre_mes boolean
+   							$parametros = "'$_id_cierre_mes','$_id_plan_cuentas', '$debe', '$haber', '$saldo', '$anio','$_fecha_cierre_mes','TRUE'";
+   							$cuentas_cierre_mes->setFuncion($funcion_cuentas_cierre_mes);
    							$cuentas_cierre_mes->setParametros($parametros);
    							$resultado=$cuentas_cierre_mes->Insert();
    								
@@ -412,378 +461,35 @@ class CierreCuentasController extends ControladorBase{
    						
    					$resultCuentasMayor = $mayor->getCondiciones_GrupBy_OrderBy($columnas_mayor ,$tablas_mayor ,$where_mayor, $grupo, $id);
    						
-   					
-   					
-   					
-   					
-   					if($mes=="1"){
    						
-   						foreach($resultCuentasMayor as $res)
+   						
+   					foreach($resultCuentasMayor as $res)
+   					{
+   						try
    						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor',saldo_final_ene='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   						
-   						}
-   						
-   					}elseif($mes=="2"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_feb='$_suma_debe_mayor' , haber_feb='$_suma_haber_mayor',saldo_final_feb='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   						
-   						}
-   						
-   					}elseif($mes=="3"){
-   						
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   									
-   									
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   									
-   								$colval = "debe_mar='$_suma_debe_mayor' , haber_mar='$_suma_haber_mayor',saldo_final_mar='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   						
-   						
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
    								
-   						}
-   						
-   					}elseif($mes=="4"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   									
-   									
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   									
-   								$colval = "debe_abr='$_suma_debe_mayor' , haber_abr='$_suma_haber_mayor',saldo_final_abr='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   						
-   						
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
+   			
+   							$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
+   							$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
+   							$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
+   							$_suma_debe_mayor = (float)$res->suma_debe;
+   							$_suma_haber_mayor = (float)$res->suma_haber;
+   			
+   							$colval = "debe_ene='$_suma_debe_mayor' , haber_ene='$_suma_haber_mayor',saldo_final_ene='$_saldo_mayor'";
+   							$tabla = "cuentas_cierre_mes";
+   							$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
+   							$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    								
-   						}
-   						
-   						
-   					}elseif ($mes=="5"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_may='$_suma_debe_mayor' , haber_may='$_suma_haber_mayor',saldo_final_may='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
    								
-   						}
-   						
-   					}elseif ($mes=="6"){
-   						
-   						foreach($resultCuentasMayor as $res)
+   						} catch (Exception $e)
    						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_jun='$_suma_debe_mayor' , haber_jun='$_suma_haber_mayor',saldo_final_jun='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
+   							$this->view("Error",array(
+   									"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
+   							));
+   							exit();
    						}
-   						
-   					}elseif ($mes=="7"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_jul='$_suma_debe_mayor' , haber_jul='$_suma_haber_mayor',saldo_final_jul='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
-   						}
-   						
-   					}elseif ($mes=="8"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_ago='$_suma_debe_mayor' , haber_ago='$_suma_haber_mayor',saldo_final_ago='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
-   						}
-   						
-   						
-   					}elseif ($mes=="9"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_sep='$_suma_debe_mayor' , haber_sep='$_suma_haber_mayor',saldo_final_sep='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
-   						}
-   						
-   					}elseif ($mes=="10"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_oct='$_suma_debe_mayor' , haber_oct='$_suma_haber_mayor',saldo_final_oct='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
-   						}
-   						
-   					}elseif ($mes=="11"){
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_nov='$_suma_debe_mayor' , haber_nov='$_suma_haber_mayor',saldo_final_nov='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
-   						}
-   						
-   						
-   					}else{
-   						
-   						foreach($resultCuentasMayor as $res)
-   						{
-   							try
-   							{
-   						
-   						
-   								$_id_plan_cuentas_mayor = $res->id_plan_cuentas;
-   								$resultSaldo = $mayor->getBy("id_plan_cuentas = '$_id_plan_cuentas_mayor'  ORDER BY id_mayor DESC LIMIT 1");
-   								$_saldo_mayor=$resultSaldo[0]->saldo_mayor;
-   								$_suma_debe_mayor = (float)$res->suma_debe;
-   								$_suma_haber_mayor = (float)$res->suma_haber;
-   						
-   								$colval = "debe_dic='$_suma_debe_mayor' , haber_dic='$_suma_haber_mayor',saldo_final_dic='$_saldo_mayor'";
-   								$tabla = "cuentas_cierre_mes";
-   								$where = "id_plan_cuentas = '$_id_plan_cuentas_mayor' AND id_cierre_mes='$_id_cierre_mes'";
-   								$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
-   									
-   									
-   							} catch (Exception $e)
-   							{
-   								$this->view("Error",array(
-   										"resultado"=>"Eror al Insertar Cierre de Cuentas ->".$e
-   								));
-   								exit();
-   							}
-   								
-   						}
-   						
+   			
    					}
-   					
-   						
-   					
    						
    			
    				}
