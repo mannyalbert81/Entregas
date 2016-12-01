@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
          <meta charset="utf-8"/>
-        <title>Error - CallCenter 2016</title>
+        <title>Error - Coactiva 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -51,7 +51,12 @@
    <form  method="post" class="col-lg-5">
             <h3>Error Detectado</h3>
             <hr/>
-            <?php echo $resultado?>
+            
+            <div class="alert alert-warning alert-dismissable">
+		            
+		            <?php echo $resultado?>  
+		            </div>
+            
             	
             
      </form>

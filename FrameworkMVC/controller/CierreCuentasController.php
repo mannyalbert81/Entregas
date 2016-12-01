@@ -153,6 +153,7 @@ class CierreCuentasController extends ControladorBase{
    								$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_jun";
    								$columna="cerrado_jun_cuentas_cierre_mes";
    								$mes_letras="JUNIO";
+   								
    								break;
    							case 7:
    								$funcion_cuentas_cierre_mes="ins_cuentas_cierre_mes_jul";
@@ -260,7 +261,10 @@ class CierreCuentasController extends ControladorBase{
    						    		
    						    		}
    						    		
-   						    		
+   						    		$colval = "fecha_ene_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_ene_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    		
    						    		
    						    		
@@ -290,6 +294,11 @@ class CierreCuentasController extends ControladorBase{
    						    				
    						    		}
    						    		
+   						    		$colval = "fecha_feb_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_feb_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
+   						    		
    						    	}
    						    	elseif($mes=='3'){
    						    			
@@ -315,7 +324,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_mar_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_mar_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}
    						    	elseif($mes=='4'){
@@ -342,7 +356,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_abr_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_abr_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}
    						    	elseif($mes=='5'){
@@ -369,7 +388,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_may_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_may_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}
    						    	elseif($mes=='6'){
@@ -396,7 +420,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_jun_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_jun_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}
    						    	elseif($mes=='7'){
@@ -424,7 +453,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_jul_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_jul_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    	}
    						    	elseif($mes=='8'){
    						    			
@@ -450,7 +484,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_ago_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_ago_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}
    						    	elseif($mes=='9'){
@@ -477,7 +516,12 @@ class CierreCuentasController extends ControladorBase{
    						    				echo $e;
    						    			}
    						    				
-   						    		}	
+   						    		}
+   						    		
+   						    		$colval = "fecha_sep_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_sep_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}
    						    	elseif($mes=='10'){
@@ -505,6 +549,12 @@ class CierreCuentasController extends ControladorBase{
    						    			}
    						    				
    						    		}	
+   						    		
+   						    		
+   						    		$colval = "fecha_oct_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_oct_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    			
    						    	}elseif($mes=='11'){
    						    		
@@ -532,6 +582,11 @@ class CierreCuentasController extends ControladorBase{
    						    				
    						    		}	
    						    		
+   						    		$colval = "fecha_nov_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_nov_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
+   						    		
    						    	}else{
    						    		
    						    		foreach($resultCuentasMayor as $res)
@@ -557,6 +612,12 @@ class CierreCuentasController extends ControladorBase{
    						    			}
    						    				
    						    		}
+   						    		
+   						    		
+   						    		$colval = "fecha_dic_cuentas_cierre_mes='$_fecha_cierre_mes', cerrado_dic_cuentas_cierre_mes='TRUE'";
+   						    		$tabla = "cuentas_cierre_mes";
+   						    		$where = "id_cierre_mes='$id_cierre_mes'";
+   						    		$resultado=$cuentas_cierre_mes->UpdateBy($colval, $tabla, $where);
    						    		
    						    	}
    						    	
