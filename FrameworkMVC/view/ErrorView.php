@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
          <meta charset="utf-8"/>
-        <title>Error - Coactiva 2016</title>
+        <title>Error - Contabilidad 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -48,20 +48,38 @@
        <?php include("view/modulos/menu.php"); ?>
   
      <div class="container">
+  
+     <div class="row" style="background-color: #ffffff;">
+     
+     
    <form  method="post" class="col-lg-5">
-            <h3>Error Detectado</h3>
+            <h3 style="color:#ec971f;">Error Detectado</h3>
             <hr/>
             
-            <div class="alert alert-warning alert-dismissable">
+            <div class="alert alert-danger alert-dismissable">
 		            
 		            <?php echo $resultado?>  
-		            </div>
+		    </div>
             
             	
             
      </form>
+       
+       
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
         </div>
-  
+         
+  </div>
        
        <?php include("view/modulos/footer.php"); ?>
         
