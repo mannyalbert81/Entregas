@@ -50,11 +50,8 @@ class BalanceComprobacionController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
-				if(isset($_POST["buscar"])){
-					
-					
-				
-					
+				if(isset($_POST["buscar"]))
+				{	
 					
 				$reporte=$_POST['reporte'];
 				if($reporte=="simplificado")
@@ -1776,11 +1773,14 @@ class BalanceComprobacionController extends ControladorBase{
 				else
 				{
 					
-					
-					
 					$id_entidades=$_POST['id_entidades'];
 					$id_usuarios=$_POST['id_usuarios'];
 					$años=$_POST['año'];
+					
+					
+					
+					
+					
 					
 					$columnas="entidades.id_entidades, 
 							  entidades.nombre_entidades, 
@@ -1806,11 +1806,11 @@ class BalanceComprobacionController extends ControladorBase{
 							  public.cuentas_cierre_mes, 
 							  public.cierre_mes, 
 							  public.usuarios";
-					$where=" plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND
-					cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
-					cierre_mes.id_entidades = entidades.id_entidades AND
-					cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-					usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+					$where="  cierre_mes.id_cierre_mes = cuentas_cierre_mes.id_cierre_mes AND
+							  plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND
+							  entidades.id_entidades = plan_cuentas.id_entidades AND
+							  usuarios.id_entidades = entidades.id_entidades ";
+					
 					$id="plan_cuentas.codigo_plan_cuentas";
 					 
 					 
@@ -1841,7 +1841,8 @@ class BalanceComprobacionController extends ControladorBase{
 						$html="";
 						$resultSet=$cuenta_cierre_mes->getCantidad("*", $tablas, $where_to);
 						$cantidadResult=(int)$resultSet[0]->total;
-						 
+						
+						
 						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 						 
 						$per_page = 50; //la cantidad de registros que desea mostrar

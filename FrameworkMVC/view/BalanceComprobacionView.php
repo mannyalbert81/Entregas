@@ -76,7 +76,7 @@
 		 var con_id_usuarios=$("#id_usuarios").val();
 		 var con_reporte=$("#reporte").val();
 		 var con_mes=$("#mes").val();
-		 var con_años=$("#año").val();
+		 var con_años=$("#anio").val();
 
 		  var con_datos={
 				  id_entidades:con_id_entidades,
@@ -264,7 +264,7 @@
 		 <div id="div_reporte_detallado" style="display: none;">
           <div class="col-xs-2 ">
           		<p class="formulario-subtitulo" >Año:</p>
-          		<select name="año" id="año"  class="form-control">
+          		<select name="anio" id="anio"  class="form-control">
 					<?php foreach($arrayAños as $res=>$val) {?>
 						<option value="<?php echo $res; ?>" <?php if($sel_años==$res){echo "selected";}?>><?php echo $val;  ?> </option>
 					<?php } ?>
