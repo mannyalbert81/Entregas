@@ -149,10 +149,18 @@
                     <th style="font-size:100%;">Entidad</th>
 		    		<th style="font-size:100%;">Codigo</th>
 		    		<th style="font-size:100%;">Cuenta</th>
-		    		<th style="font-size:100%;">Mes de </th>
-		    		
-		    		
-		    		
+		    		<th style="font-size:100%;">Enero</th>
+		    		<th style="font-size:100%;">Febrero</th>
+		    		<th style="font-size:100%;">Marzo</th>
+		    		<th style="font-size:100%;">Abril</th>
+		    		<th style="font-size:100%;">Mayo</th>
+		    		<th style="font-size:100%;">Junio</th>
+		    		<th style="font-size:100%;">Julio</th>
+		    		<th style="font-size:100%;">Agosto</th>
+		    		<th style="font-size:100%;">Septiembre</th>
+		    		<th style="font-size:100%;">Octubre</th>
+		    		<th style="font-size:100%;">Noviembre</th>
+		    		<th style="font-size:100%;">Diciembre</th>
 		    		
 	  		</tr>
 	   </thead>
@@ -213,45 +221,79 @@
 		               <td style="font-size:80%;" > <?php echo $res->nombre_plan_cuentas; ?>  </td> 
 		               
 		               <?php if($res->cerrado_ene_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_ene_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		              
+		              
+		               <?php if($res->cerrado_feb_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_feb_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		              
+		               <?php if($res->cerrado_mar_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_mar_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		              
+		              
+		               <?php if($res->cerrado_abr_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_abr_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		              
+		               <?php if($res->cerrado_may_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_may_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		              
+		               <?php if($res->cerrado_jun_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_jun_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
 		               
-		                <td style="font-size:80%;"> <?php if($res->cerrado_ene_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php if($res->cerrado_jul_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_jul_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		         
+		               <?php if($res->cerrado_ago_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_ago_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
 		              
-		               <?php } elseif($res->cerrado_feb_cuentas_cierre_mes=="t") {?>
-		                <td style="font-size:80%;"> <?php if($res->cerrado_feb_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		               <?php } elseif($res->cerrado_mar_cuentas_cierre_mes=="t") {?>
-		                <td style="font-size:80%;"> <?php if($res->cerrado_mar_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		               <?php } elseif($res->cerrado_abr_cuentas_cierre_mes=="t") {?>
-		                <td style="font-size:80%;"> <?php if($res->cerrado_abr_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		                <?php } elseif($res->cerrado_may_cuentas_cierre_mes=="t") {?>
-		                <td style="font-size:80%;"> <?php if($res->cerrado_may_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php if($res->cerrado_sep_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_sep_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
 		               
-		                 <?php } elseif($res->cerrado_jun_cuentas_cierre_mes=="t") {?>
-		                 <td style="font-size:80%;"> <?php if($res->cerrado_jun_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		               
-		                  <?php } elseif($res->cerrado_jul_cuentas_cierre_mes=="t") {?>
-		                   <td style="font-size:80%;"> <?php if($res->cerrado_jul_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		                   <?php } elseif($res->cerrado_ago_cuentas_cierre_mes=="t") {?>
-		                <td style="font-size:80%;"> <?php if($res->cerrado_ago_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		              
-		               <?php } elseif($res->cerrado_sep_cuentas_cierre_mes=="t") {?>
-		                 <td style="font-size:80%;"> <?php if($res->cerrado_sep_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		                <?php } elseif($res->cerrado_oct_cuentas_cierre_mes=="t") {?>
+		               <?php if($res->cerrado_oct_cuentas_cierre_mes=="t") {?>
 		               <td style="font-size:80%;"> <?php if($res->cerrado_oct_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
-		                <?php } elseif($res->cerrado_nov_cuentas_cierre_mes=="t") {?>
-		                 <td style="font-size:80%;"> <?php if($res->cerrado_nov_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		             
-		                <?php } elseif($res->cerrado_dic_cuentas_cierre_mes=="t") {?>
-		                <td style="font-size:80%;"> <?php if($res->cerrado_dic_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
-		              
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
 		               
-		               <?php }?>
+		               <?php if($res->cerrado_nov_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_nov_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+	                   
+		               <?php if($res->cerrado_dic_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_dic_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <?php }else {?>
+		               <td style="font-size:80%;"></td>
+	                   <?php }?>
+		               
 		               
 		               
 		               
