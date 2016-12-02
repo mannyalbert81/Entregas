@@ -12,10 +12,10 @@ class CierreCuentasController extends ControladorBase{
 	
 		session_start();
 		$_id_usuarios= $_SESSION['id_usuarios'];
-		
+		$resultSet="";
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			
+			$resultMenu=array(1=>'AÑO');
 			$tipo_cierre = new TipoCierreModel();	
 			
 		    $columnas_enc = "tipo_cierre.nombre_tipo_cierre, tipo_cierre.id_tipo_cierre, entidades.id_entidades";
@@ -26,7 +26,9 @@ class CierreCuentasController extends ControladorBase{
   						usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
 		    $id_enc="tipo_cierre.nombre_tipo_cierre";
 		    $resultTipCierre=$tipo_cierre->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
-		    	
+		   
+		    
+		  
 				
 		    $permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "CierreCuentas";
@@ -36,11 +38,116 @@ class CierreCuentasController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
-				//jhkjh
+				
+				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
+				{
+					
+						
+					$cuentas_cierre_mes= new CuentasCierreMesModel();
+					$entidades = new EntidadesModel();
+					$usuarios= new UsuariosModel();
+					$resultEntidades = $usuarios->getBy("id_usuarios='$_id_usuarios'");
+					$_id_entidades=$resultEntidades[0]->id_entidades;
+					
+					
+					
+					
+					$columnas="entidades.nombre_entidades,
+						  usuarios.nombre_usuarios,
+						  cierre_mes.id_cierre_mes,
+						  cuentas_cierre_mes.id_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_ene_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_ene_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_feb_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_feb_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_mar_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_mar_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_abr_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_abr_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_may_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_may_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_jun_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_jun_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_jul_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_jul_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_ago_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_ago_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_sep_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_sep_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_oct_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_oct_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_nov_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_nov_cuentas_cierre_mes,
+						  cuentas_cierre_mes.fecha_dic_cuentas_cierre_mes,
+						  cuentas_cierre_mes.cerrado_dic_cuentas_cierre_mes,
+						  plan_cuentas.codigo_plan_cuentas, 
+                          plan_cuentas.nombre_plan_cuentas,
+						   cuentas_cierre_mes.year";
+					
+					$tablas=" public.cierre_mes,
+						  public.cuentas_cierre_mes,
+						  public.entidades,
+						  public.usuarios,
+							public.plan_cuentas";
+					
+					$where=" cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
+						     cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
+						     entidades.id_entidades = cierre_mes.id_entidades AND
+						     entidades.id_entidades = usuarios.id_entidades AND
+  							 plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND usuarios.id_usuarios='$_id_usuarios' AND entidades.id_entidades='$_id_entidades'";
+					$id=" plan_cuentas.codigo_plan_cuentas";
+					
+					
+					
+					
+				
+					$criterio = $_POST["criterio"];
+					$contenido = $_POST["contenido"];
+				
+						
+					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+				
+					if ($contenido !="")
+					{
+							
+						
+						$where_1 = "";
+						
+						
+							
+						switch ($criterio) {
+							
+							case 1:
+								//Ruc Cliente/Proveedor
+								$where_1 = "AND cuentas_cierre_mes.year ='$contenido'";
+								break;
+							
+						
+						}
+							
+							
+							
+						$where_to  = $where . $where_1;
+							
+							
+						$resul = $where_to;
+				
+						
+						
+						$resultSet = $cuentas_cierre_mes->getCondiciones($columnas ,$tablas ,$where_to, $id);
+							
+							
+							
+					}
+				}
+				
+				
+				
+				
 					
 					$this->view("CierreCuentas",array(
 							
-							"resultTipCierre"=>$resultTipCierre, "resultEdit"=>""
+							"resultTipCierre"=>$resultTipCierre, "resultEdit"=>"", "resultSet"=>$resultSet, "resultMenu"=>$resultMenu
 					));
 			
 			

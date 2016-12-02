@@ -53,7 +53,7 @@
         <div class="row" style="background-color: #FAFAFA;">
   
   
-            <form id="form-cierre-cuentas" action="<?php echo $helper->url("CierreCuentas","InsertaCierreCuentas"); ?>" method="post" class="col-lg-6">
+            <form id="form-cierre-cuentas" action="<?php echo $helper->url("CierreCuentas","InsertaCierreCuentas"); ?>" method="post" class="col-lg-5">
             <br>	
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -108,7 +108,7 @@
             </form>
             
             
-            <form action="<?php echo $helper->url("CierreCuentas","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+            <form action="<?php echo $helper->url("CierreCuentas","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-7">
      		<br>
      		<div class="well">  
             <h4 style="color:#ec971f;">Cuentas Cerradas</h4>
@@ -146,19 +146,19 @@
        
        <thead>
            <tr>
-                    <th style="font-size:100%;">Id</th>
-		    		<th style="font-size:100%;">Nombre</th>
+                    <th style="font-size:100%;">Entidad</th>
 		    		<th style="font-size:100%;">Codigo</th>
-		    		<th style="font-size:100%;">Nivel</th>
-		    		<th style="font-size:100%;">Entidad</th>
-		    		<th></th>
-		    		<th></th>
+		    		<th style="font-size:100%;">Cuenta</th>
+		    		<th style="font-size:100%;">Mes de </th>
+		    		
+		    		
+		    		
 		    		
 	  		</tr>
 	   </thead>
        <tfoot>
        		<tr>
-					<td colspan="10">
+					<td colspan="15">
 						<div id="paging">
 							<ul>
 								<li>
@@ -208,33 +208,62 @@
                
 	   <tbody>
 	   		<tr>
-	   				   <td style="font-size:80%;"> <?php echo $res->id_centro_costos; ?>       </td>
-	                   <td style="font-size:80%;"> <?php echo $res->nombre_centro_costos; ?>   </td>
-		               <td style="font-size:80%;" > <?php echo $res->codigo_centro_costos; ?>  </td> 
-		               <td style="font-size:80%;"> <?php echo $res->nivel_centro_costos; ?>    </td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_entidades; ?>    </td>
+	   				   <td style="font-size:80%;"> <?php echo $res->nombre_entidades; ?>       </td>
+	                   <td style="font-size:80%;"> <?php echo $res->codigo_plan_cuentas; ?>   </td>
+		               <td style="font-size:80%;" > <?php echo $res->nombre_plan_cuentas; ?>  </td> 
 		               
-		               <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("CierreCuentas","index"); ?>&id_centro_costos=<?php echo $res->id_centro_costos; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			           </td>
-			           <td>   
-			               	<div class="right">
-			                    <a href="<?php echo $helper->url("CierreCuentas","borrarId"); ?>&id_centro_costos=<?php echo $res->id_centro_costos; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			           </td>
+		               <?php if($res->cerrado_ene_cuentas_cierre_mes=="t") {?>
+		               
+		                <td style="font-size:80%;"> <?php if($res->cerrado_ene_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		               <?php } elseif($res->cerrado_feb_cuentas_cierre_mes=="t") {?>
+		                <td style="font-size:80%;"> <?php if($res->cerrado_feb_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		               <?php } elseif($res->cerrado_mar_cuentas_cierre_mes=="t") {?>
+		                <td style="font-size:80%;"> <?php if($res->cerrado_mar_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		               <?php } elseif($res->cerrado_abr_cuentas_cierre_mes=="t") {?>
+		                <td style="font-size:80%;"> <?php if($res->cerrado_abr_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		                <?php } elseif($res->cerrado_may_cuentas_cierre_mes=="t") {?>
+		                <td style="font-size:80%;"> <?php if($res->cerrado_may_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               
+		                 <?php } elseif($res->cerrado_jun_cuentas_cierre_mes=="t") {?>
+		                 <td style="font-size:80%;"> <?php if($res->cerrado_jun_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               
+		                  <?php } elseif($res->cerrado_jul_cuentas_cierre_mes=="t") {?>
+		                   <td style="font-size:80%;"> <?php if($res->cerrado_jul_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		                   <?php } elseif($res->cerrado_ago_cuentas_cierre_mes=="t") {?>
+		                <td style="font-size:80%;"> <?php if($res->cerrado_ago_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		              
+		               <?php } elseif($res->cerrado_sep_cuentas_cierre_mes=="t") {?>
+		                 <td style="font-size:80%;"> <?php if($res->cerrado_sep_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		                <?php } elseif($res->cerrado_oct_cuentas_cierre_mes=="t") {?>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_oct_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		                <?php } elseif($res->cerrado_nov_cuentas_cierre_mes=="t") {?>
+		                 <td style="font-size:80%;"> <?php if($res->cerrado_nov_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		             
+		                <?php } elseif($res->cerrado_dic_cuentas_cierre_mes=="t") {?>
+		                <td style="font-size:80%;"> <?php if($res->cerrado_dic_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		              
+		               
+		               <?php }?>
+		               
+		               
+		               
 	   		</tr>
 	   
 	   </tbody>	
 	        		
 		        <?php } }else{ ?>
             <tr>
-            <td></td>
-            <td></td>
-	                   <td colspan="5" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
-	        <td></td>
+            
+	                   <td colspan="15" style="color:#ec971f;font-size:8; text-align:center "> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
+	        
 		               
 		    </tr>
             <?php 
