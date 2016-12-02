@@ -75,17 +75,18 @@
 		 var con_id_entidades=$("#id_entidades").val();
 		 var con_id_usuarios=$("#id_usuarios").val();
 		 var con_reporte=$("#reporte").val();
-		 var con_fecha_desde=$("#fecha_desde").val();
-		 var con_fecha_hasta=$("#fecha_hasta").val();
+		 var con_mes=$("#mes").val();
+		 var con_años=$("#año").val();
 
 		  var con_datos={
 				  id_entidades:con_id_entidades,
 				  id_usuarios:con_id_usuarios,
 				  reporte:con_reporte,
-				  fecha_desde:con_fecha_desde,
-				  fecha_hasta:con_fecha_hasta,
+				  mes:con_mes,
+				  año:con_años,
 				  action:'ajax',
-				  page:pagina
+				  page:pagina,
+				  buscar:$("#buscar").val()
 				  };
 
 
@@ -107,6 +108,59 @@
 	
 	</script>
 
+
+      <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#reporte").click(function() {
+				
+               
+
+               var id_reporte = $(this).val();
+
+				
+               //para estudiante
+               if(id_reporte == 'simplificado')
+               {
+            	   $("#div_reporte_simplificado").fadeIn("slow");
+               }
+            	
+               else
+               {
+            	   $("#div_reporte_simplificado").fadeOut("slow");
+               }
+              
+		    });
+
+		    $("#reporte").change(function() {
+				
+	               
+
+	               var id_reporte = $(this).val();
+
+					
+	               
+	               if(id_reporte == 'detallado')
+	               {
+	            	   $("#div_reporte_detallado").fadeIn("slow");
+	               }
+	            	
+	               else
+	               {
+	            	   $("#div_reporte_detallado").fadeOut("slow");
+	               }
+	               
+	               
+			    });
+				
+		   
+		   
+		    
+		}); 
+
+	</script>
+
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -119,20 +173,22 @@
        $sel_id_entidades = "";
        $sel_id_usuarios="";
        $sel_reporte="";
-       $sel_fecha_desde="";
-       $sel_fecha_hasta="";
+       $sel_mes="";
+       $sel_años="";
         
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        	$sel_id_entidades = $_POST['id_entidades'];
         $sel_id_usuarios=$_POST['id_usuarios'];
        	$sel_reporte=$_POST['reporte'];
-        $sel_fecha_desde=$_POST['fecha_desde'];
-       	$sel_fecha_hasta=$_POST['fecha_hasta'];
+        $sel_mes=$_POST['mes'];
+       	$sel_años=$_POST['año'];
        
        }
        
        $arrayOpciones=array("detallado"=>'DETALLADO',"simplificado"=>'SIMPLIFICADO');
+       $arrayMeses=array("1"=>'ENERO',"2"=>'FEBRERO',"3"=>'MARZO',"4"=>'ABRIL',"5"=>'MAYO',"6"=>'JUNIO',"7"=>'JULIO',"8"=>'AGOSTO',"9"=>'SEPTIEMBRE',"10"=>'OCTUBRE',"11"=>'NOVIEMBRE',"12"=>'DICIEMBRE');
+       $arrayAños=array("2010"=>'2010',"2011"=>'2011',"2012"=>'2012',"2013"=>'2013',"2014"=>'2014',"2015"=>'2015',"2016"=>'2016',"2017"=>'2017',"2018"=>'2018',"2019"=>'2019',"2020"=>'2020');
        ?>
  
  
@@ -148,13 +204,14 @@
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Balance Comprobacion</h4>
+       	 <h4 style="color:#ec971f;">Balance Comprobación</h4>
        	 
        	 
        	 <div class="panel panel-default">
   			<div class="panel-body">
   			
-  					
+  			
+					
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo">Entidades:</p>
 			  	<select name="id_entidades" id="id_entidades"  class="form-control" readonly>
@@ -177,23 +234,44 @@
           <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Reporte</p>
 			  	<select name="reporte" id="reporte"  class="form-control">
+			  	<option value="" selected="selected">--Seleccione--</option>
 					<?php foreach($arrayOpciones as $res=>$val) {?>
 						<option value="<?php echo $res; ?>" <?php if($sel_reporte==$res){echo "selected";}?>><?php echo $val;  ?> </option>
 					<?php } ?>
 		        </select>
          </div>
          
+         <div id="div_reporte_simplificado" style="display: none;">
          <div class="col-xs-2 ">
-         		<p class="formulario-subtitulo" >Desde:</p>
-			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="<?php echo $sel_fecha_desde;?>" class="form-control "/> 
-			    <div id="mensaje_fecha_desde" class="errores"></div>
+         		<p class="formulario-subtitulo" >Mes:</p>
+			  	<select name="mes" id="mes"  class="form-control">
+					<?php foreach($arrayMeses as $res=>$val) {?>
+						<option value="<?php echo $res; ?>" <?php if($sel_mes==$res){echo "selected";}?>><?php echo $val;  ?> </option>
+					<?php } ?>
+		        </select>
 		 </div>
          
           <div class="col-xs-2 ">
-          		<p class="formulario-subtitulo" >Hasta:</p>
-			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="<?php echo $sel_fecha_hasta;?>" class="form-control "/> 
-			    <div id="mensaje_fecha_hasta" class="errores"></div>
+          		<p class="formulario-subtitulo" >Año:</p>
+          		<select name="año" id="año"  class="form-control">
+					<?php foreach($arrayAños as $res=>$val) {?>
+						<option value="<?php echo $res; ?>" <?php if($sel_años==$res){echo "selected";}?>><?php echo $val;  ?> </option>
+					<?php } ?>
+		        </select>
 		</div>
+		 </div>
+		 
+		 <div id="div_reporte_detallado" style="display: none;">
+          <div class="col-xs-2 ">
+          		<p class="formulario-subtitulo" >Año:</p>
+          		<select name="año" id="año"  class="form-control">
+					<?php foreach($arrayAños as $res=>$val) {?>
+						<option value="<?php echo $res; ?>" <?php if($sel_años==$res){echo "selected";}?>><?php echo $val;  ?> </option>
+					<?php } ?>
+		        </select>
+		</div>
+		 </div>
+		 
 		 
   			</div>
   		 <div class="col-lg-12">
@@ -203,7 +281,7 @@
   		
   		<div class="col-lg-12" style="text-align: center; margin-top: 30px">
   		    
-		 <button type="button" id="buscar" name="buscar" value="Buscar"   class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-search"></i></button>
+		 <button type="button" id="buscar" name="buscar"  class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-search"></i></button>
 		 <button type="submit" id="reporte_rpt" name="reporte_rpt" value="Reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
 	  
 	 

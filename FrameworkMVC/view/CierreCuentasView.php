@@ -94,17 +94,32 @@
 		     </div>
              
              </div>
-	         </div>
-			
-		     <?php } ?>
-		     
-		    <div class="row">
+             
+             <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
             					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
             </div>
             </div>
             </div>
+            
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+	         </div>
+			
+		     <?php } ?>
+		     
+		    
             </form>
             
             
@@ -141,26 +156,14 @@
              
        
        <div class="datagrid"> 
-       <section style="height:380px; overflow-y:scroll;">
+       <section style="height:300px; overflow-y:scroll;">
        <table class="table table-hover ">
        
        <thead>
            <tr>
                     <th style="font-size:100%;">Entidad</th>
-		    		<th style="font-size:100%;">Codigo</th>
-		    		<th style="font-size:100%;">Cuenta</th>
-		    		<th style="font-size:100%;">Enero</th>
-		    		<th style="font-size:100%;">Febrero</th>
-		    		<th style="font-size:100%;">Marzo</th>
-		    		<th style="font-size:100%;">Abril</th>
-		    		<th style="font-size:100%;">Mayo</th>
-		    		<th style="font-size:100%;">Junio</th>
-		    		<th style="font-size:100%;">Julio</th>
-		    		<th style="font-size:100%;">Agosto</th>
-		    		<th style="font-size:100%;">Septiembre</th>
-		    		<th style="font-size:100%;">Octubre</th>
-		    		<th style="font-size:100%;">Noviembre</th>
-		    		<th style="font-size:100%;">Diciembre</th>
+		    		<th style="font-size:100%; text-align: center" colspan=12>Meses Cerrados</th>
+		    		
 		    		
 	  		</tr>
 	   </thead>
@@ -217,85 +220,71 @@
 	   <tbody>
 	   		<tr>
 	   				   <td style="font-size:80%;"> <?php echo $res->nombre_entidades; ?>       </td>
-	                   <td style="font-size:80%;"> <?php echo $res->codigo_plan_cuentas; ?>   </td>
-		               <td style="font-size:80%;" > <?php echo $res->nombre_plan_cuentas; ?>  </td> 
-		               
+	                  
 		               <?php if($res->cerrado_ene_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_ene_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_ene_cuentas_cierre_mes=="t"){ echo "ENERO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		              
 		              
 		               <?php if($res->cerrado_feb_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_feb_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_feb_cuentas_cierre_mes=="t"){ echo "FEBRERO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		              
 		               <?php if($res->cerrado_mar_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_mar_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_mar_cuentas_cierre_mes=="t"){ echo "MARZO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		              
 		              
 		               <?php if($res->cerrado_abr_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_abr_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_abr_cuentas_cierre_mes=="t"){ echo "ABRIL";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		              
 		               <?php if($res->cerrado_may_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_may_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_may_cuentas_cierre_mes=="t"){ echo "MAYO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		              
 		               <?php if($res->cerrado_jun_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_jun_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_jun_cuentas_cierre_mes=="t"){ echo "JUNIO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		               
 		               <?php if($res->cerrado_jul_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_jul_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_jul_cuentas_cierre_mes=="t"){ echo "JULIO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		         
 		               <?php if($res->cerrado_ago_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_ago_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_ago_cuentas_cierre_mes=="t"){ echo "AGOSTO";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		              
 		               <?php if($res->cerrado_sep_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_sep_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_sep_cuentas_cierre_mes=="t"){ echo "SEPTIEMBRE";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		               
 		               <?php if($res->cerrado_oct_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_oct_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_oct_cuentas_cierre_mes=="t"){ echo "OCTUBRE";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		               
 		               <?php if($res->cerrado_nov_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_nov_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_nov_cuentas_cierre_mes=="t"){ echo "NOVIMEBRE";}else{ echo "Sin Cerrar";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 	                   
 		               <?php if($res->cerrado_dic_cuentas_cierre_mes=="t") {?>
-		               <td style="font-size:80%;"> <?php if($res->cerrado_dic_cuentas_cierre_mes=="t"){ echo "Cerrado";}else{ echo "Sin Cerrar";}?></td>
+		               <td style="font-size:80%;"> <?php if($res->cerrado_dic_cuentas_cierre_mes=="t"){ echo "DICIEMBRE";}else{ echo "Sin Cerrar";}?></td>
 		               <?php }else {?>
-		               <td style="font-size:80%;"></td>
-	                   <?php }?>
+		               <?php }?>
 		               
 		               
-		               
+		               <?php die();?>
 		               
 	   		</tr>
 	   

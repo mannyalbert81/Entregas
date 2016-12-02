@@ -16,6 +16,8 @@ class CierreCuentasController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$resultMenu=array(1=>'AÑO');
+			
+			
 			$tipo_cierre = new TipoCierreModel();	
 			
 		    $columnas_enc = "tipo_cierre.nombre_tipo_cierre, tipo_cierre.id_tipo_cierre, entidades.id_entidades";
