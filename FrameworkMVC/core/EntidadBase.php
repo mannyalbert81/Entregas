@@ -1142,7 +1142,6 @@ class EntidadBase{
     		$where4 =  "plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas AND plan_cuentas.id_entidades= '$_id_entidades' AND plan_cuentas.nivel_plan_cuentas = '4' AND plan_cuentas.id_plan_cuentas = cuentas_cierre_mes.id_plan_cuentas  AND cuentas_cierre_mes.year = '$_year'";
     
     		$resultPlan4 = $plan_cuentas->getCondiciones($columnas4, $tablas4, $where4, $id4);
-    		
     		foreach($resultPlan4 as $res)
     		{
     			$_id_cuentas_cierre_mes = $res->id_cuentas_cierre_mes;
@@ -1159,7 +1158,6 @@ class EntidadBase{
     			$resultPlan5 =  $plan_cuentas->getCondiciones_noind($columna5, $tabla5, $where5);
     			foreach($resultPlan5 as $res)
     			{
-    				
     				$_saldo_final_ene  = $res->saldo_final_ene;
     				$_saldo_final_feb = $res->saldo_final_feb;
 			    	$_saldo_final_mar = $res->saldo_final_mar;
@@ -1172,7 +1170,6 @@ class EntidadBase{
 			    	$_saldo_final_oct = $res->saldo_final_oct;
 			    	$_saldo_final_nov = $res->saldo_final_nov;
 			    	$_saldo_final_dic = $res->saldo_final_dic;
-    				
     			}
     
     			//actualizamos
@@ -1193,10 +1190,6 @@ class EntidadBase{
     			 
     
     		}
-    
-    		
-    		
-			    	
     
     		///suo de nivel recorro los 3
     
