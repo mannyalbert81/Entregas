@@ -1960,6 +1960,67 @@ class BalanceComprobacionController extends ControladorBase{
 						
 			));
 			
+<<<<<<< HEAD
+=======
+			
+			
+			if(isset($_POST["reporte_rpt"])){
+				
+				
+			
+				$reporte=$_POST['reporte'];
+				
+				if($reporte=="simplificado"){
+					
+					$parametros = array();
+					
+					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
+					//$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
+					$parametros['anio']=(isset($_POST['anio']))?trim($_POST['anio']):'';
+					
+					$pagina="conBalanceComprobacionSimplificado.aspx";
+					
+					
+					$conexion_rpt = array();
+					$conexion_rpt['pagina']=$pagina;
+					$conexion_rpt['port']="59584";
+					
+					$this->view("ReporteRpt", array(
+							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+					));
+					
+					
+					
+					//gcfhgchg
+				}elseif($reporte=="detallado"){
+					
+					$parametros = array();
+					
+					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
+					$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
+					$parametros['año']=(isset($_POST['año']))?trim($_POST['año']):'';
+					
+					$pagina="conBalanceComprobacionDetallado.aspx";
+					
+					
+					$conexion_rpt = array();
+					$conexion_rpt['pagina']=$pagina;
+					$conexion_rpt['port']="59584";
+					
+					$this->view("ReporteRpt", array(
+							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+					));
+					
+					die();
+					
+				} 
+				
+					
+				
+			}else{}
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad
 			
 			
 		}else
