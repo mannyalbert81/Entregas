@@ -1403,7 +1403,7 @@ class BalanceComprobacionController extends ControladorBase{
 	             			$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 	             			$html.='</div><br>';
 	             			$html.='<section style="height:425px; overflow-y:scroll;">';
-	             			$html.='<table class="table table-hover">';
+	             			$html.='<table class="table table-hover" id="products-table"  style="overflow-y:scroll">';
 	             			$html.='<thead>';
 	             			$html.='<tr class="info">';
 	             			$html.='<th>Entidad</th>';
@@ -1832,7 +1832,7 @@ class BalanceComprobacionController extends ControladorBase{
 							//$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 							$html.='</div><br>';
 							$html.='<section style="height:300px; overflow-y:scroll;">';
-							$html.='<table class="table table-hover">';
+							$html.='<table class="table table-hover" id="products-table"  style="overflow-y:scroll">';
 							$html.='<thead>';
 							$html.='<tr class="info">';
 							$html.='<th>Entidad</th>';

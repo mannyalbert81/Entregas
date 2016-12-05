@@ -6287,3 +6287,10 @@ background: linear-gradient(to right,  rgba(238,238,238,1) 0%,rgba(238,238,238,1
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=1 ); /* IE6-9 */
 	
 }
+
+  .products-table
+{
+     width: 200px;
+    height: 400px;
+    overflow:scroll;
+}
