@@ -1064,6 +1064,58 @@ class ComprobantesController extends ControladorBase{
 		$out.= "</ul>";
 		return $out;
 	}
+	
+	public function ReporteEgresos()
+	{
+		if(isset($_REQUEST['id_ccomprobantes']))
+		{
+						
+				$parametros = array();
+					
+				$parametros['id_comprobantes']=isset($_REQUEST['id_ccomprobantes'])?trim($_REQUEST['id_ccomprobantes']):'';
+				
+				//aqui poner la pagina 
+					
+				$pagina="conComprobantesEgresos.aspx";
+					
+				$conexion_rpt = array();
+				$conexion_rpt['pagina']=$pagina;
+				$conexion_rpt['port']="59584";
+					
+				$this->view("ReporteRpt", array(
+						"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+				));
+				
+				
+		}
+		
+	}
+	
+	public function ReporteIngresos()
+	{
+		if(isset($_REQUEST['id_ccomprobantes']))
+		{
+	
+			$parametros = array();
+				
+			$parametros['id_comprobantes']=isset($_REQUEST['id_ccomprobantes'])?trim($_REQUEST['id_ccomprobantes']):'';
+	
+			//aqui poner la pagina
+				
+			$pagina="conComprobantesIngresos.aspx";
+				
+			$conexion_rpt = array();
+			$conexion_rpt['pagina']=$pagina;
+			$conexion_rpt['port']="59584";
+				
+			$this->view("ReporteRpt", array(
+					"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+			));
+	
+	
+		}
+	
+	}
     
 	
 	

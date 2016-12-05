@@ -102,7 +102,7 @@
 							<td><?php echo $row['fecha_ccomprobantes'];?></td>
 							<td>
 							<span class="pull-right">
-							<a href="/contabilidad/FrameworkMVC/view/ireports/ContComprobanteEgresosReport.php?id_ccomprobantes=<?php echo $id_ccomprobantes; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><i class="glyphicon glyphicon-print"></i></a>
+							<a href="index.php?controller=Comprobantes&action=ReporteEgresos&id_ccomprobantes=<?php echo $id_ccomprobantes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><i class="glyphicon glyphicon-print"></i></a>
 							</span>
 							</td>
 					
