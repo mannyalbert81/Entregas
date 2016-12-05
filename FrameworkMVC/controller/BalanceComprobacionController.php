@@ -2004,7 +2004,7 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					
 					
-					
+					//gcfhgchg
 				}elseif($reporte=="detallado"){
 					
 					$parametros = array();
