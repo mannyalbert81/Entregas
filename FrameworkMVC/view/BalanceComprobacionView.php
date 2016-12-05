@@ -76,7 +76,7 @@
 		 var con_id_usuarios=$("#id_usuarios").val();
 		 var con_reporte=$("#reporte").val();
 		 var con_mes=$("#mes").val();
-		 var con_años=$("#anio").val();
+		 var con_años=$("#año").val();
 
 		  var con_datos={
 				  id_entidades:con_id_entidades,
