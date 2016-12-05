@@ -1970,9 +1970,9 @@ class BalanceComprobacionController extends ControladorBase{
 					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
 					//$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
 					$parametros['anio']=(isset($_POST['anio']))?trim($_POST['anio']):'';
+					$parametros['reporte']='simplificado';
 					
 					$pagina="conBalanceComprobacionDetallado.aspx";
-					
 					
 					$conexion_rpt = array();
 					$conexion_rpt['pagina']=$pagina;
@@ -1981,7 +1981,7 @@ class BalanceComprobacionController extends ControladorBase{
 					$this->view("ReporteRpt", array(
 							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
 					));
-					
+					die();
 					
 					
 					//gcfhgchg
@@ -1993,6 +1993,7 @@ class BalanceComprobacionController extends ControladorBase{
 					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
 					$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
 					$parametros['anio']=(isset($_POST['año']))?trim($_POST['año']):'';
+					$parametros['reporte']='detallado';
 					
 					$pagina="conBalanceComprobacionDetallado.aspx";
 					
