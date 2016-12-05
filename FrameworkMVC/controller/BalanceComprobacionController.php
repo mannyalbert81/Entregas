@@ -13,8 +13,6 @@ class BalanceComprobacionController extends ControladorBase{
 		$_id_usuarios= $_SESSION['id_usuarios'];
 		//Creamos el objeto usuario
 		
-		
-		
 		$ccomprobantes = new CComprobantesModel();
 		$dcomprobantes = new DComprobantesModel();
 		$cierre_mes = new CierreMesModel();
