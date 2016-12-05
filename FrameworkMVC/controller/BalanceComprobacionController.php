@@ -1731,10 +1731,8 @@ class BalanceComprobacionController extends ControladorBase{
 	             	}
 	             }
 					
-				
-	             
-	             
 					
+	            
 					//////////fin de simplificado////////////////////
 					
 					
@@ -1744,7 +1742,7 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					$id_entidades=$_POST['id_entidades'];
 					$id_usuarios=$_POST['id_usuarios'];
-					$anio=$_POST['anio'];
+					$años=$_POST['año'];
 					
 					
 					
@@ -1795,7 +1793,7 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					if($id_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$id_usuarios'";}
 					
-					if($anio!=0){$where_2=" AND  cuentas_cierre_mes.year='$anio'";}
+					if($años!=""){$where_2=" AND  cuentas_cierre_mes.year='$años'";}
 					
 					
 					$where_to  = $where . $where_0 . $where_1 . $where_2 ;
@@ -1832,103 +1830,61 @@ class BalanceComprobacionController extends ControladorBase{
 					
 							//<th style="color:#456789;font-size:80%;"></th>
 							$html.='<div class="pull-left">';
-							//$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
-							//$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 							$html.='</div><br>';
-							$html.='<section style="height:300px; overflow-y:scroll;">';
+							$html.='<section style="height:425px; overflow-y:scroll;">';
 							$html.='<table class="table table-hover">';
 							$html.='<thead>';
 							$html.='<tr class="info">';
 							$html.='<th>Entidad</th>';
-							$html.='<th style="text-align: center">Meses Cerrados</th>';
-							$html.='<th colspan=11></th>';
-								
+							$html.='<th>Codigo</th>';
+							$html.='<th>Cuenta</th>';
+							$html.='<th>Enero</th>';
+							$html.='<th>Febrero</th>';
+							$html.='<th>Marzo</th>';
+							$html.='<th>Abril</th>';
+							$html.='<th>Mayo</th>';
+							$html.='<th>Junio</th>';
+							$html.='<th>Julio</th>';
+							$html.='<th>Agosto</th>';
+							$html.='<th>Septiembre</th>';
+							$html.='<th>Noviembre</th>';
+							$html.='<th>Diciembre</th>';
 							$html.='</tr>';
 							$html.='</thead>';
 							$html.='<tbody>';
 					
 							foreach ($resultSet as $res)
 							{
-								
-								$_enero= "ENERO";
-								$_febrero= "FEBRERO";
-								$_marzo= "MARZO";
-								$_abril= "ABRIL";
-								$_mayo= "MAYO";
-								$_junio= "JUNIO";
-								$_julio= "JULIO";
-								$_agosto= "AGOSTO";
-								$_septiembre= "SEPTIEMBRE";
-								$_octubre= "OCTUBRE";
-								$_noviembre= "NOVIEMBRE";
-								$_diciembre= "DICIEMBRE";
-								
-								
-								
+								 
 								$html.='<tr>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_entidades.'</td>';
-								if($res->cerrado_ene_cuentas_cierre_mes=="t"){
-								$html.='<td style="color:#000000;font-size:80%;">'.$_enero.'</td>';
-								}
-								else{}
-								if($res->cerrado_feb_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_febrero.'</td>';
-								}
-								else{}
-								if($res->cerrado_mar_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_marzo.'</td>';
-								}
-								else{}
-								if($res->cerrado_abr_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_abril.'</td>';
-								}
-								else{}
-								if($res->cerrado_may_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_mayo.'</td>';
-								}
-								else{}
-								if($res->cerrado_jun_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_junio.'</td>';
-								}
-								else{}
-								if($res->cerrado_jul_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_julio.'</td>';
-								}
-								else{}
-								if($res->cerrado_ago_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_agosto.'</td>';
-								}
-								else{}
-								if($res->cerrado_sep_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_septiembre.'</td>';
-								}
-								else{}
-								if($res->cerrado_oct_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_octubre.'</td>';
-								}
-								else{}
-								if($res->cerrado_nov_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_noviembre.'</td>';
-								}
-								else{}
-								if($res->cerrado_dic_cuentas_cierre_mes=="t"){
-									$html.='<td style="color:#000000;font-size:80%;">'.$_diciembre.'</td>';
-								}
-								else{}
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->codigo_plan_cuentas.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_plan_cuentas.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_ene_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_feb_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_mar_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_abr_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_may_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_jun_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_jul_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_ago_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_sep_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_oct_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_nov_cuentas_cierre_mes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cerrado_dic_cuentas_cierre_mes.'</td>';
 								$html.='</tr>';
-								
-								
-								break;
-							    
+								 
 							}
 					
 							$html.='</tbody>';
 							$html.='</table>';
 							$html.='</section>';
 							$html.='<div class="table-pagination pull-right">';
-							//$html.=''. $this->paginate("index.php", $page, $total_pages, $adjacents).'';
+							$html.=''. $this->paginate("index.php", $page, $total_pages, $adjacents).'';
 							$html.='</div>';
-							//$html.='</section>';
+							$html.='</section>';
 					
 							 
 						}else{
@@ -1947,88 +1903,92 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					
 					
-
+					
 					
 					
 					
 					
 				}
 		
-				
-				
 			
 				}else {
 					
 					
 				}
+			
+			
+			
+		
+			
+	         if(isset($_POST["reporte_rpt"])){
 				
-				if(isset($_POST["reporte_rpt"]))
-				{
-						
-					$reporte=$_POST['reporte'];
 				
-					if($reporte=="simplificado"){
-							
-						$parametros = array();
-							
-						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-						$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
-						//$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
-						$parametros['anio']=(isset($_POST['anio']))?trim($_POST['anio']):'';
-							
-						$pagina="conBalanceComprobacionSimplificado.aspx";
-							
-							
-						$conexion_rpt = array();
-						$conexion_rpt['pagina']=$pagina;
-						$conexion_rpt['port']="59584";
-							
-						$this->view("ReporteRpt", array(
-								"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
-						));
-							
-							
-							
-						//gcfhgchg
-					}elseif($reporte=="detallado"){
-							
-						$parametros = array();
-							
-						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-						$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
-						$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
-						$parametros['año']=(isset($_POST['año']))?trim($_POST['año']):'';
-							
-						$pagina="conBalanceComprobacionDetallado.aspx";
-							
-							
-						$conexion_rpt = array();
-						$conexion_rpt['pagina']=$pagina;
-						$conexion_rpt['port']="59584";
-							
-						$this->view("ReporteRpt", array(
-								"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
-						));
-							
-						die();
-							
-					}
+			
+				$reporte=$_POST['reporte'];
 				
-				}
+				if($reporte=="simplificado"){
+					
+					$parametros = array();
+					
+					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
+					//$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
+					$parametros['anio']=(isset($_POST['anio']))?trim($_POST['anio']):'';
+					
+					$pagina="conBalanceComprobacionSimplificado.aspx";
+					
+					
+					$conexion_rpt = array();
+					$conexion_rpt['pagina']=$pagina;
+					$conexion_rpt['port']="59584";
+					
+					$this->view("ReporteRpt", array(
+							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+					));
+					
+					
+					
+					//gcfhgchg
+				}elseif($reporte=="detallado"){
+					
+					$parametros = array();
+					
+					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
+					$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
+					$parametros['año']=(isset($_POST['año']))?trim($_POST['año']):'';
+					
+					$pagina="conBalanceComprobacionDetallado.aspx";
+					
+					
+					$conexion_rpt = array();
+					$conexion_rpt['pagina']=$pagina;
+					$conexion_rpt['port']="59584";
+					
+					$this->view("ReporteRpt", array(
+							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+					));
+					
+					die();
+					
+				} 
+				
+					
+				
+			}else{}
 			
 			
 			
 			
-			
+
+
 			$this->view("BalanceComprobacion",array(
 					"resultSet"=>$resultSet,
 					"resultEnt"=>$resultEnt
+						
 			
-						
-						
+			
 			));
-			
-			
 			
 			
 			
