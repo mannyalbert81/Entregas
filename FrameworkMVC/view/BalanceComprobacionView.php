@@ -77,6 +77,7 @@
 		 var con_reporte=$("#reporte").val();
 		 var con_mes=$("#mes").val();
 		 var con_años=$("#año").val();
+		 var con_anio=$("#anio").val();
 
 		  var con_datos={
 				  id_entidades:con_id_entidades,
@@ -84,9 +85,12 @@
 				  reporte:con_reporte,
 				  mes:con_mes,
 				  año:con_años,
+				  anio:con_anio,
 				  action:'ajax',
 				  page:pagina,
-				  buscar:$("#buscar").val()
+				  buscar:$("#buscar").val(),
+				  reporte_rpt:$("#reporte_rpt").val()
+				  
 				  };
 
 
@@ -121,7 +125,7 @@
 
 				
                //para estudiante
-               if(id_reporte == 'simplificado')
+               if(id_reporte == 'detallado')
                {
             	   $("#div_reporte_simplificado").fadeIn("slow");
                }
@@ -141,7 +145,7 @@
 
 					
 	               
-	               if(id_reporte == 'detallado')
+	               if(id_reporte == 'simplificado')
 	               {
 	            	   $("#div_reporte_detallado").fadeIn("slow");
 	               }
@@ -283,7 +287,8 @@
   		    
 		 <button type="button" id="buscar" name="buscar"  class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-search"></i></button>
 		 <button type="submit" id="reporte_rpt" name="reporte_rpt" value="Reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
-	  
+	    
+		
 	 
 	     </div>
 		 
