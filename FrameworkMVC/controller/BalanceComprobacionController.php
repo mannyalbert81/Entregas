@@ -54,7 +54,7 @@ class BalanceComprobacionController extends ControladorBase{
 				{	
 					
 				$reporte=$_POST['reporte'];
-				if($reporte=="simplificado")
+				if($reporte=="detallado")
 				{
 	
 					
@@ -1918,20 +1918,7 @@ class BalanceComprobacionController extends ControladorBase{
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			$this->view("BalanceComprobacion",array(
-					"resultSet"=>$resultSet,
-					"resultEnt"=>$resultEnt
-			
-						
-						
-			));
+		
 			
 	         if(isset($_POST["reporte_rpt"])){
 				
@@ -1989,6 +1976,21 @@ class BalanceComprobacionController extends ControladorBase{
 					
 				
 			}else{}
+			
+			
+			
+			
+
+
+			$this->view("BalanceComprobacion",array(
+					"resultSet"=>$resultSet,
+					"resultEnt"=>$resultEnt
+						
+			
+			
+			));
+			
+			
 			
 			
 		}else
