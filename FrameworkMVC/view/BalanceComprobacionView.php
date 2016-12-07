@@ -158,8 +158,6 @@
 	               
 			    });
 				
-		   
-		   
 		    
 		}); 
 
@@ -194,8 +192,6 @@
        $arrayMeses=array("1"=>'ENERO',"2"=>'FEBRERO',"3"=>'MARZO',"4"=>'ABRIL',"5"=>'MAYO',"6"=>'JUNIO',"7"=>'JULIO',"8"=>'AGOSTO',"9"=>'SEPTIEMBRE',"10"=>'OCTUBRE',"11"=>'NOVIEMBRE',"12"=>'DICIEMBRE');
        $arrayAños=array("2010"=>'2010',"2011"=>'2011',"2012"=>'2012',"2013"=>'2013',"2014"=>'2014',"2015"=>'2015',"2016"=>'2016',"2017"=>'2017',"2018"=>'2018',"2019"=>'2019',"2020"=>'2020');
        ?>
- 
- 
   
   <div class="container">
   
@@ -287,20 +283,13 @@
   		    
 		 <button type="button" id="buscar" name="buscar"  class="btn btn-info" style="margin-top: 10px;"><i class="glyphicon glyphicon-search"></i></button>
 		 <button type="submit" id="reporte_rpt" name="reporte_rpt" value="Reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
-	    
-		
-	 
 	     </div>
-		 
-		</div>
-        	
 		 </div>
+         </div>
 		 
 		 
 		 <div class="col-lg-12">
-		 
-	     <div class="col-lg-12">
-	     
+		 <div class="col-lg-12">
 	     <div style="height: 200px; display: block;">
 		
 		 <h4 style="color:#ec971f;"></h4>
