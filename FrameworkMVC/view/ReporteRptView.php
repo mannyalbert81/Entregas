@@ -36,11 +36,13 @@
   
   //para externa 
    $url = IP_REPORTE;
-   /*
+  
    if(!empty($conexion_rpt))
    {
    	$pagina = $conexion_rpt['pagina'];
    	$url .=$pagina;
+
+   	
    }
     
    $cadena_param="?";
@@ -54,14 +56,22 @@
    			$cadena_param.=$param."='$valor'&";
    		}
    	}
-   	 
+   
    }
    $cadena_param=trim($cadena_param,'&');
    $url.=$cadena_param;
-    */
    
+   
+   
+   
+   
+   
+   
+   
+   //PRUEBAS LOCALES
   //para pruebas de local port: visual define
   //port desde la vista
+ /*
    $url = "";
    if(!empty($conexion_rpt))
    {
@@ -86,18 +96,14 @@
    $cadena_param=trim($cadena_param,'&');
    $url.=$cadena_param;
    $url;
-  
+  */
   ?>
     
    <div class="pagina" >
+   <iframe src="<?php echo $url; ?>" align="middle" noresize frameborder="0" marginwidth="0" marginheight="0">
+   </iframe>
   
-  <?php if($conexion_rpt['pagina']!='' && $conexion_rpt['port']!=''){?>
-  
-  <iframe src="<?php echo $url; ?>" align="middle" noresize frameborder="0" marginwidth="0" marginheight="0">
-  
-  </iframe>
-  
-  <?php }?>
+
      
   </div>
   
