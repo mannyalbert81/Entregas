@@ -91,6 +91,7 @@
 					while($row = pg_fetch_array($query)){
 						
 						$id_ccomprobantes=$row['id_ccomprobantes'];
+						
 						?>
 						<tr>
 							<td><?php echo $row['ruc_ccomprobantes'];?></td>

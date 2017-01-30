@@ -1072,15 +1072,16 @@ class ComprobantesController extends ControladorBase{
 						
 				$parametros = array();
 					
-				$parametros['id_comprobantes']=isset($_REQUEST['id_ccomprobantes'])?trim($_REQUEST['id_ccomprobantes']):'';
-				
+				$parametros['id_ccomprobantes']=isset($_GET['id_ccomprobantes'])?trim($_GET['id_ccomprobantes']):'';
+				//$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+					
 				//aqui poner la pagina 
 					
 				$pagina="conComprobantesEgresos.aspx";
 					
 				$conexion_rpt = array();
 				$conexion_rpt['pagina']=$pagina;
-				$conexion_rpt['port']="59584";
+				//$conexion_rpt['port']="59584";
 					
 				$this->view("ReporteRpt", array(
 						"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
@@ -1098,15 +1099,15 @@ class ComprobantesController extends ControladorBase{
 	
 			$parametros = array();
 				
-			$parametros['id_comprobantes']=isset($_REQUEST['id_ccomprobantes'])?trim($_REQUEST['id_ccomprobantes']):'';
-	
+			$parametros['id_ccomprobantes']=isset($_GET['id_ccomprobantes'])?trim($_GET['id_ccomprobantes']):'';
+				
 			//aqui poner la pagina
 				
 			$pagina="conComprobantesIngresos.aspx";
 				
 			$conexion_rpt = array();
 			$conexion_rpt['pagina']=$pagina;
-			$conexion_rpt['port']="59584";
+			//$conexion_rpt['port']="59584";
 				
 			$this->view("ReporteRpt", array(
 					"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
@@ -1117,6 +1118,31 @@ class ComprobantesController extends ControladorBase{
 	
 	}
     
+	public function ReporteContables()
+	{
+		if(isset($_REQUEST['id_ccomprobantes']))
+		{
+	
+			$parametros = array();
+	
+			$parametros['id_ccomprobantes']=isset($_GET['id_ccomprobantes'])?trim($_GET['id_ccomprobantes']):'';
+	
+			//aqui poner la pagina
+	
+			$pagina="conComprobantesContables.aspx";
+	
+			$conexion_rpt = array();
+			$conexion_rpt['pagina']=$pagina;
+			//$conexion_rpt['port']="59584";
+	
+			$this->view("ReporteRpt", array(
+					"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+			));
+	
+	
+		}
+	
+	}
 	
 	
 }
