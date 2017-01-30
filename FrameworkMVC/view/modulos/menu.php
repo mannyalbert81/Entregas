@@ -143,6 +143,18 @@ $controladores=$_SESSION['controladores'];
 </ul>
 </li>
 
+ <li class="dropdown" style="<?php echo getcontrolador("MenuMensajeria",$controladores) ?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mensajeria" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li style="<?php echo getcontrolador("Chat",$controladores) ?>">
+          <a href="index.php?controller=Chat&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Chat en linea</span> </a>
+          </li>
+         
+          
+</ul>
+</li>
+
 
 
 </ul>
