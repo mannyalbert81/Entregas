@@ -39,7 +39,7 @@
   
   $url = IP_REPORTE;
 
-   if(!empty($conexion_rpt))
+   /*if(!empty($conexion_rpt))
    {
    	$pagina = $conexion_rpt['pagina'];
    	$url .=$pagina;
@@ -60,7 +60,7 @@
    }
    $cadena_param=trim($cadena_param,'&');
    $url.=$cadena_param;
-   $url;
+   $url;*/
    
    
    
@@ -70,7 +70,7 @@
    //PRUEBAS LOCALES
   //para pruebas de local port: visual define
   //port desde la vista
-/*
+
    $url = "";
    if(!empty($conexion_rpt))
    {
@@ -95,7 +95,7 @@
    $cadena_param=trim($cadena_param,'&');
    $url.=$cadena_param;
    $url;
- */
+ 
   ?>
     
    <div class="pagina" >
