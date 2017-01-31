@@ -78,6 +78,39 @@ $(document).ready(function(){
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
+		<?php 
+			$usuarios = new UsuariosModel();
+			$id_usuarios=$_SESSION['id_usuarios'];
+			$resultRol = $usuarios->getBy("id_usuarios=$id_usuarios");
+			$_id_rol=$resultRol[0]->id_rol;
+			
+			if($_id_rol=="6"){
+				
+				$_nombre_rol="SUPER ADMINISTRADOR";
+				?>
+				
+				<span><FONT SIZE=3 style="color:#FFFFFF;"><b><?php echo $_nombre_rol;?></b></FONT></span>
+			    
+			    
+			<?php
+			}else{
+				
+				$rol = new RolesModel();
+				$resultNomRol = $rol->getBy("id_rol=$_id_rol");
+				$_nombre_rol=$resultNomRol[0]->nombre_rol;
+				$_id_entidades=$resultRol[0]->id_entidades;
+				
+				$entidades = new EntidadesModel();
+				$resultNomEnt = $entidades->getBy("id_entidades=$_id_entidades");
+				$_nombre_entidades=$resultNomEnt[0]->nombre_entidades;
+				
+				?>
+				
+				<span><FONT SIZE=3 style="color:#FFFFFF;"><b><?php echo $_nombre_rol.' DE '.$_nombre_entidades;?></b></FONT></span>
+			<?php	
+			}
+			?>	 
+			
 		  <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?>" width="70" height="60"  style="float:left;" >
  		
 		  <div class="col-xs-7 col-md-5">
@@ -93,11 +126,13 @@ $(document).ready(function(){
 				    <li><a href="index.php?controller=Usuarios&action=Actualiza">Actualizar Datos de Usuario</a></li>
 				    <li><a href="#">Conectado desde: <?php echo $_SESSION['ip_usuarios']?></a></li>
 				  </ul>
-								  
 			</div>
+			
+				
+			
 		</div>
 		
-		 	 <?php  ?> 
+		 
 		<?php 
 			 }
 			 else 
@@ -124,6 +159,7 @@ $(document).ready(function(){
 
  
   </div>
+  
         
 </div>
 

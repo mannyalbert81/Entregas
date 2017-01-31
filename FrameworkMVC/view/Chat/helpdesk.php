@@ -2,7 +2,7 @@
 	include('header.php');
 	
 	if($_SESSION["oUsuario"]->status<>1){
-		RedireccionarHeader("login.php");
+		RedireccionarHeader("view/Chat/login.php");
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -25,9 +25,9 @@
       <th width="600" align="left" valign="middle" nowrap class="title"><b>
       <a href="profile.php" target="_self">
       <img src="<?php print($_SESSION["oUsuario"]->avatarp); ?>" alt="Avatar" width="32" height="32" border="0" align="absmiddle">&#8250;&#8250;&nbsp;<?php print($_SESSION["oUsuario"]->name); ?></a>&nbsp;
-      <?php if($_SESSION["oUsuario"]->admin>=1) {print("<a href='home.php'>&#8250;&#8250;&nbsp;Home</a>"); } ?>
+      <?php if($_SESSION["oUsuario"]->admin>=1) {print("<a href='view/Chat/home.php'>&#8250;&#8250;&nbsp;Home</a>"); } ?>
       </b></th>
-      <th align="center" valign="middle" nowrap class="title"><a href="logout.php">&#8250;&#8250;&nbsp;Cerrar sesi&oacute;n</a></th>
+      <th align="center" valign="middle" nowrap class="title"><a href="view/Chat/logout.php">&#8250;&#8250;&nbsp;Cerrar sesi&oacute;n</a></th>
     </tr>
     
 <tr>
@@ -50,7 +50,7 @@
       <td align="center">
       <div class="marco">
       	<div id="panelStatus">
-        	<table class="tableOptions"><tr><td><img src="images/16x16/system/document_properties.png" width="16" height="16" border="0" align="absmiddle">&nbsp;<span id="nstatus" class="nameStatus"><?php printf("<b>%s</b>",ucfirst(strtolower($_SESSION["oUsuario"]->nstatus))); ?></span></td></tr></table>
+        	<table class="tableOptions"><tr><td><img src="view/Chat/images/16x16/system/document_properties.png" width="16" height="16" border="0" align="absmiddle">&nbsp;<span id="nstatus" class="nameStatus"><?php printf("<b>%s</b>",ucfirst(strtolower($_SESSION["oUsuario"]->nstatus))); ?></span></td></tr></table>
 			<?php printf("%s",$_SESSION["oUsuario"]->getStatus()); ?>
          </div>
       </div></td>
@@ -61,7 +61,7 @@
       	<div class="marco">
         	<div id="panelRooms">
             	<table class="tableOptions"><tr>
-            	  <td><img src="images/16x16/system/group.png" width="16" height="16" border="0" align="absmiddle">&nbsp;<span id="nroom" class="nameStatus"><?php printf("<b>%s</b>",ucwords(strtolower($_SESSION["oUsuario"]->nroom))); ?></span></td></tr></table>
+            	  <td><img src="view/Chat/images/16x16/system/group.png" width="16" height="16" border="0" align="absmiddle">&nbsp;<span id="nroom" class="nameStatus"><?php printf("<b>%s</b>",ucwords(strtolower($_SESSION["oUsuario"]->nroom))); ?></span></td></tr></table>
 				<?php printf("%s",$_SESSION["oUsuario"]->getRooms()); ?>
              </div>
             <div id="panelUsers"></div>            
@@ -84,6 +84,6 @@
     </tr>
   </table>
 </form>
-<iframe name="ifrInsert" src="helpdeskquery.php" id="ifrInsert" height="0" width="0" frameborder="0">Su nabvegador no soporta iframe</iframe>
+<iframe name="ifrInsert" src="view/Chat/helpdeskquery.php" id="ifrInsert" height="0" width="0" frameborder="0">Su nabvegador no soporta iframe</iframe>
 </body>
 </html>

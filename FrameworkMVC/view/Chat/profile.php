@@ -1,11 +1,11 @@
 <?php 
-	include('header.php');
+	include('view/Chat/header.php');
 	
 	$inform		= "";
 	$result		= 0;
 				
 	if($_SESSION["oUsuario"]->status<>1){
-		RedireccionarHeader("login.php");
+		RedireccionarHeader("view/Chat/login.php");
 	}else{			
 		if($_SERVER["REQUEST_METHOD"] == "POST") {
 			@$iduser	= $_POST['iduser']; settype($iduser,'string');	$iduser=trim(strtolower($iduser));
@@ -40,15 +40,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>HelpDesk - Profile</title>
 
-<?php include("links.php"); ?>
+<?php include("view/Chat/links.php"); ?>
 
 </head>
 <body>
-<form action="profile.php" method="post" enctype="multipart/form-data" name="frmWrite" target="_self" id="frmWrite">
+<form action="view/Chat/profile.php" method="post" enctype="multipart/form-data" name="frmWrite" target="_self" id="frmWrite">
   <table width="100%" border="0" cellpadding="1" cellspacing="0" id="contenido">
     <tr>
-      <td valign="middle" class="title"><b><a href="helpdesk.php" target="_self"><img src="<?php print($_SESSION["oUsuario"]->avatarp); ?>" alt="Avatar" width="32" height="32" border="0" align="absmiddle">&#8250;&#8250;&nbsp;<?php print($_SESSION["oUsuario"]->name); ?></a>&nbsp;
-      <?php if($_SESSION["oUsuario"]->admin>=1) {print("<a href='home.php'>&#8250;&#8250;&nbsp;Home</a>"); } ?>
+      <td valign="middle" class="title"><b><a href="view/Chat/helpdesk.php" target="_self"><img src="<?php print($_SESSION["oUsuario"]->avatarp); ?>" alt="Avatar" width="32" height="32" border="0" align="absmiddle">&#8250;&#8250;&nbsp;<?php print($_SESSION["oUsuario"]->name); ?></a>&nbsp;
+      <?php if($_SESSION["oUsuario"]->admin>=1) {print("<a href='view/Chat/home.php'>&#8250;&#8250;&nbsp;Home</a>"); } ?>
       </b></td>
     </tr>
     <tr>
@@ -60,7 +60,7 @@
               <td colspan="2" class="TituloGrupo">Informaci&oacute;n de registro</td>
             </tr>
             <tr>
-              <td width="160" class="Titulo"><img src="images/other/usuario.png" alt="" width="16" height="16" border="0" align="absmiddle"> Usuario</td>
+              <td width="160" class="Titulo"><img src="view/Chat/images/other/usuario.png" alt="" width="16" height="16" border="0" align="absmiddle"> Usuario</td>
               <td><input name="iduser" id="iduser" value="<?php print($_SESSION["oUsuario"]->iduser); ?>" size="50" style="width:100%;"></td>
             </tr>
             <tr>
@@ -84,7 +84,7 @@
               <td>Actualizar contrase&ntilde;a (Obligatorio)</td>
             </tr>
             <tr>
-              <td class="Titulo"><img src="images/other/llave.png" alt="" width="16" height="16" border="0" align="absmiddle"> Clave</td>
+              <td class="Titulo"><img src="view/Chat/images/other/llave.png" alt="" width="16" height="16" border="0" align="absmiddle"> Clave</td>
               <td valign="middle"><table border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="150"><input id="pass" name="pass" type="password"></td>
@@ -100,9 +100,9 @@
               <td colspan="2" align="right"><table border="0" cellspacing="2" cellpadding="0">
                 <tr>
                   <td width="32" height="32"><a href="javascript:document.forms[0].submit();"><img src="images/32x32/system/save.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
-                  <td width="32" height="32"><a href="profile.php"><img src="images/32x32/system/update.png" alt="Actualizar" width="32" height="32" border="0" align="absmiddle"></a></td>
+                  <td width="32" height="32"><a href="view/Chat/profile.php"><img src="view/Chat/images/32x32/system/update.png" alt="Actualizar" width="32" height="32" border="0" align="absmiddle"></a></td>
                   <td width="32" height="32">&nbsp;</td>
-                  <td width="32" height="32"><a href="helpdesk.php"><img src="images/32x32/system/home.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
+                  <td width="32" height="32"><a href="view/Chat/helpdesk.php"><img src="view/Chat/images/32x32/system/home.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
                 </tr>
               </table></td>
               </tr>

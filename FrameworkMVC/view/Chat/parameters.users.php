@@ -1,11 +1,11 @@
 <?php 
-	include('header.php');
+	include('view/Chat/header.php');
 	
 	// RECUPERANDO VALORES
 	$inform		= "";
 	
 	if($_SESSION["oUsuario"]->status<>1){
-		RedireccionarHeader("login.php");
+		RedireccionarHeader("view/Chat/login.php");
 	}else{			
 		if($_SERVER["REQUEST_METHOD"] == "POST") {
 			@$seleccionados=implode("','",$_POST["aopciones"]); settype($seleccionados,'string');
@@ -89,7 +89,7 @@
 
 <script type="text/javascript">
 function eliminar(){
-	var answer = confirm("¿Esta seguro de eliminar los registros marcados?");
+	var answer = confirm("ï¿½Esta seguro de eliminar los registros marcados?");
 	if (answer){
 		document.forms[0].eliminar.value=1;
 		document.forms[0].submit();		
@@ -99,7 +99,7 @@ function eliminar(){
 }
 
 function guardar(){
-	var answer = confirm("¿Esta seguro de guardar las modificaciones?");
+	var answer = confirm("ï¿½Esta seguro de guardar las modificaciones?");
 	if (answer){
 		document.forms[0].guardar.value=1;
 		document.forms[0].submit();		
@@ -111,10 +111,10 @@ function guardar(){
 
 </head>
 <body>
-<form action="parameters.users.php" method="post" enctype="multipart/form-data" name="frmWrite" target="_self" id="frmWrite">
+<form action="view/Chat/parameters.users.php" method="post" enctype="multipart/form-data" name="frmWrite" target="_self" id="frmWrite">
   <table width="100%" border="0" cellpadding="1" cellspacing="0" id="contenido">
     <tr>
-      <td valign="middle" class="title"><b><a href="profile.php" target="_self"><img src="<?php print($_SESSION["oUsuario"]->avatarp); ?>" alt="Avatar" width="32" height="32" border="0" align="absmiddle">&#8250;&#8250;&nbsp;<?php print($_SESSION["oUsuario"]->name); ?></a>&nbsp;
+      <td valign="middle" class="title"><b><a href="view/Chat/profile.php" target="_self"><img src="<?php print($_SESSION["oUsuario"]->avatarp); ?>" alt="Avatar" width="32" height="32" border="0" align="absmiddle">&#8250;&#8250;&nbsp;<?php print($_SESSION["oUsuario"]->name); ?></a>&nbsp;
           <?php if($_SESSION["oUsuario"]->admin>=1) {print("<a href='home.php'>&#8250;&#8250;&nbsp;Home</a>"); } ?>
       </b></td>
     </tr>
@@ -188,12 +188,12 @@ mysql_free_result($result);
             <tr>
               <td align="right"><table border="0" cellspacing="2" cellpadding="0">
                 <tr>
-                  <td width="32" height="32"><a href="javascript:guardar();"><img src="images/32x32/system/save.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
-                  <td width="32" height="32"><a href="parameters.users.php"><img src="images/32x32/system/update.png" alt="Actualizar" width="32" height="32" border="0" align="absmiddle"></a></td>
+                  <td width="32" height="32"><a href="javascript:guardar();"><img src="view/Chat/images/32x32/system/save.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
+                  <td width="32" height="32"><a href="parameters.users.php"><img src="view/Chat/images/32x32/system/update.png" alt="Actualizar" width="32" height="32" border="0" align="absmiddle"></a></td>
                   <td width="32" height="32">&nbsp;</td>
-                  <td width="32" height="32"><a href="javascript: eliminar();"><img src="images/32x32/system/delete.png" alt="Actualizar" width="32" height="32" border="0" align="absmiddle"></a></td>
+                  <td width="32" height="32"><a href="javascript: eliminar();"><img src="view/Chat/images/32x32/system/delete.png" alt="Actualizar" width="32" height="32" border="0" align="absmiddle"></a></td>
                   <td width="32" height="32">&nbsp;</td>
-                  <td width="32" height="32"><a href="home.php"><img src="images/32x32/system/home.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
+                  <td width="32" height="32"><a href="view/Chat/home.php"><img src="view/Chat/images/32x32/system/home.png" alt="Guardar" width="32" height="32" border="0" align="absmiddle"></a></td>
                 </tr>
             </table></td>
               </tr>

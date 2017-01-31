@@ -130,15 +130,6 @@
                     }
                         
                     }
-                },
-
-                imagen_usuarios: {
-                    validators: {
-                    	notEmpty: {
-                            message: 'Este campo es requerido.'
-                    }
-                        
-                    }
                 }
 	                
 	        }
