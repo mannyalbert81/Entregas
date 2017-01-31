@@ -125,6 +125,10 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ImportacionCuentas",$controladores) ?>">
 		  <a href="index.php?controller=ImportacionCuentas&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Importación Cuentas</span> </a>
 		  </li>
+		  
+		  <li style="<?php echo getcontrolador("PlanCuentas",$controladores) ?>">
+		  <a href="index.php?controller=PlanCuentas&action=ImprimirConsultarPlanCuentas"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar e Imprimir Plan Cuentas</span> </a>
+		  </li>
          
 </ul>
 </li>
