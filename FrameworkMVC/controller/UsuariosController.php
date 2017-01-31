@@ -246,7 +246,7 @@ public function index(){
 				
 				
 				
-				$rol=new RolesModel();
+				$rol= new RolesModel();
 				$resultRol = $rol->getBy("nombre_rol='CONTADOR' OR nombre_rol='USUARIO' OR nombre_rol='CLIENTE' OR nombre_rol='VISITANTE'");
 				
 				$entidades = new EntidadesModel();

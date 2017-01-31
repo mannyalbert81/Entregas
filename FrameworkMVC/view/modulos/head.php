@@ -81,10 +81,10 @@ $(document).ready(function(){
 		<?php 
 			$usuarios = new UsuariosModel();
 			$id_usuarios=$_SESSION['id_usuarios'];
-			$resultRol = $usuarios->getBy("id_usuarios=$id_usuarios");
-			$_id_rol=$resultRol[0]->id_rol;
+			$resultRol1 = $usuarios->getBy("id_usuarios=$id_usuarios");
+			$_id_rol1=$resultRol1[0]->id_rol;
 			
-			if($_id_rol=="6"){
+			if($_id_rol1=="6"){
 				
 				$_nombre_rol="SUPER ADMINISTRADOR";
 				?>
@@ -96,9 +96,9 @@ $(document).ready(function(){
 			}else{
 				
 				$rol = new RolesModel();
-				$resultNomRol = $rol->getBy("id_rol=$_id_rol");
-				$_nombre_rol=$resultNomRol[0]->nombre_rol;
-				$_id_entidades=$resultRol[0]->id_entidades;
+				$resultNomRol = $rol->getBy("id_rol=$_id_rol1");
+				$_nombre_rol1=$resultNomRol[0]->nombre_rol;
+				$_id_entidades=$resultRol1[0]->id_entidades;
 				
 				$entidades = new EntidadesModel();
 				$resultNomEnt = $entidades->getBy("id_entidades=$_id_entidades");
@@ -106,7 +106,7 @@ $(document).ready(function(){
 				
 				?>
 				
-				<span><FONT SIZE=3 style="color:#FFFFFF;"><b><?php echo $_nombre_rol.' DE '.$_nombre_entidades;?></b></FONT></span>
+				<span><FONT SIZE=3 style="color:#FFFFFF;"><b><?php echo $_nombre_rol1.' DE '.$_nombre_entidades;?></b></FONT></span>
 			<?php	
 			}
 			?>	 
