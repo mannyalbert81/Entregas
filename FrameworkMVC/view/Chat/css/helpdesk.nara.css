@@ -56,7 +56,7 @@ input, select {
 	height:408px;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	background-image: url(../images/other/degras.png);
+	background-image: url(../view/Chat/images/other/degras.png);
 	background-repeat: repeat-x;
 	background-position: 0px 0px;
 }
@@ -66,7 +66,7 @@ input, select {
 	width:600px;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	background-image: url(../images/other/degras.png);
+	background-image: url(../view/Chat/images/other/degras.png);
 	background-repeat: repeat-x;
 	background-position: 0px 0px;
 }
@@ -82,7 +82,7 @@ input, select {
 	width:190px;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	background-image: url(../images/other/degras.png);
+	background-image: url(../view/Chat/images/other/degras.png);
 	background-repeat: repeat-x;
 	background-position: 00px 0px;
 }
@@ -123,7 +123,7 @@ input, select {
 
 #panelInfo {
 	height: 50px;
-	background-image: url(../images/other/degras.png);
+	background-image: url(../view/Chat/images/other/degras.png);
 	background-repeat: repeat-x;
 	background-position: 0px 0px;
 }
@@ -132,7 +132,7 @@ input, select {
 	height: 50px;
 	width:190px;
 	overflow: hidden;
-	background-image: url(../images/other/degras.png);
+	background-image: url(../view/Chat/images/other/degras.png);
 	background-repeat: repeat-x;
 	background-position: 0px 0px;
 }
@@ -150,14 +150,14 @@ input, select {
 #login{
 	width: 400px;
 	border:2px dotted #6BA850;
-	background-image: url(../images/other/message.png);
+	background-image: url(../view/Chat/images/other/message.png);
 	background-repeat: no-repeat;
 	background-position: -15px -20px;
 }
 
 #logout{
 	width: 120px;
-	background-image: url(../images/other/message.png);
+	background-image: url(../view/Chat/images/other/message.png);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 	height: 120px;
@@ -169,7 +169,7 @@ input, select {
 	background-color: #FF9900;
 	font-size: 14px;
 	color: #FFF;
-	background-image: url(../images/other/message.png);
+	background-image: url(../view/Chat/images/other/message.png);
 	background-repeat: no-repeat;
 	background-position: 480px -20px;
 }
@@ -179,7 +179,7 @@ input, select {
 }
 
 .title img{
-	background-image: url(../images/other/logo.png);
+	background-image: url(../view/Chat/images/other/logo.png);
 	background-repeat: no-repeat;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -265,7 +265,7 @@ input, select {
 }
 
 .commandInput {
-	background-image: url(../images/other/message.png);
+	background-image: url(../view/Chat/images/other/message.png);
 	background-repeat: no-repeat; 
 	background-position: -15px -20px;
 }
