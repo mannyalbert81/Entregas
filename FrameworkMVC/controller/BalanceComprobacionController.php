@@ -1958,7 +1958,7 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					$conexion_rpt = array();
 					$conexion_rpt['pagina']=$pagina;
-					//$conexion_rpt['port']="59584";
+					$conexion_rpt['port']="59584";
 					
 					$this->view("ReporteRpt", array(
 							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
@@ -1980,7 +1980,7 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					$conexion_rpt = array();
 					$conexion_rpt['pagina']=$pagina;
-					//$conexion_rpt['port']="59584";
+					$conexion_rpt['port']="59584";
 					
 					$this->view("ReporteRpt", array(
 							"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt

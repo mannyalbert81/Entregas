@@ -85,6 +85,7 @@
    {
    		foreach ($parametros as $param=>$valor)
    		{
+   			
    			if($valor!=''||$valor!=null)
    			{
    				$cadena_param.=$param."=".$valor."&";

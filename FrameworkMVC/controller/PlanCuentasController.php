@@ -807,6 +807,39 @@ class PlanCuentasController extends ControladorBase{
 		$resultEnt=$entidades->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
 		
 		
+		$columnas_niv = "plan_cuentas.nivel_plan_cuentas";
+		$tablas_niv ="public.plan_cuentas, 
+					  public.entidades, 
+					  public.usuarios";
+		$where_niv ="entidades.id_entidades = plan_cuentas.id_entidades AND
+  					usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		$grupo_niv="plan_cuentas.nivel_plan_cuentas";
+		$id_niv="plan_cuentas.nivel_plan_cuentas";
+		$resultNiv=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas_niv, $tablas_niv, $where_niv, $grupo_niv, $id_niv);
+		
+		$columnas_t = "plan_cuentas.t_plan_cuentas";
+		$tablas_t ="public.plan_cuentas,
+					  public.entidades,
+					  public.usuarios";
+		$where_t ="entidades.id_entidades = plan_cuentas.id_entidades AND
+		usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		$grupo_t="plan_cuentas.t_plan_cuentas";
+		$id_t="plan_cuentas.t_plan_cuentas";
+		$resultTip=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas_t, $tablas_t, $where_t, $grupo_t, $id_t);
+		
+		$columnas_n = "plan_cuentas.n_plan_cuentas";
+		$tablas_n ="public.plan_cuentas,
+					  public.entidades,
+					  public.usuarios";
+		$where_n ="entidades.id_entidades = plan_cuentas.id_entidades AND
+		usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		$grupo_n="plan_cuentas.n_plan_cuentas";
+		$id_n="plan_cuentas.n_plan_cuentas";
+		$resultNat=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas_n, $tablas_n, $where_n, $grupo_n, $id_n);
+		
+		
+		
+		
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -822,6 +855,11 @@ class PlanCuentasController extends ControladorBase{
 		
 		
 					$id_entidades=$_POST['id_entidades'];
+					$codigo_plan_cuentas=$_POST['codigo_plan_cuentas'];
+					$nombre_plan_cuentas=$_POST['nombre_plan_cuentas'];
+					$nivel_plan_cuentas=$_POST['nivel_plan_cuentas'];
+					$t_plan_cuentas=$_POST['t_plan_cuentas'];
+					$n_plan_cuentas=$_POST['n_plan_cuentas'];
 					
 		
 						
@@ -858,16 +896,26 @@ class PlanCuentasController extends ControladorBase{
 		
 		
 					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					$where_4 = "";
+					$where_5 = "";
 					
 		
 						
 						
 		
 					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
+					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas LIKE '%$codigo_plan_cuentas'";}
+					if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas LIKE '%$nombre_plan_cuentas%'";}
+					if($nivel_plan_cuentas!=""){$where_3=" AND plan_cuentas.nivel_plan_cuentas='$nivel_plan_cuentas'";}
+					if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
+					if($n_plan_cuentas!=""){$where_5=" AND plan_cuentas.n_plan_cuentas='$n_plan_cuentas'";}
 		
 					
 		
-					$where_to  = $where . $where_0;
+					$where_to  = $where . $where_0. $where_1. $where_2. $where_3. $where_4. $where_5;
 		
 		
 					//$resultSet=$ccomprobantes->getCondiciones($columnas ,$tablas , $where_to, $id);
@@ -916,6 +964,8 @@ class PlanCuentasController extends ControladorBase{
 							$html.='<th>Codigo Cuenta</th>';
 							$html.='<th>Nombre Cuenta</th>';
 							$html.='<th>Nivel Cuenta</th>';
+							$html.='<th>Tipo Cuenta</th>';
+							$html.='<th>Naturaleza Cuenta</th>';
 							$html.='</tr>';
 							$html.='</thead>';
 							$html.='<tbody>';
@@ -929,6 +979,8 @@ class PlanCuentasController extends ControladorBase{
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->codigo_plan_cuentas.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_plan_cuentas.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->nivel_plan_cuentas.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->t_plan_cuentas.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->n_plan_cuentas.'</td>';
 								$html.='</tr>';
 									
 							}
@@ -964,9 +1016,16 @@ class PlanCuentasController extends ControladorBase{
 						$parametros = array();
 		
 						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-						$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
-							
-		
+						$parametros['codigo_plan_cuentas']=isset($_POST['codigo_plan_cuentas'])?trim($_POST['codigo_plan_cuentas']):'';
+						$parametros['nombre_plan_cuentas']=isset($_POST['nombre_plan_cuentas'])?trim($_POST['nombre_plan_cuentas']):'';
+						$parametros['nivel_plan_cuentas']=isset($_POST['nivel_plan_cuentas'])?trim($_POST['nivel_plan_cuentas']):'';
+						$parametros['t_plan_cuentas']=isset($_POST['t_plan_cuentas'])?trim($_POST['t_plan_cuentas']):'';
+						$parametros['n_plan_cuentas']=isset($_POST['n_plan_cuentas'])?trim($_POST['n_plan_cuentas']):'';
+						
+						
+						
+						
+						
 						//para local
 						$pagina="conPlanCuentas.aspx";
 		
@@ -978,7 +1037,9 @@ class PlanCuentasController extends ControladorBase{
 								"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
 						));
 		
+
 						die();
+						
 		
 					}
 						
@@ -987,7 +1048,7 @@ class PlanCuentasController extends ControladorBase{
 		
 		
 				$this->view("ImprimirConsultarPlanCuentas",array(
-						"resultSet"=>$resultSet, "resultEnt"=>$resultEnt
+						"resultSet"=>$resultSet, "resultEnt"=>$resultEnt, "resultNiv"=>$resultNiv, "resultTip"=>$resultTip, "resultNat"=>$resultNat
 		
 							
 							

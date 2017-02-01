@@ -78,7 +78,7 @@ $(document).ready(function(){
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
-		<?php 
+		<?php /*
 			$usuarios = new UsuariosModel();
 			$id_usuarios=$_SESSION['id_usuarios'];
 			$resultRol1 = $usuarios->getBy("id_usuarios=$id_usuarios");
@@ -108,7 +108,7 @@ $(document).ready(function(){
 				
 				<span><FONT SIZE=3 style="color:#FFFFFF;"><b><?php echo $_nombre_rol1.' DE '.$_nombre_entidades;?></b></FONT></span>
 			<?php	
-			}
+			}*/
 			?>	 
 			
 		  <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?>" width="70" height="60"  style="float:left;" >

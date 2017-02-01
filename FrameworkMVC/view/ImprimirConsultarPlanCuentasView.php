@@ -53,10 +53,20 @@
 		
 		//iniciar variables
 		 var con_id_entidades=$("#id_entidades").val();
+		 var con_codigo_plan_cuentas=$("#codigo_plan_cuentas").val();
+		 var con_nombre_plan_cuentas=$("#nombre_plan_cuentas").val();
+		 var con_nivel_plan_cuentas=$("#nivel_plan_cuentas").val();
+		 var con_t_plan_cuentas=$("#t_plan_cuentas").val();
+		 var con_n_plan_cuentas=$("#n_plan_cuentas").val();
 		
 
 		  var con_datos={
 				  id_entidades:con_id_entidades,
+				  codigo_plan_cuentas:con_codigo_plan_cuentas,
+				  nombre_plan_cuentas:con_nombre_plan_cuentas,
+				  nivel_plan_cuentas:con_nivel_plan_cuentas,
+				  t_plan_cuentas:con_t_plan_cuentas,
+				  n_plan_cuentas:con_n_plan_cuentas,
 				  action:'ajax',
 				  page:pagina
 				  };
@@ -90,11 +100,22 @@
        <?php
        
        $sel_id_entidades = "";
+       $sel_codigo_plan_cuentas = "";
+       $sel_nombre_plan_cuentas = "";
+       $sel_nivel_plan_cuentas = "";
+       $sel_t_plan_cuentas = "";
+       $sel_n_plan_cuentas = "";
       
         
+      
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        	$sel_id_entidades = $_POST['id_entidades'];
+       	$sel_codigo_plan_cuentas = $_POST['codigo_plan_cuentas'];
+       	$sel_nombre_plan_cuentas = $_POST['nombre_plan_cuentas'];
+       	$sel_nivel_plan_cuentas = $_POST['nivel_plan_cuentas'];
+       	$sel_t_plan_cuentas = $_POST['t_plan_cuentas'];
+       	$sel_n_plan_cuentas = $_POST['n_plan_cuentas'];
       
        
        }
@@ -129,6 +150,45 @@
 				</select>
 		 </div>
 		 
+		 <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Codigo:</p>
+			  	<input type="text"  name="codigo_plan_cuentas" id="codigo_plan_cuentas" value="<?php echo $sel_codigo_plan_cuentas;?>" class="form-control"/> 
+          </div>
+		 
+		 <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Nombre:</p>
+			  	<input type="text"  name="nombre_plan_cuentas" id="nombre_plan_cuentas" value="<?php echo $sel_nombre_plan_cuentas;?>" class="form-control"/> 
+          </div>
+		 
+		 <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo">Nivel:</p>
+			  	<select name="nivel_plan_cuentas" id="nivel_plan_cuentas"  class="form-control">
+			  	<option value=""><?php echo "--TODOS--";  ?> </option>
+			  		<?php foreach($resultNiv as $res) {?>
+						<option value="<?php echo $res->nivel_plan_cuentas; ?>"<?php if($sel_nivel_plan_cuentas==$res->nivel_plan_cuentas){echo "selected";}?>><?php echo $res->nivel_plan_cuentas;  ?> </option>
+			            <?php } ?>
+				</select>
+		 </div>
+		 <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo">Tipo:</p>
+			  	<select name="t_plan_cuentas" id="t_plan_cuentas"  class="form-control">
+			  	<option value=""><?php echo "--TODOS--";  ?> </option>
+			  		<?php foreach($resultTip as $res) {?>
+						<option value="<?php echo $res->t_plan_cuentas; ?>"<?php if($sel_t_plan_cuentas==$res->t_plan_cuentas){echo "selected";}?>><?php echo $res->t_plan_cuentas;  ?> </option>
+			            <?php } ?>
+				</select>
+		 </div>
+		 <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo">Naturaleza:</p>
+			  	<select name="n_plan_cuentas" id="n_plan_cuentas"  class="form-control">
+			  	<option value=""><?php echo "--TODOS--";  ?> </option>
+			  		<?php foreach($resultNat as $res) {?>
+						<option value="<?php echo $res->n_plan_cuentas; ?>"<?php if($sel_n_plan_cuentas==$res->n_plan_cuentas){echo "selected";}?>><?php echo $res->n_plan_cuentas;  ?> </option>
+			            <?php } ?>
+				</select>
+		 </div>
+		
+		
 		
 		 
   			</div>
@@ -188,7 +248,10 @@
   </div>
       <!-- termina
        busqueda  -->
-       
+      <br>
+      <br>
+      <br>
+      <br> 
  
    </body>  
 

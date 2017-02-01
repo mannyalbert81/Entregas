@@ -154,7 +154,7 @@ class EntidadBase{
     
     public function getCondiciones_GrupBy_OrderBy($columnas ,$tablas , $where , $grupo, $orden){
     
-    	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where GROUP BY $grupo ORDER BY $orden  DESC");
+    	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where GROUP BY $grupo ORDER BY $orden  ASC");
     	$resultSet = array();
     	while ($row = pg_fetch_object($query)) {
     		$resultSet[]=$row;
