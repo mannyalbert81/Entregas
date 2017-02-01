@@ -53,7 +53,7 @@
    	{
    		if($valor!=''||$valor!=null)
    		{
-   			$cadena_param.=$param."='$valor'&";
+   			$cadena_param.=$param."=$valor&"; //aqui se realizo cambio
    		}
    	}
    
