@@ -7,7 +7,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Actualizar Usuarios - CallCenter 2016</title>
+        <title>Actualizar Usuarios - Contabilidad 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -269,18 +269,12 @@
 		
         
     </head>
-   <body>
+   <body class="cuerpo">
         <?php include("view/modulos/modal.php"); ?>
         <?php include("view/modulos/head.php"); ?>
         <?php include("view/modulos/menu.php"); ?>
         
         
-         <?php
-       
-       
-       
-		   
-		?>
  
   
      <div class="container">
@@ -473,6 +467,11 @@
         </div>
        </div>
        </div>
+       
+       <br>
+       <br>
+       <br>
+       
        <?php include("view/modulos/footer.php"); ?>
      </body>  
     </html>   

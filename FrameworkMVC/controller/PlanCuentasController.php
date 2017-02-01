@@ -786,5 +786,303 @@ class PlanCuentasController extends ControladorBase{
 	}
 	
 	
+	public function ImprimirConsultarPlanCuentas(){
+		
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+		//Creamos el objeto usuario
+		$resultSet="";
+		$registrosTotales = 0;
+		$arraySel = "";
+		
+		$plan_cuentas= new PlanCuentasModel();
+		
+		$entidades = new EntidadesModel();
+		$columnas_enc = "entidades.id_entidades,
+  							entidades.nombre_entidades";
+		$tablas_enc ="public.usuarios,
+						  public.entidades";
+		$where_enc ="entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		$id_enc="entidades.nombre_entidades";
+		$resultEnt=$entidades->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
+		
+		
+		
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "PlanCuentas";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $plan_cuentas->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		
+			if (!empty($resultPer))
+			{
+					
+				if(isset($_POST["id_entidades"])){
+		
+		
+					$id_entidades=$_POST['id_entidades'];
+					
+		
+						
+		
+		
+					$columnas = " entidades.id_entidades, 
+								  entidades.ruc_entidades, 
+								  entidades.nombre_entidades, 
+								  entidades.telefono_entidades, 
+								  entidades.direccion_entidades, 
+								  entidades.ciudad_entidades, 
+								  entidades.logo_entidades, 
+								  usuarios.id_usuarios, 
+								  plan_cuentas.id_plan_cuentas, 
+								  plan_cuentas.codigo_plan_cuentas, 
+								  plan_cuentas.nombre_plan_cuentas, 
+								  monedas.nombre_monedas, 
+								  plan_cuentas.n_plan_cuentas, 
+								  plan_cuentas.t_plan_cuentas, 
+								  plan_cuentas.nivel_plan_cuentas";
+		
+		
+		
+					$tablas="  public.plan_cuentas, 
+							  public.usuarios, 
+							  public.entidades, 
+							  public.monedas";
+		
+					$where="plan_cuentas.id_modenas = monedas.id_monedas AND
+							  entidades.id_entidades = usuarios.id_entidades AND
+							  entidades.id_entidades = plan_cuentas.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		
+					$id="plan_cuentas.codigo_plan_cuentas";
+		
+		
+					$where_0 = "";
+					
+		
+						
+						
+		
+					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
+		
+					
+		
+					$where_to  = $where . $where_0;
+		
+		
+					//$resultSet=$ccomprobantes->getCondiciones($columnas ,$tablas , $where_to, $id);
+		
+						
+					//comienza paginacion
+						
+						
+					$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+						
+					if($action == 'ajax')
+					{
+						$html="";
+						$resultSet=$plan_cuentas->getCantidad("*", $tablas, $where_to);
+						$cantidadResult=(int)$resultSet[0]->total;
+							
+						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+							
+						$per_page = 50; //la cantidad de registros que desea mostrar
+						$adjacents  = 9; //brecha entre páginas después de varios adyacentes
+						$offset = ($page - 1) * $per_page;
+							
+						$limit = " LIMIT   '$per_page' OFFSET '$offset'";
+							
+							
+						$resultSet=$plan_cuentas->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
+							
+						$count_query   = $cantidadResult;
+							
+						$total_pages = ceil($cantidadResult/$per_page);
+							
+						if ($cantidadResult>0)
+						{
+								
+							//<th style="color:#456789;font-size:80%;"></th>
+		
+							$html.='<div class="pull-left">';
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='</div><br>';
+							$html.='<section style="height:425px; overflow-y:scroll;">';
+							$html.='<table class="table table-hover">';
+							$html.='<thead>';
+							$html.='<tr class="info">';
+							$html.='<th>Nombre Entidad</th>';
+							$html.='<th>Codigo Cuenta</th>';
+							$html.='<th>Nombre Cuenta</th>';
+							$html.='<th>Nivel Cuenta</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+								
+							foreach ($resultSet as $res)
+							{
+								//<td style="color:#000000;font-size:80%;"> <?php echo ;</td>
+									
+								$html.='<tr>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_entidades.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->codigo_plan_cuentas.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_plan_cuentas.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nivel_plan_cuentas.'</td>';
+								$html.='</tr>';
+									
+							}
+								
+							$html.='</tbody>';
+							$html.='</table>';
+							$html.='</section>';
+							$html.='<div class="table-pagination pull-right">';
+							$html.=''. $this->paginate("index.php", $page, $total_pages, $adjacents).'';
+							$html.='</div>';
+							$html.='</section>';
+								
+		
+						}else{
+		
+							$html.='<div class="alert alert-warning alert-dismissable">';
+							$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+							$html.='<h4>Aviso!!!</h4> No hay datos para mostrar';
+							$html.='</div>';
+		
+						}
+							
+						echo $html;
+						die();
+		
+					}
+						
+					if(isset($_POST['reporte']))
+					{
+		
+						//parametros q van al servidor de reportes
+		
+						$parametros = array();
+		
+						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+						$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
+							
+		
+						//para local
+						$pagina="conPlanCuentas.aspx";
+		
+						$conexion_rpt = array();
+						$conexion_rpt['pagina']=$pagina;
+						$conexion_rpt['port']="59584";
+		
+						$this->view("ReporteRpt", array(
+								"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+						));
+		
+						die();
+		
+					}
+						
+		
+				}
+		
+		
+				$this->view("ImprimirConsultarPlanCuentas",array(
+						"resultSet"=>$resultSet, "resultEnt"=>$resultEnt
+		
+							
+							
+				));
+		
+		
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Consultar e Imprimir Plan Cuentas"
+		
+				));
+		
+				exit();
+			}
+		
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+		
+			));
+		
+		}
+		
+		
+	}
+	
+	
+	public function paginate($reload, $page, $tpages, $adjacents) {
+	
+		$prevlabel = "&lsaquo; Prev";
+		$nextlabel = "Next &rsaquo;";
+		$out = '<ul class="pagination pagination-large">';
+	
+		// previous label
+	
+		if($page==1) {
+			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+		} else if($page==2) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>$prevlabel</a></span></li>";
+		}else {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(".($page-1).")'>$prevlabel</a></span></li>";
+	
+		}
+	
+		// first label
+		if($page>($adjacents+1)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>1</a></li>";
+		}
+		// interval
+		if($page>($adjacents+2)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// pages
+	
+		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+		for($i=$pmin; $i<=$pmax; $i++) {
+			if($i==$page) {
+				$out.= "<li class='active'><a>$i</a></li>";
+			}else if($i==1) {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>$i</a></li>";
+			}else {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(".$i.")'>$i</a></li>";
+			}
+		}
+	
+		// interval
+	
+		if($page<($tpages-$adjacents-1)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// last
+	
+		if($page<($tpages-$adjacents)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas($tpages)'>$tpages</a></li>";
+		}
+	
+		// next
+	
+		if($page<$tpages) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(".($page+1).")'>$nextlabel</a></span></li>";
+		}else {
+			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+		}
+	
+		$out.= "</ul>";
+		return $out;
+	}
+	
+	
 }
 ?>

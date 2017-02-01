@@ -372,7 +372,6 @@
        <thead>
            <tr>
 		            <th style="font-size:100%;"></th>
-		    		<th style="font-size:100%;">Id</th>
 		    		<th style="font-size:100%;">Nombre</th>
 		    		<th style="font-size:100%;">Usuario</th>
 		    		<th style="font-size:100%;">Correo</th>
@@ -436,7 +435,6 @@
 	   <tbody>
 	   		<tr>
 	        		   <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
-		               <td style="font-size:80%;"> <?php echo $res->id_usuarios; ?></td>
 		               <td style="font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		               <td style="font-size:80%;"> <?php echo $res->usuario_usuarios; ?>  </td>
 		               <td style="font-size:80%;"> <?php echo $res->correo_usuarios; ?>  </td>
@@ -453,12 +451,7 @@
 			                    	<a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                	</div>
 			           </td>
-		               <td>   
-			                	<div class="right">
-			                		<a href="/FrameworkMVC/view/ireports/ContUsuariosSubReport.php?id_usuarios=<?php echo $res->id_usuarios; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:65%;">Reporte</a>
-			                 	</div>
-			               		
-		               </td>
+		               
 		     </tr>
 	   
 	   </tbody>	

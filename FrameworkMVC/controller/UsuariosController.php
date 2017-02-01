@@ -22,206 +22,423 @@ public function index(){
 			
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');
 			
 			
-				//Creamos el objeto usuario
-			$rol=new RolesModel();
-			$resultRol = $rol->getAll("nombre_rol");
+			$_id_usuarios = $_SESSION['id_usuarios'];
+			$resultRl = $usuarios->getBy("id_usuarios='$_id_usuarios'");
+			$_id_rol=$resultRl[0]->id_rol;
 			
 			
-			$estado = new EstadoModel();
-			$resultEst = $estado->getAll("nombre_estado");
-			
-			
-			$ciudad = new CiudadModel();
-			$resultCiu = $ciudad->getAll("nombre_ciudad");
-			
-			$entidad = new EntidadesModel();
-			$resultEntidad = $entidad->getAll('nombre_entidades');
-	
-			$usuarios = new UsuariosModel();
-
-			$nombre_controladores = "Usuarios";
-			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			if($_id_rol=="6"){
 				
-			if (!empty($resultPer))
-			{
-			     	$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad, entidades.id_entidades, entidades.nombre_entidades";
-					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad, public.entidades";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND entidades.id_entidades = usuarios.id_entidades";
-					$id       = "usuarios.nombre_usuarios"; 
-			
+				
+				$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');
 					
+				$estado = new EstadoModel();
+				$resultEst = $estado->getAll("nombre_estado");
+				
+				
+				$ciudad = new CiudadModel();
+				$resultCiu = $ciudad->getAll("nombre_ciudad");
+				
+				$rol=new RolesModel();
+				$resultRol = $rol->getAll("nombre_rol");
+				
+				$entidades = new EntidadesModel();
+				$resultEntidad = $entidades->getAll("nombre_entidades");
+					
+			    $usuarios = new UsuariosModel();
+				$nombre_controladores = "Usuarios";
+				$id_rol= $_SESSION['id_rol'];
+				$resultPer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+				
+				if (!empty($resultPer))
+				{
+				
+				
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
+					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
+					$id       = "usuarios.nombre_usuarios";
+				
+				
 					//Conseguimos todos los usuarios
 					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-					
+				
 					$resultEdit = "";
-			
+				
 					if (isset ($_GET["id_usuarios"])   )
 					{
 						$_id_usuario = $_GET["id_usuarios"];
-						
-						$columnas1 = "usuarios.id_usuarios, 
-									  usuarios.nombre_usuarios, 
-									  usuarios.telefono_usuarios, 
-									  usuarios.celular_usuarios, 
-									  usuarios.correo_usuarios, 
-									  rol.id_rol, 
-									  rol.nombre_rol, 
-									  estado.id_estado, 
-									  estado.nombre_estado, 
-									  usuarios.usuario_usuarios, 
-									  usuarios.cedula_usuarios, 
-									  ciudad.id_ciudad, 
-									  ciudad.codigo_ciudad, 
-									  entidades.id_entidades, 
+				
+						$columnas1 = "usuarios.id_usuarios,
+									  usuarios.nombre_usuarios,
+									  usuarios.telefono_usuarios,
+									  usuarios.celular_usuarios,
+									  usuarios.correo_usuarios,
+									  rol.id_rol,
+									  rol.nombre_rol,
+									  estado.id_estado,
+									  estado.nombre_estado,
+									  usuarios.usuario_usuarios,
+									  usuarios.cedula_usuarios,
+									  ciudad.id_ciudad,
+									  ciudad.codigo_ciudad,
+									  entidades.id_entidades,
 									  entidades.nombre_entidades";
-						
-						$tablas1   = " public.usuarios, 
-									  public.rol, 
-									  public.estado, 
-									  public.ciudad, 
+				
+						$tablas1   = " public.usuarios,
+									  public.rol,
+									  public.estado,
+									  public.ciudad,
 									  public.entidades";
 						$where1    = "rol.id_rol = usuarios.id_rol AND
-									  estado.id_estado = usuarios.id_estado AND
-									  ciudad.id_ciudad = usuarios.id_ciudad AND
-									  entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios= '$_id_usuario' "; 
+						estado.id_estado = usuarios.id_estado AND
+						ciudad.id_ciudad = usuarios.id_ciudad AND
+						entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios= '$_id_usuario' ";
 						$id1       = "usuarios.id_usuarios";
-						$resultEdit = $usuarios->getCondiciones($columnas1 ,$tablas1 ,$where1, $id1); 
+						$resultEdit = $usuarios->getCondiciones($columnas1 ,$tablas1 ,$where1, $id1);
 				
-					
+							
 						$traza=new TrazasModel();
 						$_nombre_controlador = "Usuarios";
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_usuario;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					
-					
-					}
-			}
-			else
-			{
-				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Usuarios"
-			
-				));
-				exit();
-			
-			
-			}
-			
-			
-			///si tiene permiso de ver
-			//$resultPerVer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
-			$resultPerVer= $usuarios->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
-			if (!empty($resultPerVer))
-			{
-				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
-				{
-						
-					
-					/*	
-					$columnas = "documentos_legal.id_documentos_legal,  documentos_legal.fecha_documentos_legal, categorias.nombre_categorias, subcategorias.nombre_subcategorias, tipo_documentos.nombre_tipo_documentos, cliente_proveedor.nombre_cliente_proveedor, carton_documentos.numero_carton_documentos, documentos_legal.paginas_documentos_legal, documentos_legal.fecha_desde_documentos_legal, documentos_legal.fecha_hasta_documentos_legal, documentos_legal.ramo_documentos_legal, documentos_legal.numero_poliza_documentos_legal, documentos_legal.ciudad_emision_documentos_legal, soat.cierre_ventas_soat,   documentos_legal.creado  ";
-					$tablas   = "public.documentos_legal, public.categorias, public.subcategorias, public.tipo_documentos, public.carton_documentos, public.cliente_proveedor, public.soat";
-					$where    = "categorias.id_categorias = subcategorias.id_categorias AND subcategorias.id_subcategorias = documentos_legal.id_subcategorias AND tipo_documentos.id_tipo_documentos = documentos_legal.id_tipo_documentos AND carton_documentos.id_carton_documentos = documentos_legal.id_carton_documentos AND cliente_proveedor.id_cliente_proveedor = documentos_legal.id_cliente_proveedor   AND documentos_legal.id_soat = soat.id_soat ";
-					$id       = "documentos_legal.fecha_documentos_legal, carton_documentos.numero_carton_documentos";
-					*/	
-					
-					
-					
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad, entidades.id_entidades, entidades.nombre_entidades";
-					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad, public.entidades";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND entidades.id_entidades = usuarios.id_entidades";
-					$id       = "usuarios.nombre_usuarios";
-					
-
-					$criterio = $_POST["criterio"];
-					$contenido = $_POST["contenido"];
-						
-					
-					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-						
-					if ($contenido !="")
-					{
-							
-						$where_0 = "";
-						$where_1 = "";
-						$where_2 = "";
-						$where_3 = "";
-						$where_4 = "";
-						$where_5 = "";
-							
-						switch ($criterio) {
-							case 0:
-								$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
-								break;
-							case 1:
-								//Ruc Cliente/Proveedor
-								$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
-								break;
-							case 2:
-								//Nombre Cliente/Proveedor
-								$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
-								break;
-							case 3:
-								//Número Carton
-								$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
-								break;
-							case 4:
-								//Número Poliza
-								$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
-								break;
-							case 5:
-									//Número Poliza
-									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
-									break;
-						}
-							
-							
-							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
-							
-							
-						$resul = $where_to;
-						
-						//Conseguimos todos los usuarios con filtros
-						$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
-							
-							
 							
 							
 					}
 				}
+				else
+				{
+					$this->view("Error",array(
+							"resultado"=>"No tiene Permisos de Acceso a Usuarios"
 				
-				if (isset ($_POST["Imprimir"])   )
-     			{
-     					
-     				 
-     				
-     				//ContUsuariosReport.php
-				   $this->ireport("ContUsuarios", "");
-				   
-				   exit();
-				   
+					));
+					exit();
+				
+				
+				}
+				
+				
+				
+				
+				$usuarios = new UsuariosModel();
+				$nombre_controladores = "Usuarios";
+				$id_rol= $_SESSION['id_rol'];
+				$resultPer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 					
-				}	
+				///si tiene permiso de ver
+				//$resultPerVer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					
+				$resultPerVer= $usuarios->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					
+				if (!empty($resultPerVer))
+				{
+					if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
+					{
+				
+							
+						/*
+						 $columnas = "documentos_legal.id_documentos_legal,  documentos_legal.fecha_documentos_legal, categorias.nombre_categorias, subcategorias.nombre_subcategorias, tipo_documentos.nombre_tipo_documentos, cliente_proveedor.nombre_cliente_proveedor, carton_documentos.numero_carton_documentos, documentos_legal.paginas_documentos_legal, documentos_legal.fecha_desde_documentos_legal, documentos_legal.fecha_hasta_documentos_legal, documentos_legal.ramo_documentos_legal, documentos_legal.numero_poliza_documentos_legal, documentos_legal.ciudad_emision_documentos_legal, soat.cierre_ventas_soat,   documentos_legal.creado  ";
+						 $tablas   = "public.documentos_legal, public.categorias, public.subcategorias, public.tipo_documentos, public.carton_documentos, public.cliente_proveedor, public.soat";
+						 $where    = "categorias.id_categorias = subcategorias.id_categorias AND subcategorias.id_subcategorias = documentos_legal.id_subcategorias AND tipo_documentos.id_tipo_documentos = documentos_legal.id_tipo_documentos AND carton_documentos.id_carton_documentos = documentos_legal.id_carton_documentos AND cliente_proveedor.id_cliente_proveedor = documentos_legal.id_cliente_proveedor   AND documentos_legal.id_soat = soat.id_soat ";
+						 $id       = "documentos_legal.fecha_documentos_legal, carton_documentos.numero_carton_documentos";
+						 */
+							
+							
+							
+						$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad, entidades.id_entidades, entidades.nombre_entidades";
+						$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad, public.entidades";
+						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND entidades.id_entidades = usuarios.id_entidades";
+						$id       = "usuarios.nombre_usuarios";
+							
+				
+						$criterio = $_POST["criterio"];
+						$contenido = $_POST["contenido"];
+				
+							
+						//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+				
+						if ($contenido !="")
+						{
+				
+							$where_0 = "";
+							$where_1 = "";
+							$where_2 = "";
+							$where_3 = "";
+							$where_4 = "";
+							$where_5 = "";
+				
+							switch ($criterio) {
+								case 0:
+									$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
+									break;
+								case 1:
+									//Ruc Cliente/Proveedor
+									$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
+									break;
+								case 2:
+									//Nombre Cliente/Proveedor
+									$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
+									break;
+								case 3:
+									//Número Carton
+									$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
+									break;
+								case 4:
+									//Número Poliza
+									$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
+									break;
+								case 5:
+									//Número Poliza
+									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
+									break;
+							}
+				
+				
+				
+							$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
+				
+				
+							$resul = $where_to;
+				
+							//Conseguimos todos los usuarios con filtros
+							$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
+				
+				
+				
+				
+						}
+					}
+				
+					
+				
+				}
+					
+					
+				$this->view("Usuarios",array(
+						"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu,
+						"resultCiu"=>$resultCiu, "resultEntidad"=>$resultEntidad
+							
+				));
+				
+				
+				
+				
+				
+				///FIN ROL SUPER ADMINISTRADOR
+				
+				
+			}else{
+				
+				
+				//// EMPIESA ROL ADMINISTRADOR
+				
+				$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');
+					
+				$estado = new EstadoModel();
+				$resultEst = $estado->getAll("nombre_estado");
+				
+				
+				$ciudad = new CiudadModel();
+				$resultCiu = $ciudad->getAll("nombre_ciudad");
+				
+				
+				
+				$rol= new RolesModel();
+				$resultRol = $rol->getBy("nombre_rol='CONTADOR' OR nombre_rol='USUARIO' OR nombre_rol='CLIENTE' OR nombre_rol='VISITANTE'");
+				
+				$entidades = new EntidadesModel();
+				$columnas_enc = "entidades.id_entidades,
+  							entidades.nombre_entidades";
+				$tablas_enc ="public.usuarios,
+						  public.entidades";
+				$where_enc ="entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+				$id_enc="entidades.nombre_entidades";
+				$resultEntidad=$entidades->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
+				
+				
+				
+				$usuarios = new UsuariosModel();
+				
+				$nombre_controladores = "Usuarios";
+				$id_rol= $_SESSION['id_rol'];
+				$resultPer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+				
+				if (!empty($resultPer))
+				{
+				
+				
+					$resultEnt = $usuarios->getBy("id_usuarios='$_id_usuarios'");
+					$_id_entidades=$resultEnt[0]->id_entidades;
+				
+				
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad, entidades.id_entidades, entidades.nombre_entidades";
+					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad, public.entidades";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND entidades.id_entidades = usuarios.id_entidades AND usuarios.id_entidades=$_id_entidades";
+					$id       = "usuarios.nombre_usuarios";
+						
+						
+					//Conseguimos todos los usuarios
+					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+						
+					$resultEdit = "";
+						
+					if (isset ($_GET["id_usuarios"])   )
+					{
+						$_id_usuario = $_GET["id_usuarios"];
+				
+						$columnas1 = "usuarios.id_usuarios,
+									  usuarios.nombre_usuarios,
+									  usuarios.telefono_usuarios,
+									  usuarios.celular_usuarios,
+									  usuarios.correo_usuarios,
+									  rol.id_rol,
+									  rol.nombre_rol,
+									  estado.id_estado,
+									  estado.nombre_estado,
+									  usuarios.usuario_usuarios,
+									  usuarios.cedula_usuarios,
+									  ciudad.id_ciudad,
+									  ciudad.codigo_ciudad,
+									  entidades.id_entidades,
+									  entidades.nombre_entidades";
+				
+						$tablas1   = " public.usuarios,
+									  public.rol,
+									  public.estado,
+									  public.ciudad,
+									  public.entidades";
+						$where1    = "rol.id_rol = usuarios.id_rol AND
+						estado.id_estado = usuarios.id_estado AND
+						ciudad.id_ciudad = usuarios.id_ciudad AND
+						entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios= '$_id_usuario' ";
+						$id1       = "usuarios.id_usuarios";
+						$resultEdit = $usuarios->getCondiciones($columnas1 ,$tablas1 ,$where1, $id1);
+				
+							
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Usuarios";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_usuario;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+							
+							
+					}
+				}
+				else
+				{
+					$this->view("Error",array(
+							"resultado"=>"No tiene Permisos de Acceso a Usuarios"
+		
+					));
+					exit();
+						
+						
+				}
+				
+				
+				
+				
+					
+				///si tiene permiso de ver
+				//$resultPerVer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					
+				$resultPerVer= $usuarios->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					
+				if (!empty($resultPerVer))
+				{
+					if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
+					{
+				
+							
+						/*
+						 $columnas = "documentos_legal.id_documentos_legal,  documentos_legal.fecha_documentos_legal, categorias.nombre_categorias, subcategorias.nombre_subcategorias, tipo_documentos.nombre_tipo_documentos, cliente_proveedor.nombre_cliente_proveedor, carton_documentos.numero_carton_documentos, documentos_legal.paginas_documentos_legal, documentos_legal.fecha_desde_documentos_legal, documentos_legal.fecha_hasta_documentos_legal, documentos_legal.ramo_documentos_legal, documentos_legal.numero_poliza_documentos_legal, documentos_legal.ciudad_emision_documentos_legal, soat.cierre_ventas_soat,   documentos_legal.creado  ";
+						 $tablas   = "public.documentos_legal, public.categorias, public.subcategorias, public.tipo_documentos, public.carton_documentos, public.cliente_proveedor, public.soat";
+						 $where    = "categorias.id_categorias = subcategorias.id_categorias AND subcategorias.id_subcategorias = documentos_legal.id_subcategorias AND tipo_documentos.id_tipo_documentos = documentos_legal.id_tipo_documentos AND carton_documentos.id_carton_documentos = documentos_legal.id_carton_documentos AND cliente_proveedor.id_cliente_proveedor = documentos_legal.id_cliente_proveedor   AND documentos_legal.id_soat = soat.id_soat ";
+						 $id       = "documentos_legal.fecha_documentos_legal, carton_documentos.numero_carton_documentos";
+						 */
+							
+							
+							
+						$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad, entidades.id_entidades, entidades.nombre_entidades";
+						$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad, public.entidades";
+						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND entidades.id_entidades = usuarios.id_entidades AND usuarios.id_entidades=$_id_entidades";
+						$id       = "usuarios.nombre_usuarios";
+							
+				
+						$criterio = $_POST["criterio"];
+						$contenido = $_POST["contenido"];
+				
+							
+						//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+				
+						if ($contenido !="")
+						{
+								
+							$where_0 = "";
+							$where_1 = "";
+							$where_2 = "";
+							$where_3 = "";
+							$where_4 = "";
+							$where_5 = "";
+								
+							switch ($criterio) {
+								case 0:
+									$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
+									break;
+								case 1:
+									//Ruc Cliente/Proveedor
+									$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
+									break;
+								case 2:
+									//Nombre Cliente/Proveedor
+									$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
+									break;
+								case 3:
+									//Número Carton
+									$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
+									break;
+								case 4:
+									//Número Poliza
+									$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
+									break;
+								case 5:
+									//Número Poliza
+									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
+									break;
+							}
+								
+								
+								
+							$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
+								
+								
+							$resul = $where_to;
+				
+							//Conseguimos todos los usuarios con filtros
+							$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
+								
+								
+								
+								
+						}
+					}
+				
+					
+				
+				}
+					
+					
+				$this->view("Usuarios",array(
+						"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu,
+						"resultCiu"=>$resultCiu, "resultEntidad"=>$resultEntidad
+							
+				));
+					
 				
 			}
-			
-			
-			$this->view("Usuarios",array(
-					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu,
-					"resultCiu"=>$resultCiu, "resultEntidad"=>$resultEntidad
-			
-			));
-			
-			
-			
-			
 			
 			
 		

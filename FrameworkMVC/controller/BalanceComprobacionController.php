@@ -111,9 +111,6 @@ class BalanceComprobacionController extends ControladorBase{
 	             		
 	             	
 	             	
-	             	
-	             	
-	             	
 	             	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	             	
 	             	if($action == 'ajax')
@@ -202,10 +199,6 @@ class BalanceComprobacionController extends ControladorBase{
 	             	
 	             	
 	             	
-	             	
-	             	
-	             	
-	             	
 	             }elseif ($mes=='2'){
 	             	
 	             	$id_entidades=$_POST['id_entidades'];
@@ -239,8 +232,6 @@ class BalanceComprobacionController extends ControladorBase{
 	             	
 	             	
 	             	 
-	             	 
-	             	 
 	             	$where_0 = "";
 	             	$where_1 = "";
 	             	$where_2 = "";
@@ -256,7 +247,6 @@ class BalanceComprobacionController extends ControladorBase{
 	             	 
 	             	 
 	             	$where_to  = $where . $where_0 . $where_1 . $where_2 . $where_3;
-	             	
 	             	
 	             	
 	             	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
@@ -1936,14 +1926,6 @@ class BalanceComprobacionController extends ControladorBase{
 						die();
 						 
 					}
-					
-					
-					
-					
-					
-					
-					
-					
 				}
 		
 			
@@ -1962,16 +1944,16 @@ class BalanceComprobacionController extends ControladorBase{
 			
 				$reporte=$_POST['reporte'];
 				
+				
 				if($reporte=="simplificado"){
 					
+					
 					$parametros = array();
-					
 					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
+					$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
 					//$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
-					$parametros['anio']=(isset($_POST['anio']))?trim($_POST['anio']):'';
+					$parametros['anio']=isset($_POST['anio'])?trim($_POST['anio']):'';
 					$parametros['reporte']='simplificado';
-					
 					$pagina="conBalanceComprobacionDetallado.aspx";
 					
 					$conexion_rpt = array();
@@ -1986,15 +1968,13 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					//gcfhgchg
 				}elseif($reporte=="detallado"){
-					
+				
 					$parametros = array();
-					
 					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-					$parametros['id_usuarios'] = $_SESSION['id_usuarios'];
-					$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
-					$parametros['anio']=(isset($_POST['año']))?trim($_POST['año']):'';
+					$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
+					$parametros['mes']=isset($_POST['mes'])?trim($_POST['mes']):'';
+					$parametros['anio']=isset($_POST['año'])?trim($_POST['año']):'';
 					$parametros['reporte']='detallado';
-					
 					$pagina="conBalanceComprobacionDetallado.aspx";
 					
 					
@@ -2012,13 +1992,13 @@ class BalanceComprobacionController extends ControladorBase{
 				
 					
 				
-			}else{}
+			}else{
+				
+				
+				
+			}
 			
 			
-			
-			
-
-
 			$this->view("BalanceComprobacion",array(
 					"resultSet"=>$resultSet,
 					"resultEnt"=>$resultEnt

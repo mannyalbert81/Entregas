@@ -35,7 +35,16 @@ class ControladorBase{
     	require_once 'view/reportes/'.$vista.'Report.php';
     }
     
-
+    public function chat($vista,$datos){
+    	foreach ($datos as $id_assoc => $valor) {
+    		${$id_assoc}=$valor;
+    	}
+    
+    	require_once 'core/AyudaVistas.php';
+    	$helper=new AyudaVistas();
+    
+    	require_once 'view/Chat/'.$vista.'View.php';
+    }
     
     
     public function afuera($vista,$datos){

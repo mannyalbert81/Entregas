@@ -125,6 +125,10 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ImportacionCuentas",$controladores) ?>">
 		  <a href="index.php?controller=ImportacionCuentas&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Importación Cuentas</span> </a>
 		  </li>
+		  
+		  <li style="<?php echo getcontrolador("PlanCuentas",$controladores) ?>">
+		  <a href="index.php?controller=PlanCuentas&action=ImprimirConsultarPlanCuentas"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar e Imprimir Plan Cuentas</span> </a>
+		  </li>
          
 </ul>
 </li>
@@ -139,6 +143,18 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("BalanceComprobacion",$controladores) ?>">
           <a href="index.php?controller=BalanceComprobacion&action=BalanceComprobacion"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobacion</span> </a>
           </li>
+          
+</ul>
+</li>
+
+ <li class="dropdown" style="<?php echo getcontrolador("MenuMensajeria",$controladores) ?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mensajeria" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li style="<?php echo getcontrolador("Chat",$controladores) ?>">
+          <a href="index.php?controller=Chat&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Chat en linea</span> </a>
+          </li>
+         
           
 </ul>
 </li>
