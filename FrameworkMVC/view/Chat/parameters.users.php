@@ -17,11 +17,11 @@
 			if ($eliminar==1) {
 				// Eliminando usuario
 				$sql=sprintf("DELETE FROM `users` WHERE `iduser` IN ('%s');",$seleccionados);
-				$result=mysql_query($sql,HELP_DESK_LINK);	
+				$result=pg_query($sql,HELP_DESK_LINK);	
 
 				// Eliminando logs
 				$sql=sprintf("DELETE FROM `logs` WHERE `to` IN ('%s') OR `from` IN ('%s') ;",$seleccionados,$seleccionados);
-				$result=mysql_query($sql,HELP_DESK_LINK);	
+				$result=pg_query($sql,HELP_DESK_LINK);	
 			}
 			
 			// Guardando cambios
@@ -47,7 +47,7 @@
 	
 	function setUserInfo($iduser,$name,$admin,$lock,$enabled) {
 		$sql	= sprintf("UPDATE `users` SET `admin`=%s,`lock`=%s,`enabled`=%s WHERE `iduser`='%s';",$admin,$lock,$enabled,$iduser);	
-		$result 		= mysql_query($sql,HELP_DESK_LINK);
+		$result 		= pg_query($sql,HELP_DESK_LINK);
 	}
 
 	function setInputText($id,$key,$value,$readonly) {
@@ -147,13 +147,13 @@ $sql="SELECT * FROM `users` ORDER BY `admin`,`iduser` ";
 $count = "SELECT COUNT(iduser) FROM `users` ";
 
 //LIMITE DE LA CONSULTA
-$result=mysql_query($count,HELP_DESK_LINK);	
-list($total) = mysql_fetch_row($result);
+$result=pg_query($count,HELP_DESK_LINK);	
+list($total) = pg_fetch_row($result);
 		
 //CONSULTANDO LISTA
-$result=mysql_query($sql,HELP_DESK_LINK);
+$result=pg_query($sql,HELP_DESK_LINK);
 $registro=0;
-while($row = mysql_fetch_array($result)) 
+while($row = pg_fetch_array($result)) 
 {
 	$delete = ($row["iduser"]==HELP_DESK_ADMIN  or $row["iduser"]==HELP_DESK_MODER) ? "<td><!-- %s --></td>" : "<td><input type='checkbox' name='aopciones[]' value='%s' /></td>" ;
 	printf("<tr>");
@@ -166,7 +166,7 @@ while($row = mysql_fetch_array($result))
 	printf("</tr>\n");
 	$registro+=1;
 }
-mysql_free_result($result);
+pg_free_result($result);
 ?>                         
                   <tr>
                     <td>&nbsp;</td>

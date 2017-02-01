@@ -28,7 +28,7 @@
 	
 	function setParameterMsg($name,$text) {
 		$sql	= sprintf("UPDATE `parameters` SET `text`='%s', `timestamp`=NOW() WHERE `name`='%s';",$text,$name);	
-		$result 		= mysql_query($sql,HELP_DESK_LINK);
+		$result 		= pg_query($sql,HELP_DESK_LINK);
 	}
 
 	function setInputText($id,$key,$value,$readonly) {
@@ -49,7 +49,7 @@
 
 <script type="text/javascript">
 function guardar(){
-	var answer = confirm("¿Esta seguro de guardar las modificaciones?");
+	var answer = confirm("ï¿½Esta seguro de guardar las modificaciones?");
 	if (answer){
 		document.forms[0].guardar.value=1;
 		document.forms[0].submit();		
@@ -93,9 +93,9 @@ function guardar(){
 <?php
 //CONSULTANDO LISTA
 $sql="SELECT * FROM `parameters` WHERE `name` IN ('DefaultMsgChangStatus','DefaultMsgInt','DefaultMsgLogInt','DefaultMsgLogOut','DefaultMsgOut'); ";
-$result=mysql_query($sql,HELP_DESK_LINK);
+$result=pg_query($sql,HELP_DESK_LINK);
 $registro=0;
-while($row = mysql_fetch_array($result)) 
+while($row = pg_fetch_array($result)) 
 {
 	printf("<tr>");
 	printf("<td>&nbsp;</td>");
@@ -105,7 +105,7 @@ while($row = mysql_fetch_array($result))
 	printf("</tr>\n");
 	$registro+=1;
 }
-mysql_free_result($result);
+pg_free_result($result);
 ?>                         
                   <tr>
                     <td>&nbsp;</td>

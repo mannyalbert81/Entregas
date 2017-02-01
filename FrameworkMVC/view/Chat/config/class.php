@@ -52,17 +52,17 @@ class classHelpDeskUser {
 	private function Ping() {
 		$idroom			= $this->idroom;
 		$time			= date('Y-m-d H:i:s');
-		$sql			= sprintf("UPDATE users SET `ping`='%s', `idroom`=%s WHERE `iduser`='%s';",$time,$idroom,mysql_real_escape_string($this->iduser));
-		$result 		= mysql_query($sql,HELP_DESK_LINK);	
+		$sql			= sprintf("UPDATE users SET `ping`='%s', `idroom`=%s WHERE `iduser`='%s';",$time,$idroom,pg_escape_string($this->iduser));
+		$result 		= pg_query($sql,HELP_DESK_LINK);	
 	}
 
 	private function EncodeEmoticons($message) {
 		if($this->emoticons) {
 			$sql	= sprintf("select * from emoticons;");
-			$result = mysql_query($sql,HELP_DESK_LINK);
+			$result = pg_query($sql,HELP_DESK_LINK);
 	
 			if($result){
-				while ($row = mysql_fetch_assoc($result)) {
+				while ($row = pg_fetch_assoc($result)) {
 					$string	 = $row["string"];
 					$path 	 = $row["path"];
 					$replace = sprintf("<img src=\\\"%s\\\" border=\\\"0\\\" align=\\\"absmiddle\\\">",$path) ;
@@ -91,7 +91,7 @@ class classHelpDeskUser {
 	}
  	 	
  	function UserLogIn($iduser,$pass) {
- 		$this->iduser		= mysql_real_escape_string($iduser);
+ 		$this->iduser		= pg_escape_string($iduser);
  		$this->pass			= $this->EncodePass(trim($pass)); 
 		$this->emoticons	= $this->getParameter("UsersEmoticons","int",1)==1 ? true : false ;
 		$this->clearout 	= $this->getParameter("LogsClearOut","int",1)==1 ? true : false ;
@@ -106,19 +106,19 @@ class classHelpDeskUser {
 
  		
 		$iduser			= $this->iduser;
-		$pass			= mysql_real_escape_string($this->pass);
+		$pass			= pg_escape_string($this->pass);
 		$time			= date('Y-m-d H:i:s');
  		$sql			= sprintf("SELECT a.*,`b`.`path`,`b`.`pathm`, `c`.`status` as `nstatus`, `d`.`name` as `nroom` FROM `users` as `a` left join `avatars` as `b` ON `a`.`idavatar`=`b`.`idavatar` LEFT JOIN `status` as `c` ON `a`.`statususer`=`c`.`idstatus` LEFT JOIN `rooms` as `d` ON `a`.`idroom`=`d`.`idroom`  WHERE `a`.`enabled`=1 AND `a`.`iduser`='%s' AND `a`.`pass`='%s'",$iduser,$pass);
-		$result 		= mysql_query($sql,HELP_DESK_LINK);
+		$result 		= pg_query($sql,HELP_DESK_LINK);
 		
 		if($result){
-			$row 			= mysql_fetch_array($result);		
+			$row 			= pg_fetch_array($result);		
 	
 			if(empty($row['iduser'])) {
 				$this->status	= 0;
 			}else{
 				$sql				= sprintf("UPDATE users SET toke='%s', ip='%s', `activate`= '%s', `statususer`=1 WHERE iduser='%s';",$this->token,$this->ip,$time,$iduser);
-				$result 			= mysql_query($sql,HELP_DESK_LINK);
+				$result 			= pg_query($sql,HELP_DESK_LINK);
 				$this->lock			= $row['lock'];
 				$this->activate		= $row['activate'];
 				$this->avatar		= $row['idavatar'];
@@ -132,7 +132,7 @@ class classHelpDeskUser {
 				$this->nstatus		= "Disponible" ; 
 				
 				// Notificando entrada
-				$msgLogInt	= $this->getParameter("DefaultMsgLogInt","text","{login} %s inicio sesión");
+				$msgLogInt	= $this->getParameter("DefaultMsgLogInt","text","{login} %s inicio sesiï¿½n");
 				$this->setMessage("*",sprintf($msgLogInt,$this->name)) ;				
 			}
 		}else{
@@ -144,43 +144,43 @@ class classHelpDeskUser {
  	
  	function UserLogOut() {
  		// Registro de salida
-		$iduser			= mysql_real_escape_string($this->iduser);
+		$iduser			= pg_escape_string($this->iduser);
 		$sql			= sprintf("UPDATE users SET `toke`='', `ping`='0000-00-00 00:00:00', `statususer`=0 WHERE `iduser`='%s';",$iduser);
-		$result 		= mysql_query($sql,HELP_DESK_LINK);
+		$result 		= pg_query($sql,HELP_DESK_LINK);
 
 		// Eliminando registros personales
 		if($this->clearout) {
 			$time			= date('Y-m-d H:i:s');
 			$sql			= sprintf("DELETE FROM logs WHERE `to`='%s' or (`from`='%s' and `time`<'%s');",$iduser,$iduser,$time);
-			$result 		= mysql_query($sql,HELP_DESK_LINK);		
+			$result 		= pg_query($sql,HELP_DESK_LINK);		
 		}
 		
 		// Actualizando estado
 		$this->classHelpDeskUser();
 				
 		
-		$msgLogOut	= $this->getParameter("DefaultMsgLogOut","text","{logout} %s termino sesión");
+		$msgLogOut	= $this->getParameter("DefaultMsgLogOut","text","{logout} %s termino sesiï¿½n");
 		$this->setMessage("*",sprintf($msgLogOut,$this->name)) ;
 		return $this->status;
  	}	
  	
  	function UserRegister($iduser,$pass,$name,$avatar,$email) {
-		$iduser			= mysql_real_escape_string($iduser);
+		$iduser			= pg_escape_string($iduser);
 		$passuncode		= $pass;
-		$pass			= mysql_real_escape_string( $this->EncodePass($pass));  		
+		$pass			= pg_escape_string( $this->EncodePass($pass));  		
  		$sql			= sprintf("SELECT COUNT(iduser) AS users FROM users WHERE `iduser`='%s';",$iduser);
- 		$result 		= mysql_query($sql,HELP_DESK_LINK);
+ 		$result 		= pg_query($sql,HELP_DESK_LINK);
 		$data			= 0;
 
  		if($result){
-			$row 		= mysql_fetch_assoc($result);
+			$row 		= pg_fetch_assoc($result);
 			
 			if($row['users']<=0) {
 				$sql			= sprintf("INSERT INTO users (`iduser`,`pass`,`toke`,`admin`,`ip`,`lock`,`name`,`idavatar`,`e-mail`) VALUES ('%s','%s','%s',%s,'%s',%s,'%s',%s,'%s') ;",$iduser,$pass,'',0,'',0,$name,$avatar,$email);
 			}else{
 				$sql			= sprintf("UPDATE users SET `pass`='%s',`name`='%s',`idavatar`=%s,`e-mail`='%s' WHERE `iduser`='%s';",$pass,$name,$avatar,$email,$iduser);	
 			}
-			$result 		= mysql_query($sql,HELP_DESK_LINK);
+			$result 		= pg_query($sql,HELP_DESK_LINK);
  		}
 
 		$data = $this->UserLogIn($iduser,$passuncode); 		 		
@@ -192,19 +192,19 @@ class classHelpDeskUser {
  		$this->pass		= trim($this->EncodePass($pass)); 
  		
  		
- 		$sql			= sprintf("SELECT COUNT(iduser) AS users FROM users WHERE LOWER(TRIM(iduser))='%s' AND TRIM(pass)='%s';",mysql_real_escape_string($this->iduser),mysql_real_escape_string($this->pass));
- 		$result 		= mysql_query($sql,HELP_DESK_LINK);
+ 		$sql			= sprintf("SELECT COUNT(iduser) AS users FROM users WHERE LOWER(TRIM(iduser))='%s' AND TRIM(pass)='%s';",pg_escape_string($this->iduser),pg_escape_string($this->pass));
+ 		$result 		= pg_query($sql,HELP_DESK_LINK);
  		if($result){
-			$row 		= mysql_fetch_assoc($result);
+			$row 		= pg_fetch_assoc($result);
 			
 			if($row['users']>=0) {
 				// Eliminando registros personales
-				$sql			= sprintf("DELETE FROM logs WHERE `to`='%s' or `from`='';",mysql_real_escape_string($this->iduser),mysql_real_escape_string($this->iduser));
-				$result 		= mysql_query($sql,HELP_DESK_LINK);
+				$sql			= sprintf("DELETE FROM logs WHERE `to`='%s' or `from`='';",pg_escape_string($this->iduser),pg_escape_string($this->iduser));
+				$result 		= pg_query($sql,HELP_DESK_LINK);
 
 				// Desactivando usuario
-				$sql			= sprintf("UPDATE users SET `toke`='', `enabled`=0 WHERE LOWER(TRIM(iduser))='%s';",mysql_real_escape_string($this->iduser));
-				$result 		= mysql_query($sql,HELP_DESK_LINK);
+				$sql			= sprintf("UPDATE users SET `toke`='', `enabled`=0 WHERE LOWER(TRIM(iduser))='%s';",pg_escape_string($this->iduser));
+				$result 		= pg_query($sql,HELP_DESK_LINK);
 				$result 		= !$result ? -1 : 1 ;
 				$this->status	= 0;
 					
@@ -240,11 +240,11 @@ class classHelpDeskUser {
  	function getParameter($name,$type,$default) {
  		
 		$sql	= sprintf("SELECT `%s` FROM `parameters` WHERE `name`='%s' ;",$type,$name);
- 		$result = mysql_query($sql,HELP_DESK_LINK);
+ 		$result = pg_query($sql,HELP_DESK_LINK);
  		$data	= $default;
  		
  		if($result){
-			$row  = mysql_fetch_assoc($result);
+			$row  = pg_fetch_assoc($result);
 			$data = $row[$type];
  		}
  		
@@ -252,9 +252,9 @@ class classHelpDeskUser {
  	}	
 	
  	function getRooms() {
-		$iduser			= '%'.mysql_real_escape_string($this->iduser).'%';
+		$iduser			= '%'.pg_escape_string($this->iduser).'%';
 		$sql			= sprintf("SELECT * FROM `rooms` WHERE `users` LIKE '%s' OR `users`='*' ;",$iduser);
- 		$result 		= mysql_query($sql,HELP_DESK_LINK);
+ 		$result 		= pg_query($sql,HELP_DESK_LINK);
 		$icon			= $this->getParameter("DefaultIconRoom","text","");
 		$format			= "<tr><td><a href=\"javascript:parent.setRoom('%s','%s');\"><img src=\"%s\" width=\"16\" height=\"16\" border=\"0\" align=\"absmiddle\" >&nbsp;<span id=\"room%s\">%s</span></a></td></tr>";
  		$data			= "";
@@ -262,7 +262,7 @@ class classHelpDeskUser {
  			$data .= "<table class=\"tableOptions\">";
 			$data .= sprintf($format,"0","General",$icon,"0","General");
  			
- 			while ($row = mysql_fetch_assoc($result)) {
+ 			while ($row = pg_fetch_assoc($result)) {
  	 			$idroom		= $row["idroom"];
 				$name		= $this->EncodeWeb(ucwords(strtolower($row["name"])));
 				$data	   .= sprintf($format,$idroom,$name,$icon,$idroom,$name);
@@ -278,11 +278,11 @@ class classHelpDeskUser {
  	function getStatus() {
 		$data	= "";	
 		$sql		= sprintf("SELECT * FROM `status` ;");
-		$result 	= mysql_query($sql,HELP_DESK_LINK);
+		$result 	= pg_query($sql,HELP_DESK_LINK);
 			
 			
 		if($result){
-			while ($row = mysql_fetch_assoc($result)) {
+			while ($row = pg_fetch_assoc($result)) {
 				$idstatus	 	= $row["idstatus"];
 				$path 	 	= $row["path"];
 				$name		= $this->EncodeWeb(ucfirst(strtolower($row["status"])));
@@ -304,11 +304,11 @@ class classHelpDeskUser {
 			
 			
 			$sql		= sprintf("SELECT * FROM emoticons WHERE %s AND `extra` IN ('%s') ORDER BY `extra`,`order` ;",$system,$available);
-			$result 	= mysql_query($sql,HELP_DESK_LINK);
+			$result 	= pg_query($sql,HELP_DESK_LINK);
 			
 			
 			if($result){
-				while ($row = mysql_fetch_assoc($result)) {
+				while ($row = pg_fetch_assoc($result)) {
 					$string	 	= $row["string"];
 					$path 	 	= $row["path"];
 					$name		= $this->EncodeWeb($row["name"]);
@@ -328,11 +328,11 @@ class classHelpDeskUser {
  		
 		$type	= $this->admin > 0 ? 0 : $type ;
 		$sql	= sprintf("SELECT * FROM avatars WHERE `enabled`=1 AND `type`>=%s;",$type);
- 		$result = mysql_query($sql,HELP_DESK_LINK);
+ 		$result = pg_query($sql,HELP_DESK_LINK);
  		$data	= "";
  		
  		if($result){
-			while ($row = mysql_fetch_assoc($result)) {
+			while ($row = pg_fetch_assoc($result)) {
 				$value	 = $row["idavatar"];
 				$caption = ucfirst(strtolower($row["name"]));
 				$selected= $row["idavatar"]==$idavatar ? "selected=\"selected\"" : "" ;
@@ -355,7 +355,7 @@ class classHelpDeskUser {
  		$idroom			= $this->idroom;
  		$time			= date('Y-m-d H:i:s',mktime(date("H"),date("i"),0,date("n"),date("j"),date("Y"))-$this->timeout);
  		$sql			= sprintf("SELECT `a`.`iduser`, `a`.`statususer`,`a`.`name`,`b`.`pathm`, `c`.`status`, `c`.`path` as `nstatus`, `d`.`name` as `nroom` FROM `users` as `a` left join `avatars` as `b` ON `a`.`idavatar`=`b`.`idavatar` LEFT JOIN `status` as `c` ON `a`.`statususer`=`c`.`idstatus` LEFT JOIN `rooms` as `d` ON `a`.`idroom`=`d`.`idroom` WHERE `a`.`toke`<>'' AND `a`.`ping`>='%s' AND `a`.`idroom`=%s AND `a`.`statususer`>0;",$time,$idroom);
- 		$result 		= mysql_query($sql,HELP_DESK_LINK);
+ 		$result 		= pg_query($sql,HELP_DESK_LINK);
 		$format			= "<tr><td><a href=\\\"javascript:setTo('%s','%s');\\\"><div class=\\\"nickname\\\"><img src=\\\"%s\\\" alt=\\\"%s\\\" width=\\\"16\\\" height=\\\"16\\\"  border=\\\"0\\\" align=\\\"absmiddle\\\">&nbsp;%s</div>%s</a></td></tr>";
 		$data			= "";
 		
@@ -363,7 +363,7 @@ class classHelpDeskUser {
  			$data .= "<table class=\\\"tableOptions\\\">";
 			$data.=sprintf($format,"*","Todos los usuario",$avatar,"Todos","<b>Todos</b>","");
  			
- 			while ($row = mysql_fetch_assoc($result)) {
+ 			while ($row = pg_fetch_assoc($result)) {
  	 			$iduser		= $row["iduser"];
  				$nickname	= $row["name"];
 				$name		= $row["name"];
@@ -389,14 +389,14 @@ class classHelpDeskUser {
 
 		// Buscar mensajes
 		$idroom			= $this->idroom;
-		$iduser			= mysql_real_escape_string($this->iduser);
+		$iduser			= pg_escape_string($this->iduser);
 		$time			= date('Y-m-d H:i:s',mktime(date("H"),date("i"),0,date("n"),date("j"),date("Y"))-$this->timeout);
 		$sql			= sprintf("SELECT * FROM logs WHERE idroom=%s AND `time`>='%s' and `idlog`>%s AND (`to`='*' or `to`='%s' or `from`='%s');",$idroom,$time,$this->lastmsg,$iduser,$iduser);
- 		$result 		= mysql_query($sql,HELP_DESK_LINK);
+ 		$result 		= pg_query($sql,HELP_DESK_LINK);
  		$data			= "";
  		
  		if($result){
-			while ($row = mysql_fetch_assoc($result)) {
+			while ($row = pg_fetch_assoc($result)) {
 				$to		 		= str_replace(strstr($row["to"], '@'),"",$row["to"]); //$row["to"];
 				$from			= str_replace(strstr($row["from"], '@'),"",$row["from"]); //$row["from"];
 				$class			= $row["to"]=="*" ? "msgTitleAll" : "msgTitlePrivate" ;
@@ -416,7 +416,7 @@ class classHelpDeskUser {
 	
 	function setClear($clear) {
 		$sql	= sprintf("DELETE FROM `logs` WHERE `idlog`>0;");
- 		$result = mysql_query($sql,HELP_DESK_LINK);		
+ 		$result = pg_query($sql,HELP_DESK_LINK);		
 	}
 		
 	function setPanic($active) {
@@ -424,9 +424,9 @@ class classHelpDeskUser {
 		
 		if($active==1) {
 			$sql		= sprintf("SELECT `iduser` FROM `users` ;");
-			$result 	= mysql_query($sql,HELP_DESK_LINK);	
+			$result 	= pg_query($sql,HELP_DESK_LINK);	
 			if($result){
-				while ($row = mysql_fetch_assoc($result)) {
+				while ($row = pg_fetch_assoc($result)) {
 					if(trim($row["iduser"])<>trim($this->iduser)) {
 						$users.=$row["iduser"].",";
 					}
@@ -435,7 +435,7 @@ class classHelpDeskUser {
 		}
 			
 		$sql	= sprintf("UPDATE parameters SET `int`=%s, `tinyint`=%s, `query`='%s' WHERE `name`='UserLocationSend';",$active,$active,$users);
-		$result = mysql_query($sql,HELP_DESK_LINK);	
+		$result = pg_query($sql,HELP_DESK_LINK);	
 	}
 	
 	function setRoom($room,$name) {
@@ -456,15 +456,15 @@ class classHelpDeskUser {
 			$this->idstatus=$status;
 			$this->nstatus=$name;
 			$this->setMessage("*",sprintf($msgChangStatus,$this->name,$status));
-			$iduser	= mysql_real_escape_string($this->iduser);
+			$iduser	= pg_escape_string($this->iduser);
 			$sql	= sprintf("UPDATE users SET `statususer`=%s WHERE iduser='%s';",$status,$iduser);
-			$result = mysql_query($sql,HELP_DESK_LINK);			
+			$result = pg_query($sql,HELP_DESK_LINK);			
 		}
 	}	
  	
  	function setMessage($to,$message) {
  		$idroom	 = $this->idroom;
- 		$from	 = mysql_real_escape_string($this->iduser);
+ 		$from	 = pg_escape_string($this->iduser);
  		$ip		 = $this->ip;
  		$time	 = 'NOW()';
  		$status	 = 0 ;
@@ -473,7 +473,7 @@ class classHelpDeskUser {
  		
  		
  		$sql			= sprintf("INSERT INTO logs (`idroom`,`to`,`from`,`ip`,`time`,`message`,`status`,`admin`) values (%s,'%s','%s','%s',%s,'%s',%s,%s);",$idroom,$to,$from,$ip,$time,$message,$status,$admin);
- 		$result 		= mysql_query($sql,HELP_DESK_LINK);
+ 		$result 		= pg_query($sql,HELP_DESK_LINK);
  		
  	}
 }

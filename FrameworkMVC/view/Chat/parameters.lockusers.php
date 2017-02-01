@@ -11,7 +11,7 @@
 			@$seleccionados=implode(",",$_POST["aopciones"]); settype($seleccionados,'string');
 			@$guardar=$_POST["guardar"]; settype($guardar,'integer');
 			$sql	= sprintf("UPDATE `parameters` SET `int`=1, `tinyint`=1, `query`='%s' WHERE `name`='UserLocationSend';",$seleccionados);	
-			$result = mysql_query($sql,HELP_DESK_LINK);
+			$result = pg_query($sql,HELP_DESK_LINK);
 		}
 	}
 	
@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
 function guardar(){
-	var answer = confirm("¿Esta seguro de guardar las modificaciones?");
+	var answer = confirm("ï¿½Esta seguro de guardar las modificaciones?");
 	if (answer){
 		document.forms[0].guardar.value=1;
 		document.forms[0].submit();		
@@ -80,14 +80,14 @@ $count = "SELECT COUNT(iduser) FROM `users` WHERE `admin`=0 ";
 $select="";
 
 //LIMITE DE LA CONSULTA
-$result=mysql_query($count,HELP_DESK_LINK);	
-list($total) = mysql_fetch_row($result);
+$result=pg_query($count,HELP_DESK_LINK);	
+list($total) = pg_fetch_row($result);
 		
 //CONSULTANDO LISTA
 $sql=$sql.$select;								
-$result=mysql_query($sql,HELP_DESK_LINK);
+$result=pg_query($sql,HELP_DESK_LINK);
 $registros=0;
-while($row = mysql_fetch_array($result)) 
+while($row = pg_fetch_array($result)) 
 {
 	$checked=strpos($users,$row["iduser"])!==false ? "checked" : "" ;	
 	printf("<tr>");
@@ -97,7 +97,7 @@ while($row = mysql_fetch_array($result))
 	printf("</tr>\n");
 	$registros+=1;
 }
-mysql_free_result($result);
+pg_free_result($result);
 ?>                         
                   <tr>
                     <td>&nbsp;</td>

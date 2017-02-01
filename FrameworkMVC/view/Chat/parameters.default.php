@@ -28,7 +28,7 @@
 
 	function setDefault($name,$text,$int){
 		$sql	= sprintf("UPDATE `parameters` SET `int`=%s, `text`='%s', `timestamp`=NOW() WHERE `name`='%s';",$int,$text,$name);	
-		$result	= mysql_query($sql,HELP_DESK_LINK);
+		$result	= pg_query($sql,HELP_DESK_LINK);
 	}
 	
 	function setInputText($id,$key,$value,$readonly) {
@@ -47,7 +47,7 @@
 
 <script type="text/javascript">
 function eliminar(){
-	var answer = confirm("¿Esta seguro de eliminar los registros marcados?");
+	var answer = confirm("ï¿½Esta seguro de eliminar los registros marcados?");
 	if (answer){
 		document.forms[0].eliminar.value=1;
 		document.forms[0].submit();		
@@ -57,7 +57,7 @@ function eliminar(){
 }
 
 function guardar(){
-	var answer = confirm("¿Esta seguro de guardar las modificaciones?");
+	var answer = confirm("ï¿½Esta seguro de guardar las modificaciones?");
 	if (answer){
 		document.forms[0].guardar.value=1;
 		document.forms[0].submit();		
@@ -95,11 +95,11 @@ function guardar(){
 <?php
 //CONSULTANDO LISTA
 $sql="SELECT * FROM `parameters` WHERE `name` IN ('DefaultEncode','DefaultIconRoom','DefaultIdAvatar','DefaultIdRoom','DefaultRoomName','LogsClearOut','LogsClearPrv','UserLocationSend','UsersAllAvatar','UsersEmoticons','UsersEmoticonsSeparator','UsersIp','UsersTimeOut'); ";
-$result=mysql_query($sql,HELP_DESK_LINK);
+$result=pg_query($sql,HELP_DESK_LINK);
 $registro=0;
 
 if($result) {
-	while($row = mysql_fetch_array($result)) 
+	while($row = pg_fetch_array($result)) 
 	{
 		printf("<tr>");
 		printf("<td colspan=\"2\" class=\"Titulo\" style=\"text-align:left;\">%s</td>",$row["description"]);
@@ -120,7 +120,7 @@ if($result) {
 	}
 }
 
-mysql_free_result($result);
+pg_free_result($result);
 ?>                  
 </table>       
               </div></td>
