@@ -8,7 +8,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 
 
 	public function BalanceComprobacionAdmin(){
-	//rfrf
+		
 		session_start();
 		$_id_usuarios= $_SESSION['id_usuarios'];
 		//Creamos el objeto usuario
