@@ -74,6 +74,10 @@ $controladores=$_SESSION['controladores'];
             <li style="<?php echo getcontrolador("TipoComprobantes",$controladores) ?>">
 			<a href="index.php?controller=TipoComprobantes&action=index"> <span class=" glyphicon glyphicon-asterisk" aria-hidden="true"> Tipo de Comprobantes</span> </a>
 			</li>
+			<li style="<?php echo getcontrolador("ReporteUsuarios",$controladores) ?>">
+			<a href="index.php?controller=ReporteUsuarios&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios</span> </a>
+			</li>
+			
 
 </ul>
 </li>
