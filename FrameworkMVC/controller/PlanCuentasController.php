@@ -822,7 +822,7 @@ class PlanCuentasController extends ControladorBase{
 					  public.entidades,
 					  public.usuarios";
 		$where_t ="entidades.id_entidades = plan_cuentas.id_entidades AND
-		usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		usuarios.id_entidades = entidades.id_entidades AND plan_cuentas.t_plan_cuentas!='' AND usuarios.id_usuarios='$_id_usuarios'";
 		$grupo_t="plan_cuentas.t_plan_cuentas";
 		$id_t="plan_cuentas.t_plan_cuentas";
 		$resultTip=$plan_cuentas->getCondiciones_GrupBy_OrderBy($columnas_t, $tablas_t, $where_t, $grupo_t, $id_t);
@@ -907,7 +907,7 @@ class PlanCuentasController extends ControladorBase{
 						
 		
 					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
-					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas LIKE '%$codigo_plan_cuentas'";}
+					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas LIKE '%$codigo_plan_cuentas%'";}
 					if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas LIKE '%$nombre_plan_cuentas%'";}
 					if($nivel_plan_cuentas!=""){$where_3=" AND plan_cuentas.nivel_plan_cuentas='$nivel_plan_cuentas'";}
 					if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
@@ -1013,16 +1013,21 @@ class PlanCuentasController extends ControladorBase{
 		
 						//parametros q van al servidor de reportes
 		
+						
+						$t_plan_cuentas= strtoupper($_POST['t_plan_cuentas']);
+						$n_plan_cuentas= strtoupper($_POST['n_plan_cuentas']);
+						
+						
+						
 						$parametros = array();
 		
 						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
 						$parametros['codigo_plan_cuentas']=isset($_POST['codigo_plan_cuentas'])?trim($_POST['codigo_plan_cuentas']):'';
 						$parametros['nombre_plan_cuentas']=isset($_POST['nombre_plan_cuentas'])?trim($_POST['nombre_plan_cuentas']):'';
+						$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
 						$parametros['nivel_plan_cuentas']=isset($_POST['nivel_plan_cuentas'])?trim($_POST['nivel_plan_cuentas']):'';
-						$parametros['t_plan_cuentas']=isset($_POST['t_plan_cuentas'])?trim($_POST['t_plan_cuentas']):'';
-						$parametros['n_plan_cuentas']=isset($_POST['n_plan_cuentas'])?trim($_POST['n_plan_cuentas']):'';
-						
-						
+						$parametros['t_plan_cuentas']=isset($t_plan_cuentas)?trim($t_plan_cuentas):'';
+						$parametros['n_plan_cuentas']=isset($n_plan_cuentas)?trim($n_plan_cuentas):'';
 						
 						
 						
@@ -1031,7 +1036,7 @@ class PlanCuentasController extends ControladorBase{
 		
 						$conexion_rpt = array();
 						$conexion_rpt['pagina']=$pagina;
-						$conexion_rpt['port']="59584";
+						//$conexion_rpt['port']="59584";
 		
 						$this->view("ReporteRpt", array(
 								"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
@@ -1143,6 +1148,7 @@ class PlanCuentasController extends ControladorBase{
 		$out.= "</ul>";
 		return $out;
 	}
+	
 	
 	
 }

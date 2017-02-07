@@ -6,8 +6,8 @@
 	@$avatar	= $_POST['avatar']; settype($avatar,'string');	
 	@$pass		= $_POST['pass']; 	settype($pass,'string');	$pass=trim($pass);
 	@$passc		= $_POST['passc']; settype($pascs,'string');	$passc=trim($passc);
-	$inform		= "<img src=\"view/Chat/images/16x16/system/application_key.png\" width=\"16\" height=\"16\" border=\"0\" align=\"absmiddle\">&nbsp;Ingrese sus datos o <a class=\"link\" href=\"login.php\" target=\"_self\">Inicie sesion aqui</a>";
-	$ierror		="<img src=\"view/Chat/images/16x16/system/error.png\" width=\"16\" height=\"16\" border=\"0\" align=\"absmiddle\">&nbsp;";
+	$inform		= "<img src=\"Chat/images/16x16/system/application_key.png\" width=\"16\" height=\"16\" border=\"0\" align=\"absmiddle\">&nbsp;Ingrese sus datos o <a class=\"link\" href=\"login.php\" target=\"_self\">Inicie sesion aqui</a>";
+	$ierror		="<img src=\"Chat/images/16x16/system/error.png\" width=\"16\" height=\"16\" border=\"0\" align=\"absmiddle\">&nbsp;";
 	$result		= 0;
 		
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -51,7 +51,7 @@
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td width="160" class="Titulo"><img src="view/Chat/images/other/usuario.png" width="16" height="16" border="0" align="absmiddle"> Usuario</td>
+          <td width="160" class="Titulo"><img src="Chat/images/other/usuario.png" width="16" height="16" border="0" align="absmiddle"> Usuario</td>
           <td><input id="iduser" name="iduser" value="<?php print($iduser); ?>" style="width:90%;"></td>
         </tr>
         <tr>
@@ -67,7 +67,7 @@
           </select></td>
         </tr>
         <tr>
-          <td class="Titulo"><img src="view/Chat/images/other/llave.png" width="16" height="16" border="0" align="absmiddle"> Contrase&ntilde;a</td>
+          <td class="Titulo"><img src="Chat/images/other/llave.png" width="16" height="16" border="0" align="absmiddle"> Contrase&ntilde;a</td>
           <td><input id="pass" name="pass" type="password" style="width:90%;"></td>
         </tr>
         <tr>

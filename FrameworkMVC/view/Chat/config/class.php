@@ -327,7 +327,7 @@ class classHelpDeskUser {
  	function getAvatars($action,$idavatar,$type) {
  		
 		$type	= $this->admin > 0 ? 0 : $type ;
-		$sql	= sprintf("SELECT * FROM avatars WHERE `enabled`=1 AND `type`>=%s;",$type);
+		$sql	= sprintf("SELECT * FROM `avatars` WHERE `enabled`=1 AND `type`>=%s;",$type);
  		$result = pg_query($sql,HELP_DESK_LINK);
  		$data	= "";
  		

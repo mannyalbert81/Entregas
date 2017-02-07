@@ -944,6 +944,8 @@ class ComprobantesController extends ControladorBase{
 						$parametros = array();
 						
 						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
+						
+						$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
 						$parametros['id_tipo_comprobantes']=(isset($_POST['id_tipo_comprobantes']))?trim($_POST['id_tipo_comprobantes']):'';
 						$parametros['numero_ccomprobantes']=(isset($_POST['numero_ccomprobantes']))?trim($_POST['numero_ccomprobantes']):'';
 						$parametros['referencia_doc_ccomprobantes']=(isset($_POST['referencia_doc_ccomprobantes']))?trim($_POST['referencia_doc_ccomprobantes']):'';
@@ -951,7 +953,7 @@ class ComprobantesController extends ControladorBase{
 						$parametros['fecha_hasta']=(isset($_POST['fecha_hasta']))?trim($_POST['fecha_hasta']):'';
 						
 						//para local 
-						$pagina="conComprobantes.aspx";
+						$pagina="conReporteComprobantes.aspx";
 												
 						$conexion_rpt = array();
 						$conexion_rpt['pagina']=$pagina;

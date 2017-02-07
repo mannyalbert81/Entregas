@@ -103,7 +103,7 @@
 							<td><?php echo $row['fecha_ccomprobantes'];?></td>
 							<td>
 							<span class="pull-right">
-							<a href="index.php?controller=Comprobantes&action=ReporteIngresos&id_ccomprobantes=<?php echo $id_ccomprobantes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><i class="glyphicon glyphicon-print"></i></a>
+							<a href="index.php?controller=Comprobantes&action=ReporteIngresos&id_ccomprobantes=<?php echo $id_ccomprobantes; ?>" target="_blank"><i class="glyphicon glyphicon-print"></i></a>
 							</span>
 							</td>
 					 
