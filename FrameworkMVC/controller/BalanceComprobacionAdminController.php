@@ -1,14 +1,14 @@
 <?php
 
-class BalanceComprobacionController extends ControladorBase{
+class BalanceComprobacionAdminController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
 	}
 
 
-	public function BalanceComprobacion(){
-	
+	public function BalanceComprobacionAdmin(){
+	//rfrf
 		session_start();
 		$_id_usuarios= $_SESSION['id_usuarios'];
 		//Creamos el objeto usuario
@@ -19,16 +19,8 @@ class BalanceComprobacionController extends ControladorBase{
 		$cuenta_cierre_mes = new CuentasCierreMesModel();
 		
 		$entidades = new EntidadesModel();
+		$resultEnt=$entidades->getAll("nombre_entidades");
 		
-		$columnas_enc = "entidades.id_entidades,
-  							entidades.nombre_entidades,
-				usuarios.id_usuarios,
-				usuarios.nombre_usuarios";
-		$tablas_enc ="public.usuarios,
-						  public.entidades";
-		$where_enc ="entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
-		$id_enc="entidades.nombre_entidades";
-		$resultEnt=$entidades->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
 		
 		
 	
@@ -41,7 +33,7 @@ class BalanceComprobacionController extends ControladorBase{
 			
 			
 			$permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "BalanceComprobacion";
+			$nombre_controladores = "BalanceComprobacionAdmin";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $cuenta_cierre_mes->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 	
@@ -1950,7 +1942,7 @@ class BalanceComprobacionController extends ControladorBase{
 					
 					$parametros = array();
 					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-					$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
+					$parametros['id_usuarios']=isset($_POST['id_usuarios'])?trim($_POST['id_usuarios']):'';
 					//$parametros['mes']=(isset($_POST['mes']))?trim($_POST['mes']):'';
 					$parametros['anio']=isset($_POST['anio'])?trim($_POST['anio']):'';
 					$parametros['reporte']='simplificado';
@@ -1971,7 +1963,7 @@ class BalanceComprobacionController extends ControladorBase{
 				
 					$parametros = array();
 					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-					$parametros['id_usuarios'] = $_SESSION['id_usuarios']?trim($_SESSION['id_usuarios']):'';
+					$parametros['id_usuarios']=isset($_POST['id_usuarios'])?trim($_POST['id_usuarios']):'';
 					$parametros['mes']=isset($_POST['mes'])?trim($_POST['mes']):'';
 					$parametros['anio']=isset($_POST['año'])?trim($_POST['año']):'';
 					$parametros['reporte']='detallado';
@@ -1999,7 +1991,7 @@ class BalanceComprobacionController extends ControladorBase{
 			}
 			
 			
-			$this->view("BalanceComprobacion",array(
+			$this->view("BalanceComprobacionAdmin",array(
 					"resultSet"=>$resultSet,
 					"resultEnt"=>$resultEnt
 						

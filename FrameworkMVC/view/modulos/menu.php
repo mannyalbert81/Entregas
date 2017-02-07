@@ -107,6 +107,10 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("TipoCierre",$controladores) ?>">
 			<a href="index.php?controller=TipoCierre&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Cierre </span> </a>
 			</li>
+			
+			<li style="<?php echo getcontrolador("ComprobantesAdmin",$controladores) ?>">
+			<a href="index.php?controller=ComprobantesAdmin&action=ReporteComprobantes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar Imprimir Comprobantes</span> </a>
+			</li>
 </ul>
 </li>
         
@@ -129,6 +133,9 @@ $controladores=$_SESSION['controladores'];
 		  <li style="<?php echo getcontrolador("PlanCuentas",$controladores) ?>">
 		  <a href="index.php?controller=PlanCuentas&action=ImprimirConsultarPlanCuentas"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar e Imprimir Plan Cuentas</span> </a>
 		  </li>
+		   <li style="<?php echo getcontrolador("PlanCuentasAdmin",$controladores) ?>">
+		  <a href="index.php?controller=PlanCuentasAdmin&action=ImprimirConsultarPlanCuentasAdmin"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar e Imprimir Plan Cuentas</span> </a>
+		  </li>
          
 </ul>
 </li>
@@ -142,6 +149,9 @@ $controladores=$_SESSION['controladores'];
           </li>
           <li style="<?php echo getcontrolador("BalanceComprobacion",$controladores) ?>">
           <a href="index.php?controller=BalanceComprobacion&action=BalanceComprobacion"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobacion</span> </a>
+          </li>
+          <li style="<?php echo getcontrolador("BalanceComprobacionAdmin",$controladores) ?>">
+          <a href="index.php?controller=BalanceComprobacionAdmin&action=BalanceComprobacionAdmin"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobacion</span> </a>
           </li>
           
 </ul>
