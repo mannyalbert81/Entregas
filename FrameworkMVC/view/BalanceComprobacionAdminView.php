@@ -35,6 +35,60 @@
             
         </style>
          
+         
+         
+         <script>
+	$(document).ready(function(){
+		$("#id_entidades").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_usuarios = $("#id_usuarios");
+       	
+
+            // lo vaciamos
+           var ddl_entidades = $(this).val();
+
+          
+           $ddl_usuarios.empty();
+
+          
+            if(ddl_entidades != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+            			 entidades:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("BalanceComprobacionAdmin","returnUsuariosbyEntidad"); ?>", datos, function(resultUsuario) {
+
+         		 		$.each(resultUsuario, function(index, value) {
+         		 			$ddl_usuarios.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		
+		});
+        });
+	
+	</script>
+         
+         
+         
+         
          	<script>
 	$(document).ready(function(){
 			$("#fecha_hasta").change(function(){
@@ -224,9 +278,7 @@
 		 <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo">Usuario:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
-			  		<?php foreach($resultEnt as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>"<?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?> ><?php echo $res->nombre_usuarios;  ?> </option>
-			            <?php } ?>
+			  		
 				</select>
 
          </div>
@@ -399,7 +451,10 @@
   </div>
       <!-- termina
        busqueda  -->
-       
+       <br>
+       <br>
+       <br>
+       <br>
  
    </body>  
 

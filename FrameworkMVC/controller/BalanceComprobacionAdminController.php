@@ -10,7 +10,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	public function BalanceComprobacionAdmin(){
 		
 		session_start();
-		$_id_usuarios= $_SESSION['id_usuarios'];
+		
 		//Creamos el objeto usuario
 		
 		$ccomprobantes = new CComprobantesModel();
@@ -78,7 +78,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 							  cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 							  cierre_mes.id_entidades = entidades.id_entidades AND
 							  cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-							  usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_ene_cuentas_cierre_mes='TRUE'";
+							  usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_ene_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             		
 	             		
@@ -219,7 +219,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_feb_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_feb_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -356,7 +356,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_mar_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_mar_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -495,7 +495,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_abr_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_abr_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -633,7 +633,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_may_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_may_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -773,7 +773,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_jun_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_jun_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -912,7 +912,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_jul_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_jul_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	            
@@ -1049,7 +1049,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_ago_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_ago_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -1187,7 +1187,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_sep_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_sep_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -1326,7 +1326,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_oct_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_oct_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -1464,7 +1464,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_nov_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_nov_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -1601,7 +1601,7 @@ class BalanceComprobacionAdminController extends ControladorBase{
 	             	cuentas_cierre_mes.id_cierre_mes = cierre_mes.id_cierre_mes AND
 	             	cierre_mes.id_entidades = entidades.id_entidades AND
 	             	cierre_mes.id_usuario_creador = usuarios.id_usuarios AND
-	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$_id_usuarios' AND cuentas_cierre_mes.cerrado_dic_cuentas_cierre_mes='TRUE'";
+	             	usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios' AND cuentas_cierre_mes.cerrado_dic_cuentas_cierre_mes='TRUE'";
 	             	$id="plan_cuentas.codigo_plan_cuentas";
 	             	
 	             	
@@ -2087,6 +2087,25 @@ class BalanceComprobacionAdminController extends ControladorBase{
 		return $out;
 	}
 	
+	
+	
+	public function returnUsuariosbyEntidad()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$identidades=(int)$_POST["entidades"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,entidades";
+		$id="usuarios.id_usuarios";
+	
+		$where="entidades.id_entidades=usuarios.id_entidades
+		AND entidades.id_entidades='$identidades'";
+	
+		$resultUsuario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuario);
+	}
 	
 }
 ?>
