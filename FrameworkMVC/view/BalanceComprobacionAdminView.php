@@ -269,6 +269,7 @@
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo">Entidades:</p>
 			  	<select name="id_entidades" id="id_entidades"  class="form-control">
+			  	<option value="" selected="selected">--Seleccione--</option>
 			  		<?php foreach($resultEnt as $res) {?>
 						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>
@@ -278,7 +279,7 @@
 		 <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo">Usuario:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
-			  		
+			  	<option value="" selected="selected">--Seleccione--</option>	
 				</select>
 
          </div>
@@ -346,7 +347,7 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="balance_comprobacion" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div id="balance_comprobacion" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
 					<div class="div_balance_comprobacion" ></div><!-- Datos ajax Final -->
 		      </div>
 		       <br>

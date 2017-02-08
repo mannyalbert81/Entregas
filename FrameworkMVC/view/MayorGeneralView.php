@@ -223,7 +223,7 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="mayor_general" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div id="mayor_general" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
 					<div class="div_mayor_general" ></div><!-- Datos ajax Final -->
 		      </div>
 		       <br>

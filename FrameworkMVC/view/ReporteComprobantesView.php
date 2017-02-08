@@ -230,30 +230,9 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="comprobantes" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div id="comprobantes" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
 					<div class="div_comprobantes" >
-					 <div class="pull-left"> 
-							 <span class="form-control"><strong>Registros: </strong>0</span> 
-							 <input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>
-							 </div><br> 
-							 <section style="height:50px;"> 
-							 <table class="table table-hover"> 
-							 <thead> 
-							 <tr class="info"> 
-							 <th>Tipo</th> 
-							 <th>Concepto</th> 
-							 <th>Entidad</th> 
-							 <th>Valor</th> 
-							 <th>Fecha</th> 
-							 <th>Numero de Comprobante</th> 
-							 <th>Forma de Pago</th> 
-							 </tr> 
-							 </thead> 
-							 <tbody> 
-							 </tbody>
-							 </table>
-							 </section>
-					</div><!-- Datos ajax Final -->
+					 	</div><!-- Datos ajax Final -->
 					
 		      </div>
 		       <br>

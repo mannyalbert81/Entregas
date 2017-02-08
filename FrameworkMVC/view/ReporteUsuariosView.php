@@ -239,7 +239,7 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="usuarios" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div id="usuarios" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
 					<div class="div_usuarios" >
 					
 					</div><!-- Datos ajax Final -->

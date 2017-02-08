@@ -1,4 +1,5 @@
 
+
 <?php include("view/modulos/head.php"); ?>
 <?php $n_plan_cuentas=array("A"=>'Acreedora',"D"=>'Deudora');
       $resultMenu = array("codigo"=>'Codigo',"nombre"=>'Nombre',"tipo"=>'Tipo',"naturaleza"=>'Naturaleza');?>

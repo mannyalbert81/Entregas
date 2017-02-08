@@ -35,6 +35,60 @@
             
         </style>
          
+         
+         
+         <script>
+	$(document).ready(function(){
+		$("#id_entidades").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_usuarios = $("#id_usuarios");
+       	
+
+            // lo vaciamos
+           var ddl_entidades = $(this).val();
+
+          
+           $ddl_usuarios.empty();
+
+          
+            if(ddl_entidades != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+            			 entidades:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("BalanceComprobacionAdm","returnUsuariosbyEntidad"); ?>", datos, function(resultUsuario) {
+
+         		 		$.each(resultUsuario, function(index, value) {
+         		 			$ddl_usuarios.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		
+		});
+        });
+	
+	</script>
+         
+         
+         
+         
          	<script>
 	$(document).ready(function(){
 			$("#fecha_hasta").change(function(){
@@ -96,7 +150,7 @@
 
 		$("#balance_comprobacion").fadeIn('slow');
 		$.ajax({
-			url:"<?php echo $helper->url("BalanceComprobacion","BalanceComprobacion");?>",
+			url:"<?php echo $helper->url("BalanceComprobacionAdm","BalanceComprobacionAdm");?>",
             type : "POST",
             async: true,			
 			data: con_datos,
@@ -199,7 +253,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("BalanceComprobacion","BalanceComprobacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
+      <form action="<?php echo $helper->url("BalanceComprobacionAdm","BalanceComprobacionAdm"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
@@ -214,7 +268,8 @@
 					
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo">Entidades:</p>
-			  	<select name="id_entidades" id="id_entidades"  class="form-control" readonly>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control">
+			  		<option value="" selected="selected">--Seleccione--</option>
 			  		<?php foreach($resultEnt as $res) {?>
 						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>
@@ -222,11 +277,10 @@
 		 </div>
 		 
 		 <div class="col-xs-2 ">
+			  	
 			  	<p  class="formulario-subtitulo">Usuario:</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" readonly>
-			  		<?php foreach($resultEnt as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>"<?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?> ><?php echo $res->nombre_usuarios;  ?> </option>
-			            <?php } ?>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
+			  	<option value="" selected="selected">--Seleccione--</option>	
 				</select>
 
          </div>
@@ -399,7 +453,10 @@
   </div>
       <!-- termina
        busqueda  -->
-       
+       <br>
+       <br>
+       <br>
+       <br>
  
    </body>  
 

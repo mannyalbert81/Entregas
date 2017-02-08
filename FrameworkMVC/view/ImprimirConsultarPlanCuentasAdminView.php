@@ -223,7 +223,7 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="plancuentas" style="position: absolute;	text-align: center;	top: 55px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div id="plancuentas" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
 					<div class="div_plancuentas" >
 							
 					</div><!-- Datos ajax Final -->

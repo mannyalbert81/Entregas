@@ -78,7 +78,7 @@ $controladores=$_SESSION['controladores'];
 			<a href="index.php?controller=ReporteUsuarios&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios</span> </a>
 			</li>
 			<li style="<?php echo getcontrolador("ReporteUsuariosAdmin",$controladores) ?>">
-			<a href="index.php?controller=ReporteUsuariosAdmin&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios Administrador</span> </a>
+			<a href="index.php?controller=ReporteUsuariosAdmin&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios</span> </a>
 			</li>
 			
 
@@ -102,9 +102,11 @@ $controladores=$_SESSION['controladores'];
 			</li>
 			
 			<li style="<?php echo getcontrolador("Comprobantes",$controladores) ?>">
-			<a href="index.php?controller=Comprobantes&action=ReporteComprobantes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Comprobantes</span> </a>
+			<a href="index.php?controller=Comprobantes&action=ReporteComprobantes"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar Imprimir Comprobantes</span> </a>
 			</li>
-			
+			<li style="<?php echo getcontrolador("ComprobantesAdm",$controladores) ?>">
+			<a href="index.php?controller=ComprobantesAdm&action=ReporteComprobantesAdm"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Consultar Imprimir Comprobantes</span> </a>
+			</li>
 			<li style="<?php echo getcontrolador("RecalcularMayor",$controladores) ?>">
 			<a href="index.php?controller=RecalcularMayor&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Recalcular Mayor</span> </a>
 			</li>
@@ -159,6 +161,9 @@ $controladores=$_SESSION['controladores'];
           </li>
           <li style="<?php echo getcontrolador("BalanceComprobacionAdmin",$controladores) ?>">
           <a href="index.php?controller=BalanceComprobacionAdmin&action=BalanceComprobacionAdmin"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobacion</span> </a>
+          </li>
+          <li style="<?php echo getcontrolador("BalanceComprobacionAdm",$controladores) ?>">
+          <a href="index.php?controller=BalanceComprobacionAdm&action=BalanceComprobacionAdm"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobacion</span> </a>
           </li>
           
 </ul>

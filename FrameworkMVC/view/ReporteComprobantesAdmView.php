@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Imprimir Consultar Plan Cuentas - contabilidad 2016</title>
+        <title>Reporte Comprobantes - contabilidad 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -35,7 +35,27 @@
             
         </style>
          
-         	
+         	<script>
+	$(document).ready(function(){
+			$("#fecha_hasta").change(function(){
+				 var startDate = new Date($('#fecha_desde').val());
+
+                 var endDate = new Date($('#fecha_hasta').val());
+
+                 if (startDate > endDate){
+ 
+                    $("#mensaje_fecha_hasta").text("Fecha desde no debe ser mayor ");
+		    		$("#mensaje_fecha_hasta").fadeIn("slow"); //Muestra mensaje de error  
+		    		$("#fecha_hasta").val("");
+
+                        }
+				});
+
+			 $( "#fecha_hasta" ).focus(function() {
+				  $("#mensaje_fecha_hasta").fadeOut("slow");
+			   });
+			});
+        </script>
         
     <script type="text/javascript">
 	$(document).ready(function(){
@@ -43,47 +63,46 @@
 
 		$("#buscar").click(function(){
 
-			load_plan_cuentas(1);
+			load_comprobantes(1);
 			
 			});
 	});
 
 	
-	function load_plan_cuentas(pagina){
+	function load_comprobantes(pagina){
 		
 		//iniciar variables
 		 var con_id_entidades=$("#id_entidades").val();
-		 var con_codigo_plan_cuentas=$("#codigo_plan_cuentas").val();
-		 var con_nombre_plan_cuentas=$("#nombre_plan_cuentas").val();
-		 var con_nivel_plan_cuentas=$("#nivel_plan_cuentas").val();
-		 var con_t_plan_cuentas=$("#t_plan_cuentas").val();
-		 var con_n_plan_cuentas=$("#n_plan_cuentas").val();
-		
+		 var con_id_tipo_comprobantes=$("#id_tipo_comprobantes").val();
+		 var con_numero_ccomprobantes=$("#numero_ccomprobantes").val();
+		 var con_referencia_doc_ccomprobantes=$("#referencia_doc_ccomprobantes").val();
+		 var con_fecha_desde=$("#fecha_desde").val();
+		 var con_fecha_hasta=$("#fecha_hasta").val();
 
 		  var con_datos={
 				  id_entidades:con_id_entidades,
-				  codigo_plan_cuentas:con_codigo_plan_cuentas,
-				  nombre_plan_cuentas:con_nombre_plan_cuentas,
-				  nivel_plan_cuentas:con_nivel_plan_cuentas,
-				  t_plan_cuentas:con_t_plan_cuentas,
-				  n_plan_cuentas:con_n_plan_cuentas,
+				  id_tipo_comprobantes:con_id_tipo_comprobantes,
+				  numero_ccomprobantes:con_numero_ccomprobantes,
+				  referencia_doc_ccomprobantes:con_referencia_doc_ccomprobantes,
+				  fecha_desde:con_fecha_desde,
+				  fecha_hasta:con_fecha_hasta,
 				  action:'ajax',
 				  page:pagina
 				  };
 
 
-		$("#plancuentas").fadeIn('slow');
+		$("#comprobantes").fadeIn('slow');
 		$.ajax({
-			url:"<?php echo $helper->url("PlanCuentas","ImprimirConsultarPlanCuentas");?>",
+			url:"<?php echo $helper->url("ComprobantesAdm","ReporteComprobantesAdm");?>",
             type : "POST",
             async: true,			
 			data: con_datos,
 			 beforeSend: function(objeto){
-			$("#plancuentas").html('<img src="view/images/ajax-loader.gif"> Cargando...');
+			$("#comprobantes").html('<img src="view/images/ajax-loader.gif"> Cargando...');
 			},
 			success:function(data){
-				$(".div_plancuentas").html(data).fadeIn('slow');
-				$("#plancuentas").html("");
+				$(".div_comprobantes").html(data).fadeIn('slow');
+				$("#comprobantes").html("");
 			}
 		})
 	}
@@ -100,23 +119,20 @@
        <?php
        
        $sel_id_entidades = "";
-       $sel_codigo_plan_cuentas = "";
-       $sel_nombre_plan_cuentas = "";
-       $sel_nivel_plan_cuentas = "";
-       $sel_t_plan_cuentas = "";
-       $sel_n_plan_cuentas = "";
-      
+       $sel_id_tipo_comprobantes="";
+       $sel_numero_ccomprobantes="";
+       $sel_referencia_doc_ccomprobantes="";
+       $sel_fecha_desde="";
+       $sel_fecha_hasta="";
         
-      
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        	$sel_id_entidades = $_POST['id_entidades'];
-       	$sel_codigo_plan_cuentas = $_POST['codigo_plan_cuentas'];
-       	$sel_nombre_plan_cuentas = $_POST['nombre_plan_cuentas'];
-       	$sel_nivel_plan_cuentas = $_POST['nivel_plan_cuentas'];
-       	$sel_t_plan_cuentas = $_POST['t_plan_cuentas'];
-       	$sel_n_plan_cuentas = $_POST['n_plan_cuentas'];
-      
+        $sel_id_tipo_comprobantes=$_POST['id_tipo_comprobantes'];
+       	$sel_numero_ccomprobantes=$_POST['numero_ccomprobantes'];
+       	$sel_referencia_doc_ccomprobantes=$_POST['referencia_doc_ccomprobantes'];
+       	$sel_fecha_desde=$_POST['fecha_desde'];
+       	$sel_fecha_hasta=$_POST['fecha_hasta'];
        
        }
        ?>
@@ -129,12 +145,12 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("PlanCuentas","ImprimirConsultarPlanCuentas"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
+      <form action="<?php echo $helper->url("ComprobantesAdm","ReporteComprobantesAdm"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Imprimir Consultar Plan Cuentas</h4>
+       	 <h4 style="color:#ec971f;">Reporte Comprobantes</h4>
        	 
        	 
        	 <div class="panel panel-default">
@@ -144,52 +160,45 @@
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo">Entidades:</p>
 			  	<select name="id_entidades" id="id_entidades"  class="form-control" readonly>
+			  	
 			  		<?php foreach($resultEnt as $res) {?>
 						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
 		 
-		 <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Codigo:</p>
-			  	<input type="text"  name="codigo_plan_cuentas" id="codigo_plan_cuentas" value="<?php echo $sel_codigo_plan_cuentas;?>" class="form-control"/> 
+		  <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo">Tipo Comprobantes:</p>
+			  	<select name="id_tipo_comprobantes" id="id_tipo_comprobantes"  class="form-control" >
+			  		<option value="0"><?php echo "--TODOS--";  ?> </option>
+					<?php foreach($resultTipCom as $res) {?>
+						<option value="<?php echo $res->id_tipo_comprobantes; ?>"<?php if($sel_id_tipo_comprobantes==$res->id_tipo_comprobantes){echo "selected";}?> ><?php echo $res->nombre_tipo_comprobantes;  ?> </option>
+			            <?php } ?>
+				</select>
+		  </div>
+          
+          <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Nº Comprobantes</p>
+			  	<input type="text"  name="numero_ccomprobantes" id="numero_ccomprobantes" value="<?php echo $sel_numero_ccomprobantes;?>" class="form-control"/> 
           </div>
-		 
-		 <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Nombre:</p>
-			  	<input type="text"  name="nombre_plan_cuentas" id="nombre_plan_cuentas" value="<?php echo $sel_nombre_plan_cuentas;?>" class="form-control"/> 
-          </div>
-		 
-		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo">Nivel:</p>
-			  	<select name="nivel_plan_cuentas" id="nivel_plan_cuentas"  class="form-control">
-			  	<option value=""><?php echo "--TODOS--";  ?> </option>
-			  		<?php foreach($resultNiv as $res) {?>
-						<option value="<?php echo $res->nivel_plan_cuentas; ?>"<?php if($sel_nivel_plan_cuentas==$res->nivel_plan_cuentas){echo "selected";}?>><?php echo $res->nivel_plan_cuentas;  ?> </option>
-			            <?php } ?>
-				</select>
-		 </div>
-		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo">Tipo:</p>
-			  	<select name="t_plan_cuentas" id="t_plan_cuentas"  class="form-control">
-			  	<option value=""><?php echo "--TODOS--";  ?> </option>
-			  		<?php foreach($resultTip as $res) {?>
-						<option value="<?php echo $res->t_plan_cuentas; ?>"<?php if($sel_t_plan_cuentas==$res->t_plan_cuentas){echo "selected";}?>><?php echo $res->t_plan_cuentas;  ?> </option>
-			            <?php } ?>
-				</select>
-		 </div>
-		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo">Naturaleza:</p>
-			  	<select name="n_plan_cuentas" id="n_plan_cuentas"  class="form-control">
-			  	<option value=""><?php echo "--TODOS--";  ?> </option>
-			  		<?php foreach($resultNat as $res) {?>
-						<option value="<?php echo $res->n_plan_cuentas; ?>"<?php if($sel_n_plan_cuentas==$res->n_plan_cuentas){echo "selected";}?>><?php echo $res->n_plan_cuentas;  ?> </option>
-			            <?php } ?>
-				</select>
-		 </div>
 		
-		
-		
+         <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Referencia Doc:</p>
+			  	<input type="text"  name="referencia_doc_ccomprobantes" id="referencia_doc_ccomprobantes" value="<?php echo $sel_referencia_doc_ccomprobantes;?>" class="form-control"/> 
+         </div>
+         
+         
+         <div class="col-xs-2 ">
+         		<p class="formulario-subtitulo" >Desde:</p>
+			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="<?php echo $sel_fecha_desde;?>" class="form-control "/> 
+			    <div id="mensaje_fecha_desde" class="errores"></div>
+		 </div>
+         
+          <div class="col-xs-2 ">
+          		<p class="formulario-subtitulo" >Hasta:</p>
+			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="<?php echo $sel_fecha_hasta;?>" class="form-control "/> 
+			    <div id="mensaje_fecha_hasta" class="errores"></div>
+		</div>
 		 
   			</div>
   		
@@ -214,7 +223,9 @@
 		 </div>
 		 
 		 
-		 <div class="col-lg-12">
+		  
+		  
+		   <div class="col-lg-12">
 		 
 		 <div class="col-lg-12">
 		 
@@ -222,8 +233,8 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="plancuentas" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
-					<div class="div_plancuentas" >
+					<div id="comprobantes" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div class="div_comprobantes" >
 							
 					</div><!-- Datos ajax Final -->
 					
@@ -239,6 +250,7 @@
 		 
 		 </div>
 		 
+		
 	
       
        </form>
@@ -248,10 +260,7 @@
   </div>
       <!-- termina
        busqueda  -->
-      <br>
-      <br>
-      <br>
-      <br> 
+       
  
    </body>  
 
