@@ -77,6 +77,9 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("ReporteUsuarios",$controladores) ?>">
 			<a href="index.php?controller=ReporteUsuarios&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios</span> </a>
 			</li>
+			<li style="<?php echo getcontrolador("ReporteUsuariosAdmin",$controladores) ?>">
+			<a href="index.php?controller=ReporteUsuariosAdmin&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios Administrador</span> </a>
+			</li>
 			
 
 </ul>
