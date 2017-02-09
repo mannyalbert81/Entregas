@@ -909,6 +909,7 @@ class ComprobantesController extends ControladorBase{
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->fecha_ccomprobantes.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->numero_ccomprobantes.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_forma_pago.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=Comprobantes&action=Reporte_ImprimirComprobantes&id_ccomprobantes='. $res->id_ccomprobantes .'&id_entidades='. $res->id_entidades.'&id_tipo_comprobantes='. $res->id_tipo_comprobantes.' " target="_blank"><i class="glyphicon glyphicon-print"></i></a></span></td>';
 								$html.='</tr>';
 									
 							}
@@ -1002,6 +1003,106 @@ class ComprobantesController extends ControladorBase{
 		}
 	
 	}
+	
+	
+	public function Reporte_ImprimirComprobantes()
+	{
+		if(isset($_REQUEST['id_ccomprobantes']))
+		{
+	
+			$id_ccomprobantes= $_GET['id_ccomprobantes'];
+			$id_entidades= $_GET['id_entidades'];
+			$id_tipo_comprobantes= $_GET['id_tipo_comprobantes'];
+				
+			$tipo_comprobantes = new TipoComprobantesModel();
+			$resultTip = $tipo_comprobantes->getBy("id_tipo_comprobantes='$id_tipo_comprobantes'");
+			$_nombre_tipo_comprobantes=$resultTip[0]->nombre_tipo_comprobantes;
+				
+				
+			if ($_nombre_tipo_comprobantes == "INGRESOS")
+			{
+	
+	
+	
+				$parametros = array();
+	
+				$parametros['id_ccomprobantes']=isset($id_ccomprobantes)?trim($id_ccomprobantes):'';
+				$parametros['id_entidades']=isset($id_entidades)?trim($id_entidades):'';
+				$parametros['id_tipo_comprobantes']=isset($id_tipo_comprobantes)?trim($id_tipo_comprobantes):'';
+	
+				$pagina="conComprobantesIngresosAdmin.aspx";
+	
+				$conexion_rpt = array();
+				$conexion_rpt['pagina']=$pagina;
+				//$conexion_rpt['port']="59584";
+	
+				$this->view("ReporteRpt", array(
+						"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+				));
+	
+	
+				die();
+	
+	
+			}elseif ($_nombre_tipo_comprobantes == "EGRESOS") {
+	
+	
+	
+				$parametros = array();
+	
+				$parametros['id_ccomprobantes']=isset($id_ccomprobantes)?trim($id_ccomprobantes):'';
+				$parametros['id_entidades']=isset($id_entidades)?trim($id_entidades):'';
+				$parametros['id_tipo_comprobantes']=isset($id_tipo_comprobantes)?trim($id_tipo_comprobantes):'';
+	
+				$pagina="conComprobantesEgresosAdmin.aspx";
+	
+				$conexion_rpt = array();
+				$conexion_rpt['pagina']=$pagina;
+				//$conexion_rpt['port']="59584";
+	
+				$this->view("ReporteRpt", array(
+						"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+				));
+	
+	
+				die();
+	
+			}elseif ($_nombre_tipo_comprobantes == "CONTABLE") {
+	
+	
+				$parametros = array();
+	
+				$parametros['id_ccomprobantes']=isset($id_ccomprobantes)?trim($id_ccomprobantes):'';
+				$parametros['id_entidades']=isset($id_entidades)?trim($id_entidades):'';
+				$parametros['id_tipo_comprobantes']=isset($id_tipo_comprobantes)?trim($id_tipo_comprobantes):'';
+	
+				$pagina="conComprobantesContablesAdmin.aspx";
+	
+				$conexion_rpt = array();
+				$conexion_rpt['pagina']=$pagina;
+				//$conexion_rpt['port']="59584";
+	
+				$this->view("ReporteRpt", array(
+						"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+				));
+	
+	
+				die();
+	
+			}
+				
+				
+				
+				
+			//aqui poner la pagina
+	
+				
+	
+	
+		}
+	
+	}
+	
 	
 	public function paginate($reload, $page, $tpages, $adjacents) {
 	

@@ -107,7 +107,7 @@ class ReporteUsuariosController extends ControladorBase{
 	
 					if($nombre_usuarios!=""){$where_1=" AND usuarios.nombre_usuarios LIKE '%$nombre_usuarios%'";}
 	
-					if($cedula_usuarios!=""){$where_2=" AND usuarios.cedula_usuarios LIKE '%$cedula_usuarios%'";}
+					if($cedula_usuarios!=""){$where_2=" AND usuarios.cedula_usuarios = '$cedula_usuarios'";}
 						
 					if($correo_usuarios!=""){$where_3=" AND usuarios.correo_usuarios LIKE '%$correo_usuarios%'";}
 	
@@ -231,7 +231,7 @@ class ReporteUsuariosController extends ControladorBase{
 						$parametros['id_estado']=(isset($_POST['id_estado']))?trim($_POST['id_estado']):'';
 						
 						//para local 
-						$pagina="conReporteUsuatios.aspx";
+						$pagina="conReporteUsuarios.aspx";
 												
 						$conexion_rpt = array();
 						$conexion_rpt['pagina']=$pagina;

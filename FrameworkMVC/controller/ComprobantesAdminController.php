@@ -178,7 +178,7 @@ class ComprobantesAdminController extends ControladorBase{
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->fecha_ccomprobantes.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->numero_ccomprobantes.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_forma_pago.'</td>';
-								$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=ComprobantesAdmin&action=Reporte_ImprimirComprobantes&id_ccomprobantes='. $res->id_ccomprobantes .'&id_entidades='. $res->id_entidades.'&id_tipo_comprobantes='. $res->id_tipo_comprobantes.' " target="_blank"><i class="glyphicon glyphicon-print"></i></a></span></td>';
+								$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=ComprobantesAdmin&action=Reporte_ImprimirComprobantesAdmin&id_ccomprobantes='. $res->id_ccomprobantes .'&id_entidades='. $res->id_entidades.'&id_tipo_comprobantes='. $res->id_tipo_comprobantes.' " target="_blank"><i class="glyphicon glyphicon-print"></i></a></span></td>';
 								$html.='</tr>';
 									
 								
@@ -339,7 +339,7 @@ class ComprobantesAdminController extends ControladorBase{
 	
 	
     
-	public function Reporte_ImprimirComprobantes()
+	public function Reporte_ImprimirComprobantesAdmin()
 	{
 		if(isset($_REQUEST['id_ccomprobantes']))
 		{
