@@ -789,8 +789,10 @@ class ComprobantesController extends ControladorBase{
 						
 					$columnas = " ccomprobantes.id_ccomprobantes, 
 								  tipo_comprobantes.nombre_tipo_comprobantes, 
+							      tipo_comprobantes.id_tipo_comprobantes,
 								  ccomprobantes.concepto_ccomprobantes, 
 								  usuarios.nombre_usuarios, 
+							      entidades.id_entidades,
 								  entidades.nombre_entidades, 
 								  ccomprobantes.valor_letras, 
 								  ccomprobantes.fecha_ccomprobantes, 
@@ -834,9 +836,9 @@ class ComprobantesController extends ControladorBase{
 	
 					if($id_tipo_comprobantes!=0){$where_1=" AND tipo_comprobantes.id_tipo_comprobantes='$id_tipo_comprobantes'";}
 	
-					if($numero_ccomprobantes!=""){$where_2=" AND ccomprobantes.numero_ccomprobantes='$numero_ccomprobantes'";}
+					if($numero_ccomprobantes!=""){$where_2=" AND ccomprobantes.numero_ccomprobantes LIKE '%$numero_ccomprobantes%'";}
 						
-					if($referencia_doc_ccomprobantes!=""){$where_3=" AND ccomprobantes.referencia_doc_ccomprobantes ='$referencia_doc_ccomprobantes'";}
+					if($referencia_doc_ccomprobantes!=""){$where_3=" AND ccomprobantes.referencia_doc_ccomprobantes LIKE '%$referencia_doc_ccomprobantes%'";}
 	
 					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  ccomprobantes.fecha_ccomprobantes BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
@@ -893,6 +895,7 @@ class ComprobantesController extends ControladorBase{
 							$html.='<th>Fecha</th>';
 							$html.='<th>Numero de Comprobante</th>';
 							$html.='<th>Forma de Pago</th>';
+							$html.='<th></th>';
 							$html.='</tr>';
 							$html.='</thead>';
 							$html.='<tbody>';

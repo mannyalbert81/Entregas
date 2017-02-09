@@ -110,9 +110,9 @@ class ComprobantesAdmController extends ControladorBase{
 	
 					if($id_tipo_comprobantes!=0){$where_1=" AND tipo_comprobantes.id_tipo_comprobantes='$id_tipo_comprobantes'";}
 	
-					if($numero_ccomprobantes!=""){$where_2=" AND ccomprobantes.numero_ccomprobantes='$numero_ccomprobantes'";}
+					if($numero_ccomprobantes!=""){$where_2=" AND ccomprobantes.numero_ccomprobantes LIKE '%$numero_ccomprobantes%'";}
 						
-					if($referencia_doc_ccomprobantes!=""){$where_3=" AND ccomprobantes.referencia_doc_ccomprobantes ='$referencia_doc_ccomprobantes'";}
+					if($referencia_doc_ccomprobantes!=""){$where_3=" AND ccomprobantes.referencia_doc_ccomprobantes LIKE '%$referencia_doc_ccomprobantes%'";}
 	
 					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  ccomprobantes.fecha_ccomprobantes BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
