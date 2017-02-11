@@ -425,18 +425,54 @@ class ComprobantesAdminController extends ControladorBase{
 				
 			}
 			
-			
-			
-			
-			//aqui poner la pagina
-	
-			
-	
 	
 		}
 	
 	}
 	
+	
+	
+	public function AutocompleteNComprobantes(){
+	
+		
+	
+		$ccomprobantes = new CComprobantesModel();
+		$numero_ccomprobantes = $_GET['term'];
+	
+		$resultSet=$ccomprobantes->getBy("numero_ccomprobantes LIKE '$numero_ccomprobantes%'");
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_numero_ccomprobantes[] = $res->numero_ccomprobantes;
+			}
+			echo json_encode($_numero_ccomprobantes);
+		}
+	
+	}
+	
+	public function AutocompleteRComprobantes(){
+	
+	
+	
+		$ccomprobantes = new CComprobantesModel();
+		$referencia_doc_ccomprobantes = $_GET['term'];
+	
+		$resultSet=$ccomprobantes->getBy("referencia_doc_ccomprobantes LIKE '$referencia_doc_ccomprobantes%'");
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_referencia_doc_ccomprobantes[] = $res->referencia_doc_ccomprobantes;
+			}
+			echo json_encode($_referencia_doc_ccomprobantes);
+		}
+	
+	}
 	
 }
 ?>

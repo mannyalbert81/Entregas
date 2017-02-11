@@ -340,6 +340,74 @@ class ReporteUsuariosAdminController extends ControladorBase{
 	}
 	
 	
+	
+	public function AutocompleteCorreo(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$correo_usuarios = $_GET['term'];
+	
+			
+			
+		$columnas ="usuarios.id_usuarios,
+				  usuarios.correo_usuarios,
+				  entidades.id_entidades";
+		$tablas =" public.usuarios,
+				  public.entidades";
+		$where ="usuarios.correo_usuarios LIKE '$correo_usuarios%' AND entidades.id_entidades = usuarios.id_entidades";
+		$id ="usuarios.id_usuarios";
+	
+	
+		$resultSet=$usuarios->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_correo_usuarios[] = $res->correo_usuarios;
+			}
+			echo json_encode($_correo_usuarios);
+		}
+	
+	}
+	
+	
+	
+	public function AutocompleteNombre(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$nombre_usuarios = $_GET['term'];
+	
+			
+			
+		$columnas ="usuarios.id_usuarios,
+				  usuarios.nombre_usuarios,
+				  entidades.id_entidades";
+		$tablas =" public.usuarios,
+				  public.entidades";
+		$where ="usuarios.nombre_usuarios LIKE '$nombre_usuarios%' AND entidades.id_entidades = usuarios.id_entidades";
+		$id ="usuarios.id_usuarios";
+	
+	
+		$resultSet=$usuarios->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_nombre_usuarios[] = $res->nombre_usuarios;
+			}
+			echo json_encode($_nombre_usuarios);
+		}
+	
+	}
     
 		
 }

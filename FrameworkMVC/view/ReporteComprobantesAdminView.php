@@ -6,17 +6,13 @@
         <meta charset="utf-8"/>
         <title>Reporte Comprobantes - contabilidad 2016</title>
         
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		  			   
-          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+          <link rel="stylesheet" href="view/css/bootstrap.css">
+          <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
+          <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+          <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>  
+          <script src="view/js/jquery.js"></script>
 		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		
-		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
-        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
- 		
- 		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 		
 		<script>
 		    webshims.setOptions('forms-ext', {types: 'date'});
@@ -108,6 +104,30 @@
 	}
 	
 	</script>
+
+		<script>
+	       	$(document).ready(function(){ 	
+				$( "#numero_ccomprobantes" ).autocomplete({
+      				source: "<?php echo $helper->url("ComprobantesAdmin","AutocompleteNComprobantes"); ?>",
+      				minLength: 1
+    			});
+	
+    		});
+
+     </script>
+     
+     
+     <script>
+	       	$(document).ready(function(){ 	
+				$( "#referencia_doc_ccomprobantes" ).autocomplete({
+      				source: "<?php echo $helper->url("ComprobantesAdmin","AutocompleteRComprobantes"); ?>",
+      				minLength: 1
+    			});
+	
+    		});
+
+     </script>
+
 
     </head>
     <body style="background-color: #d9e3e4;">

@@ -434,13 +434,88 @@ class ComprobantesAdmController extends ControladorBase{
 			}
 			
 			
-			
-			
-			//aqui poner la pagina
+		}
 	
-			
+	}
 	
 	
+	public function AutocompleteNComprobantes(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+		$_id_entidades=$resultEnt[0]->id_entidades;
+	
+	
+	
+		$ccomprobantes = new CComprobantesModel();
+		$numero_ccomprobantes = $_GET['term'];
+	
+			
+			
+		$columnas ="ccomprobantes.id_ccomprobantes, 
+							      ccomprobantes.numero_ccomprobantes";
+		$tablas=" public.ccomprobantes,
+							  public.entidades";
+		
+		$where ="ccomprobantes.numero_ccomprobantes LIKE '$numero_ccomprobantes%' AND
+				 entidades.id_entidades = ccomprobantes.id_entidades AND ccomprobantes.id_entidades='$_id_entidades'";
+		$id ="ccomprobantes.numero_ccomprobantes";
+	
+	
+		$resultSet=$ccomprobantes->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_numero_ccomprobantes[] = $res->numero_ccomprobantes;
+			}
+			echo json_encode($_numero_ccomprobantes);
+		}
+	
+	}
+	
+	
+	public function AutocompleteRComprobantes(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+		$_id_entidades=$resultEnt[0]->id_entidades;
+	
+	
+	
+		$ccomprobantes = new CComprobantesModel();
+		$referencia_doc_ccomprobantes = $_GET['term'];
+	
+			
+			
+		$columnas ="ccomprobantes.id_ccomprobantes,
+								  ccomprobantes.referencia_doc_ccomprobantes";
+		$tablas=" public.ccomprobantes,
+							  public.entidades";
+	
+		$where ="ccomprobantes.referencia_doc_ccomprobantes LIKE '$referencia_doc_ccomprobantes%' AND
+		entidades.id_entidades = ccomprobantes.id_entidades AND ccomprobantes.id_entidades='$_id_entidades'";
+		$id ="ccomprobantes.numero_ccomprobantes";
+	
+	
+		$resultSet=$ccomprobantes->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_referencia_doc_ccomprobantes[] = $res->referencia_doc_ccomprobantes;
+			}
+			echo json_encode($_referencia_doc_ccomprobantes);
 		}
 	
 	}
