@@ -17,10 +17,10 @@
 	    position: absolute;
 	    display: block;
 	    top: 0;
-	    left: 0;
-	    width: 100%;
+	    left: 15%;
+	    width: 85.1%;
 	    height: 100%;
-	    align:center;
+	    align: center;
 		}
    </style>
        
