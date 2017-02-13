@@ -104,9 +104,9 @@
    <div class="pagina" >
    <iframe src="<?php echo $url; ?>" align="middle" noresize frameborder="0" marginwidth="0" marginheight="0">
    </iframe>
-     
   </div>
-     
+  
+ 
   </body>  
 
   </html>   
