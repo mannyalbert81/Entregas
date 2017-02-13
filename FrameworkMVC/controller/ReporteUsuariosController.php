@@ -105,11 +105,11 @@ class ReporteUsuariosController extends ControladorBase{
 	
 					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
 	
-					if($nombre_usuarios!=""){$where_1=" AND usuarios.nombre_usuarios LIKE '%$nombre_usuarios%'";}
+					if($nombre_usuarios!=""){$where_1=" AND usuarios.nombre_usuarios = '$nombre_usuarios'";}
 	
 					if($cedula_usuarios!=""){$where_2=" AND usuarios.cedula_usuarios = '$cedula_usuarios'";}
 						
-					if($correo_usuarios!=""){$where_3=" AND usuarios.correo_usuarios LIKE '%$correo_usuarios%'";}
+					if($correo_usuarios!=""){$where_3=" AND usuarios.correo_usuarios ='$correo_usuarios'";}
 	
 					if($id_rol!=0){$where_4=" AND rol.id_rol ='$id_rol'";}
 	
@@ -381,6 +381,44 @@ class ReporteUsuariosController extends ControladorBase{
 				$_correo_usuarios[] = $res->correo_usuarios;
 			}
 			echo json_encode($_correo_usuarios);
+		}
+	
+	}
+	
+	public function AutocompleteCedula(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+		$_id_entidades=$resultEnt[0]->id_entidades;
+	
+	
+	
+		$cedula_usuarios = $_GET['term'];
+	
+			
+			
+		$columnas ="usuarios.id_usuarios,
+				  usuarios.cedula_usuarios,
+				  entidades.id_entidades";
+		$tablas =" public.usuarios,
+				  public.entidades";
+		$where ="usuarios.cedula_usuarios LIKE '$cedula_usuarios%' AND entidades.id_entidades = usuarios.id_entidades AND usuarios.id_entidades='$_id_entidades' ";
+		$id ="usuarios.id_usuarios";
+	
+	
+		$resultSet=$usuarios->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_cedula_usuarios[] = $res->cedula_usuarios;
+			}
+			echo json_encode($_cedula_usuarios);
 		}
 	
 	}

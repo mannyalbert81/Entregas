@@ -184,8 +184,8 @@ class PlanCuentasAdminController extends ControladorBase{
 	
 	
 					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
-					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas LIKE '%$codigo_plan_cuentas%'";}
-					if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas LIKE '%$nombre_plan_cuentas%'";}
+					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas = '$codigo_plan_cuentas'";}
+					if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas = '$nombre_plan_cuentas'";}
 					if($nivel_plan_cuentas!=""){$where_3=" AND plan_cuentas.nivel_plan_cuentas='$nivel_plan_cuentas'";}
 					if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
 					if($n_plan_cuentas!=""){$where_5=" AND plan_cuentas.n_plan_cuentas='$n_plan_cuentas'";}
@@ -362,6 +362,57 @@ class PlanCuentasAdminController extends ControladorBase{
 	}
 	
 	
+	
+	public function AutocompleteCodigo(){
+	
+		session_start();
+		
+		
+		$plan_cuentas= new PlanCuentasModel();
+		$codigo_plan_cuentas = $_GET['term'];
+	
+	
+		$resultSet=$plan_cuentas->getBy("codigo_plan_cuentas LIKE '$codigo_plan_cuentas%' ORDER BY codigo_plan_cuentas");
+		
+		
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_codigo_plan_cuentas[] = $res->codigo_plan_cuentas;
+			}
+			echo json_encode($_codigo_plan_cuentas);
+		}
+	
+	}
+	
+	
+	
+	public function AutocompleteNombre(){
+	
+		
+
+		session_start();
+		
+		$plan_cuentas= new PlanCuentasModel();
+		$nombre_plan_cuentas = $_GET['term'];
+		
+		
+		$resultSet=$plan_cuentas->getBy("nombre_plan_cuentas LIKE '$nombre_plan_cuentas%' ORDER BY nombre_plan_cuentas");
+		
+		
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_nombre_plan_cuentas[] = $res->nombre_plan_cuentas;
+			}
+			echo json_encode($_nombre_plan_cuentas);
+		}
+	
+	}
 	
 }
 ?>

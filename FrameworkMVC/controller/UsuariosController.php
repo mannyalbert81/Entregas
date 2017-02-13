@@ -499,7 +499,7 @@ public function index(){
 		    
 	
 			$funcion = "ins_usuarios";
-			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios', '$_id_ciudad', '$imagen_usuarios','$_id_entidad'";
+			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_id_ciudad', '$imagen_usuarios','$_id_entidad','$_cedula_usuarios'";
 			$usuarios->setFuncion($funcion);
 	        $usuarios->setParametros($parametros);
 	        $resultado=$usuarios->Insert();

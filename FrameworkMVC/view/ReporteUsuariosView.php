@@ -131,6 +131,17 @@
     		});
 
      </script>
+     
+     <script>
+	       	$(document).ready(function(){ 	
+				$( "#cedula_usuarios" ).autocomplete({
+      				source: "<?php echo $helper->url("ReporteUsuarios","AutocompleteCedula"); ?>",
+      				minLength: 1
+    			});
+	
+    		});
+
+     </script>
 
 
     </head>

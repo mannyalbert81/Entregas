@@ -129,6 +129,17 @@
 
      </script>
 
+     <script>
+	       	$(document).ready(function(){ 	
+				$( "#cedula_usuarios" ).autocomplete({
+      				source: "<?php echo $helper->url("ReporteUsuariosAdmin","AutocompleteCedula"); ?>",
+      				minLength: 1
+    			});
+	
+    		});
+
+     </script>
+
     </head>
     <body style="background-color: #d9e3e4;">
     

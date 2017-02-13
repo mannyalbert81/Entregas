@@ -907,8 +907,8 @@ class PlanCuentasController extends ControladorBase{
 						
 		
 					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
-					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas LIKE '%$codigo_plan_cuentas%'";}
-					if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas LIKE '%$nombre_plan_cuentas%'";}
+					if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas ='$codigo_plan_cuentas'";}
+					if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas ='$nombre_plan_cuentas'";}
 					if($nivel_plan_cuentas!=""){$where_3=" AND plan_cuentas.nivel_plan_cuentas='$nivel_plan_cuentas'";}
 					if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
 					if($n_plan_cuentas!=""){$where_5=" AND plan_cuentas.n_plan_cuentas='$n_plan_cuentas'";}
@@ -1150,6 +1150,94 @@ class PlanCuentasController extends ControladorBase{
 	}
 	
 	
+	
+	public function AutocompleteCodigo(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+		$_id_entidades=$resultEnt[0]->id_entidades;
+	
+		$plan_cuentas= new PlanCuentasModel();
+		$codigo_plan_cuentas = $_GET['term'];
+	
+		
+		$columnas = " entidades.id_entidades,
+								  plan_cuentas.id_plan_cuentas,
+								  plan_cuentas.codigo_plan_cuentas";
+		
+		
+		
+		$tablas="  public.plan_cuentas,
+							  public.entidades";
+		
+		$where="plan_cuentas.codigo_plan_cuentas LIKE '$codigo_plan_cuentas%'  AND
+		entidades.id_entidades = plan_cuentas.id_entidades AND plan_cuentas.id_entidades='$_id_entidades'";
+		
+		$id="plan_cuentas.codigo_plan_cuentas";
+		
+		
+	
+		$resultSet=$plan_cuentas->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_codigo_plan_cuentas[] = $res->codigo_plan_cuentas;
+			}
+			echo json_encode($_codigo_plan_cuentas);
+		}
+	
+	}
+	
+	
+	
+	public function AutocompleteNombre(){
+	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+	
+		$usuarios = new UsuariosModel();
+		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+		$_id_entidades=$resultEnt[0]->id_entidades;
+	
+		$plan_cuentas= new PlanCuentasModel();
+		$nombre_plan_cuentas = $_GET['term'];
+	
+	
+		$columnas = " entidades.id_entidades,
+								  plan_cuentas.id_plan_cuentas,
+								  plan_cuentas.nombre_plan_cuentas";
+	
+	
+	
+		$tablas="  public.plan_cuentas,
+							   public.entidades";
+	
+		$where="plan_cuentas.nombre_plan_cuentas LIKE '$nombre_plan_cuentas%' AND
+		entidades.id_entidades = plan_cuentas.id_entidades AND plan_cuentas.id_entidades='$_id_entidades'";
+	
+		$id="plan_cuentas.nombre_plan_cuentas";
+	
+	
+	
+		$resultSet=$plan_cuentas->getCondiciones($columnas, $tablas, $where, $id);
+	
+	
+		if(!empty($resultSet)){
+	
+			foreach ($resultSet as $res){
+	
+				$_nombre_plan_cuentas[] = $res->nombre_plan_cuentas;
+			}
+			echo json_encode($_nombre_plan_cuentas);
+		}
+	
+	}
 	
 }
 ?>
