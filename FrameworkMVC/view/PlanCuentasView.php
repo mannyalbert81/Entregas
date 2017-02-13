@@ -2,7 +2,7 @@
 
 <?php include("view/modulos/head.php"); ?>
 <?php $n_plan_cuentas=array("A"=>'Acreedora',"D"=>'Deudora');
-      $resultMenu = array("codigo"=>'Codigo',"nombre"=>'Nombre',"tipo"=>'Tipo',"naturaleza"=>'Naturaleza');?>
+      $resultMenu = array("todos"=>'Todos',"codigo"=>'Codigo',"nombre"=>'Nombre',"tipo"=>'Tipo',"naturaleza"=>'Naturaleza',"nivel"=>'Nivel');?>
 
 <?php //print_r($resultCodigo_p_cuentas);				?>
 
@@ -1398,7 +1398,6 @@
 		    		<th style="font-size:100%;">Moneda</th>
 		    		<th style="font-size:100%;">Naturaleza</th>
 		    		<th style="font-size:100%;">Tipo</th>
-		    		<th style="font-size:100%;">Centro Costo</th>
 		    		<th style="font-size:100%;">Nivel</th>
 		    		<th></th>
 		    		<th></th>
@@ -1449,7 +1448,6 @@
 		                <td style="font-size:80%;"> <?php echo $res->nombre_monedas; ?>     </td>  
 		                <td style="font-size:80%;"> <?php echo $res->n_plan_cuentas; ?>     </td> 
 		                <td style="font-size:80%;"> <?php echo $res->t_plan_cuentas; ?>     </td>
-		                <td style="font-size:80%;"> <?php echo $res->nombre_centro_costos; ?>     </td>
 		                <td style="font-size:80%;"> <?php echo $res->nivel_plan_cuentas; ?>     </td>
 		                <td>
 			           	   <div class="right">

@@ -76,13 +76,18 @@ class PlanCuentasController extends ControladorBase{
 					$contenido=$_POST['contenido'];
 					$criterio=$_POST['criterio'];
 					
+					$where0="";
 					$where1="";
 					$where2="";
 					$where3="";
 					$where4="";
+					$where5="";
 					
 					switch ($criterio)
 					{
+						case "todos":
+							$where0=" ";
+							break;
 						case "codigo":
 							$where1=" AND plan_cuentas.codigo_plan_cuentas LIKE '$contenido%'";
 						break;
@@ -95,23 +100,23 @@ class PlanCuentasController extends ControladorBase{
 						case "naturaleza":
 							$where4=" AND plan_cuentas.n_plan_cuentas = '$contenido'";
 						break;
+						case "nivel":
+							$where5=" AND plan_cuentas.nivel_plan_cuentas = '$contenido'";
+							break;
 					}
 					
 					$columnas_p_cuentas=" plan_cuentas.id_plan_cuentas,plan_cuentas.codigo_plan_cuentas,
 									  plan_cuentas.nombre_plan_cuentas,monedas.nombre_monedas,
-									  plan_cuentas.n_plan_cuentas,plan_cuentas.t_plan_cuentas,
-									  centro_costos.nombre_centro_costos,plan_cuentas.nivel_plan_cuentas";
+									  plan_cuentas.n_plan_cuentas,plan_cuentas.t_plan_cuentas,plan_cuentas.nivel_plan_cuentas";
 					
-					$tablas_p_cuentas="public.plan_cuentas,public.usuarios,public.entidades,public.monedas,
-								   public.centro_costos";
+					$tablas_p_cuentas="public.plan_cuentas,public.usuarios,public.entidades,public.monedas";
 					
 					$where_p_cuentas="entidades.id_entidades = plan_cuentas.id_entidades AND
 					entidades.id_entidades = usuarios.id_entidades AND
 					monedas.id_monedas = plan_cuentas.id_modenas AND
-					centro_costos.id_centro_costos = plan_cuentas.id_centro_costos AND
 					usuarios.id_usuarios='$id_usuarios'";
 					
-					$where_to=$where_p_cuentas.$where1.$where2.$where3;
+					$where_to=$where_p_cuentas.$where0.$where1.$where2.$where3.$where4.$where5;
 					
 					
 					$resultSet=$plan_cuentas->getCondiciones($columnas_p_cuentas, $tablas_p_cuentas, $where_to, "plan_cuentas.codigo_plan_cuentas");

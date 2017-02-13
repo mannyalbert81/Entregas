@@ -89,7 +89,7 @@
 				  };
 
 
-		$("#comprobantes").fadeIn('slow');
+		$("#mayor_general").fadeIn('slow');
 		$.ajax({
 			url:"<?php echo $helper->url("MayorGeneral","MayorGeneral");?>",
             type : "POST",
