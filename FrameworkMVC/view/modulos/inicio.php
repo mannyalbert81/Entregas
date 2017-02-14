@@ -53,8 +53,8 @@
 						<img src="view/images/inicio/2.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Contabiliadad</span>
-							<span class="sdt_descr">Get to know me</span>
+							<span class="sdt_link">Administración</span>
+							<span class="sdt_descr">Administration</span>
 						</span>
 					</a>
 				</li>
@@ -68,8 +68,8 @@
 						<img src="view/images/inicio/1.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Administración</span>
-							<span class="sdt_descr">My work</span>
+							<span class="sdt_link">Contabiliadad</span>
+							<span class="sdt_descr">Accounting</span>
 						</span>
 					</a>
 					<div class="sdt_box">
@@ -88,8 +88,8 @@
 						<img src="view/images/inicio/3.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Inspiration</span>
-							<span class="sdt_descr">Where ideas get born</span>
+							<span class="sdt_link">Facturación</span>
+							<span class="sdt_descr">Billing</span>
 						</span>
 					</a>
 				</li>
@@ -103,8 +103,8 @@
 						<img src="view/images/inicio/3.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Inspiration</span>
-							<span class="sdt_descr">Where ideas get born</span>
+							<span class="sdt_link">Inventarios</span>
+							<span class="sdt_descr">Inventory</span>
 						</span>
 					</a>
 				</li>
@@ -122,8 +122,8 @@
 						<img src="view/images/inicio/4.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Photos</span>
-							<span class="sdt_descr">I like to photograph</span>
+							<span class="sdt_link">Nomina</span>
+							<span class="sdt_descr">Roster</span>
 						</span>
 					</a>
 				</li>
@@ -137,8 +137,8 @@
 						<img src="view/images/inicio/5.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Blog</span>
-							<span class="sdt_descr">I write about design</span>
+							<span class="sdt_link">Cuentas</span>
+							<span class="sdt_descr">Accounts</span>
 						</span>
 					</a>
 				</li>
@@ -152,8 +152,8 @@
 						<img src="view/images/inicio/6.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Projects</span>
-							<span class="sdt_descr">I like to code</span>
+							<span class="sdt_link">Procesos</span>
+							<span class="sdt_descr">Processes</span>
 						</span>
 					</a>
 					<div class="sdt_box">
@@ -172,8 +172,8 @@
 						<img src="view/images/inicio/3.jpg" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
-							<span class="sdt_link">Inspiration</span>
-							<span class="sdt_descr">Where ideas get born</span>
+							<span class="sdt_link">Consultas</span>
+							<span class="sdt_descr">Inquiries</span>
 						</span>
 					</a>
 				</li>
