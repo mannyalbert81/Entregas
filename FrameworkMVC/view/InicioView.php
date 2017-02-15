@@ -59,10 +59,12 @@ if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']),'opera mini') > 0) {
 if ($tablet_browser > 0) {
 // Si es tablet has lo que necesites
   include("view/modulos/menu.php"); 
+  include("view/modulos/slide.php");
 }
 else if ($mobile_browser > 0) {
 // Si es dispositivo mobil has lo que necesites
   include("view/modulos/menu.php"); 
+  include("view/modulos/slide.php"); 
 }
 else {
 // Si es ordenador de escritorio has lo que necesites
