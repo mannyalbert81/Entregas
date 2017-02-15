@@ -6,6 +6,9 @@
         <meta name="description" content="Slide Down Box Menu with jQuery and CSS3" />
         <meta name="keywords" content="jquery, css3, sliding, box, menu, cube, navigation, portfolio, thumbnails"/>
 		<link rel="stylesheet" href="view/css/style.css" type="text/css" media="screen"/>
+		<link rel="stylesheet" href="view/css/bootstrap.css"/>
+		<script src="view/js/jquery.js"></script>
+		 
         <style>
 			body{
 				background:#333 url(view/images/inicio/bg.jpg) repeat top left;
@@ -40,86 +43,111 @@
     </head>
 
     <body>
-    
-    <div class="col-lg-12">
-    <div class="col-lg-2">
+      
+    <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="col-lg-2 col-md-2 col-xs-2">
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8 col-xs-8">
+    <div class="container-fluid">
+  
     <div class="row">
-    <div class="content">
-			<ul id="sdt_menu" class="sdt_menu">
+        <div class="col-lg-3 col-md-3">
+   		<ul id="sdt_menu" class="sdt_menu">
 				<li>
 					<a href="#">
-						<img src="view/images/inicio/2.jpg" alt=""/>
+						<img src="view/images/inicio/2.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Administración</span>
 							<span class="sdt_descr">Administration</span>
 						</span>
 					</a>
-				</li>
-			</ul>
-			</div>
-			
-			<div class="content">
-			<ul id="sdt_menu" class="sdt_menu">
-			<li>
-					<a href="#">
-						<img src="view/images/inicio/1.jpg" alt=""/>
-						<span class="sdt_active"></span>
-						<span class="sdt_wrap">
-							<span class="sdt_link">Contabiliadad</span>
-							<span class="sdt_descr">Accounting</span>
-						</span>
-					</a>
 					<div class="sdt_box">
-							<a href="#">Websites</a>
-							<a href="#">Illustrations</a>
-							<a href="#">Photography</a>
+							<a href="#">Usuarios</a>
+							<a href="#">Controladores</a>
+							<a href="#">Entidades</a>
+							<a href="#">Roles</a>
+							<a href="#">Permisos Roles</a>
+							
 					</div>
 				</li>
 			</ul>
 			</div>
 			
-			<div class="content">
-			<ul id="sdt_menu" class="sdt_menu">
+			
+			<div class="col-lg-3 col-md-3">
+   		    <ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
-						<img src="view/images/inicio/3.jpg" alt=""/>
+						<img src="view/images/inicio/1.png" alt=""/>
+						<span class="sdt_active"></span>
+						<span class="sdt_wrap">
+							<span class="sdt_link">Contabilidad</span>
+							<span class="sdt_descr">Accounting</span>
+						</span>
+					</a>
+					<div class="sdt_box">
+							<a href="#">Plan Cuentas</a>
+							<a href="#">Comprobantes</a>
+							<a href="#">Mayores</a>
+							<a href="#">Libro Diario</a>
+							<a href="#">Balance Comprobación</a>
+					</div>
+				</li>
+			</ul>
+			</div>
+			
+			<div class="col-lg-3 col-md-3">
+   			<ul id="sdt_menu" class="sdt_menu">
+			<li>
+					<a href="#">
+						<img src="view/images/inicio/3.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Facturación</span>
 							<span class="sdt_descr">Billing</span>
 						</span>
 					</a>
+					<div class="sdt_box">
+							<a href="#">Factura</a>
+							<a href="#">Clientes</a>
+							<a href="#">Proveedores</a>
+							<a href="#">Bodegas</a>
+							<a href="#">Productos</a>
+							
+					</div>
 				</li>
 			</ul>
 			</div>
 			
-			<div class="content">
-			<ul id="sdt_menu" class="sdt_menu">
+			<div class="col-lg-3 col-md-3">
+   			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
-						<img src="view/images/inicio/3.jpg" alt=""/>
+						<img src="view/images/inicio/4.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Inventarios</span>
 							<span class="sdt_descr">Inventory</span>
 						</span>
 					</a>
+					<div class="sdt_box">
+							<a href="#">Cuentas</a>
+							<a href="#">Coteos Ciegos</a>
+							<a href="#">Zonas Fisicas</a>
+							
+					</div>
 				</li>
 			</ul>
-			</div>
 			</div>	
 				
 			
 			
-			<div class="row" style="margin-top:85px">
-            <div class="content">
+			 <div class="col-lg-3 col-md-3">
 			<ul id="sdt_menu" class="sdt_menu">	
 			<li>
 					<a href="#">
-						<img src="view/images/inicio/4.jpg" alt=""/>
+						<img src="view/images/inicio/5.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Nomina</span>
@@ -130,11 +158,11 @@
 			</ul>
 			</div>
 			
-			<div class="content">
+			<div class="col-lg-3 col-md-3">
 			<ul id="sdt_menu" class="sdt_menu">	
 			<li>
 					<a href="#">
-						<img src="view/images/inicio/5.jpg" alt=""/>
+						<img src="view/images/inicio/6.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Cuentas</span>
@@ -145,11 +173,11 @@
 			</ul>
 			</div>
 			
-			<div class="content">
+			<div class="col-lg-3 col-md-3">
 			<ul id="sdt_menu" class="sdt_menu">	
 			<li>
 					<a href="#">
-						<img src="view/images/inicio/6.jpg" alt=""/>
+						<img src="view/images/inicio/7.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Procesos</span>
@@ -157,39 +185,44 @@
 						</span>
 					</a>
 					<div class="sdt_box">
-						<a href="#">Job Board Website</a>
-						<a href="#">Shopping Cart</a>
-						<a href="#">Interactive Maps</a>
+						<a href="#">Cierre Diario</a>
+						<a href="#">Cuadre de Cuentas</a>
+						<a href="#">Ventas</a>
 					</div>
 				</li>
 			</ul>
 			</div>
 			
-			<div class="content">
+			<div class="col-lg-3 col-md-3">
 			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
-						<img src="view/images/inicio/3.jpg" alt=""/>
+						<img src="view/images/inicio/8.png" alt=""/>
 						<span class="sdt_active"></span>
 						<span class="sdt_wrap">
 							<span class="sdt_link">Consultas</span>
 							<span class="sdt_descr">Inquiries</span>
 						</span>
 					</a>
+					<div class="sdt_box">
+						<a href="#">Plan Cuentas</a>
+						<a href="#">Balance Comprobación</a>
+						<a href="#">Mayor General</a>
+						<a href="#">Comprobantes</a>
+						<a href="#">Libro Diario</a>
+					</div>
 				</li>
 			</ul>
 			</div>
-			</div>		
+					
 				
 				
 				
-				
-			
+			</div>
 		</div>
-		
-		
-    
-    <div class="col-lg-2">
+		</div>
+	
+    <div class="col-lg-2 col-xs-2 col-md-2">
     </div>
     </div>
     
