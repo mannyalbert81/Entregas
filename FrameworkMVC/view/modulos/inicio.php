@@ -44,15 +44,13 @@
 
     <body>
       
-    <div class="col-lg-12 col-md-12 col-xs-12">
-    <div class="col-lg-2 col-md-2 col-xs-2">
+    <div class="col-lg-12">
+    <div class="col-lg-2">
     </div>
-    <div class="col-lg-8 col-md-8 col-xs-8">
-    <div class="container-fluid">
-  
+    <div class="col-lg-8">
     <div class="row">
-        <div class="col-lg-3 col-md-3">
-   		<ul id="sdt_menu" class="sdt_menu">
+    <div class="content">
+			<ul id="sdt_menu" class="sdt_menu">
 				<li>
 					<a href="#">
 						<img src="view/images/inicio/2.png" alt=""/>
@@ -74,9 +72,8 @@
 			</ul>
 			</div>
 			
-			
-			<div class="col-lg-3 col-md-3">
-   		    <ul id="sdt_menu" class="sdt_menu">
+			<div class="content">
+			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
 						<img src="view/images/inicio/1.png" alt=""/>
@@ -97,8 +94,8 @@
 			</ul>
 			</div>
 			
-			<div class="col-lg-3 col-md-3">
-   			<ul id="sdt_menu" class="sdt_menu">
+			<div class="content">
+			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
 						<img src="view/images/inicio/3.png" alt=""/>
@@ -120,8 +117,8 @@
 			</ul>
 			</div>
 			
-			<div class="col-lg-3 col-md-3">
-   			<ul id="sdt_menu" class="sdt_menu">
+			<div class="content">
+			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
 						<img src="view/images/inicio/4.png" alt=""/>
@@ -139,11 +136,13 @@
 					</div>
 				</li>
 			</ul>
+			</div>
 			</div>	
 				
 			
 			
-			 <div class="col-lg-3 col-md-3">
+			<div class="row" style="margin-top:85px">
+            <div class="content">
 			<ul id="sdt_menu" class="sdt_menu">	
 			<li>
 					<a href="#">
@@ -158,7 +157,7 @@
 			</ul>
 			</div>
 			
-			<div class="col-lg-3 col-md-3">
+			<div class="content">
 			<ul id="sdt_menu" class="sdt_menu">	
 			<li>
 					<a href="#">
@@ -173,7 +172,7 @@
 			</ul>
 			</div>
 			
-			<div class="col-lg-3 col-md-3">
+			<div class="content">
 			<ul id="sdt_menu" class="sdt_menu">	
 			<li>
 					<a href="#">
@@ -193,7 +192,7 @@
 			</ul>
 			</div>
 			
-			<div class="col-lg-3 col-md-3">
+			<div class="content">
 			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
@@ -214,15 +213,17 @@
 				</li>
 			</ul>
 			</div>
-					
+			</div>		
 				
 				
 				
-			</div>
+				
+			
 		</div>
-		</div>
-	
-    <div class="col-lg-2 col-xs-2 col-md-2">
+		
+		
+    
+    <div class="col-lg-2">
     </div>
     </div>
     
