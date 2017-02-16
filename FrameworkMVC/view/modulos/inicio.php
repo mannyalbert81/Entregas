@@ -195,7 +195,7 @@
 			</ul>
 			</div>
 			
-			<div class="content">
+			<div class="content" style="<?php echo getcontrolador("MenuFacturacion",$controladores) ?>">
 			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
@@ -207,11 +207,9 @@
 						</span>
 					</a>
 					<div class="sdt_box">
-							<a href="#">Factura</a>
-							<a href="#">Clientes</a>
-							<a href="#">Proveedores</a>
-							<a href="#">Bodegas</a>
-							<a href="#">Productos</a>
+							 <div style="<?php echo getcontrolador("FC_Productos",$controladores) ?>">
+					          <a href="index.php?controller=FC_Productos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Productos</span> </a>
+					          </div>
 							
 					</div>
 				</li>
