@@ -297,22 +297,14 @@
 			 </div>
 			  
 			  <div class="col-lg-6">
-			  <div class="row">
+			  <div class="row" style="margin-top:37px">
 		      <div class="form-group">
-		      <div class="col-xs-12 col-md-12">
-			  	<div><img id="outputimg" height="250px" width="220px"/></div>
+		      <div class="col-xs-6 col-md-12">
+			  	<div><img id="outputimg" height="280px" width="220px"/></div>
 	         </div>
 	         </div>
 			 </div>
-			
-			 <div class="row" style="margin-top:5px">
-		      <div class="form-group">
-		      <div class="col-xs-12 col-md-12">
-			  	<div><img id="outputpdf" height="250px" width="220px"/></div>
-	         </div>
-	         </div>
-			 </div>
-		     </div> 
+			</div> 
 	         
 	         </div>
 	         </div> 
