@@ -279,7 +279,7 @@
 		     <div class="form-group">
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_catalogos" class="control-label">Catálogo:</label>
-                                  <input type="file" class="form-control" id="archivo_catalogos" accept=".pdf" name="archivo_catalogos" />
+                                  <input type="file" class="form-control" id="archivo_catalogos" accept=".pdf" name="archivo_catalogos[]" multiple/>
                                   <span class="help-block"></span>
             </div>
 		    </div>

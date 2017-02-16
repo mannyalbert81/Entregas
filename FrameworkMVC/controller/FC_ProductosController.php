@@ -118,41 +118,66 @@ class FC_ProductosController extends ControladorBase{
    
    	if (!empty($resultPer))
    	{
+   		$_id_usuarios= $_SESSION['id_usuarios'];
    		
-   		
-   		if ($_FILES['id_foto_productos']['tmp_name']!="")
+   		if ($_FILES['archivo_foto_productos']['tmp_name']!="")
    		{
    		
    			//para la foto
    			$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos_productos/';
-   			$nombre = $_FILES['id_foto_productos']['name'];
-   			$tipo = $_FILES['id_foto_productos']['type'];
-   			$tamano = $_FILES['id_foto_productos']['size'];
+   			$nombre = $_FILES['archivo_foto_productos']['name'];
+   			$tipo = $_FILES['archivo_foto_productos']['type'];
+   			$tamano = $_FILES['archivo_foto_productos']['size'];
    		
    			// temporal al directorio definitivo
-   			move_uploaded_file($_FILES['id_foto_productos']['tmp_name'],$directorio.$nombre);
+   			move_uploaded_file($_FILES['archivo_foto_productos']['tmp_name'],$directorio.$nombre);
    			$data = file_get_contents($directorio.$nombre);
-   			$id_foto_productos = pg_escape_bytea($data);
-   		
+   			$archivo_foto_productos= pg_escape_bytea($data);
+   			$_descripcion_foto_productos = $_POST["descripcion_foto_productos"];
    		
    		
    			$funcion = "ins_fc_foto_productos";
-   			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_id_ciudad', '$imagen_usuarios','$_id_entidad','$_cedula_usuarios'";
-   			$usuarios->setFuncion($funcion);
-   			$usuarios->setParametros($parametros);
-   			$resultado=$usuarios->Insert();
+   			$parametros = " '$archivo_foto_productos' ,'$_descripcion_foto_productos' , '$_id_usuarios'";
+   			$fc_foto_productos->setFuncion($funcion);
+   			$fc_foto_productos->setParametros($parametros);
+   			$resultado=$fc_foto_productos->Insert();
    		
+   		}else 
+   		{
+   			
+   			///no hace nada
    		}
    			
-   		else
+   		if ($_FILES['archivo_catalogos']['tmp_name']!="")
    		{
    		
-   			$colval = " nombre_usuarios = '$_nombre_usuario',  clave_usuarios = '$_clave_usuario', telefono_usuarios = '$_telefono_usuario', celular_usuarios = '$_celular_usuario', correo_usuarios = '$_correo_usuario', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuarios = '$_usuario_usuario', id_ciudad = '$_id_ciudad' , id_entidades = '$_id_entidad'  ";
-   			$tabla = "usuarios";
-   			$where = "cedula_usuarios = '$_cedula_usuarios'    ";
-   			$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
-   		
+   			//para la foto
+   			$directorio1 = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/catalogo_productos/';
+   			$nombre1 = $_FILES['archivo_catalogos']['name'];
+   			$tipo1 = $_FILES['archivo_catalogos']['type'];
+   			$tamano1 = $_FILES['archivo_catalogos']['size'];
+   			 
+   			// temporal al directorio definitivo
+   			move_uploaded_file($_FILES['archivo_catalogos']['tmp_name'],$directorio1.$nombre1);
+   			$data = file_get_contents($directorio1.$nombre1);
+   			$archivo_catalogos= pg_escape_bytea($data);
+   			$_descripcion_catalogos = $_POST["descripcion_catalogos"];
+   			 
+   			 
+   			$funcion = "ins_fc_catalogos";
+   			$parametros = " '$archivo_catalogos' ,'$_id_usuarios' , '$_descripcion_catalogos'";
+   			$fc_catalogos->setFuncion($funcion);
+   			$fc_catalogos->setParametros($parametros);
+   			$resultado=$fc_catalogos->Insert();
    		}
+   		else 
+   		{
+   			
+   			///no hace nada
+   		}
+   		
+   		
+   		
    		
    		if (isset ($_POST["id_entidades"]))
    		{
@@ -171,8 +196,7 @@ class FC_ProductosController extends ControladorBase{
    			$_id_unidades_medida       = $_POST["id_unidades_medida"];
    			$_iva_productos            = $_POST["iva_productos"];
    			
-   			
-   			
+   		
    		}
    		
    		$this->redirect("FC_Productos","index")	;
