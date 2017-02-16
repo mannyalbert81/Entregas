@@ -52,15 +52,19 @@
  
 	   
 	        <script>
-		    var loadFile = function(event) {
+		    var loadFileimg = function(event) {
 		        var reader = new FileReader();
 		        reader.onload = function(){
-		          var output = document.getElementById('output');
-		          output.src = reader.result;
+		          var outputimg = document.getElementById('outputimg');
+		          outputimg.src = reader.result;
 		        };
+
 		        reader.readAsDataURL(event.target.files[0]);
 		      };
             </script>
+            
+           
+            
 	         
      </head>
       <body class="cuerpo">
@@ -255,7 +259,7 @@
 			  <div class="form-group" style="margin-top:15px">
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_foto_productos" class="control-label">Foto Producto:</label>
-                                  <input type="file" class="form-control" id="archivo_foto_productos" accept="image/*" name="archivo_foto_productos[]" onchange="loadFile(event)" multiple/>
+                                  <input type="file" class="form-control" id="archivo_foto_productos" accept="image/*" name="archivo_foto_productos[]" onchange="loadFileimg(event)" multiple/>
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -275,7 +279,7 @@
 		     <div class="form-group">
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_catalogos" class="control-label">Catálogo:</label>
-                                  <input type="file" class="form-control" id="archivo_catalogos" name="archivo_catalogos" value="">
+                                  <input type="file" class="form-control" id="archivo_catalogos" accept=".pdf" name="archivo_catalogos" />
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -296,8 +300,15 @@
 			  <div class="row">
 		      <div class="form-group">
 		      <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Archivos:</p>
-	          	<div><img id="output" height="100px" width="100px"/></div>
+			  	<div><img id="outputimg" height="250px" width="220px"/></div>
+	         </div>
+	         </div>
+			 </div>
+			
+			 <div class="row" style="margin-top:5px">
+		      <div class="form-group">
+		      <div class="col-xs-12 col-md-12">
+			  	<div><img id="outputpdf" height="250px" width="220px"/></div>
 	         </div>
 	         </div>
 			 </div>
