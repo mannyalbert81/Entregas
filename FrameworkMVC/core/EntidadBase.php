@@ -391,27 +391,7 @@ class EntidadBase{
     
     }
     
-    public function InsertaJuicio($id_entidades,$id_ciudad,$juicio_referido_titulo_credito,$id_usuarios,$id_titulo_credito,$id_clientes,$id_etapas_juicios,$id_tipo_juicios,$descipcion_auto_pago_juicios,$id_estados_procesales_juicios,$id_estados_auto_pago_juicios,$nombre_archivado_juicios)
-    {
-    	//ins_juicios->FUNCION
-    	//_id_entidades , _id_ciudad , _juicio_referido_titulo_credito  , _id_usuarios , _id_titulo_credito , _id_clientes , _id_etapas_juicios , _id_tipo_juicios , _descipcion_auto_pago_juicios  , _id_estados_procesales_juicios , _id_estados_auto_pago_juicios , _nombre_archivado_juicios
-    	
-    	$juicio=new JuiciosModel();
-    	$funcion="ins_juicios";
-    	$parametros="'$id_entidades','$id_ciudad','$juicio_referido_titulo_credito','$id_usuarios','$id_titulo_credito','$id_clientes','$id_etapas_juicios','$id_tipo_juicios','$descipcion_auto_pago_juicios','$id_estados_procesales_juicios','$id_estados_auto_pago_juicios','$nombre_archivado_juicios'";
-    	$juicio->setFuncion($funcion);
-    	$juicio->setParametros($parametros);
-    	$juicio->Insert();
-    	
-    	//actualizar los prefijos
-    	$prefijos=new PrefijosModel();
-    	$colval="consecutivo=consecutivo+1";
-    	$tabla="prefijos";
-    	$where="id_prefijos='1'";
-    	
-    	$resultado=$prefijos->UpdateBy($colval, $tabla, $where);
-    }
-    
+   
  
   
 
@@ -466,358 +446,7 @@ class EntidadBase{
     }
     
     
-    //funciones  de notificaciones anterior
-    function verNotificaciones(){
-    	//session_start();
-    	$id_usuario=$_SESSION['id_usuarios'];
-    	$notificaciones=new NotificacionesModel();
-    	$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=false";
-    	$result_notificaciones=$notificaciones->getBy($where_notificacion);
-    	
-    	return $result_notificaciones;
-    }
-    
-	public function InsertaNotificaciones($id_tipo_notificacion ,$id_usuarios_dirigido_notificacion, $descripcion_notificaciones )
-    {
-    
-    
-    	$notificaciones=new NotificacionesModel();
-    	
-    	$usuarios = new UsuariosModel();
-    		
-    	$funcion = "ins_notificaciones";
-    
-    	$id_usuarios=$_SESSION['id_usuarios'];
-    	
-    	$resultUsuario=$usuarios->getBy("id_usuarios='$id_usuarios'");
-    	
-    	$descripcion_notificaciones.=" (".$resultUsuario[0]->usuario_usuarios.")";
-    
-    	
-    	$parametros = "'$id_tipo_notificacion','$id_usuarios_dirigido_notificacion', '$descripcion_notificaciones'";
-    	
-    	    
-    	$notificaciones->setFuncion($funcion);
-    		
-    	$notificaciones->setParametros($parametros);
-    		
-    	$resultadoN=$notificaciones->Insert();
-    	
-    
-    }
-    //termina funciones anteriores notificaciones
-    
-    
-    public function verMacAddress(){
-    /*
-    	
-    	
-    	ob_start();
-    
-    	system('ipconfig /all');
-    
-    	$mycomsys=ob_get_contents();
-    
-    	ob_clean();
-    		
-    	$macaddress="";
-    	$find_mac = "Direcci";
-    
-    	$pmac = strpos($mycomsys, $find_mac);
-    		
-    	if ($pmac === false) {
-    
-    	} else {
-    		$find_mac = "Fhysical";
-    		$macaddress=substr($mycomsys,($pmac+36),17);
-    
-    	}
-    		
-    		
-    	$macaddress=substr($mycomsys,($pmac+43),23);
-    
-    	return $macaddress;*/
-    	return '1';
-    }
-    
-    
-    public function getPermisosFirmar()
-    {
-    	@@session_start();
-    	
-    	$resultado="";
-    	
-    	$id_usuario=$_SESSION['id_usuarios'];
-    	
-    	$certficados = new CertificadosModel();
-    	$resultCertificados=$certficados->getBy("id_usuarios_certificado_digital='$id_usuario'");
-    	
-    	//verificar si tiene registradso certificado electronico.
-    	
-    	if(!empty($resultCertificados))
-    	{
-    		//verficar si se encuentra en la maquina personal del usuario
-    		
-    		$macLocal=$this->verMacAddress();
-    		$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal'");
-    		
-    		if (!empty($resultMac))
-    		{
-    			$firmas= new FirmasDigitalesModel();
-    			$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
-    			
-    			
-    			if(!empty($resultFirmas))
-    			{
-    				$resultado="";
-    				
-    			}else
-    			{
-    				$resultado="No tiene registrado una firma";
-    			}    			
-    			
-    			
-    		}else{
-    			
-    			$resultado="No tiene permiso para firmar desde esta pc";
-    		}
-    		
-    	}else
-    	{
-    		$resultado="Tiene que registrar certificado electronico";
-    	}
-    	
-    	return $resultado;
-    }
-    
-    public function FirmarDocumentos($directorio,$nombrePdf,$id_firma)
-    {
-    	@@session_start();
-    						
-    	//$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/';
-    	$id_rol=$_SESSION['id_rol'];
-    	
-
-		$origen = $directorio . $nombrePdf;
-		
-		$destino = $directorio . 'firmados/' . $nombrePdf;
-		
-		$ruta_ejecutable = $directorio . 'firmar/FirmadorElectronico.exe';
-		
-		$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$id_rol.' ';
-		
-		$comando_esc = escapeshellcmd ( $comando );
-		
-		exec ( $comando_esc, $resultadoSalida, $ejecucion );
-		
-		return $resultadoSalida;
-		
-    }
-    
-    public function FirmarDocumentoConPosicion($nombre,$id_firma,$destino,$posicion)
-    {
-    	session_start();
-    
-    	$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/';
-    
-    	$nombre = $_FILES ['imagen_firmas_digitales'] ['name'];
-    	$tipo = $_FILES ['imagen_firmas_digitales'] ['type'];
-    	$tamano = $_FILES ['imagen_firmas_digitales'] ['size'];
-    
-    	move_uploaded_file($_FILES['imagen_firmas_digitales']['tmp_name'],$directorio.$nombre);
-    	 
-    	$origen = $directorio . $nombre;
-    
-    	$destino = $directorio . 'firmados/' . $nombre;
-    
-    	$ruta_ejecutable = $directorio . 'firmar/FirmadorElectronico.exe';
-    
-    	$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' ';
-    		
-    	
-    
-    	$comando_esc = escapeshellcmd ( $comando );
-    
-    	exec ( $comando_esc, $resultadoSalida, $ejecucion );
-    
-    	return $resultadoSalida;
-    
-    }
-    
-    //cuando se selecciona archivos a firmar
-    
-    public function getPermisosFirmarPdfs($id_usuario)
-    {
-    	$resultado=array('valor'=>0,'error'=>'','estado'=>false);
-    	 
-    	
-    	$certficados = new CertificadosModel();
-    	$resultCertificados=$certficados->getBy("id_usuarios_certificado_digital='$id_usuario'");
-    	 
-    	//verificar si tiene registradso certificado electronico.
-    	 
-    	if(!empty($resultCertificados))
-    	{
-    		//verficar si se encuentra en la maquina personal del usuario
-    
-    		$macLocal=$this->verMacAddress();
-    		$macUsuario=$resultCertificados[0]->mac_certificado_digital;
-    		
-    		//$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal' AND id_usuarios_certificado_digital='$id_usuario'");
-        	//if (!empty($resultMac))
-        	
-    		if($macUsuario===$macLocal)
-    		{
-    			$firmas= new FirmasDigitalesModel();
-    			$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
-    			 
-    			
-    			if(!empty($resultFirmas))
-    			{
-    				$id_firma=$resultFirmas[0]->id_firmas_digitales;
-    			
-    				$resultado=array('valor'=>$id_firma,'error'=>'','estado'=>true);
-    				
-    
-    			}else
-    			{
-    				
-    				$resultado['error']="No tiene registrado una firma";
-    			}
-    			 
-    			 
-    		}else{
-    			
-    			$resultado['error']="No tiene permiso para firmar desde esta Maquina <br> por favor firmar desde su maquina asignada";
-    		}
-    
-    	}else
-    	{
-    		
-    		$resultado['error']="Tiene que registrar certificado electronico";
-    	}
-    	 
-    	return $resultado;
-    }
-    
-    public function FirmarPDFs($destino,$nombrePdf,$id_firma,$id_rol)
-    {
-    	@@ session_start();
-    	$id_usuario=$_SESSION['id_usuarios'];
-    	
-    	$ruta_ejecutable = $_SERVER['DOCUMENT_ROOT'].'/documentos/firmar/FirmadorElectronico.exe';
-    	$tmp = $_SERVER['DOCUMENT_ROOT'].'/documentos/tmp_documentos/';
-    	
-    	$moveTo = $tmp.$nombrePdf;
-    	$moveOf = $destino.$nombrePdf;
-    	
-    	rename($moveOf,$moveTo);
-    	
-    	$origen=$moveTo;
-    	$destino=$moveOf;
-    	
-    	$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$id_rol.' '.$id_usuario.' ';
-    
-    	$comando_esc = escapeshellcmd ( $comando );
-    
-    	exec ( $comando_esc, $resultadoSalida, $ejecucion );
-    
-    	return $resultadoSalida;
-    
-    }
-    
-    public function MostrarNotificaciones($id_usuario)
-    {
-    	//session_start();
-    	 
-    	$notificaciones= new NotificacionesModel();
-    	 
-    	$columnas=" notificaciones.id_notificaciones,
-			  notificaciones.descripcion_notificaciones,
-			  notificaciones.usuario_destino_notificaciones,
-			  notificaciones.usuario_origen_notificaciones,
-			  notificaciones.numero_movimiento_notificaciones,
-			  notificaciones.cantidad_cartones_notificaciones,
-    		  notificaciones.creado,
-    		  usuarios.id_usuarios,
-			  usuarios.usuario_usuarios,
-			  usuarios.nombre_usuarios,
-			  notificaciones.visto_notificaciones,
-			  tipo_notificacion.controlador_tipo_notificacion,
-			  tipo_notificacion.accion_tipo_notificacion,
-    		  tipo_notificacion.descripcion_notificacion";
-    	 
-    	$tablas=" public.notificaciones,
-				  public.usuarios,
-				  public.tipo_notificacion";
-    	 
-    	$where="notificaciones.usuario_origen_notificaciones = usuarios.id_usuarios AND
-    	tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion
-    	AND  notificaciones.visto_notificaciones='FALSE'
-    	AND notificaciones.usuario_destino_notificaciones='$id_usuario'";
-    	 
-    	$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where, "notificaciones.id_notificaciones");
-    	 
-    	$cantidad_notificaciones=count($resultNotificaciones);
-    	 
-    	 
-    	if($cantidad_notificaciones<0)
-    	{
-    		$cantidad_notificaciones=0;
-    		$resultNotificaciones=array();
-    	}
-    	
-    	$contar=array();
-    	$result=array();
-    	 
-    	foreach($resultNotificaciones as $linea=>$value)
-    	{
-    		
-    		 
-    		if(isset($contar[$value->descripcion_notificacion]))
-    		{
-    			 
-    			$contar[$value->descripcion_notificacion]+=1;
-    			
-    			
-    		}else{
-    			 
-    			array_push($result, $resultNotificaciones[$linea]);
-    			 
-    			$contar[$value->descripcion_notificacion]=1;
-    			
-    			
-    		}
-    		
-    		
-    		 
-    	}
-    	 
-    	
-    	$_SESSION['cantidad']=$cantidad_notificaciones;
-    	$_SESSION["resultNotificaciones"]=$result;
-    	$_SESSION["cantidad_fila_notificaciones"]=$contar;
-    }
-    
-    
-    public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$numero_movimiento,$cantidad_cartones)
-    {
-    	$notificaciones = new NotificacionesModel();
-    	 
-    	$funcion = "ins_notificaciones";
-    	 
-    	$_usuario_origen=$_SESSION['id_usuarios'];
-    	 
-    
-    	$parametros = "'$id_tipoNotificacion', '$_usuario_origen', '$usuarioDestino', '$descripcion','$numero_movimiento','$cantidad_cartones' ";
-    	 
-    	$notificaciones->setFuncion($funcion);
-    	 
-    	$notificaciones->setParametros($parametros);
-    	 
-    	$resultadoT=$notificaciones->Insert();
-    }
-    
+   
     
     public function MenuDinamico($_id_rol)
     {
@@ -953,9 +582,6 @@ class EntidadBase{
     				echo "Error en 4 ->". $e;
     			}	
     			
-    			
-    			
-    			
     			 
     		}
     		
@@ -991,13 +617,8 @@ class EntidadBase{
     				
     				echo "Error en 3 ->". $e;
     			}	
-    			 
-    			 
-    			 
     		
     		}
-    		
-    		
     		
 
     		///suo de nivel recorro los 2
@@ -1031,15 +652,9 @@ class EntidadBase{
     			
     				echo "Error en 2 ->". $e;
     			}
-    			 	
-    		
     		
     		}
     		
-    		
-			
-    		
-
     		///suo de nivel recorro los 1
     		$where1 =  "id_entidades= '$_id_entidades' AND nivel_plan_cuentas = '1' ORDER BY  codigo_plan_cuentas ";
     		$resultPlan1 =  $plan_cuentas->getBy($where1);
@@ -1071,29 +686,14 @@ class EntidadBase{
     			
     				echo "Error en 1 ->". $e;
     			}
-    			 
-    		
-    		
-    		
-    		}
-    		
-    		
-    		
-    		
+    			}
+    			
     	}
     	
-    	
-
-    	
-    	
-    	
+    		
     }
     
-    
-    
-    
-
-
+   
     public  function CierrePlanCuentas($_id_entidades, $_year)
     {
     	$plan_cuentas = new PlanCuentasModel();
@@ -1184,11 +784,7 @@ class EntidadBase{
     
     				echo "Error en 4 ->". $e;
     			}
-    			 
-    			 
-    			 
-    			 
-    
+    		
     		}
     
     		///suo de nivel recorro los 3
@@ -1205,9 +801,8 @@ class EntidadBase{
     		$_saldo_final_oct = 0;
     		$_saldo_final_nov = 0;
     		$_saldo_final_dic = 0;
-    		 
     		
-    
+    		
     		$columnas3 = 'plan_cuentas.codigo_plan_cuentas, cuentas_cierre_mes.id_cuentas_cierre_mes, plan_cuentas.nivel_plan_cuentas';
     		$tablas3 = 'plan_cuentas, cuentas_cierre_mes';
     		$id3 = "plan_cuentas.codigo_plan_cuentas";
@@ -1261,16 +856,10 @@ class EntidadBase{
     				echo "Error en 3 ->". $e;
     			}
     		
-    		
     			
     		}
     		
     		
-    		
-    		
-    
-    
-    
     		///suo de nivel recorro los 2
     
     		$_saldo_final_ene  = 0;
@@ -1357,7 +946,6 @@ class EntidadBase{
     		$_saldo_final_dic = 0;
     		 
     		
-    
     		$columnas1 = 'plan_cuentas.codigo_plan_cuentas, cuentas_cierre_mes.id_cuentas_cierre_mes, plan_cuentas.nivel_plan_cuentas';
     		$tablas1 = 'plan_cuentas, cuentas_cierre_mes';
     		$id1 = "plan_cuentas.codigo_plan_cuentas";

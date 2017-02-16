@@ -154,12 +154,13 @@ ul.sdt_menu li div.sdt_box{
 	display:block;
 	position:absolute;
 	width:170px;
-	overflow:hidden;
+	overflow-y:scroll;
 	height:170px;
 	top:85px;
 	left:0px;
 	display:none;
 	background:#000;
+	font-size:12px;
 }
 ul.sdt_menu li div.sdt_box a{
 	float:left;

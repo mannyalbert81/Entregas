@@ -11,8 +11,8 @@ class ControladorBase{
         }
     }
     
-    //Plugins y funcionalidades
     
+    ///////// EMPIEZA FUNCION PARA REDIRECCIONAR A VISTAS INICIALES/////////
     public function view($vista,$datos){
         foreach ($datos as $id_assoc => $valor) {
             ${$id_assoc}=$valor; 
@@ -23,28 +23,39 @@ class ControladorBase{
     
         require_once 'view/'.$vista.'View.php';
     }
+    ///////// TERMINA FUNCION PARA REDIRECCIONAR A VISTAS INICIALES/////////
+      
     
-    public function report($vista,$datos){
-    	foreach ($datos as $id_assoc => $valor) {
-    		${$id_assoc}=$valor;
-    	}
     
-    	require_once 'core/AyudaVistas.php';
-    	$helper=new AyudaVistas();
     
-    	require_once 'view/reportes/'.$vista.'Report.php';
-    }
     
+    ////////EMPIEZA FUNCION PARA DIRECCIONAR VISTAS AL CHAT//////////
     public function chat($vista,$datos){
     	foreach ($datos as $id_assoc => $valor) {
     		${$id_assoc}=$valor;
     	}
-    
     	require_once 'core/AyudaVistas.php';
     	$helper=new AyudaVistas();
     
     	require_once 'view/Chat/'.$vista.'View.php';
     }
+    ////////TERMINA FUNCION PARA DIRECCIONAR VISTAS AL CHAT//////////
+      
+    
+    
+    ////////EMPIEZA FUNCION PARA DIRECCIONAR VISTAS ALA FACTURACION Y COMPRAS//////////
+    public function facturacion_compras($vista,$datos){
+    	foreach ($datos as $id_assoc => $valor) {
+    		${$id_assoc}=$valor;
+    	}
+    	require_once 'core/AyudaVistas.php';
+    	$helper=new AyudaVistas();
+    
+    	require_once 'view/FACTURACION_COMPRAS/'.$vista.'View.php';
+    }
+    ////////TERMINA FUNCION PARA DIRECCIONAR VISTAS ALA FACTURACION Y COMPRAS//////////
+    
+    
     
     
     public function afuera($vista,$datos){

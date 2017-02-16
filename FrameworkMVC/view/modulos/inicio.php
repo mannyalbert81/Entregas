@@ -40,16 +40,53 @@
 				height:69px;
 			}
 		</style>
+		
+		
+		<?php 
+		
+		$controladores=$_SESSION['controladores'];
+		
+		 function getcontrolador($controlador,$controladores){
+		 	$display="display:none";
+		 	
+		 	if (!empty($controladores))
+		 	{
+		 	foreach ($controladores as $res)
+		 	{
+		 		if($res->nombre_controladores==$controlador)
+		 		{
+		 			$display= "display:block";
+		 			break;
+		 			
+		 		}
+		 	}
+		 	}
+		 	
+		 	return $display;
+		 }
+		
+		?>
+		
+		
+		
     </head>
-
     <body>
+     
+     
+     
+     
+          
+        	
+
+     
+     
       
     <div class="col-lg-12">
     <div class="col-lg-2">
     </div>
     <div class="col-lg-8">
     <div class="row">
-    <div class="content">
+    <div class="content" style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>">
 			<ul id="sdt_menu" class="sdt_menu">
 				<li>
 					<a href="#">
@@ -61,18 +98,40 @@
 						</span>
 					</a>
 					<div class="sdt_box">
-							<a href="#">Usuarios</a>
-							<a href="#">Controladores</a>
-							<a href="#">Entidades</a>
-							<a href="#">Roles</a>
-							<a href="#">Permisos Roles</a>
-							
-					</div>
+					          <div style="<?php echo getcontrolador("Usuarios",$controladores) ?>">
+						      <a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Usuarios</span> </a>
+		                      </div>
+		                      
+		                      <div style="<?php echo getcontrolador("Roles",$controladores) ?>">
+								<a href="index.php?controller=Roles&action=index"> <span class=" glyphicon glyphicon-asterisk" aria-hidden="true"> Roles</span> </a>
+								</div>
+								
+								<div style="<?php echo getcontrolador("PermisosRoles",$controladores) ?>">
+								<a href="index.php?controller=PermisosRoles&action=index"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Permisos</span> </a>
+								</div>
+								
+								<div style="<?php echo getcontrolador("Controladores",$controladores) ?>">
+								<a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
+								</div>
+								
+								<div style="<?php echo getcontrolador("Entidades",$controladores) ?>">
+								<a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Entidades</span> </a>
+								</div>
+								
+					            <div style="<?php echo getcontrolador("ReporteUsuarios",$controladores) ?>">
+								<a href="index.php?controller=ReporteUsuarios&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte</span> </a>
+								</div>
+								
+								<div style="<?php echo getcontrolador("ReporteUsuariosAdmin",$controladores) ?>">
+								<a href="index.php?controller=ReporteUsuariosAdmin&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte</span> </a>
+								</div>
+			
+		            </div>
 				</li>
 			</ul>
 			</div>
 			
-			<div class="content">
+			<div class="content" style="<?php echo getcontrolador("MenuPlanCuentas",$controladores) ?>">
 			<ul id="sdt_menu" class="sdt_menu">
 			<li>
 					<a href="#">
@@ -84,11 +143,53 @@
 						</span>
 					</a>
 					<div class="sdt_box">
-							<a href="#">Plan Cuentas</a>
-							<a href="#">Comprobantes</a>
-							<a href="#">Mayores</a>
-							<a href="#">Libro Diario</a>
-							<a href="#">Balance Comprobación</a>
+							 <div style="<?php echo getcontrolador("PlanCuentas",$controladores) ?>">
+							  <a href="index.php?controller=PlanCuentas&action=index"><span class="glyphicon glyphicon-book" aria-hidden="true"> Cuentas</span> </a>
+							  </div>
+							  <div style="<?php echo getcontrolador("PlanCuentas",$controladores) ?>">
+							  <a href="index.php?controller=PlanCuentas&action=ImprimirConsultarPlanCuentas"><span class="glyphicon glyphicon-print" aria-hidden="true"> Consultar e Imprimir Plan Cuentas</span> </a>
+							  </div>
+							   <div style="<?php echo getcontrolador("PlanCuentasAdmin",$controladores) ?>">
+							  <a href="index.php?controller=PlanCuentasAdmin&action=ImprimirConsultarPlanCuentasAdmin"><span class="glyphicon glyphicon-print" aria-hidden="true"> Consultar e Imprimir Plan Cuentas</span> </a>
+							  </div>
+					<div style="<?php echo getcontrolador("MenuComprobantes",$controladores) ?>">
+       
+							  <div style="<?php echo getcontrolador("Comprobantes",$controladores) ?>">
+								<a href="index.php?controller=Comprobantes&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Comprobantes Ingreso / Egreso</span> </a>
+								</div>
+								<div style="<?php echo getcontrolador("ComprobanteContable",$controladores) ?>">
+								<a href="index.php?controller=ComprobanteContable&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Comprobante Contable</span> </a>
+								</div>
+							    <div style="<?php echo getcontrolador("Comprobantes",$controladores) ?>">
+								<a href="index.php?controller=Comprobantes&action=ReporteComprobantes"><span class="glyphicon glyphicon-print" aria-hidden="true"> Consultar Imprimir Comprobantes</span> </a>
+								</div>
+								<div style="<?php echo getcontrolador("ComprobantesAdm",$controladores) ?>">
+								<a href="index.php?controller=ComprobantesAdm&action=ReporteComprobantesAdm"><span class="glyphicon glyphicon-print" aria-hidden="true"> Consultar Imprimir Comprobantes</span> </a>
+								</div>
+								<div style="<?php echo getcontrolador("MayorGeneral",$controladores) ?>">
+								<a href="index.php?controller=MayorGeneral&action=MayorGeneral"><span class="glyphicon glyphicon-print" aria-hidden="true"> Consultar Imprimir Mayor General</span> </a>
+								</div>
+								<div style="<?php echo getcontrolador("ComprobantesAdmin",$controladores) ?>">
+								<a href="index.php?controller=ComprobantesAdmin&action=ReporteComprobantes"><span class="glyphicon glyphicon-print" aria-hidden="true"> Consultar Imprimir Comprobantes</span> </a>
+								</div>
+					</div>
+					
+					 <div style="<?php echo getcontrolador("MenuCierreCuentas",$controladores) ?>">
+							  <div style="<?php echo getcontrolador("CierreCuentas",$controladores) ?>">
+					          <a href="index.php?controller=CierreCuentas&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Cerrar Cuentas</span> </a>
+					          </div>
+					          <div style="<?php echo getcontrolador("BalanceComprobacion",$controladores) ?>">
+					          <a href="index.php?controller=BalanceComprobacion&action=BalanceComprobacion"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobación</span> </a>
+					          </div>
+					          <div style="<?php echo getcontrolador("BalanceComprobacionAdmin",$controladores) ?>">
+					          <a href="index.php?controller=BalanceComprobacionAdmin&action=BalanceComprobacionAdmin"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobación</span> </a>
+					          </div>
+					          <div style="<?php echo getcontrolador("BalanceComprobacionAdm",$controladores) ?>">
+					          <a href="index.php?controller=BalanceComprobacionAdm&action=BalanceComprobacionAdm"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Balance Comprobación</span> </a>
+					          </div>
+					 
+					 </div>
+         
 					</div>
 				</li>
 			</ul>

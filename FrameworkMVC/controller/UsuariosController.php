@@ -486,7 +486,7 @@ public function index(){
 		    {
 		    
 		    	//para la foto
-		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos/';
+		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos_usuarios/';
 		    	$nombre = $_FILES['imagen_usuarios']['name'];
 		    	$tipo = $_FILES['imagen_usuarios']['type'];
 		    	$tamano = $_FILES['imagen_usuarios']['size'];
@@ -701,7 +701,7 @@ public function index(){
 					
 						//para la foto
 					
-						$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos/';
+						$directorio = $_SERVER['DOCUMENT_ROOT'].'/contabilidad/fotos_usuarios/';
 					
 						$nombre = $_FILES['imagen_usuarios']['name'];
 						$tipo = $_FILES['imagen_usuarios']['type'];
