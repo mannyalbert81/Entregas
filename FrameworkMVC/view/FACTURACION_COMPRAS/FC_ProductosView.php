@@ -1,12 +1,10 @@
     <?php include("view/modulos/head.php");?> 
     <?php include("view/modulos/menu.php");?>  
     <?php include("view/modulos/modal.php");?>
-    <?php include("view/css/Comprobantes/modal/buscar_plan_cuentas.php");?>
-    <?php include("view/css/Contable/modal/buscar_contable.php");?>
-       
-  
+    <?php include("view/FACTURACION_COMPRAS/modal/modal_grupos.php");?>
+    <?php include("view/FACTURACION_COMPRAS/modal/modal_um.php");?>
    
-    
+   
     
 <!DOCTYPE HTML>
 <html lang="es">
@@ -22,13 +20,10 @@
 		  <script src="view/js/bootstrapValidator.min.js"></script>
 		  <script src="view/js/ValidarFc_Productos.js"></script>
 	      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-          <script type="text/javascript" src="view/css/Comprobantes/js/VentanaCentrada.js"></script>
-	      <script type="text/javascript" src="view/css/Comprobantes/js/procesos-comprobantes.js"></script>
-	      <script type="text/javascript" src="view/css/Contable/js/procesos-contable.js"></script>
-         
-    
-      
-      
+          <script type="text/javascript" src="view/FACTURACION_COMPRAS/js/VentanaCentrada.js"></script>
+	      <script type="text/javascript" src="view/FACTURACION_COMPRAS/js/procesos-fc_productos.js"></script>
+	      
+       
          
     <script >   
     function numeros(e){
@@ -166,7 +161,7 @@
   			<div class="form-group" style="margin-top:37px">
             <div class="col-xs-2 col-md-2">
 		                          
-                                  <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#Contable"></button>
+                                  <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal"></button>
 		
 			</div>
             </div>
@@ -260,7 +255,7 @@
 		    <div class="form-group" style="margin-top:37px">
             <div class="col-xs-2 col-md-2">
 		                          
-                                  <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#Contable"></button>
+                                  <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#UM"></button>
 		
 			</div>
             </div>
@@ -282,8 +277,13 @@
 			 <div class="col-lg-6">
 			 <div class="panel panel-info">
 	         <div class="panel-body">
+	          <div class="row">
+	          <div class="col-xs-12 col-md-12" style="text-align: center";>
+	           <h2 style="color:#ec971f;">OPCIONAL</h2>
+	           </div>
+	           </div>
 	          <div class="col-lg-6">
-			  <div class="row">
+	         <div class="row">
 			  <div class="form-group" style="margin-top:15px">
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_foto_productos" class="control-label">Foto Producto:</label>
