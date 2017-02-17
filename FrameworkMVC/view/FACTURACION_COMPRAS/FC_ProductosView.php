@@ -20,7 +20,7 @@
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>  
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		  <script src="view/js/ValidarComprobanteContable.js"></script>
+		  <script src="view/js/ValidarFc_Productos.js"></script>
 	      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
           <script type="text/javascript" src="view/css/Comprobantes/js/VentanaCentrada.js"></script>
 	      <script type="text/javascript" src="view/css/Comprobantes/js/procesos-comprobantes.js"></script>
@@ -34,7 +34,7 @@
     function numeros(e){
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
-    letras = "-/0123456789";
+    letras = "0123456789";
     especiales = [8,37,39,46];
  
     tecla_especial = false
@@ -83,7 +83,7 @@
              
     	<div class="container">
         <div class="row" style="background-color: #FAFAFA;">
-  		<form id="form-comprobante-contable" action="<?php echo $helper->url("FC_Productos","index"); ?>" method="post" enctype="multipart/form-data" class="col-lg-12">
+  		<form id="form-fc_productos" action="<?php echo $helper->url("FC_Productos","index"); ?>" method="post" enctype="multipart/form-data" class="col-lg-12">
             
             <br>	
             
@@ -117,8 +117,29 @@
   			<div class="panel panel-info">
 	         <div class="panel-body">
 	         <div class="row">
+	         
+	          <div class="form-group" style="margin-top:15px">
+             <div class="col-xs-4 col-md-4">
+             
+                                  <label for="codigo_productos" class="control-label">Codigo:</label>
+                                  <input type="text" class="form-control" id="codigo_productos" name="codigo_productos" value=""  onkeypress="return numeros(event)" placeholder="Codigo" >
+                                  <span class="help-block"></span>
+             </div>
+             </div>
+             
+              <div class="form-group">
+             <div class="col-xs-8 col-md-8">
+             
+                                  <label for="nombre_productos" class="control-label">Nombre:</label>
+                                  <input type="text" class="form-control" id="nombre_productos" name="nombre_productos" value=""  placeholder="Nombre Producto">
+                                  <span class="help-block"></span>
+             </div>
+             </div>
+             </div>
+             
+            <div class="row"> 
 	        <div class="form-group" style="margin-top:15px">
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-5 col-md-5">
 		                          <label for="id_entidades" class="control-label">Entidad:</label>
                                   <select name="id_entidades" id="id_entidades"  class="form-control" readonly>
                                   	<?php foreach($resultEnt as $res) {?>
@@ -130,7 +151,7 @@
             </div>
             
             <div class="form-group">
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-5 col-md-5">
 		                          <label for="id_grupo_productos" class="control-label">Grupo:</label>
                                   <select name="id_grupo_productos" id="id_grupo_productos"  class="form-control" >
                                   <option value="" selected="selected">--Seleccione--</option>
@@ -142,18 +163,17 @@
             </div>
             </div>
 			
-  			 <div class="form-group">
-             <div class="col-xs-6 col-md-6">
-             
-                                  <label for="nombre_productos" class="control-label">Nombre:</label>
-                                  <textarea type="text" class="form-control" id="nombre_productos" name="nombre_productos" value=""  placeholder="Nombre Producto"></textarea>
-                                  <span class="help-block"></span>
-             </div>
-             </div>
+  			<div class="form-group" style="margin-top:37px">
+            <div class="col-xs-2 col-md-2">
+		                          
+                                  <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#Contable"></button>
+		
+			</div>
+            </div>
 		     
 		     
 		     <div class="form-group">
-             <div class="col-xs-6 col-md-6">
+             <div class="col-xs-12 col-md-12">
 		                          <label for="descripcion_productos" class="control-label">Descripción:</label>
                                   <textarea type="text"  class="form-control" id="descripcion_productos" name="descripcion_productos" value=""  placeholder="Descripción Producto"></textarea>
                                   <span class="help-block"></span>
@@ -209,11 +229,23 @@
                                   <span class="help-block"></span>
              </div>
 		     </div>
+		     </div>
 		     
-		     
+		     <div class="row"> 
+		     <div class="form-group" style="margin-top:15px">
+            <div class="col-xs-5 col-md-5">
+		                          <label for="iva_productos" class="control-label">Iva:</label>
+                                  <select name="iva_productos" id="iva_productos"  class="form-control" >
+                                  <option value="" selected="selected">--Seleccione--</option>
+								  <option value="TRUE">Si</option>
+						          <option value="FALSE">No</option>
+								   </select> 
+                                  <span class="help-block"></span>
+            </div>
+            </div>
 		     
 		    <div class="form-group">
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-5 col-md-5">
 		                          <label for="id_unidades_medida" class="control-label">U/M:</label>
                                   <select name="id_unidades_medida" id="id_unidades_medida"  class="form-control" >
                                   <option value="" selected="selected">--Seleccione--</option>
@@ -225,16 +257,12 @@
             </div>
             </div>
             
-		    <div class="form-group">
-            <div class="col-xs-6 col-md-6">
-		                          <label for="iva_productos" class="control-label">Iva:</label>
-                                  <select name="iva_productos" id="iva_productos"  class="form-control" >
-                                  <option value="" selected="selected">--Seleccione--</option>
-								  <option value="TRUE">Si</option>
-						          <option value="FALSE">No</option>
-								   </select> 
-                                  <span class="help-block"></span>
-            </div>
+		    <div class="form-group" style="margin-top:37px">
+            <div class="col-xs-2 col-md-2">
+		                          
+                                  <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#Contable"></button>
+		
+			</div>
             </div>
             
             <div class="form-group">
@@ -259,7 +287,7 @@
 			  <div class="form-group" style="margin-top:15px">
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_foto_productos" class="control-label">Foto Producto:</label>
-                                  <input type="file" class="form-control" id="archivo_foto_productos" accept="image/*" name="archivo_foto_productos[]" onchange="loadFileimg(event)" multiple/>
+                                  <input type="file" class="form-control" id="archivo_foto_productos" accept="image/*" name="archivo_foto_productos" onchange="loadFileimg(event)" multiple/>
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -269,7 +297,7 @@
 		     <div class="form-group">
              <div class="col-xs-12 col-md-12">
 		                          <label for="descripcion_foto_productos" class="control-label">Descripción:</label>
-                                  <textarea type="text" rows="6" class="form-control" id="descripcion_foto_productos" name="descripcion_foto_productos" value=""  placeholder="Descripcion Foto Producto"></textarea>
+                                  <textarea type="text" rows="8" class="form-control" id="descripcion_foto_productos" name="descripcion_foto_productos" value=""  placeholder="Descripcion Foto Producto"></textarea>
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -279,7 +307,7 @@
 		     <div class="form-group">
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_catalogos" class="control-label">Catálogo:</label>
-                                  <input type="file" class="form-control" id="archivo_catalogos" accept=".pdf" name="archivo_catalogos[]" multiple/>
+                                  <input type="file" class="form-control" id="archivo_catalogos" accept=".pdf" name="archivo_catalogos" multiple/>
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -289,7 +317,7 @@
 		     <div class="form-group">
              <div class="col-xs-12 col-md-12">
 		                          <label for="descripcion_catalogos" class="control-label">Descripción:</label>
-                                  <textarea type="text" rows="6" class="form-control" id="descripcion_catalogos" name="descripcion_catalogos" value=""  placeholder="Descripción Catálogo"></textarea>
+                                  <textarea type="text" rows="8" class="form-control" id="descripcion_catalogos" name="descripcion_catalogos" value=""  placeholder="Descripción Catálogo"></textarea>
                                   <span class="help-block"></span>
              </div>
 		     </div>

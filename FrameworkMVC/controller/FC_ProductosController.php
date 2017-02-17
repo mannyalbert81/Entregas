@@ -179,7 +179,7 @@ class FC_ProductosController extends ControladorBase{
    		
    		
    		
-   		if (isset ($_POST["id_entidades"]))
+   		if (isset ($_POST["id_entidades"])&& ($_FILES['archivo_catalogos']['tmp_name']!="") && ($_FILES['archivo_foto_productos']['tmp_name']!=""))
    		{
    			
    			$_id_entidades   		 = $_POST["id_entidades"];
@@ -195,9 +195,124 @@ class FC_ProductosController extends ControladorBase{
    			$_observaciones_productos  = $_POST["observaciones_productos"];
    			$_id_unidades_medida       = $_POST["id_unidades_medida"];
    			$_iva_productos            = $_POST["iva_productos"];
-   			
+   			$_codigo_productos   	   = $_POST["codigo_productos"];
    		
+   			
+   			$resultFotoProductos = $fc_foto_productos->getBy("archivo_foto_productos ='$archivo_foto_productos' AND id_usuario = '$_id_usuarios' AND descripcion_foto_productos = '$_descripcion_foto_productos'");
+   			$_id_foto_productos=$resultFotoProductos[0]->id_foto_productos;
+   			
+   			$resultCatalogo = $fc_catalogos->getBy("archivo_catalogos ='$archivo_catalogos' AND id_usuario = '$_id_usuarios' AND descripcion_catalogos = '$_descripcion_catalogos'");
+   			$_id_catalogos=$resultCatalogo[0]->id_catalogos;
+   			
+   			
+   			
+   			$funcion = "ins_fc_productos";
+   			$parametros = "'$_id_grupo_productos','$_id_entidades','$_nombre_productos', '$_descripcion_productos', '$_id_foto_productos', '$_id_catalogos', '$_precio_uno_productos', '$_utilidad_uno_productos', '$_precio_dos_productos', '$_utilidad_dos', '$_precio_tres_productos', '$_utilidad_tres', '$_observaciones_productos', '$_id_usuarios', '$_iva_productos', '$_id_unidades_medida', '$_codigo_productos'";
+   			$fc_productos->setFuncion($funcion);
+   			$fc_productos->setParametros($parametros);
+   			$resultado=$fc_productos->Insert();
    		}
+   		
+   		
+   		elseif (isset ($_POST["id_entidades"])&& ($_FILES['archivo_foto_productos']['tmp_name']!=""))
+   		{
+   			
+   			
+   			
+   			$_id_entidades   		 = $_POST["id_entidades"];
+   			$_id_grupo_productos  	 = $_POST["id_grupo_productos"];
+   			$_nombre_productos       = $_POST["nombre_productos"];
+   			$_descripcion_productos  = $_POST["descripcion_productos"];
+   			$_precio_uno_productos    = $_POST["precio_uno_productos"];
+   			$_utilidad_uno_productos  = $_POST["utilidad_uno_productos"];
+   			$_precio_dos_productos    = $_POST["precio_dos_productos"];
+   			$_utilidad_dos            = $_POST["utilidad_dos"];
+   			$_precio_tres_productos   = $_POST["precio_tres_productos"];
+   			$_utilidad_tres           = $_POST["utilidad_tres"];
+   			$_observaciones_productos  = $_POST["observaciones_productos"];
+   			$_id_unidades_medida       = $_POST["id_unidades_medida"];
+   			$_iva_productos            = $_POST["iva_productos"];
+   			$_codigo_productos   	   = $_POST["codigo_productos"];
+   			 
+   			
+   			$resultFotoProductos = $fc_foto_productos->getBy("archivo_foto_productos ='$archivo_foto_productos' AND id_usuario = '$_id_usuarios' AND descripcion_foto_productos = '$_descripcion_foto_productos'");
+   			$_id_foto_productos=$resultFotoProductos[0]->id_foto_productos;
+   			
+   			$_id_catalogos=1;
+   			
+   			
+   			
+   			$funcion = "ins_fc_productos";
+   			$parametros = "'$_id_grupo_productos','$_id_entidades','$_nombre_productos', '$_descripcion_productos', '$_id_foto_productos', '$_id_catalogos', '$_precio_uno_productos', '$_utilidad_uno_productos', '$_precio_dos_productos', '$_utilidad_dos', '$_precio_tres_productos', '$_utilidad_tres', '$_observaciones_productos', '$_id_usuarios', '$_iva_productos', '$_id_unidades_medida', '$_codigo_productos'";
+   			$fc_productos->setFuncion($funcion);
+   			$fc_productos->setParametros($parametros);
+   			$resultado=$fc_productos->Insert();
+   			
+   		}
+   		elseif (isset ($_POST["id_entidades"])&& ($_FILES['archivo_catalogos']['tmp_name']!=""))
+   		{
+   			
+   			
+   			
+   			$_id_entidades   		 = $_POST["id_entidades"];
+   			$_id_grupo_productos  	 = $_POST["id_grupo_productos"];
+   			$_nombre_productos       = $_POST["nombre_productos"];
+   			$_descripcion_productos  = $_POST["descripcion_productos"];
+   			$_precio_uno_productos    = $_POST["precio_uno_productos"];
+   			$_utilidad_uno_productos  = $_POST["utilidad_uno_productos"];
+   			$_precio_dos_productos    = $_POST["precio_dos_productos"];
+   			$_utilidad_dos            = $_POST["utilidad_dos"];
+   			$_precio_tres_productos   = $_POST["precio_tres_productos"];
+   			$_utilidad_tres           = $_POST["utilidad_tres"];
+   			$_observaciones_productos  = $_POST["observaciones_productos"];
+   			$_id_unidades_medida       = $_POST["id_unidades_medida"];
+   			$_iva_productos            = $_POST["iva_productos"];
+   			$_codigo_productos   	   = $_POST["codigo_productos"];
+   		
+   			
+   			$_id_foto_productos=1;
+   			
+   			$resultCatalogo = $fc_catalogos->getBy("archivo_catalogos ='$archivo_catalogos' AND id_usuario = '$_id_usuarios' AND descripcion_catalogos = '$_descripcion_catalogos'");
+   			$_id_catalogos=$resultCatalogo[0]->id_catalogos;
+   			
+   			
+   			
+   			$funcion = "ins_fc_productos";
+   			$parametros = "'$_id_grupo_productos','$_id_entidades','$_nombre_productos', '$_descripcion_productos', '$_id_foto_productos', '$_id_catalogos', '$_precio_uno_productos', '$_utilidad_uno_productos', '$_precio_dos_productos', '$_utilidad_dos', '$_precio_tres_productos', '$_utilidad_tres', '$_observaciones_productos', '$_id_usuarios', '$_iva_productos', '$_id_unidades_medida', '$_codigo_productos'";
+   			$fc_productos->setFuncion($funcion);
+   			$fc_productos->setParametros($parametros);
+   			$resultado=$fc_productos->Insert();
+   		}else
+   			
+   			{
+   			
+   				
+   				
+   				$_id_entidades   		 = $_POST["id_entidades"];
+   				$_id_grupo_productos  	 = $_POST["id_grupo_productos"];
+   				$_nombre_productos       = $_POST["nombre_productos"];
+   				$_descripcion_productos  = $_POST["descripcion_productos"];
+   				$_precio_uno_productos    = $_POST["precio_uno_productos"];
+   				$_utilidad_uno_productos  = $_POST["utilidad_uno_productos"];
+   				$_precio_dos_productos    = $_POST["precio_dos_productos"];
+   				$_utilidad_dos            = $_POST["utilidad_dos"];
+   				$_precio_tres_productos   = $_POST["precio_tres_productos"];
+   				$_utilidad_tres           = $_POST["utilidad_tres"];
+   				$_observaciones_productos  = $_POST["observaciones_productos"];
+   				$_id_unidades_medida       = $_POST["id_unidades_medida"];
+   				$_iva_productos            = $_POST["iva_productos"];
+   				$_codigo_productos   	   = $_POST["codigo_productos"];
+   				 
+   			
+   				$_id_foto_productos=1;
+   			    $_id_catalogos=1;
+   			
+   				$funcion = "ins_fc_productos";
+   				$parametros = "'$_id_grupo_productos','$_id_entidades','$_nombre_productos', '$_descripcion_productos', '$_id_foto_productos', '$_id_catalogos', '$_precio_uno_productos', '$_utilidad_uno_productos', '$_precio_dos_productos', '$_utilidad_dos', '$_precio_tres_productos', '$_utilidad_tres', '$_observaciones_productos', '$_id_usuarios', '$_iva_productos', '$_id_unidades_medida', '$_codigo_productos'";
+   				$fc_productos->setFuncion($funcion);
+   				$fc_productos->setParametros($parametros);
+   				$resultado=$fc_productos->Insert();
+   			}
    		
    		$this->redirect("FC_Productos","index")	;
    	}
