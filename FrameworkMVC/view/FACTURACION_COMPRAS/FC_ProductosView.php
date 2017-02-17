@@ -108,7 +108,7 @@
              <div class="col-xs-4 col-md-4">
              
                                   <label for="codigo_productos" class="control-label">Codigo:</label>
-                                  <input type="text" class="form-control" id="codigo_productos" name="codigo_productos" value=""  onkeypress="return numeros(event)" placeholder="Codigo" >
+                                  <input type="text" class="form-control" id="codigo_productos" name="codigo_productos" value=""   placeholder="Codigo" >
                                   <span class="help-block"></span>
              </div>
              </div>
@@ -171,7 +171,7 @@
 		     <div class="form-group">
              <div class="col-xs-6 col-md-6">
 		                          <label for="precio_uno_productos" class="control-label">1er Precio:</label>
-                                  <input type="text" class="form-control" id="precio_uno_productos" name="precio_uno_productos" value=""  placeholder="1er Precio Producto">
+                                  <input type="text" class="form-control" id="precio_uno_productos" name="precio_uno_productos" value=""  onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -179,7 +179,7 @@
 		     <div class="form-group">
              <div class="col-xs-6 col-md-6">
 		                          <label for="utilidad_uno_productos" class="control-label">1era Utilidad:</label>
-                                  <input type="text" class="form-control" id="utilidad_uno_productos" name="utilidad_uno_productos" value=""  placeholder="1era Utilidad Producto">
+                                  <input type="text" class="form-control" id="utilidad_uno_productos" name="utilidad_uno_productos" value=""  onkeypress="return numeros(event)" placeholder="0%">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -187,7 +187,7 @@
 		      <div class="form-group">
              <div class="col-xs-6 col-md-6">
 		                          <label for="precio_dos_productos" class="control-label">2do Precio:</label>
-                                  <input type="text" class="form-control" id="precio_dos_productos" name="precio_dos_productos" value=""  placeholder="2do Precio Producto">
+                                  <input type="text" class="form-control" id="precio_dos_productos" name="precio_dos_productos" value=""  onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -195,7 +195,7 @@
 		     <div class="form-group">
              <div class="col-xs-6 col-md-6">
 		                          <label for="utilidad_dos" class="control-label">2da Utilidad:</label>
-                                  <input type="text" class="form-control" id="utilidad_dos" name="utilidad_dos" value=""  placeholder="2da Utilidad Producto">
+                                  <input type="text" class="form-control" id="utilidad_dos" name="utilidad_dos" value=""  onkeypress="return numeros(event)" placeholder="0%">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -203,7 +203,7 @@
 		     <div class="form-group">
              <div class="col-xs-6 col-md-6">
 		                          <label for="precio_tres_productos" class="control-label">3cer Precio:</label>
-                                  <input type="text" class="form-control" id="precio_tres_productos" name="precio_tres_productos" value=""  placeholder="3cer Precio Producto">
+                                  <input type="text" class="form-control" id="precio_tres_productos" name="precio_tres_productos" value="" onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
              </div>
 		     </div>
@@ -211,7 +211,7 @@
 		     <div class="form-group">
              <div class="col-xs-6 col-md-6">
 		                          <label for="utilidad_tres" class="control-label">3era Utilidad:</label>
-                                  <input type="text" class="form-control" id="utilidad_tres" name="utilidad_tres" value=""  placeholder="3era Utilidad Producto">
+                                  <input type="text" class="form-control" id="utilidad_tres" name="utilidad_tres" value=""  onkeypress="return numeros(event)" placeholder="0%">
                                   <span class="help-block"></span>
              </div>
 		     </div>

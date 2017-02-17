@@ -16,22 +16,8 @@ $(document).ready(function() {
 	                                notEmpty: {
 	                                	message: 'El codigo es requerido.',
 	                	                   
-	                                },
-	                                regexp: {
-	                                	 
-		               					 regexp: /^[0-9]+$/,
-		                
-		               					 message: 'Solo números'
-		                
-		               				 },
-		            				 stringLength: {
-		            					 
-		            					 min: 4,
-		            					 max: 20,
-		                                
-		            					 message: 'Ingrese min 4 números'
-		            					
-		            				 }
+	                                }
+	                                
 	                             
 	                        }
 	                },
