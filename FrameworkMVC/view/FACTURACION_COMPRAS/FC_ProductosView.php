@@ -136,8 +136,9 @@
             </div>
             </div>
             
-            <div class="form-group">
-            <div class="col-xs-5 col-md-5">
+           
+	        <div class="form-group">
+            <div class="col-xs-5 col-md-5 outer_div">
 		                          <label for="id_grupo_productos" class="control-label">Grupo:</label>
                                   <select name="id_grupo_productos" id="id_grupo_productos"  class="form-control" >
                                   <option value="" selected="selected">--Seleccione--</option>
@@ -148,6 +149,7 @@
                                   <span class="help-block"></span>
             </div>
             </div>
+           
 			
   			<div class="form-group" style="margin-top:37px">
             <div class="col-xs-2 col-md-2">

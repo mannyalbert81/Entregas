@@ -1,13 +1,13 @@
 
 		
         function load(page){
-		var parametros = {"action":"ajax","page":page};
+		var parametros = {"action":"ajax"};
 		$("#loader").fadeIn('slow');
 		$.ajax({
-			url:'paises_ajax.php',
+			url:'view/FACTURACION_COMPRAS/FC_ProductosView.php',
 			data: parametros,
 			 beforeSend: function(objeto){
-			$("#loader").html("<img src='loader.gif'>");
+		  $("#loader").html('<img src="view/images/ajax-loader.gif"> Cargando...');
 			},
 			success:function(data){
 				$(".outer_div").html(data).fadeIn('slow');
