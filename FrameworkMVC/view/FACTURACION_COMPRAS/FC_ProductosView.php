@@ -91,16 +91,7 @@
 			 </div>
 		     </div>
 		     
-		     <div class="col-md-12">
-					<div class="pull-right">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-						 <span class="glyphicon glyphicon-search"></span> Buscar Cuentas
-						</button>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#Contable">
-						  <span class="glyphicon glyphicon-print"></span> Contable
-						</button>
-					</div>	
-			 </div>	
+		    
 	         </div>
 	         </div>
 	         </div>
