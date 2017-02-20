@@ -141,7 +141,7 @@
        
        }
        
-       $arrayOpciones=array("todos"=>'--Todos--',"true"=>'--Si--',"false"=>'--No--');
+       $arrayOpciones=array("todos"=>'--TODOS--',"true"=>'Si',"false"=>'No');
        
        ?>
  
@@ -241,8 +241,8 @@
 		
 		 <h4 style="color:#ec971f;"></h4>
 			  <div>					
-					<div id="comprobantes" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
-					<div class="div_comprobantes" >
+					<div id="productos" style="position: absolute;	text-align: center;	top: 10px;	width: 100%;display:none;"></div><!-- Carga gif animado -->
+					<div class="div_productos" >
 							
 					</div><!-- Datos ajax Final -->
 					
