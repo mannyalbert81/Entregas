@@ -141,7 +141,7 @@
        
        }
        
-       $arrayOpciones=array("todos"=>'--TODOS--',"true"=>'Si',"false"=>'No');
+       $arrayOpciones=array(""=>'--TODOS--',"true"=>'Si',"false"=>'No');
        
        ?>
  

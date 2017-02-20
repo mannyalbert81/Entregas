@@ -507,7 +507,7 @@ class FC_ProductosController extends ControladorBase{
    
    				if($id_unidades_medida!=0){$where_4=" AND fc_unidades_medida.id_unidades_medida ='$id_unidades_medida'";}
    				
-   				if($iva_productos!=0){$where_5=" AND fc_productos.iva_productos ='$iva_productos'";}
+   				if($iva_productos!=""){$where_5=" AND fc_productos.iva_productos ='$iva_productos'";}
    				 
    				 
    				$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3. $where_4. $where_5;
@@ -564,8 +564,8 @@ class FC_ProductosController extends ControladorBase{
    						$html.='<th>Grupo</th>';
    						$html.='<th>U/M</th>';
    						$html.='<th>Iva</th>';
-   						$html.='<th></th>';
-   						$html.='<th></th>';
+   						$html.='<th>Ficha</th>';
+   						$html.='<th>Catálogo</th>';
    						$html.='</tr>';
    						$html.='</thead>';
    						$html.='<tbody>';
@@ -579,7 +579,7 @@ class FC_ProductosController extends ControladorBase{
    							
    							
    							$html.='<tr>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_tipo_comprobantes.'</td>';
+   							$html.='<td style="color:#000000;font-size:80%;"></td>';
    							$html.='<td style="color:#000000;font-size:80%;">'.$res->codigo_productos.'</td>';
    							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_productos.'</td>';
    							
@@ -618,8 +618,8 @@ class FC_ProductosController extends ControladorBase{
    							
    								$html.='<td style="color:#000000;font-size:80%;">'.$res->$_no.'</td>';
    							}
-   							$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=FC_Productos&action=Ficha&id_productos='. $res->id_productos .'&id_entidades='. $res->id_entidades.'" target="_blank">--Ver--</a></span></td>';
-   							$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="http://localhost:4000/contabilidad/FrameworkMVC/view/DevuelveCatalogoView.php?id_catalogos='. $res->id_catalogos .'" target="_blank">--Ver--</a></span></td>';
+   							$html.='<td style="color:#000000;font-size:90%;"><span class="pull-right"><a href="index.php?controller=FC_Productos&action=Ficha&id_productos='. $res->id_productos .'&id_entidades='. $res->id_entidades.'" target="_blank">--Ver--</a></span></td>';
+   							$html.='<td style="color:#000000;font-size:90%;"><span class="pull-right"><a href="http://localhost:4000/contabilidad/FrameworkMVC/view/DevuelveCatalogoView.php?id_catalogos='. $res->id_catalogos .'" target="_blank">--Ver--</a></span></td>';
    							$html.='</tr>';
    								
    
