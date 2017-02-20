@@ -334,18 +334,21 @@ class FC_ProductosController extends ControladorBase{
    	
    		if(isset($_REQUEST['id_productos']))
    		{
+   			
+   			
    	
    			$parametros = array();
    			$parametros['id_entidades']=isset($_GET['id_entidades'])?trim($_GET['id_entidades']):'';
    			$parametros['id_productos']=isset($_GET['id_productos'])?trim($_GET['id_productos']):'';
-   	
+   			
+   			
    			//aqui poner la pagina
    	
-   			$pagina="conReporteProductos.aspx";
+   			$pagina="conFichaProductos.aspx";
    	
    			$conexion_rpt = array();
    			$conexion_rpt['pagina']=$pagina;
-   			$conexion_rpt['port']="59584";
+   			//$conexion_rpt['port']="59584";
    	
    			$this->view("ReporteRpt", array(
    					"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
