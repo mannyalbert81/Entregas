@@ -1,22 +1,26 @@
 
+	$(document).ready(function(){
+		load_productos(1);
+		});
 		
-        function load(page){
-		var parametros = {"action":"ajax"};
-		$("#loader").fadeIn('slow');
-		$.ajax({
-			url:'view/FACTURACION_COMPRAS/FC_ProductosView.php',
-			data: parametros,
-			 beforeSend: function(objeto){
-		  $("#loader").html('<img src="view/images/ajax-loader.gif"> Cargando...');
-			},
-			success:function(data){
-				$(".outer_div").html(data).fadeIn('slow');
-				$("#loader").html("");
-			}
-		})
-	}
+		
+		function load_productos(page){
+			var c= $("#c").val();
+			$("#productos").fadeIn('slow');
+			$.ajax({
+				url:'view/FACTURACION_COMPRAS/ajax/cargar_productos.php?action=ajax&page='+page+'&c='+c,
+				 beforeSend: function(objeto){
+				$("#productos").html('<img src="view/images/ajax-loader.gif"> Cargando...');
+				},
+				success:function(data){
+					$(".div_productos").html(data).fadeIn('slow');
+					$("#productos").html("");
+				}
+			})
+		}
+		
+		
 
-		
 		
 		$( "#guardarGRUPO" ).submit(function( event ) {
 		var parametros = $(this).serialize();

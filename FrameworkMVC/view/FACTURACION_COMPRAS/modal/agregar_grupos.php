@@ -56,6 +56,8 @@
 		$query_new_insert = pg_query($conn,$sql);
 			if ($query_new_insert){
 				$messages[] = "Los datos han sido guardados satisfactoriamente.";
+			
+				
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".($conn);
 			}

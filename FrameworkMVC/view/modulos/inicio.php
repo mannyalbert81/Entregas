@@ -210,6 +210,10 @@
 							 <div style="<?php echo getcontrolador("FC_Productos",$controladores) ?>">
 					          <a href="index.php?controller=FC_Productos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Productos</span> </a>
 					          </div>
+					          
+					          <div style="<?php echo getcontrolador("FC_Productos",$controladores) ?>">
+                              <a href="index.php?controller=FC_Productos&action=Reporte_Productos"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
+                              </div>
 							
 					</div>
 				</li>

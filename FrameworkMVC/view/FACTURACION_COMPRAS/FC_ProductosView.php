@@ -3,6 +3,7 @@
     <?php include("view/modulos/modal.php");?>
     <?php include("view/FACTURACION_COMPRAS/modal/modal_grupos.php");?>
     <?php include("view/FACTURACION_COMPRAS/modal/modal_um.php");?>
+    <?php include("view/FACTURACION_COMPRAS/modal/buscar_productos.php");?>
    
    
     
@@ -21,7 +22,7 @@
 		  <script src="view/js/ValidarFc_Productos.js"></script>
 	      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
           <script type="text/javascript" src="view/FACTURACION_COMPRAS/js/VentanaCentrada.js"></script>
-	      <script type="text/javascript" src="view/FACTURACION_COMPRAS/js/procesos-fc_productos.js"></script>
+          <script type="text/javascript" src="view/FACTURACION_COMPRAS/js/procesos-fc_productos.js"></script>
 	      
        
          
@@ -137,8 +138,9 @@
             </div>
             
            
+           
 	        <div class="form-group">
-            <div class="col-xs-5 col-md-5 outer_div">
+            <div class="col-xs-5 col-md-5">
 		                          <label for="id_grupo_productos" class="control-label">Grupo:</label>
                                   <select name="id_grupo_productos" id="id_grupo_productos"  class="form-control" >
                                   <option value="" selected="selected">--Seleccione--</option>
@@ -268,6 +270,13 @@
 			
 			
 			 <div class="col-lg-6">
+			  <div class="col-md-12">
+					<div class="pull-right">
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#Productos">
+						 <span class="glyphicon glyphicon-search"></span> Buscar Productos
+						</button>
+					</div>	
+			 </div>	
 			 <div class="panel panel-info">
 	         <div class="panel-body">
 	          <div class="row">
@@ -277,7 +286,7 @@
 	           </div>
 	          <div class="col-lg-6">
 	         <div class="row">
-			  <div class="form-group" style="margin-top:15px">
+			  <div class="form-group" >
 		    <div class="col-xs-12 col-md-12">
 		                          <label for="archivo_foto_productos" class="control-label">Foto Producto:</label>
                                   <input type="file" class="form-control" id="archivo_foto_productos" accept="image/*" name="archivo_foto_productos" onchange="loadFileimg(event)" multiple/>
@@ -318,6 +327,8 @@
 			 </div>
 			  
 			  <div class="col-lg-6">
+			 	
+		    
 			  <div class="row" style="margin-top:37px">
 		      <div class="form-group">
 		      <div class="col-xs-6 col-md-12">

@@ -175,6 +175,22 @@ $controladores=$_SESSION['controladores'];
 </ul>
 </li>
 
+ <li class="dropdown" style="<?php echo getcontrolador("MenuFacturacion",$controladores) ?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Facturación" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li style="<?php echo getcontrolador("FC_Productos",$controladores) ?>">
+          <a href="index.php?controller=FC_Productos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Productos</span> </a>
+          </li>
+          
+          <li style="<?php echo getcontrolador("FC_Productos",$controladores) ?>">
+          <a href="index.php?controller=FC_Productos&action=Reporte_Productos"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
+          </li>
+         
+          
+</ul>
+</li>
+
  <li class="dropdown" style="<?php echo getcontrolador("MenuMensajeria",$controladores) ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mensajeria" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
