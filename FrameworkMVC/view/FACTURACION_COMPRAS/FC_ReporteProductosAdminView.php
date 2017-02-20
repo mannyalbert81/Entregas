@@ -73,7 +73,7 @@
 
 		$("#productos").fadeIn('slow');
 		$.ajax({
-			url:"<?php echo $helper->url("FC_Productos","Reporte_Productos");?>",
+			url:"<?php echo $helper->url("FC_ReporteProductosAdmin","index");?>",
             type : "POST",
             async: true,			
 			data: con_datos,
@@ -92,7 +92,7 @@
     <script>
 	       	$(document).ready(function(){ 	
 				$( "#codigo_productos" ).autocomplete({
-      				source: "<?php echo $helper->url("FC_Productos","AutocompleteCodigoProductos"); ?>",
+      				source: "<?php echo $helper->url("FC_ReporteProductosAdmin","AutocompleteCodigoProductos"); ?>",
       				minLength: 1
     			});
 	
@@ -104,7 +104,7 @@
      <script>
 	       	$(document).ready(function(){ 	
 				$( "#nombre_productos" ).autocomplete({
-      				source: "<?php echo $helper->url("FC_Productos","AutocompleteNombreProductos"); ?>",
+      				source: "<?php echo $helper->url("FC_ReporteProductosAdmin","AutocompleteNombreProductos"); ?>",
       				minLength: 1
     			});
 	
@@ -153,7 +153,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("FC_Productos","Reporte_Productos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
+      <form action="<?php echo $helper->url("FC_ReporteProductosAdmin","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
@@ -167,8 +167,8 @@
   					
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo">Entidades:</p>
-			  	<select name="id_entidades" id="id_entidades"  class="form-control" readonly>
-			  	
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+			  	<option value="0"><?php echo "--TODOS--";  ?> </option>
 			  		<?php foreach($resultEnt as $res) {?>
 						<option value="<?php echo $res->id_entidades; ?>"<?php if($sel_id_entidades==$res->id_entidades){echo "selected";}?>><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>

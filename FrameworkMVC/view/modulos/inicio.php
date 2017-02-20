@@ -215,6 +215,13 @@
                               <a href="index.php?controller=FC_Productos&action=Reporte_Productos"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
                               </div>
 							
+							  <div style="<?php echo getcontrolador("FC_ReporteProductosAdm",$controladores) ?>">
+          					  <a href="index.php?controller=FC_ReporteProductosAdm&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
+                              </div>
+         
+                              <div style="<?php echo getcontrolador("FC_ReporteProductosAdmin",$controladores) ?>">
+                              <a href="index.php?controller=FC_ReporteProductosAdmin&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
+                              </div>
 					</div>
 				</li>
 			</ul>

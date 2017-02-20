@@ -73,7 +73,7 @@
 
 		$("#productos").fadeIn('slow');
 		$.ajax({
-			url:"<?php echo $helper->url("FC_Productos","Reporte_Productos");?>",
+			url:"<?php echo $helper->url("FC_ReporteProductosAdm","index");?>",
             type : "POST",
             async: true,			
 			data: con_datos,
@@ -92,7 +92,7 @@
     <script>
 	       	$(document).ready(function(){ 	
 				$( "#codigo_productos" ).autocomplete({
-      				source: "<?php echo $helper->url("FC_Productos","AutocompleteCodigoProductos"); ?>",
+      				source: "<?php echo $helper->url("FC_ReporteProductosAdm","AutocompleteCodigoProductos"); ?>",
       				minLength: 1
     			});
 	
@@ -104,7 +104,7 @@
      <script>
 	       	$(document).ready(function(){ 	
 				$( "#nombre_productos" ).autocomplete({
-      				source: "<?php echo $helper->url("FC_Productos","AutocompleteNombreProductos"); ?>",
+      				source: "<?php echo $helper->url("FC_ReporteProductosAdm","AutocompleteNombreProductos"); ?>",
       				minLength: 1
     			});
 	
@@ -153,7 +153,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("FC_Productos","Reporte_Productos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
+      <form action="<?php echo $helper->url("FC_ReporteProductosAdm","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
