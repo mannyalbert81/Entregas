@@ -208,9 +208,9 @@
 		  
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Iva Productos:</p>
-			  	<select name="id_unidades_medida" id="id_unidades_medida"  class="form-control">
+			  	<select name="iva_productos" id="iva_productos"  class="form-control">
 					<?php foreach($arrayOpciones as $res=>$val) {?>
-						<option value="<?php echo $res; ?>" <?php if($sel_id_unidades_medida==$res){echo "selected";}?>><?php echo $val;  ?> </option>
+						<option value="<?php echo $res; ?>" <?php if($sel_iva_productos==$res){echo "selected";}?>><?php echo $val;  ?> </option>
 					<?php } ?>
 		        </select>
          </div>
