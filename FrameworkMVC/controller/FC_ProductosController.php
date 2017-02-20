@@ -336,7 +336,7 @@ class FC_ProductosController extends ControladorBase{
    		{
    	
    			$parametros = array();
-   	
+   			$parametros['id_entidades']=isset($_GET['id_entidades'])?trim($_GET['id_entidades']):'';
    			$parametros['id_productos']=isset($_GET['id_productos'])?trim($_GET['id_productos']):'';
    	
    			//aqui poner la pagina
@@ -443,7 +443,8 @@ class FC_ProductosController extends ControladorBase{
    				$columnas = " fc_productos.id_productos, 
 							  fc_grupo_productos.id_grupo_productos, 
 							  fc_grupo_productos.nombre_grupo_productos, 
-							  entidades.nombre_entidades, 
+							  entidades.id_entidades, 
+   						      entidades.nombre_entidades, 
 							  usuarios.nombre_usuarios, 
 							  fc_productos.nombre_productos, 
 							  fc_productos.descripcion_productos, 
@@ -490,29 +491,26 @@ class FC_ProductosController extends ControladorBase{
    				$where_2 = "";
    				$where_3 = "";
    				$where_4 = "";
+   				$where_5 = "";
    
-   				$id_entidades=$_POST['id_entidades'];
-   				$codigo_productos=$_POST['codigo_productos'];
-   				$nombre_productos=$_POST['nombre_productos'];
-   				$id_grupo_productos=$_POST['id_grupo_productos'];
-   				$id_unidades_medida=$_POST['id_unidades_medida'];
-   				$iva_productos=$_POST['iva_productos'];
    				 
    				
    					
    
    				if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
    
-   				if($codigo_productos!=""){$where_1=" AND tipo_comprobantes.id_tipo_comprobantes='$codigo_productos'";}
+   				if($codigo_productos!=""){$where_1=" AND fc_productos.codigo_productos='$codigo_productos'";}
    
-   				if($numero_ccomprobantes!=""){$where_2=" AND ccomprobantes.numero_ccomprobantes LIKE '%$numero_ccomprobantes%'";}
+   				if($nombre_productos!=""){$where_2=" AND fc_productos.nombre_productos ='$nombre_productos'";}
    
-   				if($referencia_doc_ccomprobantes!=""){$where_3=" AND ccomprobantes.referencia_doc_ccomprobantes LIKE '%$referencia_doc_ccomprobantes%'";}
+   				if($id_grupo_productos!=0){$where_3=" AND fc_grupo_productos.id_grupo_productos ='$id_grupo_productos'";}
    
-   				if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  ccomprobantes.fecha_ccomprobantes BETWEEN '$fechadesde' AND '$fechahasta'";}
-   
+   				if($id_unidades_medida!=0){$where_4=" AND fc_unidades_medida.id_unidades_medida ='$id_unidades_medida'";}
+   				
+   				if($iva_productos!=0){$where_5=" AND fc_productos.iva_productos ='$iva_productos'";}
    				 
-   				$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3. $where_4;
+   				 
+   				$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3. $where_4. $where_5;
    
    				 
    				//$resultSet=$ccomprobantes->getCondiciones($columnas ,$tablas , $where_to, $id);
@@ -526,7 +524,7 @@ class FC_ProductosController extends ControladorBase{
    				if($action == 'ajax')
    				{
    					$html="";
-   					$resultSet=$ccomprobantes->getCantidad("*", $tablas, $where_to);
+   					$resultSet=$fc_productos->getCantidad("*", $tablas, $where_to);
    					$cantidadResult=(int)$resultSet[0]->total;
    						
    					$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -538,7 +536,7 @@ class FC_ProductosController extends ControladorBase{
    					$limit = " LIMIT   '$per_page' OFFSET '$offset'";
    						
    						
-   					$resultSet=$ccomprobantes->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
+   					$resultSet=$fc_productos->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
    						
    					$count_query   = $cantidadResult;
    						
@@ -557,13 +555,16 @@ class FC_ProductosController extends ControladorBase{
    						$html.='<table class="table table-hover">';
    						$html.='<thead>';
    						$html.='<tr class="info">';
-   						$html.='<th>Tipo</th>';
-   						$html.='<th>Concepto</th>';
-   						$html.='<th>Entidad</th>';
-   						$html.='<th>Valor</th>';
-   						$html.='<th>Fecha</th>';
-   						$html.='<th>Numero de Comprobante</th>';
-   						$html.='<th>Forma de Pago</th>';
+   						$html.='<th></th>';
+   						$html.='<th>Codigo</th>';
+   						$html.='<th>Nombre</th>';
+   						$html.='<th>1er $</th>';
+   						$html.='<th>2do $</th>';
+   						$html.='<th>3cer $</th>';
+   						$html.='<th>Grupo</th>';
+   						$html.='<th>U/M</th>';
+   						$html.='<th>Iva</th>';
+   						$html.='<th></th>';
    						$html.='<th></th>';
    						$html.='</tr>';
    						$html.='</thead>';
@@ -571,17 +572,54 @@ class FC_ProductosController extends ControladorBase{
    							
    						foreach ($resultSet as $res)
    						{
-   							//<td style="color:#000000;font-size:80%;"> <?php echo ;</td>
    								
+   							$_precio_default="0.0000";
+   							$_si="Si";
+   							$_no="No";
+   							
+   							
    							$html.='<tr>';
    							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_tipo_comprobantes.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->concepto_ccomprobantes.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_entidades.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->valor_letras.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->fecha_ccomprobantes.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->numero_ccomprobantes.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_forma_pago.'</td>';
-   							$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=ComprobantesAdm&action=Reporte_ImprimirComprobantesAdm&id_ccomprobantes='. $res->id_ccomprobantes .'&id_entidades='. $res->id_entidades.'&id_tipo_comprobantes='. $res->id_tipo_comprobantes.' " target="_blank"><i class="glyphicon glyphicon-print"></i></a></span></td>';
+   							$html.='<td style="color:#000000;font-size:80%;">'.$res->codigo_productos.'</td>';
+   							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_productos.'</td>';
+   							
+   							if($res->precio_uno_productos==""){
+   								$html.='<td style="color:#000000;font-size:80%;">'.$_precio_default.'</td>';
+   							}
+   							else{
+   							
+   								$html.='<td style="color:#000000;font-size:80%;">'.$res->precio_uno_productos.'</td>';
+   							}
+   							
+   							if($res->precio_dos_productos==""){
+   								$html.='<td style="color:#000000;font-size:80%;">'.$_precio_default.'</td>';
+   							}
+   							else{
+   							
+   								$html.='<td style="color:#000000;font-size:80%;">'.$res->precio_dos_productos.'</td>';
+   							}
+   							
+   							if($res->precio_tres_productos==""){
+   								$html.='<td style="color:#000000;font-size:80%;">'.$_precio_default.'</td>';
+   							}
+   							else{
+   							
+   								$html.='<td style="color:#000000;font-size:80%;">'.$res->precio_tres_productos.'</td>';
+   							}
+   							
+   							
+   							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_grupo_productos.'</td>';
+   							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_unidades_medida.'</td>';
+   							
+   							if($res->iva_productos=="t"){
+   								$html.='<td style="color:#000000;font-size:80%;">'.$_si.'</td>';
+   							}
+   							else{
+   							
+   								$html.='<td style="color:#000000;font-size:80%;">'.$res->$_no.'</td>';
+   							}
+   							$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=FC_Productos&action=Ficha&id_productos='. $res->id_productos .'&id_entidades='. $res->id_entidades.'" target="_blank">--Ver--</a></span></td>';
+   							$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="http://localhost:4000/contabilidad/FrameworkMVC/view/DevuelveCatalogoView.php?id_catalogos='. $res->id_catalogos .'" target="_blank">--Ver--</a></span></td>';
    							$html.='</tr>';
    								
    
@@ -618,15 +656,16 @@ class FC_ProductosController extends ControladorBase{
    
    					$parametros = array();
    
+   					
    					$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
-   					$parametros['id_tipo_comprobantes']=(isset($_POST['id_tipo_comprobantes']))?trim($_POST['id_tipo_comprobantes']):'';
-   					$parametros['numero_ccomprobantes']=(isset($_POST['numero_ccomprobantes']))?trim($_POST['numero_ccomprobantes']):'';
-   					$parametros['referencia_doc_ccomprobantes']=(isset($_POST['referencia_doc_ccomprobantes']))?trim($_POST['referencia_doc_ccomprobantes']):'';
-   					$parametros['fecha_desde']=(isset($_POST['fecha_desde']))?trim($_POST['fecha_desde']):'';
-   					$parametros['fecha_hasta']=(isset($_POST['fecha_hasta']))?trim($_POST['fecha_hasta']):'';
+   					$parametros['codigo_productos']=(isset($_POST['codigo_productos']))?trim($_POST['codigo_productos']):'';
+   					$parametros['nombre_productos']=(isset($_POST['nombre_productos']))?trim($_POST['nombre_productos']):'';
+   					$parametros['id_grupo_productos']=(isset($_POST['id_grupo_productos']))?trim($_POST['id_grupo_productos']):'';
+   					$parametros['id_unidades_medida']=(isset($_POST['id_unidades_medida']))?trim($_POST['id_unidades_medida']):'';
+   					$parametros['iva_productos']=(isset($_POST['iva_productos']))?trim($_POST['iva_productos']):'';
    
    					//para local
-   					$pagina="conReporteComprobantesAdmin.aspx";
+   					$pagina="conReporteProductos.aspx";
    
    					$conexion_rpt = array();
    					$conexion_rpt['pagina']=$pagina;
@@ -687,15 +726,15 @@ class FC_ProductosController extends ControladorBase{
    	if($page==1) {
    		$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
    	} else if($page==2) {
-   		$out.= "<li><span><a href='javascript:void(0);' onclick='load_comprobantes(1)'>$prevlabel</a></span></li>";
+   		$out.= "<li><span><a href='javascript:void(0);' onclick='load_productos(1)'>$prevlabel</a></span></li>";
    	}else {
-   		$out.= "<li><span><a href='javascript:void(0);' onclick='load_comprobantes(".($page-1).")'>$prevlabel</a></span></li>";
+   		$out.= "<li><span><a href='javascript:void(0);' onclick='load_productos(".($page-1).")'>$prevlabel</a></span></li>";
    
    	}
    
    	// first label
    	if($page>($adjacents+1)) {
-   		$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes(1)'>1</a></li>";
+   		$out.= "<li><a href='javascript:void(0);' onclick='load_productos(1)'>1</a></li>";
    	}
    	// interval
    	if($page>($adjacents+2)) {
@@ -710,9 +749,9 @@ class FC_ProductosController extends ControladorBase{
    		if($i==$page) {
    			$out.= "<li class='active'><a>$i</a></li>";
    		}else if($i==1) {
-   			$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes(1)'>$i</a></li>";
+   			$out.= "<li><a href='javascript:void(0);' onclick='load_productos(1)'>$i</a></li>";
    		}else {
-   			$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes(".$i.")'>$i</a></li>";
+   			$out.= "<li><a href='javascript:void(0);' onclick='load_productos(".$i.")'>$i</a></li>";
    		}
    	}
    
@@ -725,13 +764,13 @@ class FC_ProductosController extends ControladorBase{
    	// last
    
    	if($page<($tpages-$adjacents)) {
-   		$out.= "<li><a href='javascript:void(0);' onclick='load_comprobantes($tpages)'>$tpages</a></li>";
+   		$out.= "<li><a href='javascript:void(0);' onclick='load_productos($tpages)'>$tpages</a></li>";
    	}
    
    	// next
    
    	if($page<$tpages) {
-   		$out.= "<li><span><a href='javascript:void(0);' onclick='load_comprobantes(".($page+1).")'>$nextlabel</a></span></li>";
+   		$out.= "<li><span><a href='javascript:void(0);' onclick='load_productos(".($page+1).")'>$nextlabel</a></span></li>";
    	}else {
    		$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
    	}

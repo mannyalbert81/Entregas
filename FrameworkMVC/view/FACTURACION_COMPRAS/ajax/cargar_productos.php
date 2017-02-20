@@ -71,6 +71,7 @@
 						
 						$id_productos=$row['id_productos'];
 						$id_catalogos=$row['id_catalogos'];
+						$id_entidades= $row['id_entidades'];
 						
 						?>
 						<tr>
@@ -85,7 +86,7 @@
 							<td><?php if ($row['iva_productos']=="t"){ echo "Si";}else { echo "No";}?></td>
 							<td>
 							<span class="pull-right">
-							<a href="index.php?controller=FC_Productos&action=Ficha&id_productos=<?php echo $id_productos; ?>" target="_blank">--Ver--</a>
+							<a href="index.php?controller=FC_Productos&action=Ficha&id_productos=<?php echo $id_productos; ?>&id_entidades=<?php echo $id_entidades; ?>" target="_blank">--Ver--</a>
 							</span>
 							</td>
 							<td>
