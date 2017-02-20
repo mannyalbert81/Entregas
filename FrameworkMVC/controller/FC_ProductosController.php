@@ -579,7 +579,7 @@ class FC_ProductosController extends ControladorBase{
    							
    							
    							$html.='<tr>';
-   							$html.='<td style="color:#000000;font-size:80%;"></td>';
+   							$html.='<td style="color:#000000;font-size:80%;"><input type="image" name="image" src="view/DevuelveImagen.php?id_valor='. $res->id_foto_productos .'&id_nombre=id_foto_productos&tabla=fc_foto_productos&campo=archivo_foto_productos" alt='. $res->id_foto_productos .' width="60" height="60" ></td>';
    							$html.='<td style="color:#000000;font-size:80%;">'.$res->codigo_productos.'</td>';
    							$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_productos.'</td>';
    							
@@ -618,8 +618,8 @@ class FC_ProductosController extends ControladorBase{
    							
    								$html.='<td style="color:#000000;font-size:80%;">'.$res->$_no.'</td>';
    							}
-   							$html.='<td style="color:#000000;font-size:90%;"><span class="pull-right"><a href="index.php?controller=FC_Productos&action=Ficha&id_productos='. $res->id_productos .'&id_entidades='. $res->id_entidades.'" target="_blank">--Ver--</a></span></td>';
-   							$html.='<td style="color:#000000;font-size:90%;"><span class="pull-right"><a href="http://localhost:4000/contabilidad/FrameworkMVC/view/DevuelveCatalogoView.php?id_catalogos='. $res->id_catalogos .'" target="_blank">--Ver--</a></span></td>';
+   							$html.='<td style="color:#000000;font-size:95%;"><span class="pull-right"><a href="index.php?controller=FC_Productos&action=Ficha&id_productos='. $res->id_productos .'&id_entidades='. $res->id_entidades.'" target="_blank">--Ver--</a></span></td>';
+   							$html.='<td style="color:#000000;font-size:95%;"><span class="pull-right"><a href="http://localhost:4000/contabilidad/FrameworkMVC/view/DevuelveCatalogoView.php?id_catalogos='. $res->id_catalogos .'" target="_blank">--Ver--</a></span></td>';
    							$html.='</tr>';
    								
    
