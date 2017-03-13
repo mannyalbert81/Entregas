@@ -30,28 +30,38 @@
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="nombre_reportes_asignados" class="control-label">Nombre</label>
-                                  <input type="text" class="form-control" id="nombre_reportes_asignados" name="nombre_reportes_asignados" value="<?php echo $resEdit->nombre_reportes_asignados; ?>"  placeholder="Ruc">
+                                  <input type="text" class="form-control" id="nombre_reportes_asignados" name="nombre_reportes_asignados" value="<?php echo $resEdit->nombre_reportes_asignados; ?>"  placeholder="Nombre">
                                   <span class="help-block"></span>
             </div>
 		    </div>
 		    
-		    <div class="col-xs-6 col-md-6">
+             <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="id_entidades" class="control-label">Entidades</label>
-                                  <input type="text" class="form-control" id="id_entidades" name="nombre_entidades" value="<?php echo $resEdit->nombre_entidades; ?>"  placeholder="Nombre">
+                                  <label for="id_entidad" class="control-label">Entidad</label>
+                                  <select name="id_entidad" id="id_entidad"  class="form-control" >
+                                  <option value="" selected="selected">--Seleccione--</option>
+									<?php foreach($resultEntidad as $res) {?>
+										<option value="<?php echo $res->id_entidades; ?>" <?php if ($res->id_entidades == $resEdit->id_entidades )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_entidades; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
             </div>
             </div>
 			</div>
 	         
 	        <div class="row">
-		    <div class="col-xs-6 col-md-6">
+		  <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="id_usuarios" class="control-label">Uusarios</label>
-                                  <input type="text" class="form-control" id="id_usuarios" name="telefono_entidades" value="<?php echo $resEdit->nombre_usuarios; ?>"  placeholder="Teléfono">
+                                  <label for="id_entidad" class="control-label">Usuarios</label>
+                                  <select name="id_usuarios" id="id_usuarios"  class="form-control" >
+                                  <option value="" selected="selected">--Seleccione--</option>
+									<?php foreach($resultUsu as $res) {?>
+										<option value="<?php echo $res->id_usuarios; ?>" <?php if ($res->id_usuarios == $resEdit->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_usuarios; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
             </div>
-		    </div>
+            </div>
 		    
 		    </div>
 	        
@@ -74,24 +84,33 @@
             </div>
 		    </div>
 		    
-		    <div class="col-xs-6 col-md-6">
+		   <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="id_entidades" class="control-label">Entidades</label>
-                                  <input type="text" class="form-control" id="id_entidades" name="id_entidades" value=""  placeholder="Nombre">
+                                  <label for="id_entidad" class="control-label">Entidad</label>
+                                  <select name="id_entidad" id="id_entidad"  class="form-control" >
+                                  <option value="" selected="selected">--Seleccione--</option>
+									<?php foreach($resultEntidad as $res) {?>
+										<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
             </div>
             </div>
 			</div>
 	         
 	        <div class="row">
-		    <div class="col-xs-6 col-md-6">
+	        <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="id_usuarios" class="control-label">Uusarios</label>
-                                  <input type="text" class="form-control" id="id_usuarios" name="id_usuarios" value=""  placeholder="Teléfono">
+                                  <label for="id_usuarios" class="control-label">Usuarios</label>
+                                  <select name="id_usuarios" id="id_usuarios"  class="form-control" >
+                                  <option value="" selected="selected">--Seleccione--</option>
+									<?php foreach($resultUsu as $res) {?>
+										<option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
             </div>
-		    </div>
-		    
+		     </div>
 		    </div>
 	        
 	        
@@ -213,8 +232,8 @@
 	   <tbody>
 	   		<tr>
 	   					<td style="font-size:80%;"> <?php echo $res->nombre_reportes_asignados; ?>  </td>
-		                <td style="font-size:80%;" > <?php echo $res->id_entidades; ?>     </td> 
-		                <td style="font-size:80%;"> <?php echo $res->id_usuarios; ?>     </td>
+		                <td style="font-size:80%;" > <?php echo $res->nombre_entidades; ?>     </td> 
+		                <td style="font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td>
 		              
 		                <td>
 			           		<div class="right">

@@ -10,6 +10,9 @@ class ReportesAsignadosController extends ControladorBase{
 
 	public function index(){
 	
+		
+		
+		
 		//Creamos el objeto usuario
      	$reportes_asignados=new ReportesAsignadosModel();
 		//Conseguimos todos los usuarios
@@ -17,36 +20,60 @@ class ReportesAsignadosController extends ControladorBase{
 				
 		$resultEdit = "";
 		
+	
+			
+		
+		
 		session_start();
+		
+	
+			
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			//Notificaciones
 			
+			$entidades = new EntidadesModel();
+			$resultEntidad = $entidades->getAll("nombre_entidades");
+				
+			$usuarios = new UsuariosModel();
+			$resultUsu = $usuarios->getAll("nombre_usuarios");
+
+	
 			$nombre_controladores = "ReportesAsignados";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $reportes_asignados->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
+	
 			if (!empty($resultPer))
 			{
 				if (isset ($_GET["id_reportes_asignados"])   )
 				{
 
+					
 					$nombre_controladores = "ReportesAsignados";
 					$id_rol= $_SESSION['id_rol'];
 					$resultPer = $reportes_asignados->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
+			
 					if (!empty($resultPer))
 					{
 					
+		
+						
 						$_id_entidades = $_GET["id_reportes_asignados"];
-						$columnas = " id_reportes_asignados, nombre_reportes_asignados, id_entidades, id_usuarios";
-						$tablas   = "reportes_asignados";
-						$where    = "id_reportes_asignados = '$_id_reportes_asignados' "; 
-						$id       = "id_reportes_asignados";
+						$columnas = "   reportes_asignados.nombre_reportes_asignados, 
+										  reportes_asignados.id_reportes_asignados, 
+										  entidades.nombre_entidades, 
+										  usuarios.nombre_usuarios";
+						$tablas   = "  public.reportes_asignados, 
+										  public.usuarios, 
+										  public.entidades";
+						$where    = "  reportes_asignados.id_usuarios = usuarios.id_usuarios AND
+  									entidades.id_entidades = reportes_asignados.id_entidades; = '$_id_reportes_asignados' "; 
+						$id       = "reportes_asignados.nombre_reportes_asignados";
 							
 						$resultEdit = $reportes_asignados->getCondiciones($columnas ,$tablas ,$where, $id);
-						
 						
 						
 						$traza=new TrazasModel();
@@ -70,7 +97,7 @@ class ReportesAsignadosController extends ControladorBase{
 		
 				
 				$this->view("ReportesAsignados",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEntidad"=>$resultEntidad, "resultUsu"=>$resultUsu
 			
 				));
 		
@@ -124,8 +151,8 @@ class ReportesAsignadosController extends ControladorBase{
 				
 				$_id_reportes_asignados = $_POST["id_reportes_asignados"];
 				$_nombre_reportes_asignados = $_POST["nombre_reportes_asignados"];
-				$_id_entidades = $_POST["id_entidades"];
-				$_id_usuarios = $_POST["id_usuarios"];
+				$_id_entidades = $_POST["nombre_entidades"];
+				$_id_usuarios = $_POST["nombre_usuarios"];
 				
 			$funcion = "ins_reportes_asignados";
 									
