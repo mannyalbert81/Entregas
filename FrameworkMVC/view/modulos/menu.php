@@ -194,6 +194,10 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("FC_ReporteProductosAdmin",$controladores) ?>">
           <a href="index.php?controller=FC_ReporteProductosAdmin&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
           </li>
+          
+          <li style="<?php echo getcontrolador("FC_Proveedores",$controladores) ?>">
+          <a href="index.php?controller=FC_Proveedores&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Proveedores</span> </a>
+          </li>
          
           
 </ul>
