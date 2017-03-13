@@ -1,5 +1,8 @@
 <?php
-class CierreMesModel extends ModeloBase{
+
+
+
+class ReportesAsignadosModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +41,8 @@ class CierreMesModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="cierre_mes";
+		$this->table="reportes_asignados";
+
 		
 		parent::__construct($this->table);
 	}
@@ -53,7 +57,6 @@ class CierreMesModel extends ModeloBase{
 			
 		return  $resultado;
 	}
-	
 	
 	
 }
