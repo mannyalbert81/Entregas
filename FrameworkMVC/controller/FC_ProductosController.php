@@ -8,7 +8,7 @@ class FC_ProductosController extends ControladorBase{
 
 
 	public function index(){
-	
+	//maycol
 		session_start();
 		$_id_usuarios= $_SESSION['id_usuarios'];
 		
