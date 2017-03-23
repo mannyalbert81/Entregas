@@ -1,6 +1,6 @@
 <?php
 
-class FC_ProductosController extends ControladorBase{
+class FC_ProveedoresController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -8,7 +8,7 @@ class FC_ProductosController extends ControladorBase{
 
 
 	public function index(){
-	//maycol
+	
 		session_start();
 		$_id_usuarios= $_SESSION['id_usuarios'];
 		
@@ -16,6 +16,7 @@ class FC_ProductosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{	
 			
+			//maycol 
 			$fc_catalogos = new FC_CatalogosModel();
 			$fc_foto_productos = new FC_FotoProductosModel();
 			$fc_productos = new FC_ProductosModel();
@@ -65,7 +66,7 @@ class FC_ProductosController extends ControladorBase{
 			
 			
 		    $permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "FC_Productos";
+			$nombre_controladores = "FC_Proveedores";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $fc_productos->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol'");
 				
@@ -73,7 +74,7 @@ class FC_ProductosController extends ControladorBase{
 			{
 				
 				
-					$this->facturacion_compras("FC_Productos",array(
+					$this->facturacion_compras("FC_Proveedores",array(
 							
 							"result_FC_grupo_productos"=>$result_FC_grupo_productos, "resultEnt"=>$resultEnt, "result_FC_unidades_medida"=>$result_FC_unidades_medida
 					));
@@ -82,7 +83,7 @@ class FC_ProductosController extends ControladorBase{
 				
 				
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Registrar FC Productos"
+						"resultado"=>"No tiene Permisos de Registrar FC Proveedores"
 				
 					
 				));
@@ -103,7 +104,7 @@ class FC_ProductosController extends ControladorBase{
 	
 	
 	
-   public function InsertaFC_Productos(){
+   public function InsertaFC_Proveedores(){
    
    	session_start();
    	$permisos_rol=new PermisosRolesModel();
@@ -114,7 +115,7 @@ class FC_ProductosController extends ControladorBase{
    		
    
    
-   	$nombre_controladores = "FC_Productos";
+   	$nombre_controladores = "FC_Proveedores";
    	$id_rol= $_SESSION['id_rol'];
    	$resultPer = $fc_productos->getPermisosEditar("nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol'");
    
@@ -316,12 +317,12 @@ class FC_ProductosController extends ControladorBase{
    				$resultado=$fc_productos->Insert();
    			}
    		
-   		$this->redirect("FC_Productos","index")	;
+   		$this->redirect("FC_Proveedores","index")	;
    	}
    	else
    	{
    		$this->view("Error",array(
-   				"resultado"=>"No tiene Permisos de Insertar FC Productos"
+   				"resultado"=>"No tiene Permisos de Insertar FC Proveedores"
    
    		));
    	}

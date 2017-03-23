@@ -1,5 +1,5 @@
 <?php
-class CierreMesModel extends ModeloBase{
+class FC_ProveedoresModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +38,7 @@ class CierreMesModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="cierre_mes";
+		$this->table="fc_proveedores";
 		
 		parent::__construct($this->table);
 	}

@@ -80,6 +80,7 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("ReporteUsuariosAdmin",$controladores) ?>">
 			<a href="index.php?controller=ReporteUsuariosAdmin&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Usuarios</span> </a>
 			</li>
+
 			<li style="<?php echo getcontrolador("Tipo_Persona",$controladores) ?>">
 			<a href="index.php?controller=Tipo_Persona&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Persona</span> </a>
 			</li>
@@ -91,6 +92,9 @@ $controladores=$_SESSION['controladores'];
 			</li>
 			<li style="<?php echo getcontrolador("Tipo_Notificacion",$controladores) ?>">
 			<a href="index.php?controller=Tipo_Notificacion&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Notificacion</span> </a>
+
+			<li style="<?php echo getcontrolador("ReportesAsignados",$controladores) ?>">
+			<a href="index.php?controller=ReportesAsignados&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reportes Asignados</span> </a>
 			</li>
 
 </ul>
@@ -206,8 +210,12 @@ $controladores=$_SESSION['controladores'];
           <a href="index.php?controller=FC_ReporteProductosAdmin&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Reporte Productos</span> </a>
           </li>
           
+
          <li style="<?php echo getcontrolador("FC_Impuestos",$controladores) ?>">
           <a href="index.php?controller=FC_Impuestos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Impuestos</span> </a>
+
+          <li style="<?php echo getcontrolador("FC_Proveedores",$controladores) ?>">
+          <a href="index.php?controller=FC_Proveedores&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Proveedores</span> </a>
           </li>
          
           

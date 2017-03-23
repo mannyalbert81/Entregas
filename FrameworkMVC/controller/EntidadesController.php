@@ -1,13 +1,8 @@
 <?php
-
 class EntidadesController extends ControladorBase{
-
 	public function __construct() {
 		parent::__construct();
 	}
-
-
-
 	public function index(){
 	
 		//Creamos el objeto usuario
@@ -16,10 +11,8 @@ class EntidadesController extends ControladorBase{
 		$resultSet=$entidades->getAll("id_entidades");
 				
 		$resultEdit = "";
-
 		
 		session_start();
-
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -33,7 +26,6 @@ class EntidadesController extends ControladorBase{
 			{
 				if (isset ($_GET["id_entidades"])   )
 				{
-
 					$nombre_controladores = "Entidades";
 					$id_rol= $_SESSION['id_rol'];
 					$resultPer = $entidades->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -56,7 +48,6 @@ class EntidadesController extends ControladorBase{
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_entidades;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-
 					}
 					else
 					{
@@ -106,7 +97,6 @@ class EntidadesController extends ControladorBase{
 		session_start();
 		$entidades=new EntidadesModel();
 		
-
 		$nombre_controladores = "Entidades";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $entidades->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -172,7 +162,6 @@ class EntidadesController extends ControladorBase{
 				
 			}
 			$this->redirect("Entidades", "index");
-
 		}
 		else
 		{
@@ -188,7 +177,6 @@ class EntidadesController extends ControladorBase{
 	
 	public function borrarId()
 	{
-
 		session_start();
 		$permisos_rol=new PermisosRolesModel();
 		$nombre_controladores = "Roles";
