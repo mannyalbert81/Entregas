@@ -45,7 +45,7 @@
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
                 <td height="80" align="center" valign="middle" class="commandInput" ><?php if($_SESSION["oUsuario"]->admin>=1) { ?>
-                    <a href="helpdesk.php" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/helpdesk.png" alt="Helpdesk" width="32" height="32" border="0" align="absmiddle"><br>
+                    <a href="helpdesk.php" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/helpdesk.png" alt="Helpdesk" width="32" height="32" border="0" align="absmiddle"><br>
                       Help desk<br>
                       <?php printf("<div class='nickname' style='font-size:9;color:#969696;'>%s</div>",$iduser); ?></a>
                     <?php } ?>
@@ -55,7 +55,7 @@
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
                 <td height="80" align="center" valign="middle"><?php if($_SESSION["oUsuario"]->admin==1) { ?>
-                    <a href="home.php?panic=<?php print($panic==0 ? "1" : "0"); ?>" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/alarm_bell.png" alt="<?php print($panicLoc); ?>" width="32" height="32" border="0" align="absmiddle"><br>
+                    <a href="home.php?panic=<?php print($panic==0 ? "1" : "0"); ?>" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/alarm_bell.png" alt="<?php print($panicLoc); ?>" width="32" height="32" border="0" align="absmiddle"><br>
                       Panico !!!<br>
                       <?php printf("<div class='nickname' style='font-size:9;color:#969696;'>%s</div>",$panicEst); ?></a>
                     <?php } ?>
@@ -65,7 +65,7 @@
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
                 <td height="80" align="center" valign="middle"><?php if($_SESSION["oUsuario"]->admin==1) { ?>
-                    <a href="home.php?clear=1" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/draw_eraser.png" alt="<?php print($panicLoc); ?>" width="32" height="32" border="0" align="absmiddle"><br>
+                    <a href="home.php?clear=1" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/draw_eraser.png" alt="<?php print($panicLoc); ?>" width="32" height="32" border="0" align="absmiddle"><br>
                       Limpiar historico <br>
                     </a>
                     <?php } ?></td>
@@ -76,7 +76,7 @@
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
                 <td height="80" align="center" valign="middle"><?php if($_SESSION["oUsuario"]->admin>=1) { ?>
-                    <a href="parameters.lockusers.php" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/set_security_question.png" alt="Seguridad" width="32" height="32" border="0" align="absmiddle"><br>
+                    <a href="parameters.lockusers.php" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/set_security_question.png" alt="Seguridad" width="32" height="32" border="0" align="absmiddle"><br>
                       Moderar                        usuarios</a>
                     <?php } ?></td>
               </tr>
@@ -84,7 +84,7 @@
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
                 <td height="80" align="center" valign="middle"><?php if($_SESSION["oUsuario"]->admin==1) { ?>
-                    <a href="parameters.users.php" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/user.png" alt="Usuarios" width="32" height="32" border="0" align="absmiddle"><br>
+                    <a href="parameters.users.php" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/user.png" alt="Usuarios" width="32" height="32" border="0" align="absmiddle"><br>
                       Usuarios</a>
                     <?php } ?></td>
               </tr>
@@ -92,7 +92,7 @@
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
                 <td height="80" align="center" valign="middle"><?php if($_SESSION["oUsuario"]->admin==1) { ?>
-                    <a href="parameters.php" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/document_properties.png" alt="Propiedades" width="32" height="32" border="0" align="absmiddle"><br>
+                    <a href="parameters.php" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/document_properties.png" alt="Propiedades" width="32" height="32" border="0" align="absmiddle"><br>
                       Parametros avanzados</a>
                     <?php } ?></td>
               </tr>
@@ -128,7 +128,7 @@
           </table></td>
           <td><table width="220" border="0" cellpadding="2" cellspacing="0" class="emoticon">
               <tr>
-                <td height="80" align="center" valign="middle"><a href="logout.php" style="font-size:12; font-weight:bold; color:#333;"><img src="images/32x32/system/close.png" alt="Cerrar" width="32" height="32" border="0" align="absmiddle"><br>
+                <td height="80" align="center" valign="middle"><a href="logout.php" style="font-size:12; font-weight:bold; color:#333;"><img src="view/Chat/images/32x32/system/close.png" alt="Cerrar" width="32" height="32" border="0" align="absmiddle"><br>
                   Cerrar sesi&oacute;n</a></td>
               </tr>
           </table></td>
