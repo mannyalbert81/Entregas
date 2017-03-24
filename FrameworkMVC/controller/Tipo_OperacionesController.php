@@ -82,7 +82,7 @@ class Tipo_OperacionesController extends ControladorBase{
 				
 		
 				
-				$this->view("Tipo_Operaciones",array(
+				$this->cartera("Tipo_Operaciones",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));

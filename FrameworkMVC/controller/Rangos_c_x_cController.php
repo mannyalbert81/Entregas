@@ -82,7 +82,7 @@ class Rangos_c_x_cController extends ControladorBase{
 				
 		
 				
-				$this->view("Rangos_c_x_c",array(
+				$this->cartera("Rangos_c_x_c",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));

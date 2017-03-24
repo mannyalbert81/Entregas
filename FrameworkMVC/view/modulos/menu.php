@@ -97,13 +97,8 @@ $controladores=$_SESSION['controladores'];
 			<a href="index.php?controller=ReportesAsignados&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reportes Asignados</span> </a>
 			</li>
 			
-			<li style="<?php echo getcontrolador("Tipo_Operaciones",$controladores) ?>">
-			<a href="index.php?controller=Tipo_Operaciones&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Operaciones</span> </a>
-			</li>
 			
-			<li style="<?php echo getcontrolador("Rangos_c_x_c",$controladores) ?>">
-			<a href="index.php?controller=Rangos_c_x_c&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Rangos_c_x_c</span> </a>
-			</li>
+			
 			
 			
 </ul>
@@ -251,6 +246,14 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("TipoCreditos",$controladores) ?>">
           <a href="index.php?controller=TipoCreditos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Tipo Creditos</span> </a>
           </li>
+       
+          <li style="<?php echo getcontrolador("Tipo_Operaciones",$controladores) ?>">
+			<a href="index.php?controller=Tipo_Operaciones&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Operaciones</span> </a>
+		  </li>
+			
+          <li style="<?php echo getcontrolador("Rangos_c_x_c",$controladores) ?>">
+			<a href="index.php?controller=Rangos_c_x_c&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Rangos_c_x_c</span> </a>
+		  </li>
          
           
 </ul>
