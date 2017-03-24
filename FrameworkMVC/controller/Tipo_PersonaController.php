@@ -9,7 +9,7 @@ class Tipo_PersonaController extends ControladorBase{
 
 
 	public function index(){
-	
+	//mYCOL
 		//Creamos el objeto usuario
      	
 		$tipo_persona = new Tipo_PersonaModel();
