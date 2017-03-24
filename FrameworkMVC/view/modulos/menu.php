@@ -244,6 +244,19 @@ $controladores=$_SESSION['controladores'];
 </li>
 
 
+ <li class="dropdown" style="<?php echo getcontrolador("MenuCartera",$controladores) ?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Cartera" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li style="<?php echo getcontrolador("TipoCreditos",$controladores) ?>">
+          <a href="index.php?controller=TipoCreditos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Tipo Creditos</span> </a>
+          </li>
+         
+          
+</ul>
+</li>
+
+
 
 </ul>
 </div>
