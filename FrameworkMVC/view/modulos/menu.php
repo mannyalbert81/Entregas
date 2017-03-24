@@ -101,6 +101,10 @@ $controladores=$_SESSION['controladores'];
 			<a href="index.php?controller=Tipo_Operaciones&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Operaciones</span> </a>
 			</li>
 			
+			<li style="<?php echo getcontrolador("Rangos_c_x_c",$controladores) ?>">
+			<a href="index.php?controller=Rangos_c_x_c&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Rangos_c_x_c</span> </a>
+			</li>
+			
 			
 </ul>
 </li>
