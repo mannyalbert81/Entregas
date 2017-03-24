@@ -29,40 +29,40 @@ class Tipo_OperacionesController extends ControladorBase{
 			
 			$nombre_controladores = "Tipo_Operaciones";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $tipo_identificacion->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $tipo_operaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				
 				
-				if (isset ($_GET["id_tipo_identificacion"])   )
+				if (isset ($_GET["id_tipo_operaciones"])   )
 				{
 					
-					$nombre_controladores = "Tipo_Identificacion";
+					$nombre_controladores = "Tipo_Operaciones";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $tipo_operaciones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_tipo_identificacion = $_GET["id_tipo_identificacion"];
+						$_id_tipo_operaciones = $_GET["id_tipo_operaciones"];
 						
-						$columnas = " id_tipo_identificacion, nombre_tipo_identificacion";
-						$tablas   = "tipo_identificacion";
-						$where    = "id_tipo_identificacion = '$_id_tipo_identificacion' "; 
-						$id       = "id_tipo_identificacion";
+						$columnas = " id_tipo_operaciones, nombre_tipo_operaciones";
+						$tablas   = "tipo_operaciones";
+						$where    = "id_tipo_operaciones = '$_id_tipo_operaciones' "; 
+						$id       = "id_tipo_operaciones";
 						
 						
 						
 							
 						
-						$resultEdit = $tipo_identificacion->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $tipo_operaciones->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 						
 						$traza=new TrazasModel();
-						$_nombre_controlador = "Tipo_Identificacion";
+						$_nombre_controlador = "Tipo_Operaciones";
 						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_tipo_identificacion;
+						$_parametros_trazas = $_id_tipo_operaciones;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					
@@ -70,7 +70,7 @@ class Tipo_OperacionesController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Tipo de Identificacion"
+								"resultado"=>"No tiene Permisos de Editar Tipo de Operaciones"
 					
 						));
 					
@@ -116,7 +116,7 @@ class Tipo_OperacionesController extends ControladorBase{
 			
 		session_start();
 		
-		$tipo_identificacion = new Tipo_IdentificacionModel();
+		$tipo_operaciones = new Tipo_OperacionesModel();
 		$permisos_rol=new PermisosRolesModel();
 		
 
@@ -129,7 +129,7 @@ class Tipo_OperacionesController extends ControladorBase{
 		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
-		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$resultPer = $tipo_operaciones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
 		
 		
@@ -163,7 +163,7 @@ class Tipo_OperacionesController extends ControladorBase{
 					$tabla = "tipo_operaciones";
 					$where = "id_tipo_operaciones = '$_id_tipo_operaciones'    ";
 					
-					$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
+					$resultado=$tipo_operaciones->UpdateBy($colval, $tabla, $where);
 					
 					
 					
@@ -175,12 +175,12 @@ class Tipo_OperacionesController extends ControladorBase{
 				
 				$parametros = " '$_nombre_tipo_operaciones'  ";
 					
-				$tipo_identificacion->setFuncion($funcion);
+				$tipo_operaciones->setFuncion($funcion);
 		
-				$tipo_identificacion->setParametros($parametros);
+				$tipo_operaciones->setParametros($parametros);
 		
 		
-				$resultado=$tipo_identificacion->Insert();
+				$resultado=$tipo_operaciones->Insert();
 				
 				//$this->view("Error",array(
 							
@@ -219,37 +219,37 @@ class Tipo_OperacionesController extends ControladorBase{
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Tipo_Identificacion";
+		$nombre_controladores = "Tipo_Operaciones";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_tipo_identificacion"]))
+			if(isset($_GET["id_tipo_operaciones"]))
 			{
-				$id_tipo_identificacion=(int)$_GET["id_tipo_identificacion"];
+				$id_tipo_operaciones=(int)$_GET["id_tipo_operaciones"];
 				
 				
-				$tipo_identificacion = new Tipo_IdentificacionModel();
+				$tipo_operaciones = new Tipo_OperacionesModel();
 				
-				$tipo_identificacion->deleteBy(" id_tipo_identificacion",$id_tipo_identificacion);
+				$tipo_operaciones->deleteBy(" id_tipo_operaciones",$id_tipo_operaciones);
 				
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Tipo_Persona";
+				$_nombre_controlador = "Tipo_Operaciones";
 				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_tipo_identificacion;
+				$_parametros_trazas = $id_tipo_operaciones;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			
-			$this->redirect("Tipo_Identificacion", "index");
+			$this->redirect("Tipo_Operaciones", "index");
 			
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Tipo de Identificacion"
+				"resultado"=>"No tiene Permisos de Borrar Tipo de Operaciones"
 			
 			));
 		}
