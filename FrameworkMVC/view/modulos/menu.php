@@ -96,7 +96,12 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("ReportesAsignados",$controladores) ?>">
 			<a href="index.php?controller=ReportesAsignados&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reportes Asignados</span> </a>
 			</li>
-
+			
+			<li style="<?php echo getcontrolador("Tipo_Operaciones",$controladores) ?>">
+			<a href="index.php?controller=Tipo_Operaciones&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Operaciones</span> </a>
+			</li>
+			
+			
 </ul>
 </li>
 
