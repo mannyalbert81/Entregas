@@ -12,14 +12,27 @@ class Rangos_c_x_cController extends ControladorBase{
 	
 		//Creamos el objeto usuario
      	
-		$tipo_identificacion = new Tipo_IdentificacionModel();
+		$Rangos = new Rangos_c_x_cModel();
 	   //Conseguimos todos los usuarios
-		$resultSet=$tipo_identificacion->getAll("id_tipo_identificacion");
+		$resultSet=$Rangos->getAll("id_rangos_c_x_c");
 				
 		$resultEdit = "";
 
 		
 		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+		
+		$entidades = new EntidadesModel();
+		
+		$columnas_enc = "entidades.id_entidades,
+  							entidades.nombre_entidades,
+				usuarios.id_usuarios,
+				usuarios.nombre_usuarios";
+		$tablas_enc ="public.usuarios,
+						  public.entidades";
+		$where_enc ="entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
+		$id_enc="entidades.nombre_entidades";
+		$resultEnt=$entidades->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
 		
 
 	
@@ -83,7 +96,7 @@ class Rangos_c_x_cController extends ControladorBase{
 		
 				
 				$this->cartera("Rangos_c_x_c",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnt"=>$resultEnt
 			
 				));
 		
@@ -112,27 +125,16 @@ class Rangos_c_x_cController extends ControladorBase{
 	
 	}
 	
-	public function InsertaIdentificacion(){
+	public function InsertaRango_c_x_c(){
 			
 		session_start();
 		
-		$tipo_identificacion = new Tipo_IdentificacionModel();
+		$Rangos = new Rangos_c_x_cModel();
 		$permisos_rol=new PermisosRolesModel();
-		
-
-		
-		
-
-		$nombre_controladores = "Tipo_Identificacion";
+		$nombre_controladores = "Rangos_c_x_c";
 		$id_rol= $_SESSION['id_rol'];
-
-		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
-		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-
-		
-		
 		if (!empty($resultPer))
 		{
 		
@@ -140,64 +142,34 @@ class Rangos_c_x_cController extends ControladorBase{
 		
 			$resultado = null;
 			
-		
-		
-			//_nombre_controladores
-			
-			if (isset ($_POST["nombre_tipo_identificacion"]) )
+			if (isset ($_POST["nombre_rangos_c_x_c"]) )
 				
 			{
 				
+				$_id_entidades = $_POST["id_entidades"];
+				$_nombre_rangos_c_x_c = $_POST["nombre_rangos_c_x_c"];
+				$_valor_min_c_x_c = $_POST["valor_min_c_x_c"];
+				$_valor_max_c_x_c = $_POST["valor_max_c_x_c"];
 				
 				
-				$_nombre_tipo_identificacion = $_POST["nombre_tipo_identificacion"];
+						
+				$funcion = "ins_rangos_c_x_c";
+				$parametros = " '$_id_entidades', '$_nombre_rangos_c_x_c', '$_valor_min_c_x_c', '$_valor_max_c_x_c' ";
+				$Rangos->setFuncion($funcion);
+		        $Rangos->setParametros($parametros);
+		        $resultado=$Rangos->Insert();
 				
 				
-				
-				if(isset($_POST["id_tipo_identificacion"])) 
-				{
-					
-					$_id_tipo_identificacion = $_POST["id_tipo_identificacion"];
-					
-					$colval = " nombre_tipo_identificacion = '$_nombre_tipo_identificacion'   ";
-					$tabla = "tipo_identificacion";
-					$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
-					
-					$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
-					
-					
-					
-				}else {
-					
-			
-				
-				$funcion = "ins_tipo_identificacion";
-				
-				$parametros = " '$_nombre_tipo_identificacion'  ";
-					
-				$tipo_identificacion->setFuncion($funcion);
-		
-				$tipo_identificacion->setParametros($parametros);
-		
-		
-				$resultado=$tipo_identificacion->Insert();
-				
-				//$this->view("Error",array(
-							
-						//"resultado"=>$resultado[0]
-				
-				//));
-				//exit();
 			
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Tipo_Identificacion";
+				$_nombre_controlador = "Rangos_c_x_c";
 				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombre_tipo_identificacion;
+				$_parametros_trazas = $_nombre_rangos_c_x_c;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-			 }
+			 
 		
 			}
-			$this->redirect("Tipo_Identificacion", "index");
+			$this->redirect("Rangos_c_x_c", "index");
 
 		}
 		else
