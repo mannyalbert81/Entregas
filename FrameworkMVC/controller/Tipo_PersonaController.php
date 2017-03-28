@@ -231,7 +231,7 @@ class Tipo_PersonaController extends ControladorBase{
 				
 				$tipo_persona = new Tipo_PersonaModel();
 				
-				$tipo_persona->deleteBy(" id_tipo_persona",$id_tipo_persona);
+				$tipo_persona->deleteBy("id_tipo_persona",$id_tipo_persona);
 				
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Tipo_Persona";
@@ -256,41 +256,5 @@ class Tipo_PersonaController extends ControladorBase{
 	}
 	
 	
-	public function Reporte(){
-	
-		//Creamos el objeto usuario
-		$roles=new RolesModel();
-		//Conseguimos todos los usuarios
-		
-	
-	
-		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario']) )
-		{
-			$resultRep = $roles->getByPDF("id_rol, nombre_rol", " nombre_rol != '' ");
-			$this->report("Roles",array(	"resultRep"=>$resultRep));
-	
-		}
-					
-	
-	}
-	
-	public function verError(){
-		
-	$a=stripslashes ($_GET['dato']);
-	
-	$_dato=urldecode($a);
-	
-	$_dato=unserialize($a);
-		
-		$this->view("error", array('resultado'=>print_r($_dato)));
-	}
-	
-	
-	
-	
-		
 }
 ?>
