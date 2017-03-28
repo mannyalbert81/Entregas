@@ -11,19 +11,32 @@ class Rangos_c_x_cController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	
+		session_start();
+		$_id_usuarios= $_SESSION['id_usuarios'];
+		$usuarios = new UsuariosModel();
+		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+		$_id_entidades=$resultEnt[0]->id_entidades;
+		
+		
 		$Rangos = new Rangos_c_x_cModel();
-	   //Conseguimos todos los usuarios
-		$resultSet=$Rangos->getAll("id_rangos_c_x_c");
+	    $columnas = "   rangos_c_x_c.id_rangos_c_x_c,
+  										entidades.nombre_entidades,
+  										rangos_c_x_c.nombre_rangos_c_x_c,
+  										rangos_c_x_c.valor_min_c_x_c,
+ 										rangos_c_x_c.valor_max_c_x_c,
+  										rangos_c_x_c.creado,
+  										rangos_c_x_c.modificado";
+		$tablas   = "public.entidades,
+  									public.rangos_c_x_c";
+		$where    = " entidades.id_entidades = rangos_c_x_c.id_entidades AND entidades.id_entidades='$_id_entidades'";
+		$id       = "id_rangos_c_x_c";
+		$resultSet = $Rangos->getCondiciones($columnas ,$tablas ,$where, $id);
+			
+		
 				
 		$resultEdit = "";
 
-		
-		session_start();
-		$_id_usuarios= $_SESSION['id_usuarios'];
-		
 		$entidades = new EntidadesModel();
-		
 		$columnas_enc = "entidades.id_entidades,
   							entidades.nombre_entidades,
 				usuarios.id_usuarios,
@@ -42,40 +55,45 @@ class Rangos_c_x_cController extends ControladorBase{
 			
 			$nombre_controladores = "Rangos_c_x_c";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $tipo_identificacion->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $Rangos->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				
 				
-				if (isset ($_GET["id_tipo_identificacion"])   )
+				if (isset ($_GET["id_rangos_c_x_c"])   )
 				{
 					
 					$nombre_controladores = "Rangos_c_x_c";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $Rangos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_tipo_identificacion = $_GET["id_tipo_identificacion"];
+						$_id_rangos_c_x_c = $_GET["id_rangos_c_x_c"];
 						
-						$columnas = " id_tipo_identificacion, nombre_tipo_identificacion";
-						$tablas   = "tipo_identificacion";
-						$where    = "id_tipo_identificacion = '$_id_tipo_identificacion' "; 
-						$id       = "id_tipo_identificacion";
+						$columnas = "   rangos_c_x_c.id_rangos_c_x_c, 
+								        entidades.id_entidades,
+  										entidades.nombre_entidades, 
+  										rangos_c_x_c.nombre_rangos_c_x_c, 
+  										rangos_c_x_c.valor_min_c_x_c, 
+ 										rangos_c_x_c.valor_max_c_x_c, 
+  										rangos_c_x_c.creado, 
+  										rangos_c_x_c.modificado";
+						$tablas   = "public.entidades, 
+  									public.rangos_c_x_c";
+						$where    = " entidades.id_entidades = rangos_c_x_c.id_entidades AND rangos_c_x_c.id_rangos_c_x_c = '$_id_rangos_c_x_c'"; 
+						$id       = "id_rangos_c_x_c";
 						
 						
-						
-							
-						
-						$resultEdit = $tipo_identificacion->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $Rangos->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 						
 						$traza=new TrazasModel();
-						$_nombre_controlador = "Tipo_Identificacion";
+						$_nombre_controlador = "Rangos_c_x_c";
 						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_tipo_identificacion;
+						$_parametros_trazas = $_id_rangos_c_x_c;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					
@@ -83,7 +101,7 @@ class Rangos_c_x_cController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Tipo de Identificacion"
+								"resultado"=>"No tiene Permisos de Editar Rangos_c_x_c"
 					
 						));
 					
@@ -106,7 +124,7 @@ class Rangos_c_x_cController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Tipo de Identificacion"
+						"resultado"=>"No tiene Permisos de Acceso a Rangos_c_x_c"
 				
 				));
 				
@@ -191,30 +209,30 @@ class Rangos_c_x_cController extends ControladorBase{
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Tipo_Identificacion";
+		$nombre_controladores = "Rangos_c_x_c";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_tipo_identificacion"]))
+			if(isset($_GET["id_rangos_c_x_c"]))
 			{
-				$id_tipo_identificacion=(int)$_GET["id_tipo_identificacion"];
+				$id_rangos_c_x_c=(int)$_GET["id_rangos_c_x_c"];
 				
 				
-				$tipo_identificacion = new Tipo_IdentificacionModel();
+				$Rangos = new Rangos_c_x_cModel();
 				
-				$tipo_identificacion->deleteBy(" id_tipo_identificacion",$id_tipo_identificacion);
+				$Rangos->deleteBy(" id_rangos_c_x_c",$id_rangos_c_x_c);
 				
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Tipo_Persona";
+				$_nombre_controlador = "Rangos_c_x_c";
 				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_tipo_identificacion;
+				$_parametros_trazas = $id_rangos_c_x_c;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			
-			$this->redirect("Tipo_Identificacion", "index");
+			$this->redirect("Rangos_c_x_c", "index");
 			
 			
 		}

@@ -66,7 +66,7 @@
 		    <div class="form-group">
 		       
 			   					<label for="valor_min_c_x_c" class="control-label">Valor_Min_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value="<?php echo $resEdit->valor_min_c_x_c; ?>"  placeholder="Valor_Min_c_x_c">
+                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value="<?php echo $resEdit->valor_min_c_x_c; ?>"  placeholder="0.00">
                                     <input type="hidden" class="form-control" id="id_rangos_c_x_c" name="id_rangos_c_x_c" value="<?php echo $resEdit->id_rangos_c_x_c; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
@@ -76,7 +76,7 @@
 		    <div class="form-group">
 		       
 			   					<label for="valor_max_c_x_c" class="control-label">Valor_Max_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value="<?php echo $resEdit->valor_max_c_x_c; ?>"  placeholder="Valor_Max_c_x_c">
+                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value="<?php echo $resEdit->valor_max_c_x_c; ?>"  placeholder="0.00">
                                     <input type="hidden" class="form-control" id="id_rangos_c_x_c" name="id_rangos_c_x_c" value="<?php echo $resEdit->id_rangos_c_x_c; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
@@ -115,7 +115,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="valor_min_c_x_c" class="control-label">Valor_Min_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value=""  placeholder="Valor_Min_c_x_c">
+                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value=""  placeholder="0.00">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -123,7 +123,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="valor_max_c_x_c" class="control-label">Valor_Max_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value=""  placeholder="Valor_Max_c_x_c">
+                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value=""  placeholder="0.00">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -166,7 +166,7 @@
        <thead>
            <tr>
                     <th style="font-size:100%;">Id</th>
-		    		<th style="font-size:100%;"></th>
+		    		<th style="font-size:100%;">Entidades</th>
 		    		<th style="font-size:100%;">Nombre_Rangos_c_x_c</th>
 		    		<th style="font-size:100%;">Valor_Min_c_x_c</th>
 		    		<th style="font-size:100%;">Valor_Max_c_x_c</th>
