@@ -1,5 +1,5 @@
 	
-   <?php include("view/modulos/modal.php"); ?>
+ 
  <?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
@@ -32,8 +32,16 @@
        
       <form action="<?php echo $helper->url("TipoCreditos","InsertaTipoCreditos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
-         
-        	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+          <?php if (isset($resultado)) {?>
+        	<?php if ($resultado == "Guardar") {?>
+        	
+	        	  <div class="alert alert-success" role="alert">Guardado Correctamente</div>
+				
+			<?php }else {?>
+				  <div class="alert alert-danger" role="alert">No se pudo Guardar la Información</div>
+				
+			<?php } ?>
+	        <?php } elseif ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
             <div class="well">
             <h4 style="color:#ec971f;">Insertar Tipo de Credito</h4>
@@ -43,11 +51,10 @@
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="nombre_tipo_persona" class="control-label">Nombre Tipo de Persona</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_persona" name="nombre_tipo_persona" value="<?php echo $resEdit->nombre_tipo_persona; ?>"  placeholder="Nombre Tipo de Persona">
-                                    <input type="hidden" class="form-control" id="id_tipo_persona" name="id_tipo_persona" value="<?php echo $resEdit->id_tipo_persona; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
+			   					<label for="nombre_tipo_creditos" class="control-label">Nombre Tipo de Credito</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_creditos" name="nombre_tipo_creditos" value="<?php echo $resEdit->nombre_tipo_creditos; ?>"  placeholder="Nombre Tipo de Credito">
+                                  <input type="hidden" class="form-control" id="id_tipo_creditos" name="id_tipo_creditos" value="<?php echo $resEdit->id_tipo_creditos; ?>"  placeholder="">
+                                <span class="help-block"></span>
 			</div>
 		    </div>
             </div>
@@ -56,14 +63,14 @@
 		     <?php } } else {?>
 		     
 		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Tipo de Credito </h4>
+		    <h4 style="color:#ec971f;">Insertar Tipo de Credito</h4>
             <hr/>
             <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_creditos" class="control-label">Nombre Tipo de Credito</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_creditos" name="nombre_tipo_creditos" value=""  placeholder="Nombre Tipo de Creditos">
+                                  <input type="text" class="form-control" id="nombre_tipo_creditos" name="nombre_tipo_creditos" value=""  placeholder="Nombre Tipo de Credito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -90,12 +97,9 @@
      		<br>
      		<div class="well">  
             <h4 style="color:#ec971f;">Tipo de Creditos Registrado</h4>
-            
             <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
-		    
 		    </div>
-		  
 		    </div>  
              
        
@@ -164,18 +168,18 @@
                
 	   <tbody>
 	   		<tr>
-	   		           <td style="font-size:80%;"> <?php echo $res->id_tipo_persona; ?></td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
+	   		           <td style="font-size:80%;"> <?php echo $res->id_tipo_creditos; ?></td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_creditos; ?>     </td> 
 		               
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Tipo_Persona","index"); ?>&id_tipo_persona=<?php echo $res->id_tipo_persona; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("TipoCreditos","index"); ?>&id_tipo_creditos=<?php echo $res->id_tipo_creditos; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			           </td>
 			           <td>   
 			               	<div class="right">
-			                    <a href="<?php echo $helper->url("Tipo_Persona","borrarId"); ?>&id_tipo_persona=<?php echo $res->id_tipo_persona; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("TipoCreditos","borrarId"); ?>&id_tipo_creditos=<?php echo $res->id_tipo_creditos; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			           </td>
 	   		</tr>
