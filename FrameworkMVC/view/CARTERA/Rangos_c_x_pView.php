@@ -146,10 +146,10 @@
        </form>
        <!-- termina el form --> 
        
-       <form action="<?php echo $helper->url("Rangos_c_x_c","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+       <form action="<?php echo $helper->url("Rangos_c_x_p","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
      		<br>
      		<div class="well">  
-            <h4 style="color:#ec971f;">Tipo de Rango_C_X_C Registrado</h4>
+            <h4 style="color:#ec971f;">Tipo de Rango_C_X_P Registrado</h4>
             
             <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
@@ -167,9 +167,9 @@
            <tr>
                     <th style="font-size:100%;">Id</th>
 		    		<th style="font-size:100%;">Entidades</th>
-		    		<th style="font-size:100%;">Nombre_Rangos_c_x_c</th>
-		    		<th style="font-size:100%;">Valor_Min_c_x_c</th>
-		    		<th style="font-size:100%;">Valor_Max_c_x_c</th>
+		    		<th style="font-size:100%;">Nombre_Rangos_c_x_p</th>
+		    		<th style="font-size:100%;">Valor_Min_c_x_p</th>
+		    		<th style="font-size:100%;">Valor_Max_c_x_p</th>
 		    		<th></th>
 		    		<th></th>
 		    		
@@ -227,21 +227,21 @@
                
 	   <tbody>
 	   		<tr>
-	   		           <td style="font-size:80%;"> <?php echo $res->id_rangos_c_x_c ; ?></td>
+	   		           <td style="font-size:80%;"> <?php echo $res->id_rangos_c_x_p ; ?></td>
 		               <td style="font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td> 
-		               <td style="font-size:80%;"> <?php echo $res->nombre_rangos_c_x_c; ?>     </td>
-		               <td style="font-size:80%;"> <?php echo $res->valor_min_c_x_c; ?>     </td>
-		               <td style="font-size:80%;"> <?php echo $res->valor_max_c_x_c; ?>     </td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_rangos_c_x_p; ?>     </td>
+		               <td style="font-size:80%;"> <?php echo $res->valor_min_c_x_p; ?>     </td>
+		               <td style="font-size:80%;"> <?php echo $res->valor_max_c_x_p; ?>     </td>
 		               
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Rangos_c_x_c","index"); ?>&id_rangos_c_x_c=<?php echo $res->id_rangos_c_x_c; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Rangos_c_x_p","index"); ?>&id_rangos_c_x_p=<?php echo $res->id_rangos_c_x_p; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			           </td>
 			           <td>   
 			               	<div class="right">
-			                    <a href="<?php echo $helper->url("Rangos_c_x_c","borrarId"); ?>&id_rangos_c_x_c=<?php echo $res->id_rangos_c_x_c; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Rangos_c_x_p","borrarId"); ?>&id_rangos_c_x_p=<?php echo $res->id_rangos_c_x_p; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			           </td>
 	   		</tr>

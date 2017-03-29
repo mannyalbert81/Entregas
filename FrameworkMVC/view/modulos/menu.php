@@ -254,11 +254,18 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("Rangos_c_x_c",$controladores) ?>">
 			<a href="index.php?controller=Rangos_c_x_c&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Rangos_c_x_c</span> </a>
 		  </li>
+		
+		 <li style="<?php echo getcontrolador("Rangos_c_x_p",$controladores) ?>">
+			<a href="index.php?controller=Rangos_c_x_p&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Rangos_c_x_p</span> </a>
+		  </li>
 		  
 		   <li style="<?php echo getcontrolador("Tipo_Intereses",$controladores) ?>">
 			<a href="index.php?controller=Tipo_Intereses&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo_Intereses</span> </a>
 		  </li>
-         
+         <li style="<?php echo getcontrolador("Intereses",$controladores) ?>">
+			<a href="index.php?controller=Intereses&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Rangos_c_x_p</span> </a>
+		  </li>
+		 
           
 </ul>
 </li>
