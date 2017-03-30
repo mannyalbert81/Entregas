@@ -106,11 +106,11 @@ class TipoCreditosController extends ControladorBase{
 		
 		
 		$permisos_rol=new PermisosRolesModel();
-		$controladores=new ControladoresModel();
+		
 		$nombre_controladores = "TipoCreditos";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$resultPer = $tipo_creditos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
 		
 		
@@ -149,9 +149,7 @@ class TipoCreditosController extends ControladorBase{
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			 
 				
-				$this->cartera("TipoCreditos",array(
-						"resultado"=>"Guardar"
-				));
+				$this->cartera("TipoCreditos",array("resultado"=>"Guardar"));
 				
 				die();
 				
