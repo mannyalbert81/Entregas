@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		   
+		 <script src="view/js/ValidarTipoCreditos.js"></script>		   
   
     </head>
    <body class="cuerpo">
@@ -30,7 +30,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TipoCreditos","InsertaTipoCreditos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form id="form-Tipo-Creditos" action="<?php echo $helper->url("TipoCreditos","InsertaTipoCreditos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
           
         	<?php if ($resultado == "Guardar") {?>

@@ -10,8 +10,28 @@
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
+		  <script src="view/js/ValidarRangos_c_x_c.js"></script>
 		   
   
+      <script >   
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script > 
     </head>
    <body class="cuerpo">
    
@@ -28,7 +48,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Rangos_c_x_c","InsertaRango_c_x_c"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form id="form-rangos_c_x_c" action="<?php echo $helper->url("Rangos_c_x_c","InsertaRango_c_x_c"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
