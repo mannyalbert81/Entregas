@@ -4,10 +4,7 @@ class TipoCreditosController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
-		
-		
 	}
-
 
 
 	public function index(){
