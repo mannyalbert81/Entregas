@@ -84,7 +84,7 @@
 		    <div class="form-group">
 		       
 			   					<label for="valor_min_c_x_c" class="control-label">Valor_Min_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value="<?php echo $resEdit->valor_min_c_x_c; ?>"  placeholder="0.00">
+                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value="<?php echo $resEdit->valor_min_c_x_c; ?>"  onkeypress="return numeros(event)" placeholder="0.00">
                                     <input type="hidden" class="form-control" id="id_rangos_c_x_c" name="id_rangos_c_x_c" value="<?php echo $resEdit->id_rangos_c_x_c; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
@@ -94,7 +94,7 @@
 		    <div class="form-group">
 		       
 			   					<label for="valor_max_c_x_c" class="control-label">Valor_Max_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value="<?php echo $resEdit->valor_max_c_x_c; ?>"  placeholder="0.00">
+                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value="<?php echo $resEdit->valor_max_c_x_c; ?>"  onkeypress="return numeros(event)" placeholder="0.00">
                                     <input type="hidden" class="form-control" id="id_rangos_c_x_c" name="id_rangos_c_x_c" value="<?php echo $resEdit->id_rangos_c_x_c; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
@@ -133,7 +133,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="valor_min_c_x_c" class="control-label">Valor_Min_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value=""  placeholder="0.00">
+                                  <input type="text" class="form-control" id="valor_min_c_x_c" name="valor_min_c_x_c" value=""  onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -141,7 +141,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="valor_max_c_x_c" class="control-label">Valor_Max_c_x_c</label>
-                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value=""  placeholder="0.00">
+                                  <input type="text" class="form-control" id="valor_max_c_x_c" name="valor_max_c_x_c" value=""  onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
