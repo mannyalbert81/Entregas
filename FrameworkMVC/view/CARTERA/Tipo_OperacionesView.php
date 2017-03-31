@@ -1,5 +1,4 @@
-	
-   <?php include("view/modulos/modal.php"); ?>
+
  <?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
@@ -9,10 +8,12 @@
       
         <meta charset="utf-8"/>
         <title>Tipo de Operaciones - Contabilidad 2016</title>
-        <link rel="stylesheet" href="view/css/bootstrap.css">
+        
+      
+		  <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		   
+		  <script src="view/js/ValidarTipoOperaciones.js"></script>
   
     </head>
    <body class="cuerpo">
@@ -30,7 +31,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Tipo_Operaciones","InsertaOperacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form id="form-Tipo-Operaciones" action="<?php echo $helper->url("Tipo_Operaciones","InsertaOperacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
