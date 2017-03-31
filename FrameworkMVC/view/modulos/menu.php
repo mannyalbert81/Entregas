@@ -265,6 +265,9 @@ $controladores=$_SESSION['controladores'];
          <li style="<?php echo getcontrolador("Intereses",$controladores) ?>">
 			<a href="index.php?controller=Intereses&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Intereses</span> </a>
 		  </li>
+		<li style="<?php echo getcontrolador("TablaAmortizacion",$controladores) ?>">
+			<a href="index.php?controller=TablaAmortizacion&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tabla Amortización</span> </a>
+		  </li>
 		 
           
 </ul>
