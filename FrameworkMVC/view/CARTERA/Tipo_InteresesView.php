@@ -13,6 +13,11 @@
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
 		    <script src="view/js/ValidarTipoIntereses.js"></script>
+		    
+		    
+		    
+	
+    
 		
 		   
   
