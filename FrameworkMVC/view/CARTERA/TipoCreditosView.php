@@ -32,16 +32,12 @@
        
       <form action="<?php echo $helper->url("TipoCreditos","InsertaTipoCreditos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
-          <?php if (isset($resultado)) {?>
+          
         	<?php if ($resultado == "Guardar") {?>
         	
 	        	  <div class="alert alert-success" role="alert">Guardado Correctamente</div>
 				
-			<?php }else {?>
-				  <div class="alert alert-danger" role="alert">No se pudo Guardar la Información</div>
-				
-			<?php } ?>
-	        <?php } elseif ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+			<?php } elseif ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
             <div class="well">
             <h4 style="color:#ec971f;">Insertar Tipo de Credito</h4>

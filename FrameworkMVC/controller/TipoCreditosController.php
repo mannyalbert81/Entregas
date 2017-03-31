@@ -4,6 +4,8 @@ class TipoCreditosController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
+		
+		
 	}
 
 
@@ -18,16 +20,12 @@ class TipoCreditosController extends ControladorBase{
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			
-			
 			$nombre_controladores = "TipoCreditos";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $tipo_creditos->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
-				
-				
 				if (isset ($_GET["id_tipo_creditos"])   )
 				{
 					
@@ -44,8 +42,6 @@ class TipoCreditosController extends ControladorBase{
 						$tablas   = "tipo_creditos";
 						$where    = "id_tipo_creditos = '$_id_tipo_creditos' "; 
 						$id       = "id_tipo_creditos";
-						
-						
 						$resultEdit = $tipo_creditos->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 						
@@ -54,8 +50,6 @@ class TipoCreditosController extends ControladorBase{
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_tipo_creditos;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-						
-					
 					}
 					else
 					{
@@ -70,12 +64,10 @@ class TipoCreditosController extends ControladorBase{
 				}
 				
 				$this->cartera("TipoCreditos",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultado"=>respuesta
 			
 				));
-		
-				
-				
+			
 			}
 			else
 			{
@@ -103,8 +95,7 @@ class TipoCreditosController extends ControladorBase{
 			
 		session_start();
 		$tipo_creditos = new TipoCreditosModel();
-		
-		
+		$respuesta="";
 		$permisos_rol=new PermisosRolesModel();
 		$controladores=new ControladoresModel();
 		$nombre_controladores = "TipoCreditos";
@@ -112,7 +103,6 @@ class TipoCreditosController extends ControladorBase{
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
-		
 		
 		if (!empty($resultPer))
 		{
@@ -147,13 +137,8 @@ class TipoCreditosController extends ControladorBase{
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_nombre_tipo_creditos;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-			 
+			    respuesta == "Guardar"; 
 				
-				$this->cartera("TipoCreditos",array(
-						"resultado"=>"Guardar"
-				));
-				
-				die();
 				
 				}
 		
@@ -189,10 +174,7 @@ class TipoCreditosController extends ControladorBase{
 			if(isset($_GET["id_tipo_creditos"]))
 			{
 				$id_tipo_creditos=(int)$_GET["id_tipo_creditos"];
-				
-				
 				$tipo_creditos = new TipoCreditosModel();
-				
 				$tipo_creditos->deleteBy("id_tipo_creditos",$id_tipo_creditos);
 				
 				$traza=new TrazasModel();
@@ -201,15 +183,9 @@ class TipoCreditosController extends ControladorBase{
 				$_parametros_trazas = $id_tipo_creditos;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
-			
-				
-			
 			}
 			
-			
-			
 			$this->redirect("TipoCreditos", "index");
-			
 			
 		}
 		else
@@ -221,8 +197,6 @@ class TipoCreditosController extends ControladorBase{
 		}
 				
 	}
-	
-	
-		
+			
 }
 ?>
