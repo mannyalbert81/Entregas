@@ -9,11 +9,12 @@
       
         <meta charset="utf-8"/>
         <title>Rangos_c_x_p - Contabilidad 2016</title>
-        <link rel="stylesheet" href="view/css/bootstrap.css">
+
+		  <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		   
-  
+		  <script src="view/js/ValidarRangos_c_x_p.js"></script>
+		
     </head>
    <body class="cuerpo">
    
@@ -30,7 +31,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Rangos_c_x_p","InsertaRango_c_x_p"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form id="form-rangos_c_x_p" action="<?php echo $helper->url("Rangos_c_x_p","InsertaRango_c_x_p"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
