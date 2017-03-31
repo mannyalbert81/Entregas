@@ -1,5 +1,3 @@
-	
- 
  <?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
