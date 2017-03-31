@@ -13,7 +13,25 @@
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
 		 		  <script src="view/js/ValidarIntereses.js"></script>  
-  
+   <script >   
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script >
     </head>
    <body class="cuerpo">
    
@@ -66,7 +84,7 @@
 		    <div class="form-group">
 		       
 			   					<label for="valor_min_c_x_c" class="control-label">Valor Interes</label>
-                                  <input type="text" class="form-control" id="valor_intereses" name="valor_intereses" value="<?php echo $resEdit->valor_intereses; ?>"  placeholder="0.00">
+                                  <input type="text" class="form-control" id="valor_intereses" name="valor_intereses" value="<?php echo $resEdit->valor_intereses; ?>" onkeypress="return numeros(event)" placeholder="0.00">
                                     <input type="hidden" class="form-control" id="id_intereses" name="id_intereses" value="<?php echo $resEdit->id_intereses; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
@@ -112,7 +130,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="valor_intereses" class="control-label">Valor Intereses</label>
-                                  <input type="text" class="form-control" id="valor_intereses" name="valor_intereses" value=""  placeholder="0.00">
+                                  <input type="text" class="form-control" id="valor_intereses" name="valor_intereses" value="" onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
