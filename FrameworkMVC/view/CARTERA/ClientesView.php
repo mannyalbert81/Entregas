@@ -7,11 +7,8 @@
 
       <head>
           <meta charset="utf-8"/>
-         <title>Clientes - Contabilidad 2016</title>
-      
-      
-      
-		  <link rel="stylesheet" href="view/css/bootstrap.css">
+          <title>Clientes - Contabilidad 2016</title>
+          <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
 		  <script src="view/js/ValidarUsuarios.js"></script>
@@ -35,26 +32,23 @@
            
             <div class="well">
             <h4 style="color:#ec971f;">Clientes</h4>
-            <hr/>
             <div class="row">
 		     <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="ruc_clientes" class="control-label">Ruc</label>
+			   					  <label for="ruc_clientes" class="control-label">Ruc</label>
                                   <input type="text" class="form-control" id="ruc_clientes" name="ruc_clientes" value="<?php echo $resEdit->ruc_clientes; ?>"  placeholder="Ruc Clientes">
-                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
-                                
                                   <span class="help-block"></span>
 			</div>
 		    </div>
-		    
-		     <div class="col-xs-6 col-md-6">
+		    </div>
+		  	
+		  	<div class="row">
+		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
 		       
 			   					<label for="razon_social_clientes" class="control-label">Razón Social</label>
                                   <input type="text" class="form-control" id="razon_social_clientes" name="razon_social_clientes" value="<?php echo $resEdit->razon_social_clientes; ?>"  placeholder="Razón Social">
-                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
-                                
                                   <span class="help-block"></span>
 			</div>
 		    </div>
@@ -63,8 +57,8 @@
 		  	 <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="provincias" class="control-label">Provincias</label>
-                                  <select name="provincias" id="provincias"  class="form-control" >
+                                  <label for="id_provincias" class="control-label">Provincias</label>
+                                  <select name="id_provincias" id="id_provincias"  class="form-control" >
 			  	       					 <option value="" selected="selected">--Seleccione--</option>
 									<?php foreach($resultPro as $resPro) {?>
 										<option value="<?php echo $resPro->id_provincias; ?>" <?php if ($resPro->id_provincias == $resPro->id_provincias )  echo  ' selected="selected" '  ;  ?> ><?php echo $resPro->nombre_provincias; ?> </option>
@@ -93,9 +87,7 @@
 		       
 			   					<label for="direccion_clientes" class="control-label">Dirección</label>
                                   <input type="text" class="form-control" id="direccion_clientes" name="direccion_clientes" value="<?php echo $resEdit->direccion_clientes; ?>"  placeholder="Dirección Clientes">
-                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
+                                   <span class="help-block"></span>
 			</div>
 		    </div>
 		    
@@ -104,9 +96,7 @@
 		       
 			   					<label for="telefono_clientes" class="control-label">Teléfono</label>
                                   <input type="text" class="form-control" id="telefono_clientes" name="telefono_clientes" value="<?php echo $resEdit->telefono_clientes; ?>"  placeholder="Telefono Clientes">
-                                    <input type="hidden" class="form-control" id="id_tipo_contribuyente" name="id_tipo_contribuyente" value="<?php echo $resEdit->id_tipo_contribuyente; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
+                                   <span class="help-block"></span>
 			</div>
 		    </div>
 			</div>
@@ -117,52 +107,21 @@
 		       
 			   					<label for="celular_clientes" class="control-label">Celular</label>
                                   <input type="text" class="form-control" id="celular_clientes" name="celular_clientes" value="<?php echo $resEdit->celular_clientes; ?>"  placeholder="Celular Clientes">
-                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
+                                    <span class="help-block"></span>
 			</div>
 		    </div>
 		    
             
-             <div class="col-xs-6 col-md-6">
+            <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
 			   					<label for="email_clientes" class="control-label">E-mail</label>
                                   <input type="text" class="form-control" id="email_clientes" name="email_clientes" value="<?php echo $resEdit->email_clientes; ?>"  placeholder="E-mail Clientes">
-                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
-                                
                                   <span class="help-block"></span>
 			</div>
 		    </div>
 			</div>  
 			
-		  		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-                                  <label for="usuarios" class="control-label">Usuarios</label>
-                                  <select name="usuarios" id="usuarios"  class="form-control" >
-			  	       					 <option value="" selected="selected">--Seleccione--</option>
-									<?php foreach($resultUsu as $resUsu) {?>
-										<option value="<?php echo $resUsu->id_usuarios; ?>" <?php if ($resUsu->id_usuarios == $resEdit->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resUsu->nombre_usuarios; ?> </option>
-			        				<?php } ?>
-									</select> 
-                                   <span class="help-block"></span>
-            </div>
-            </div>
-             <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-                                  <label for="id_entidades" class="control-label">Entidades</label>
-                                  <select name="id_entidades" id="id_entidades"  class="form-control" readonly >
-                            		<?php foreach($resultEnt as $res) {?>
-										<option value="<?php echo $res->id_entidades; ?>" <?php if ($res->id_entidades == $resEdit->id_entidades )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_entidades; ?> </option>
-							        <?php } ?>
-								   </select> 
-                                  <span class="help-block"></span>
-            </div>
-            </div>
-			</div>
-		    
 		    </div>
 		     <hr>
             
@@ -172,7 +131,6 @@
 		    
             <div class="well">
             <h4 style="color:#ec971f;">Clientes</h4>
-            <hr/>
             <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group ">
@@ -181,7 +139,11 @@
                                   <span class="help-block"></span>
             </div>
 		    </div>
-		    <div class="col-xs-6 col-md-6">
+		    </div>
+		 	
+		 	
+		 	<div class="row">
+		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
                                   <label for="razon_social_clientes" class="control-label">Razón Social</label>
                                   <input type="text" class="form-control" id="razon_social_clientes" name="razon_social_clientes" value=""  placeholder="Razón Social">
@@ -190,12 +152,11 @@
             </div>
 		 	</div>
 		 	
-		 	
-		 	  <div class="row">
+		 	<div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="provincias" class="control-label">Provincia</label>
-                                  <select name="provincias" id="provincias"  class="form-control" >
+                                  <label for="id_provincias" class="control-label">Provincia</label>
+                                  <select name="id_provincias" id="id_provincias"  class="form-control" >
 			  	       					 <option value="" selected="selected">--Seleccione--</option>
 									<?php foreach($resultPro as $resPro) {?>
 										<option value="<?php echo $resPro->id_provincias; ?>"  ><?php echo $resPro->nombre_provincias; ?> </option>
@@ -219,21 +180,14 @@
 			</div>
 		       
 		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
                                   <label for="direccion_clientes" class="control-label">Dirección</label>
                                   <input type="text" class="form-control" id="direccion_clientes" name="direccion_clientes" value=""  placeholder="Dirección Clientes">
                                   <span class="help-block"></span>
             </div>
             </div>
-            <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                                  <label for="telefono_clientes" class="control-label">Teléfono</label>
-                                  <input type="text" class="form-control" id="telefono_clientes" name="telefono_clientes" value=""  placeholder="Teléfono Clientes">
-                                  <span class="help-block"></span>
             </div>
-		    </div>
-			</div>
 		       
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
@@ -243,42 +197,26 @@
                                   <span class="help-block"></span>
             </div>
             </div>
+            
+            
             <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                                  <label for="telefono_clientes" class="control-label">Teléfono</label>
+                                  <input type="text" class="form-control" id="telefono_clientes" name="telefono_clientes" value=""  placeholder="Teléfono Clientes">
+                                  <span class="help-block"></span>
+            </div>
+		    </div>
+			</div> 
+			  
+			<div class="row">  
+		    <div class="col-xs-12 col-md-12">
             <div class="form-group">
                                   <label for="email_clientes" class="control-label">E-mail</label>
                                   <input type="text" class="form-control" id="email_clientes" name="email_clientes" value=""  placeholder="E-mail Clientes">
                                   <span class="help-block"></span>
             </div>
 		    </div>
-			</div> 
-			  
-		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-                                  <label for="usuarios" class="control-label">Usuarios</label>
-                                  <select name="usuarios" id="usuarios"  class="form-control" >
-			  	       					 <option value="" selected="selected">--Seleccione--</option>
-									<?php foreach($resultUsu as $resUsu) {?>
-										<option value="<?php echo $resUsu->id_usuarios; ?>"  ><?php echo $resUsu->nombre_usuarios; ?> </option>
-			        				<?php } ?>
-									</select> 
-                                   <span class="help-block"></span>
-            </div>
-            </div>
-           <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-                                  <label for="id_entidades" class="control-label">Entidad</label>
-                                  <select name="id_entidades" id="id_entidades"  class="form-control" readonly>
-                                  
-									<?php foreach($resultEnt as $res) {?>
-										<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
-							        <?php } ?>
-								   </select> 
-                                  <span class="help-block"></span>
-            </div>
-            </div>
-			</div>
+		      </div>
 		      
 			</div> 
 			
@@ -311,12 +249,14 @@
        
        <thead>
            <tr>
-		            <th style="font-size:100%;"></th>
-		    		<th style="font-size:100%;">Nombre</th>
-		    		<th style="font-size:100%;">Usuario</th>
+		            <th style="font-size:100%;">Id</th>
+		    		<th style="font-size:100%;">Ruc</th>
+		    		<th style="font-size:100%;">Razon Social</th>
+		    		<th style="font-size:100%;">Dirección</th>
+		    		<th style="font-size:100%;">Teléfono</th>
+		    		<th style="font-size:100%;">Celular</th>
 		    		<th style="font-size:100%;">Correo</th>
-		    		<th style="font-size:100%;">Rol</th>
-		    		<th style="font-size:100%;">Estado</th>
+		    		<th style="font-size:100%;">Entidades</th>
 		    		<th></th>
 		    		<th></th>
 		    		<th></th>
@@ -370,25 +310,28 @@
        </tfoot>
        
                 <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-	        	 
+	    
+               
                
 	   <tbody>
 	   		<tr>
-	        		   <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
-		               <td style="font-size:80%;"> <?php echo $res->usuario_usuarios; ?>  </td>
-		               <td style="font-size:80%;"> <?php echo $res->correo_usuarios; ?>  </td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_rol; ?>  </td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
+	        		   <td style="font-size:80%;"> <?php echo $res->id_clientes; ?>     </td> 
+		               <td style="font-size:80%;"> <?php echo $res->ruc_clientes; ?>  </td>
+		               <td style="font-size:80%;"> <?php echo $res->razon_social_clientes; ?>  </td>
+		               <td style="font-size:80%;"> <?php echo $res->direccion_clientes; ?>  </td>
+		               <td style="font-size:80%;"> <?php echo $res->telefono_clientes; ?>  </td>
+		               <td style="font-size:80%;"> <?php echo $res->celular_clientes; ?>  </td>
+		                <td style="font-size:80%;"> <?php echo $res->email_clientes; ?>  </td>
+		                 <td style="font-size:80%;"> <?php echo $res->nombre_entidades; ?>  </td>
 		           	   <td>
 			           			<div class="right">
-			                    	<a href="<?php echo $helper->url("Clientes","index"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    	<a href="<?php echo $helper->url("Clientes","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			               		</div>
 			            
 			           </td>
 			           <td>   
 			                	<div class="right">
-			                    	<a href="<?php echo $helper->url("Clientes","borrarId"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    	<a href="<?php echo $helper->url("Clientes","borrarId"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                	</div>
 			           </td>
 		               

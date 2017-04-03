@@ -18,11 +18,6 @@ class ClientesModel extends ModeloBase{
 		return $this->funcion;
 	}
 	
-<<<<<<< HEAD
-	
-=======
-	//maycol
->>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad.git
 	public function setFuncion($funcion) {
 		$this->funcion = $funcion;
 	}
