@@ -30,7 +30,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TablaAmortizacion","InsertaIdentificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("TablaAmortizacion","InsertaIdentificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -40,7 +40,7 @@
   			 <hr/>
           
             <div class="row">
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-3 col-md-3">
 		    <div class="form-group">
 		       
 			   					<label for="nombre_tipo_identificacion" class="control-label">Nombre Tipo de Identificacion</label>
@@ -56,19 +56,150 @@
 		     <?php } } else {?>
 		     
 		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Tipo de Identificacion </h4>
+		    <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</h4>
             <hr/>
             <div class="row">
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-2 col-md-2">
 		    <div class="form-group">
 		    
-		     					  <label for="nombre_tipo_identificacion" class="control-label">Nombre Tipo de Identificacion</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Nombre Tipo de Identificacion">
+		     					  <label for="nombre_tipo_identificacion" class="control-label">IDENTIFICACIÓN</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="IDENTIFICACIÓN">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">DEUDOR</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="DEUDOR">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+		       <div class="col-lg-2" style="margin-top: 23px;">
+            <div class="form-group">
+            					  <button type="submit" id="Buscar" name="Buscar" class="btn btn-info">Buscar</button>
             </div>
             </div>
+             
+          
+           
+			</div>
+		  </div>
+            <div class="well">
+		    <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</h4>
+            <hr/>
+            <div class="row">
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Nro. Crédito</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Nro. Crédito">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Pagare Nro.</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Pagare Nro.">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			 <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Tipo Crédito</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Tipo Crédito">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Cap. Prestado</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Cap. Prestado">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			<div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Tasa</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Tasa">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Plazo</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Plazo">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			</div>
+			<div class="row">
+		 	<div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Int. Mensual</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Int. Mensual">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			<div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Plazo 2</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Plazo 2">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			<div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Cuotas</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Cuotas">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">MORA</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="MORA">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			<div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">M. Mensual</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="M. Mensual">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+		     <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">CUOTA</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="CUOTA">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			</div>
+			<div class="row">
+		    <div class="col-xs-2 col-md-2">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_tipo_identificacion" class="control-label">Fecha</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Fecha">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+			</div>
+            
+            
 		    
 		   
                	
@@ -82,11 +213,13 @@
             </div>
             </div>
             </div>
+            </div>
+           
         
        </form>
        <!-- termina el form --> 
        
-       <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+       <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
      		<br>
      		<div class="well">  
             <h4 style="color:#ec971f;">Tipo de Identificacion Registrado</h4>
@@ -105,12 +238,13 @@
        
        <thead>
            <tr>
-                    <th style="font-size:100%;">Id</th>
-		    		<th style="font-size:100%;">Nombre</th>
-		    		<th></th>
-		    		<th></th>
-		    		
-	  		</tr>
+                    <th style="font-size:100%;">Pagos Trimestrales</th>
+		    		<th style="font-size:100%;">Saldo Inicial</th>
+		    		<th style="font-size:100%;">Interes</th>
+		    		<th style="font-size:100%;">Amortización</th>
+		    		<th style="font-size:100%;">Pagos</th>
+		    		<th style="font-size:100%;">Fecha Pago</th>
+		   	</tr>
 	   </thead>
        <tfoot>
        		<tr>
@@ -165,8 +299,11 @@
 	   <tbody>
 	   		<tr>
 	   		           <td style="font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td> 
-		               
+	   		           <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td> 
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
 		               <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("TablaAmortizacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
