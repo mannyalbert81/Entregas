@@ -13,6 +13,46 @@ class TablaAmortizacionController extends ControladorBase{
 		
 		session_start();
         
+		if(isset($_POST["buscar"]))
+		{
+		
+				
+			$identificacion=$_POST['identificacion'];
+			
+			if($identificacion=="")
+			{
+		
+			}
+			else{
+		
+					$columnas = "fc_clientes.id_clientes, 
+								  fc_clientes.ruc_clientes, 
+								  fc_clientes.razon_social_clientes, 
+								  entidades.nombre_entidades";
+		
+				$tablas=" public.fc_clientes, 
+  							public.entidades";
+		
+				$where="entidades.id_entidades = fc_clientes.id_entidades";
+		
+				$id="fc_clientes.id_clientes";
+		
+		
+				$where_0 = "";
+				
+		
+				if($identificacion!=""){$where_0=" AND fc_clientes.ruc_clientes='$identificacion'";}
+				
+		
+					
+				$where_to  = $where . $where_0;
+					
+				$resultSet = $clientes->getCondiciones($columnas, $tablas, $where_to, $id);
+					
+					
+			}
+		
+		}
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$resultEdit = "";
@@ -98,6 +138,7 @@ class TablaAmortizacionController extends ControladorBase{
 				
 				
 			}
+			
 			else
 			{
 				$this->view("Error",array(

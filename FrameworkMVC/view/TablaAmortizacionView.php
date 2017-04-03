@@ -30,61 +30,41 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TablaAmortizacion","InsertaIdentificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
             <br>
          
-        	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-            <div class="well">
-            <h4 style="color:#ec971f;">Insertar Tipo de Identificacion</h4>
-  			 <hr/>
-          
-            <div class="row">
-		    <div class="col-xs-3 col-md-3">
-		    <div class="form-group">
-		       
-			   					<label for="nombre_tipo_identificacion" class="control-label">Nombre Tipo de Identificacion</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value="<?php echo $resEdit->nombre_tipo_identificacion; ?>"  placeholder="Nombre Tipo de Identificacion">
-                                    <input type="hidden" class="form-control" id="id_tipo_identificacion" name="id_tipo_identificacion" value="<?php echo $resEdit->id_tipo_identificacion; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
-			</div>
-		    </div>
-            </div>
-            </div>	
-		    
-		     <?php } } else {?>
-		     
-		    <div class="well">
-		    <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</h4>
-            <hr/>
-            <div class="row">
-		    <div class="col-xs-2 col-md-2">
-		    <div class="form-group">
-		    
-		     					  <label for="nombre_tipo_identificacion" class="control-label">IDENTIFICACIÓN</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="IDENTIFICACIÓN">
-                                  <span class="help-block"></span>
-		    </div>
-		    </div>
-		    <div class="col-xs-2 col-md-2">
-		    <div class="form-group">
-		    
-		     					  <label for="nombre_tipo_identificacion" class="control-label">DEUDOR</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="DEUDOR">
-                                  <span class="help-block"></span>
-		    </div>
-		    </div>
-		       <div class="col-lg-2" style="margin-top: 23px;">
-            <div class="form-group">
-            					  <button type="submit" id="Buscar" name="Buscar" class="btn btn-info">Buscar</button>
-            </div>
-            </div>
              
-          
-           
-			</div>
+         <div class="col-lg-12">
+          <div class="well">  
+         <h4 style="color:#ec971f; text-align: center;" >BUSQUEDA DE CLEINTES </h4>
+        <hr/>
+		  <div class="well">
+  			<div class="row">
+  			<div class="col-xs-2 col-md-2" style="text-align: center;">
+			  
+            </div>
+		    <div class="col-xs-3 col-md-3" style="text-align: center;">
+			  	<p  class="formulario-subtitulo" >Identificacion:</p>
+			  	<input type="text"  name="identificacion" id="identificacion" value="" class="form-control"/> 
+			   
+            </div>
+		   
+		   <div class="col-xs-3 col-md-3" style="text-align: center;">
+			  	<p  class="formulario-subtitulo" >Deudor:</p>
+			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="" class="form-control"/> 
+			   	
+            </div>
+		   
+		   <div class="col-xs-3 col-md-3">
+			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " onClick="notificacion()" style="margin-top: 30px;"/> 	
+		  
 		  </div>
+		    </div>
+		    </div>
+		      </div>
+             </div>
+         
             <div class="well">
 		    <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</h4>
             <hr/>
@@ -201,9 +181,7 @@
             
             
 		    
-		   
-               	
-		     <?php } ?>
+		
 		     
 		     
 		    <div class="row">
