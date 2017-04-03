@@ -115,9 +115,9 @@
 		     <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="nombre_tipo_contribuyente" class="control-label">Celular</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_contribuyente" name="nombre_tipo_contribuyente" value="<?php echo $resEdit->nombre_tipo_contribuyente; ?>"  placeholder="Nombre Tipo de Contribuyente">
-                                    <input type="hidden" class="form-control" id="id_tipo_contribuyente" name="id_tipo_contribuyente" value="<?php echo $resEdit->id_tipo_contribuyente; ?>"  placeholder="">
+			   					<label for="celular_clientes" class="control-label">Celular</label>
+                                  <input type="text" class="form-control" id="celular_clientes" name="celular_clientes" value="<?php echo $resEdit->celular_clientes; ?>"  placeholder="Celular Clientes">
+                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
 			</div>
@@ -240,7 +240,7 @@
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="clave_usuarios" class="control-label">Celular</label>
-                                  <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value=""  placeholder="Clave">
+                                  <input type="text" class="form-control" id="clave_usuarios" name="clave_usuarios" value=""  placeholder="Clave">
                                   <span class="help-block"></span>
             </div>
             </div>
