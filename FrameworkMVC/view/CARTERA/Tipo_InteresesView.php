@@ -1,5 +1,5 @@
 	
- 
+
  <?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
@@ -8,7 +8,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Tipo de Identificacion - Contabilidad 2016</title>
+        <title>Tipo de Operaciones - Contabilidad 2016</title>
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
@@ -30,22 +30,22 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Tipo_Identificacion","InsertaIdentificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("Tipo_Intereses","InsertaIntereses"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
             <div class="well">
-            <h4 style="color:#ec971f;">Insertar Tipo de Identificacion</h4>
+            <h4 style="color:#ec971f;">Insertar Tipo de Intereses</h4>
   			 <hr/>
           
             <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="nombre_tipo_identificacion" class="control-label">Nombre Tipo de Identificacion</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value="<?php echo $resEdit->nombre_tipo_identificacion; ?>"  placeholder="Nombre Tipo de Identificacion">
-                                    <input type="hidden" class="form-control" id="id_tipo_identificacion" name="id_tipo_identificacion" value="<?php echo $resEdit->id_tipo_identificacion; ?>"  placeholder="">
+			   					<label for="nombre_tipo_intereses" class="control-label">Nombre Tipo de Ineteres</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_intereses" name="nombre_tipo_intereses" value="<?php echo $resEdit->nombre_tipo_intereses; ?>"  placeholder="Nombre Tipo de Intereses">
+                                    <input type="hidden" class="form-control" id="id_tipo_intereses" name="id_tipo_intereses" value="<?php echo $resEdit->id_tipo_intereses; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
 			</div>
@@ -56,14 +56,14 @@
 		     <?php } } else {?>
 		     
 		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Tipo de Identificacion </h4>
+		    <h4 style="color:#ec971f;">Insertar Tipo de Intereses </h4>
             <hr/>
             <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		    
-		     					  <label for="nombre_tipo_identificacion" class="control-label">Nombre Tipo de Identificacion</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Nombre Tipo de Identificacion">
+		     					  <label for="nombre_tipo_intereses" class="control-label">Nombre Tipo de Ineteres</label>
+                                  <input type="text" class="form-control" id="nombre_tipo_intereses" name="nombre_tipo_intereses" value=""  placeholder="Nombre Tipo de Intereses">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -86,10 +86,10 @@
        </form>
        <!-- termina el form --> 
        
-       <form action="<?php echo $helper->url("Tipo_Identificacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+       <form action="<?php echo $helper->url("Tipo_Intereses","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
      		<br>
      		<div class="well">  
-            <h4 style="color:#ec971f;">Tipo de Identificacion Registrado</h4>
+            <h4 style="color:#ec971f;">Tipo de Interes Registrado</h4>
             
             <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
@@ -164,18 +164,18 @@
                
 	   <tbody>
 	   		<tr>
-	   		           <td style="font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td> 
+	   		           <td style="font-size:80%;"> <?php echo $res->id_tipo_intereses; ?></td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_intereses; ?>     </td> 
 		               
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Tipo_Identificacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Tipo_Intereses","index"); ?>&id_tipo_intereses=<?php echo $res->id_tipo_intereses; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			           </td>
 			           <td>   
 			               	<div class="right">
-			                    <a href="<?php echo $helper->url("Tipo_Identificacion","borrarId"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Tipo_Intereses","borrarId"); ?>&id_tipo_intereses=<?php echo $res->id_tipo_intereses; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			           </td>
 	   		</tr>

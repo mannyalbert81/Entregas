@@ -1,6 +1,6 @@
 <?php
 
-class Tipo_OperacionesController extends ControladorBase{
+class Tipo_InteresesController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -12,9 +12,9 @@ class Tipo_OperacionesController extends ControladorBase{
 	
 		//Creamos el objeto usuario
      	
-		$tipo_operaciones = new Tipo_OperacionesModel();
+		$tipo_intereses = new Tipo_InteresesModel();
 	   //Conseguimos todos los usuarios
-		$resultSet=$tipo_operaciones->getAll("id_tipo_operaciones");
+		$resultSet=$tipo_intereses->getAll("id_tipo_intereses");
 				
 		$resultEdit = "";
 
@@ -27,42 +27,42 @@ class Tipo_OperacionesController extends ControladorBase{
 		{
 			
 			
-			$nombre_controladores = "Tipo_Operaciones";
+			$nombre_controladores = "Tipo_Intereses";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $tipo_operaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $tipo_intereses->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				
 				
-				if (isset ($_GET["id_tipo_operaciones"])   )
+				if (isset ($_GET["id_tipo_intereses"])   )
 				{
 					
-					$nombre_controladores = "Tipo_Operaciones";
+					$nombre_controladores = "Tipo_Intereses";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $tipo_operaciones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $tipo_intereses->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_tipo_operaciones = $_GET["id_tipo_operaciones"];
+						$_id_tipo_intereses = $_GET["id_tipo_intereses"];
 						
-						$columnas = " id_tipo_operaciones, nombre_tipo_operaciones";
-						$tablas   = "tipo_operaciones";
-						$where    = "id_tipo_operaciones = '$_id_tipo_operaciones' "; 
-						$id       = "id_tipo_operaciones";
+						$columnas = " id_tipo_intereses, nombre_tipo_intereses";
+						$tablas   = "tipo_intereses";
+						$where    = "id_tipo_intereses = '$_id_tipo_intereses' "; 
+						$id       = "id_tipo_intereses";
 						
 						
 						
 							
 						
-						$resultEdit = $tipo_operaciones->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $tipo_intereses->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 						
 						$traza=new TrazasModel();
-						$_nombre_controlador = "Tipo_Operaciones";
+						$_nombre_controlador = "Tipo_Intereses";
 						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_tipo_operaciones;
+						$_parametros_trazas = $_id_tipo_intereses;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					
@@ -70,7 +70,7 @@ class Tipo_OperacionesController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Tipo de Operaciones"
+								"resultado"=>"No tiene Permisos de Editar Tipo de Intereses"
 					
 						));
 					
@@ -82,7 +82,7 @@ class Tipo_OperacionesController extends ControladorBase{
 				
 		
 				
-				$this->cartera("Tipo_Operaciones",array(
+				$this->cartera("Tipo_Intereses",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));
@@ -112,24 +112,20 @@ class Tipo_OperacionesController extends ControladorBase{
 	
 	}
 	
-	public function InsertaOperacion(){
+	public function InsertaIntereses(){
 			
 		session_start();
 		
-		$tipo_operaciones = new Tipo_OperacionesModel();
+		$tipo_intereses = new Tipo_InteresesModel();
 		$permisos_rol=new PermisosRolesModel();
 		
-
-		
-		
-
-		$nombre_controladores = "Tipo_Operaciones";
+		$nombre_controladores = "Tipo_Intereses";
 		$id_rol= $_SESSION['id_rol'];
 
 		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
-		$resultPer = $tipo_operaciones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$resultPer = $tipo_intereses->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
 		
 		
@@ -144,26 +140,26 @@ class Tipo_OperacionesController extends ControladorBase{
 		
 			//_nombre_controladores
 			
-			if (isset ($_POST["nombre_tipo_operaciones"]) )
+			if (isset ($_POST["nombre_tipo_intereses"]) )
 				
 			{
 				
 				
 				
-				$_nombre_tipo_operaciones = $_POST["nombre_tipo_operaciones"];
+				$_nombre_tipo_intereses = $_POST["nombre_tipo_intereses"];
 				
 				
 				
-				if(isset($_POST["id_tipo_operaciones"])) 
+				if(isset($_POST["id_tipo_intereses"])) 
 				{
 					
-					$_id_tipo_operaciones = $_POST["id_tipo_operaciones"];
+					$_id_tipo_intereses = $_POST["id_tipo_intereses"];
 					
-					$colval = " nombre_tipo_operaciones = '$_nombre_tipo_operaciones'   ";
-					$tabla = "tipo_operaciones";
-					$where = "id_tipo_operaciones = '$_id_tipo_operaciones'    ";
+					$colval = " nombre_tipo_intereses = '$_nombre_tipo_intereses'   ";
+					$tabla = "tipo_intereses";
+					$where = "id_tipo_intereses = '$_id_tipo_intereses'    ";
 					
-					$resultado=$tipo_operaciones->UpdateBy($colval, $tabla, $where);
+					$resultado=$tipo_intereses->UpdateBy($colval, $tabla, $where);
 					
 					
 					
@@ -171,16 +167,16 @@ class Tipo_OperacionesController extends ControladorBase{
 					
 			
 				
-				$funcion = "ins_tipo_operaciones";
+				$funcion = "ins_tipo_intereses";
 				
-				$parametros = " '$_nombre_tipo_operaciones'  ";
+				$parametros = " '$_nombre_tipo_intereses'  ";
 					
-				$tipo_operaciones->setFuncion($funcion);
+				$tipo_intereses->setFuncion($funcion);
 		
-				$tipo_operaciones->setParametros($parametros);
+				$tipo_intereses->setParametros($parametros);
 		
 		
-				$resultado=$tipo_operaciones->Insert();
+				$resultado=$tipo_intereses->Insert();
 				
 				//$this->view("Error",array(
 							
@@ -190,21 +186,21 @@ class Tipo_OperacionesController extends ControladorBase{
 				//exit();
 			
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Tipo_Operaciones";
+				$_nombre_controlador = "Tipo_Intereses";
 				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombre_tipo_operaciones;
+				$_parametros_trazas = $_nombre_tipo_intereses;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			 }
 		
 			}
-			$this->redirect("Tipo_Operaciones", "index");
+			$this->redirect("Tipo_Intereses", "index");
 
 		}
 		else
 		{
 			$this->view("Error",array(
 					
-					"resultado"=>"No tiene Permisos de Insertar Tipo de Operaciones"
+					"resultado"=>"No tiene Permisos de Insertar Tipo de Intereses"
 		
 			));
 		
@@ -219,37 +215,37 @@ class Tipo_OperacionesController extends ControladorBase{
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Tipo_Operaciones";
+		$nombre_controladores = "Tipo_Intereses";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_tipo_operaciones"]))
+			if(isset($_GET["id_tipo_intereses"]))
 			{
-				$id_tipo_operaciones=(int)$_GET["id_tipo_operaciones"];
+				$id_tipo_intereses =(int)$_GET["id_tipo_intereses"];
 				
 				
-				$tipo_operaciones = new Tipo_OperacionesModel();
+				$tipo_intereses = new Tipo_InteresesModel();
 				
-				$tipo_operaciones->deleteBy(" id_tipo_operaciones",$id_tipo_operaciones);
+				$tipo_intereses->deleteBy(" id_tipo_intereses",$id_tipo_intereses);
 				
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Tipo_Operaciones";
+				$_nombre_controlador = "Tipo_Intereses";
 				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_tipo_operaciones;
+				$_parametros_trazas = $id_tipo_intereses;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			
-			$this->redirect("Tipo_Operaciones", "index");
+			$this->redirect("Tipo_Intereses", "index");
 			
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Tipo de Operaciones"
+				"resultado"=>"No tiene Permisos de Borrar Tipo de Intereses"
 			
 			));
 		}

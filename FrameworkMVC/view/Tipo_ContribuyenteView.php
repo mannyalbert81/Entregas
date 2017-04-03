@@ -1,5 +1,5 @@
 
-   <?php include("view/modulos/modal.php"); ?>
+   
  <?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
