@@ -143,13 +143,13 @@ class ClientesController extends ControladorBase{
 	
 	}
 	
-	public function InsertaIntereses(){
+	public function InsertaClientes(){
 			
 		session_start();
 		
-		$Intereses = new InteresesModel();
+		$Clientes = new ClientesModel();
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Intereses";
+		$nombre_controladores = "Clientes";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
@@ -160,22 +160,26 @@ class ClientesController extends ControladorBase{
 		
 			$resultado = null;
 			
-			if (isset ($_POST["valor_intereses"]) )
+			if (isset ($_POST["ruc_clientes"]) )
 				
 			{
 				
-				$_id_entidades = $_POST["id_entidades"];
-				$_id_tipo_intereses = $_POST["id_tipo_intereses"];
-				$_valor_intereses = $_POST["valor_intereses"];
-				
-				
-				
+				$_ruc_clientes = $_POST["ruc_clientes"];
+				$_razon_social_clientes = $_POST["razon_social_clientes"];
+				$_id_provincias = $_POST["id_provincias"];
+				$_id_ciudad = $_POST["id_ciudad"];
+				$_direccion_clientes = $_POST["direccion_clientes"];
+				$_telefono_clientes = $_POST["telefono_clientes"];
+				$_celular_clientes = $_POST["celular_clientes"];
+				$_email_clientes = $_POST["email_clientes"];
+				$_id_usuario = $_POST["id_usuario"];
+				$_id_entidades = $_POST["id_entidades"];				
 						
-				$funcion = "ins_intereses";
-				$parametros = " '$_id_entidades', '$_id_tipo_intereses', '$_valor_intereses'";
-				$Intereses->setFuncion($funcion);
-		        $Intereses->setParametros($parametros);
-		        $resultado=$Intereses->Insert();
+				$funcion = "ins_fc_clientes";
+				$parametros = " '$_ruc_clientes', '$_razon_social_clientes', '$_id_provincias', '$_id_ciudad', '$_direccion_clientes', '$_telefono_clientes', '$_celular_clientes', '$_email_clientes', '$_id_usuario', '$_id_entidades'";
+				$Clientes->setFuncion($funcion);
+		        $Clientes->setParametros($parametros);
+		        $resultado=$Clientes->Insert();
 				
 				
 			

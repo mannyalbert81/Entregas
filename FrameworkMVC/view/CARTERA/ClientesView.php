@@ -127,9 +127,9 @@
              <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="nombre_tipo_contribuyente" class="control-label">E-mail</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_contribuyente" name="nombre_tipo_contribuyente" value="<?php echo $resEdit->nombre_tipo_contribuyente; ?>"  placeholder="Nombre Tipo de Contribuyente">
-                                    <input type="hidden" class="form-control" id="id_tipo_contribuyente" name="id_tipo_contribuyente" value="<?php echo $resEdit->id_tipo_contribuyente; ?>"  placeholder="">
+			   					<label for="email_clientes" class="control-label">E-mail</label>
+                                  <input type="text" class="form-control" id="email_clientes" name="email_clientes" value="<?php echo $resEdit->email_clientes; ?>"  placeholder="E-mail Clientes">
+                                    <input type="hidden" class="form-control" id="id_clientes" name="id_clientes" value="<?php echo $resEdit->id_clientes; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
 			</div>
@@ -140,28 +140,27 @@
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="estados" class="control-label">Usuarios</label>
-                                  <select name="estados" id="estados"  class="form-control" >
+                                  <label for="usuarios" class="control-label">Usuarios</label>
+                                  <select name="usuarios" id="usuarios"  class="form-control" >
 			  	       					 <option value="" selected="selected">--Seleccione--</option>
-									<?php foreach($resultEst as $resEst) {?>
-										<option value="<?php echo $resEst->id_estado; ?>" <?php if ($resEst->id_estado == $resEdit->id_estado )  echo  ' selected="selected" '  ;  ?> ><?php echo $resEst->nombre_estado; ?> </option>
+									<?php foreach($resultUsu as $resUsu) {?>
+										<option value="<?php echo $resUsu->id_usuarios; ?>" <?php if ($resUsu->id_usuarios == $resEdit->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resUsu->nombre_usuarios; ?> </option>
 			        				<?php } ?>
 									</select> 
                                    <span class="help-block"></span>
             </div>
             </div>
-            <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                                  <label for="id_ciudad" class="control-label">Entidades</label>
-                                  <select name="id_ciudad" id="id_ciudad"  class="form-control" >
-                                        <option value="" selected="selected">--Seleccione--</option>
-									<?php foreach($resultCiu as $resCiu) {?>
-										<option value="<?php echo $resCiu->id_ciudad; ?>"  <?php if ($resCiu->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
-			       					<?php } ?>
-								  </select> 
+             <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="id_entidades" class="control-label">Entidades</label>
+                                  <select name="id_entidades" id="id_entidades"  class="form-control" readonly >
+                            		<?php foreach($resultEnt as $res) {?>
+										<option value="<?php echo $res->id_entidades; ?>" <?php if ($res->id_entidades == $resEdit->id_entidades )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_entidades; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
             </div>
-		    </div>
+            </div>
 			</div>
 		    
 		    </div>
@@ -239,15 +238,15 @@
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="clave_usuarios" class="control-label">Celular</label>
-                                  <input type="text" class="form-control" id="clave_usuarios" name="clave_usuarios" value=""  placeholder="Clave">
+                                  <label for="celular_clientes" class="control-label">Celular</label>
+                                  <input type="text" class="form-control" id="celular_clientes" name="celular_clientes" value=""  placeholder="Celular Clientes">
                                   <span class="help-block"></span>
             </div>
             </div>
             <div class="col-xs-6 col-md-6">
             <div class="form-group">
-                                  <label for="cclave_usuarios" class="control-label">E-mail</label>
-                                  <input type="password" class="form-control" id="cclave_usuarios" name="cclave_usuarios" value=""  placeholder="Confirme Clave">
+                                  <label for="email_clientes" class="control-label">E-mail</label>
+                                  <input type="text" class="form-control" id="email_clientes" name="email_clientes" value=""  placeholder="E-mail Clientes">
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -257,28 +256,28 @@
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
-                                  <label for="estados" class="control-label">Usuarios</label>
-                                  <select name="estados" id="estados"  class="form-control" >
+                                  <label for="usuarios" class="control-label">Usuarios</label>
+                                  <select name="usuarios" id="usuarios"  class="form-control" >
 			  	       					 <option value="" selected="selected">--Seleccione--</option>
-									<?php foreach($resultEst as $resEst) {?>
-										<option value="<?php echo $resEst->id_estado; ?>"  ><?php echo $resEst->nombre_estado; ?> </option>
+									<?php foreach($resultUsu as $resUsu) {?>
+										<option value="<?php echo $resUsu->id_usuarios; ?>"  ><?php echo $resUsu->nombre_usuarios; ?> </option>
 			        				<?php } ?>
 									</select> 
                                    <span class="help-block"></span>
             </div>
             </div>
-            <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                                  <label for="id_ciudad" class="control-label">Entidades</label>
-                                  <select name="id_ciudad" id="id_ciudad"  class="form-control" >
-                                        <option value="" selected="selected">--Seleccione--</option>
-									<?php foreach($resultCiu as $resCiu) {?>
-										<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
-			       					<?php } ?>
-								  </select> 
+           <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+                                  <label for="id_entidades" class="control-label">Entidad</label>
+                                  <select name="id_entidades" id="id_entidades"  class="form-control" readonly>
+                                  
+									<?php foreach($resultEnt as $res) {?>
+										<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
             </div>
-		    </div>
+            </div>
 			</div>
 		      
 			</div> 
