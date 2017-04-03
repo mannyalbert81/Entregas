@@ -1,4 +1,4 @@
-		<?php include("view/modulos/modal.php"); ?>
+    
        <?php include("view/modulos/head.php"); ?>
        
        
@@ -11,7 +11,7 @@
           <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		  <script src="view/js/ValidarUsuarios.js"></script>
+		  <script src="view/js/ValidarClientes.js"></script>
 		
 			
     </head>
@@ -25,7 +25,7 @@
       
       <!-- empieza el form --> 
        
-      <form  id="form-usuarios" action="<?php echo $helper->url("Clientes","InsertaClientes"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-5">
+      <form  id="form-clientes" action="<?php echo $helper->url("Clientes","InsertaClientes"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-5">
             <br>
            
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -38,6 +38,14 @@
 		       
 			   					  <label for="ruc_clientes" class="control-label">Ruc</label>
                                   <input type="text" class="form-control" id="ruc_clientes" name="ruc_clientes" value="<?php echo $resEdit->ruc_clientes; ?>"  placeholder="Ruc Clientes">
+                                  <span class="help-block"></span>
+			</div>
+		    </div>
+		     <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+		       
+			   					<label for="email_clientes" class="control-label">E-mail</label>
+                                  <input type="text" class="form-control" id="email_clientes" name="email_clientes" value="<?php echo $resEdit->email_clientes; ?>"  placeholder="E-mail Clientes">
                                   <span class="help-block"></span>
 			</div>
 		    </div>
@@ -82,7 +90,7 @@
 			</div>
             
             <div class="row">
-		     <div class="col-xs-6 col-md-6">
+		     <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
 		       
 			   					<label for="direccion_clientes" class="control-label">Dirección</label>
@@ -90,7 +98,9 @@
                                    <span class="help-block"></span>
 			</div>
 		    </div>
+		    </div>
 		    
+		    <div class="row">
             <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
@@ -99,31 +109,24 @@
                                    <span class="help-block"></span>
 			</div>
 		    </div>
-			</div>
+			
             
-			<div class="row">
-		     <div class="col-xs-6 col-md-6">
+			 <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
 			   					<label for="celular_clientes" class="control-label">Celular</label>
                                   <input type="text" class="form-control" id="celular_clientes" name="celular_clientes" value="<?php echo $resEdit->celular_clientes; ?>"  placeholder="Celular Clientes">
                                     <span class="help-block"></span>
-			</div>
+			
+		    </div>
 		    </div>
 		    
             
-            <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-		       
-			   					<label for="email_clientes" class="control-label">E-mail</label>
-                                  <input type="text" class="form-control" id="email_clientes" name="email_clientes" value="<?php echo $resEdit->email_clientes; ?>"  placeholder="E-mail Clientes">
-                                  <span class="help-block"></span>
-			</div>
-		    </div>
+           
 			</div>  
 			
 		    </div>
-		     <hr>
+		  
             
             
 		     <?php } } else {?>
@@ -136,6 +139,14 @@
 		    <div class="form-group ">
 		                          <label for="ruc_clientes" class="control-label">Ruc</label>
                                   <input type="text" class="form-control" id="ruc_clientes" name="ruc_clientes" value=""  placeholder="Ruc Clientes">
+                                  <span class="help-block"></span>
+            </div>
+		    </div>
+		    
+		    <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                                  <label for="email_clientes" class="control-label">E-mail</label>
+                                  <input type="text" class="form-control" id="email_clientes" name="email_clientes" value=""  placeholder="E-mail Clientes">
                                   <span class="help-block"></span>
             </div>
 		    </div>
@@ -207,18 +218,8 @@
             </div>
 		    </div>
 			</div> 
-			  
-			<div class="row">  
-		    <div class="col-xs-12 col-md-12">
-            <div class="form-group">
-                                  <label for="email_clientes" class="control-label">E-mail</label>
-                                  <input type="text" class="form-control" id="email_clientes" name="email_clientes" value=""  placeholder="E-mail Clientes">
-                                  <span class="help-block"></span>
-            </div>
-		    </div>
-		      </div>
-		      
-			</div> 
+			 </div> 
+			
 			
 		   
 		    
@@ -227,12 +228,13 @@
 		     <?php } ?>
 		     
 		    <div class="row">
-		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;">
+		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:40px">
 		    <div class="form-group">
                                   <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
             </div>
 		    </div>
 		    </div>
+		     
 		    </form>
        
          
@@ -244,7 +246,7 @@
                         
        
        <div class="datagrid"> 
-       <section style="height:485px; overflow-y:scroll;">
+       <section style="height:408px; overflow-y:scroll;">
        <table class="table table-hover ">
        
        <thead>
@@ -259,7 +261,7 @@
 		    		<th style="font-size:100%;">Entidades</th>
 		    		<th></th>
 		    		<th></th>
-		    		<th></th>
+		    		
 	  		</tr>
 	   </thead>
        <tfoot>
@@ -310,9 +312,7 @@
        </tfoot>
        
                 <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-	    
-               
-               
+	        
 	   <tbody>
 	   		<tr>
 	        		   <td style="font-size:80%;"> <?php echo $res->id_clientes; ?>     </td> 
