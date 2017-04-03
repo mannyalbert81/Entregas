@@ -8,14 +8,12 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Rangos_c_x_p - Contabilidad 2016</title>
-
-		  <link rel="stylesheet" href="view/css/bootstrap.css">
+        <title>Intereses - Contabilidad 2016</title>
+        <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		  <script src="view/js/ValidarRangos_c_x_p.js"></script>
-	
-	 <script >   
+		 		  <script src="view/js/ValidarIntereses.js"></script>  
+   <script >   
     function numeros(e){
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
@@ -33,7 +31,7 @@
     if(letras.indexOf(tecla)==-1 && !tecla_especial)
         return false;
      }
-    </script > 	
+    </script >
     </head>
    <body class="cuerpo">
    
@@ -50,13 +48,13 @@
   
        <!-- empieza el form --> 
        
-      <form id="form-rangos_c_x_p" action="<?php echo $helper->url("Rangos_c_x_p","InsertaRango_c_x_p"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form id="form-Intereses" action="<?php echo $helper->url("Intereses","InsertaIntereses"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
             <div class="well">
-            <h4 style="color:#ec971f;">Insertar Rango C_X_P</h4>
+            <h4 style="color:#ec971f;">Insertar Intereses</h4>
   			 <hr/>
           
             <div class="row">
@@ -64,8 +62,7 @@
 		    <div class="form-group">
                                   <label for="id_entidades" class="control-label">Entidad</label>
                                   <select name="id_entidades" id="id_entidades"  class="form-control" readonly >
-                                  
-									<?php foreach($resultEnt as $res) {?>
+                            		<?php foreach($resultEnt as $res) {?>
 										<option value="<?php echo $res->id_entidades; ?>" <?php if ($res->id_entidades == $resEdit->id_entidades )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_entidades; ?> </option>
 							        <?php } ?>
 								   </select> 
@@ -73,34 +70,28 @@
             </div>
             </div>
              <div class="col-xs-6 col-md-6">
+		   <div class="form-group">
+                                  <label for="id_tipo_intereses" class="control-label">Tipo Intereses</label>
+                                  <select name="id_tipo_intereses" id="id_tipo_intereses"  class="form-control"  >
+                            		<?php foreach($resultInt as $res) {?>
+										<option value="<?php echo $res->id_tipo_intereses; ?>" <?php if ($res->id_tipo_intereses == $resEdit->id_tipo_intereses )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_tipo_intereses; ?> </option>
+							        <?php } ?>
+								   </select> 
+                                  <span class="help-block"></span>
+            </div>
+		    </div>
+		     <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="nombre_rangos_c_x_p" class="control-label">Nombre_Rangos_c_x_p</label>
-                                  <input type="text" class="form-control" id="nombre_rangos_c_x_p" name="nombre_rangos_c_x_p" value="<?php echo $resEdit->nombre_rangos_c_x_p; ?>"  placeholder="Nombre_Rangos_c_x_p">
-                                    <input type="hidden" class="form-control" id="id_rangos_c_x_p" name="id_rangos_c_x_p" value="<?php echo $resEdit->id_rangos_c_x_p; ?>"  placeholder="">
+			   					<label for="valor_min_c_x_c" class="control-label">Valor Interes</label>
+                                  <input type="text" class="form-control" id="valor_intereses" name="valor_intereses" value="<?php echo $resEdit->valor_intereses; ?>" onkeypress="return numeros(event)" placeholder="0.00">
+                                    <input type="hidden" class="form-control" id="id_intereses" name="id_intereses" value="<?php echo $resEdit->id_intereses; ?>"  placeholder="">
                                 
                                   <span class="help-block"></span>
 			</div>
 		    </div>
 		     <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-		       
-			   					<label for="valor_min_c_x_p" class="control-label">Valor_Min_c_x_p</label>
-                                  <input type="text" class="form-control" id="valor_min_c_x_p" name="valor_min_c_x_p" value="<?php echo $resEdit->valor_min_c_x_p; ?>"  onkeypress="return numeros(event)" placeholder="0.00">
-                                    <input type="hidden" class="form-control" id="id_rangos_c_x_p" name="id_rangos_c_x_p" value="<?php echo $resEdit->id_rangos_c_x_p; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
-			</div>
-		    </div>
-		     <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-		       
-			   					<label for="valor_max_c_x_p" class="control-label">Valor_Max_c_x_p</label>
-                                  <input type="text" class="form-control" id="valor_max_c_x_p" name="valor_max_c_x_p" value="<?php echo $resEdit->valor_max_c_x_p; ?>"  onkeypress="return numeros(event)"  placeholder="0.00">
-                                    <input type="hidden" class="form-control" id="id_rangos_c_x_p" name="id_rangos_c_x_p" value="<?php echo $resEdit->id_rangos_c_x_p; ?>"  placeholder="">
-                                
-                                  <span class="help-block"></span>
-			</div>
+		
 		    </div>
             </div>
             </div>	
@@ -108,7 +99,7 @@
 		     <?php } } else {?>
 		     
 		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Rango C_X_P </h4>
+		    <h4 style="color:#ec971f;">Insertar Intereses </h4>
             <hr/>
             <div class="row">
             <div class="col-xs-6 col-md-6">
@@ -124,28 +115,27 @@
             </div>
             </div>
 		    <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-		    
-		     					  <label for="nombre_rangos_c_x_p" class="control-label">Nombre_Rangos_c_x_p</label>
-                                  <input type="text" class="form-control" id="nombre_rangos_c_x_p" name="nombre_rangos_c_x_p" value=""  placeholder="Nombre_Rangos_c_x_p">
+		<div class="form-group">
+                                  <label for="id_entidades" class="control-label">Tipo Intereses</label>
+                                  <select name="id_tipo_intereses" id="id_tipo_intereses"  class="form-control" >
+                                  <option value="" selected="selected">--Seleccione--</option>
+									<?php foreach($resultInt as $res) {?>
+										<option value="<?php echo $res->id_tipo_intereses; ?>"  ><?php echo $res->nombre_tipo_intereses; ?> </option>
+							        <?php } ?>
+								   </select> 
                                   <span class="help-block"></span>
-		    </div>
+            </div>
 		    </div>
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		    
-		     					  <label for="valor_min_c_x_p" class="control-label">Valor_Min_c_x_p</label>
-                                  <input type="text" class="form-control" id="valor_min_c_x_p" name="valor_min_c_x_p" value=""  onkeypress="return numeros(event)" placeholder="0.00">
+		     					  <label for="valor_intereses" class="control-label">Valor Intereses</label>
+                                  <input type="text" class="form-control" id="valor_intereses" name="valor_intereses" value="" onkeypress="return numeros(event)" placeholder="0.00">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
 		    <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
 		    
-		     					  <label for="valor_max_c_x_p" class="control-label">Valor_Max_c_x_p</label>
-                                  <input type="text" class="form-control" id="valor_max_c_x_p" name="valor_max_c_x_p" value=""  onkeypress="return numeros(event)" placeholder="0.00">
-                                  <span class="help-block"></span>
-		    </div>
 		    </div>
             </div>
             </div>
@@ -166,10 +156,10 @@
        </form>
        <!-- termina el form --> 
        
-       <form action="<?php echo $helper->url("Rangos_c_x_p","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+       <form action="<?php echo $helper->url("Intereses","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
      		<br>
      		<div class="well">  
-            <h4 style="color:#ec971f;">Tipo de Rango_C_X_P Registrado</h4>
+            <h4 style="color:#ec971f;">Tipo de Intereses Registrado</h4>
             
             <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
@@ -187,9 +177,9 @@
            <tr>
                     <th style="font-size:100%;">Id</th>
 		    		<th style="font-size:100%;">Entidades</th>
-		    		<th style="font-size:100%;">Nombre_Rangos_c_x_p</th>
-		    		<th style="font-size:100%;">Valor_Min_c_x_p</th>
-		    		<th style="font-size:100%;">Valor_Max_c_x_p</th>
+		    		<th style="font-size:100%;">Tipo Intereses</th>
+		    		<th style="font-size:100%;">Valor Intereses</th>
+		    		
 		    		<th></th>
 		    		<th></th>
 		    		
@@ -247,21 +237,21 @@
                
 	   <tbody>
 	   		<tr>
-	   		           <td style="font-size:80%;"> <?php echo $res->id_rangos_c_x_p ; ?></td>
+	   		           <td style="font-size:80%;"> <?php echo $res->id_intereses ; ?></td>
 		               <td style="font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td> 
-		               <td style="font-size:80%;"> <?php echo $res->nombre_rangos_c_x_p; ?>     </td>
-		               <td style="font-size:80%;"> <?php echo $res->valor_min_c_x_p; ?>     </td>
-		               <td style="font-size:80%;"> <?php echo $res->valor_max_c_x_p; ?>     </td>
+		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_intereses; ?>     </td>
+		               <td style="font-size:80%;"> <?php echo $res->valor_intereses; ?>     </td>
+	
 		               
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Rangos_c_x_p","index"); ?>&id_rangos_c_x_p=<?php echo $res->id_rangos_c_x_p; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Intereses","index"); ?>&id_intereses=<?php echo $res->id_intereses; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			           </td>
 			           <td>   
 			               	<div class="right">
-			                    <a href="<?php echo $helper->url("Rangos_c_x_p","borrarId"); ?>&id_rangos_c_x_p=<?php echo $res->id_rangos_c_x_p; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Intereses","borrarId"); ?>&id_intereses=<?php echo $res->id_intereses; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			           </td>
 	   		</tr>

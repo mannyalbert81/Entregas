@@ -1,5 +1,5 @@
 	
-   <?php include("view/modulos/modal.php"); ?>
+  
  <?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
+		  <script src="view/js/ValidarTipoPersona.js"></script>
 		   
   
     </head>
@@ -30,7 +31,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Tipo_Persona","InsertaPersona"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form id="form-Tipo-Persona" action="<?php echo $helper->url("Tipo_Persona","InsertaPersona"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
