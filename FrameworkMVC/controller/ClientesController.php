@@ -12,45 +12,44 @@ class ClientesController extends ControladorBase{
 	
 		//Creamos el objeto usuario
 		session_start();
-		$_id_usuarios= $_SESSION['id_usuarios'];
-		$usuarios = new UsuariosModel();
-		$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
-		$_id_entidades=$resultEnt[0]->id_entidades;
 		
-	    $tipo_intereses=new TipoInteresesModel();
-		$resultInt = $tipo_intereses->getAll("nombre_tipo_intereses");
+		$clientes = new ClientesModel();
 		
-        	
-		$Intereses = new InteresesModel();
-	    $columnas = "intereses.id_intereses, 
-						  entidades.nombre_entidades, 
-						  tipo_intereses.nombre_tipo_intereses, 
-						  intereses.valor_intereses, 
-						  intereses.creado, 
-						  intereses.modificado";
-		$tablas   = "public.intereses, 
-					 public.entidades, 
-					 public.tipo_intereses";
-		$where    = "entidades.id_entidades = intereses.id_entidades AND tipo_intereses.id_tipo_intereses = intereses.id_tipo_intereses AND intereses.id_entidades='$_id_entidades'";
-		$id       = "id_intereses";
-		$resultSet = $Intereses->getCondiciones($columnas ,$tablas ,$where, $id);
-			
+		$provincias = new ProvinciasModel();
+		$resultPro = $provincias->getAll("nombre_provincias");
 		
+		$ciudad = new CiudadModel();
+		$resultCiu = $ciudad->getAll("nombre_ciudad");
 				
 		$resultEdit = "";
 
-		$entidades = new EntidadesModel();
-		$columnas_enc = "entidades.id_entidades,
-  							entidades.nombre_entidades,
-				usuarios.id_usuarios,
-				usuarios.nombre_usuarios";
-		$tablas_enc ="public.usuarios,
-						  public.entidades";
-		$where_enc ="entidades.id_entidades = usuarios.id_entidades AND usuarios.id_usuarios='$_id_usuarios'";
-		$id_enc="entidades.nombre_entidades";
-		$resultEnt=$entidades->getCondiciones($columnas_enc ,$tablas_enc ,$where_enc, $id_enc);
 		
-
+		$columnas = "fc_clientes.id_clientes,
+									  fc_clientes.ruc_clientes,
+									  fc_clientes.razon_social_clientes,
+									  provincias.id_provincias,
+									  provincias.nombre_provincias,
+									  ciudad.id_ciudad,
+									  ciudad.nombre_ciudad,
+									  fc_clientes.direccion_clientes,
+									  fc_clientes.telefono_clientes,
+									  fc_clientes.celular_clientes,
+									  fc_clientes.email_clientes,
+									  entidades.id_entidades,
+									  entidades.nombre_entidades";
+		
+		$tablas   = " public.fc_clientes,
+									  public.ciudad,
+									  public.provincias,
+									  public.entidades";
+		
+		$where    = " ciudad.id_ciudad = fc_clientes.id_ciudad AND
+		provincias.id_provincias = fc_clientes.id_provincias AND
+		entidades.id_entidades = fc_clientes.id_entidades";
+		$id       = "fc_clientes.id_clientes";
+		$resultSet = $clientes->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -58,42 +57,54 @@ class ClientesController extends ControladorBase{
 			
 			$nombre_controladores = "Clientes";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $Intereses->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $clientes->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				
 				
-				if (isset ($_GET["id_intereses"])   )
+				if (isset ($_GET["id_clientes"])   )
 				{
 					
 					$nombre_controladores = "Clientes";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $Intereses->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $clientes->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_intereses = $_GET["id_intereses"];
+						$_id_clientes = $_GET["id_clientes"];
 						
-						$columnas = "     intereses.id_intereses, 
-										  entidades.nombre_entidades, 
-										  tipo_intereses.nombre_tipo_intereses, 
-										  intereses.valor_intereses, 
-										  intereses.creado, 
-										  intereses.modificado";
-						$tablas   = "public.intereses, 
-									  public.entidades, 
-									  public.tipo_intereses";
-						$where    = " entidades.id_entidades = intereses.id_entidades AND tipo_intereses.id_tipo_intereses = intereses.id_tipo_intereses AND intereses.id_entidades='$_id_intereses'"; 
-						$id       = "id_intereses";
-						$resultEdit = $Intereses->getCondiciones($columnas ,$tablas ,$where, $id);
+						$columnas_edit = "fc_clientes.id_clientes, 
+									  fc_clientes.ruc_clientes, 
+									  fc_clientes.razon_social_clientes, 
+									  provincias.id_provincias, 
+									  provincias.nombre_provincias, 
+									  ciudad.id_ciudad, 
+									  ciudad.nombre_ciudad, 
+									  fc_clientes.direccion_clientes, 
+									  fc_clientes.telefono_clientes, 
+									  fc_clientes.celular_clientes, 
+									  fc_clientes.email_clientes, 
+									  entidades.id_entidades, 
+									  entidades.nombre_entidades";
+						
+						$tablas_edit   = " public.fc_clientes, 
+									  public.ciudad, 
+									  public.provincias, 
+									  public.entidades";
+						
+						$where_edit    = " ciudad.id_ciudad = fc_clientes.id_ciudad AND
+  									  provincias.id_provincias = fc_clientes.id_provincias AND
+ 								      entidades.id_entidades = fc_clientes.id_entidades AND fc_clientes.id_clientes='$_id_clientes'"; 
+						$id_edit       = "fc_clientes.id_clientes";
+						$resultEdit = $clientes->getCondiciones($columnas_edit ,$tablas_edit ,$where_edit, $id_edit);
 						
 						
 						$traza=new TrazasModel();
 						$_nombre_controlador = "Clientes";
 						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_intereses;
+						$_parametros_trazas = $_id_clientes;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					
@@ -101,7 +112,7 @@ class ClientesController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Intereses"
+								"resultado"=>"No tiene Permisos de Editar Clientes"
 					
 						));
 					
@@ -114,7 +125,7 @@ class ClientesController extends ControladorBase{
 		
 				
 				$this->cartera("Clientes",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnt"=>$resultEnt, "resultInt" =>$resultInt
+						"resultEdit" =>$resultEdit, "resultCiu" =>$resultCiu, "resultPro" =>$resultPro, "resultSet" =>$resultSet
 			
 				));
 		
@@ -156,8 +167,6 @@ class ClientesController extends ControladorBase{
 		if (!empty($resultPer))
 		{
 		
-		
-		
 			$resultado = null;
 			
 			if (isset ($_POST["ruc_clientes"]) )
@@ -172,11 +181,15 @@ class ClientesController extends ControladorBase{
 				$_telefono_clientes = $_POST["telefono_clientes"];
 				$_celular_clientes = $_POST["celular_clientes"];
 				$_email_clientes = $_POST["email_clientes"];
-				$_id_usuario = $_POST["id_usuario"];
-				$_id_entidades = $_POST["id_entidades"];				
+			    $_id_usuarios = $_SESSION['id_usuarios'];
+			   
+			    $usuarios = new UsuariosModel();
+			    
+			    $resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+			    $_id_entidades=$resultEnt[0]->id_entidades;
 						
 				$funcion = "ins_fc_clientes";
-				$parametros = " '$_ruc_clientes', '$_razon_social_clientes', '$_id_provincias', '$_id_ciudad', '$_direccion_clientes', '$_telefono_clientes', '$_celular_clientes', '$_email_clientes', '$_id_usuario', '$_id_entidades'";
+				$parametros = " '$_ruc_clientes', '$_razon_social_clientes', '$_id_provincias', '$_id_ciudad', '$_direccion_clientes', '$_telefono_clientes', '$_celular_clientes', '$_email_clientes', '$_id_usuarios', '$_id_entidades'";
 				$Clientes->setFuncion($funcion);
 		        $Clientes->setParametros($parametros);
 		        $resultado=$Clientes->Insert();
@@ -186,7 +199,7 @@ class ClientesController extends ControladorBase{
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Clientes";
 				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_valor_intereses;
+				$_parametros_trazas = $_razon_social_clientes;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			 
 		
@@ -219,19 +232,19 @@ class ClientesController extends ControladorBase{
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_intereses"]))
+			if(isset($_GET["id_clientes"]))
 			{
-				$id_intereses=(int)$_GET["id_intereses"];
+				$id_clientes=(int)$_GET["id_clientes"];
 				
 				
-				$Intereses = new InteresesModel();
+					$Clientes = new ClientesModel();
 				
-				$Intereses->deleteBy(" id_intereses",$id_intereses);
+				$Clientes->deleteBy(" id_clientes",$id_clientes);
 				
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Clientes";
 				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_intereses;
+				$_parametros_trazas = $id_clientes;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
@@ -243,7 +256,7 @@ class ClientesController extends ControladorBase{
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Intereses"
+				"resultado"=>"No tiene Permisos de Borrar Clientes"
 			
 			));
 		}

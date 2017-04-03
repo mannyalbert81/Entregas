@@ -18,7 +18,6 @@ class ClientesModel extends ModeloBase{
 		return $this->funcion;
 	}
 	
-
 	public function setFuncion($funcion) {
 		$this->funcion = $funcion;
 	}
