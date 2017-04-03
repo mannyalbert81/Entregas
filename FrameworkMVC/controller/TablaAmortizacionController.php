@@ -12,126 +12,60 @@ class TablaAmortizacionController extends ControladorBase{
 	
 		
 		session_start();
-        
-		if(isset($_POST["buscar"]))
-		{
+		$resultRes="";
+        $clientes = new ClientesModel();
 		
-				
-			$identificacion=$_POST['identificacion'];
-			
-			if($identificacion=="")
-			{
-		
-			}
-			else{
-		
-					$columnas = "fc_clientes.id_clientes, 
-								  fc_clientes.ruc_clientes, 
-								  fc_clientes.razon_social_clientes, 
-								  entidades.nombre_entidades";
-		
-				$tablas=" public.fc_clientes, 
-  							public.entidades";
-		
-				$where="entidades.id_entidades = fc_clientes.id_entidades";
-		
-				$id="fc_clientes.id_clientes";
-		
-		
-				$where_0 = "";
-				
-		
-				if($identificacion!=""){$where_0=" AND fc_clientes.ruc_clientes='$identificacion'";}
-				
-		
-					
-				$where_to  = $where . $where_0;
-					
-				$resultSet = $clientes->getCondiciones($columnas, $tablas, $where_to, $id);
-					
-					
-			}
-		
-		}
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			$resultEdit = "";
-			$id_usuarios=$_SESSION["id_usuarios"];
-			
-			
-			$tipo_cierre= new TipoCierreModel();
-			
-			//Conseguimos todos los usuarios
-			$columnas_set="tipo_cierre.id_tipo_cierre,
-				  tipo_cierre.nombre_tipo_cierre,
-				  entidades.nombre_entidades";
-			$tablas_set="public.tipo_cierre,
-				  public.entidades,
-				  public.usuarios";
-			$where_set="entidades.id_entidades = tipo_cierre.id_entidades AND
-			usuarios.id_entidades = entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios'";
-			$id_set="entidades.nombre_entidades";
-			$resultSet= $tipo_cierre->getCondiciones($columnas_set, $tablas_set, $where_set, $id_set);
-			
-			
-			
-			$tipo_cierre= new TipoCierreModel();
-			$entidades=new EntidadesModel();
-			
-			$columnas="entidades.id_entidades, entidades.nombre_entidades";
-			$tablas="public.usuarios, public.entidades";
-			$where="usuarios.id_entidades=entidades.id_entidades AND usuarios.id_usuarios='$id_usuarios'";
-			$id="id_entidades";
-			$resultEnt= $entidades->getCondiciones($columnas, $tablas, $where, $id);
-			
-			
 			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TablaAmortizacion";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $tipo_cierre->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $clientes->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
-				if (isset ($_GET["id_tipo_cierre"])   )
+				
+				
+				if(isset($_POST["buscar"]))
 				{
-
-					$nombre_controladores = "TipoCierre";
-					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $tipo_cierre->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+				  
+					
+					$identificacion=$_POST['identificacion'];
 						
-					if (!empty($resultPer))
-					{
 					
-						$_id_tipo_cierre = $_GET["id_tipo_cierre"];
-						$columnas_set1 = "tipo_cierre.id_tipo_cierre, tipo_cierre.nombre_tipo_cierre, entidades.nombre_entidades, entidades.id_entidades";
-						$tablas_set1   = "public.tipo_cierre, public.entidades";
-						$where_set1    = "tipo_cierre.id_entidades = entidades.id_entidades AND tipo_cierre.id_tipo_cierre = '$_id_tipo_cierre' "; 
-						$id_set1       = "nombre_tipo_cierre";
+						$columnas = "fc_clientes.id_clientes,
+								  fc_clientes.ruc_clientes,
+								  fc_clientes.razon_social_clientes,
+								  entidades.nombre_entidades";
+				
+						$tablas=" public.fc_clientes,
+  							public.entidades";
+				
+						$where="entidades.id_entidades = fc_clientes.id_entidades";
+				
+						$id="fc_clientes.id_clientes";
+				
+				
+						$where_0 = "";
+				
+				
+						if($identificacion!=""){$where_0=" AND fc_clientes.ruc_clientes='$identificacion'";}
+				
+				
 							
-						$resultEdit = $tipo_cierre->getCondiciones($columnas_set1 ,$tablas_set1 ,$where_set1, $id_set1);
-
-						$traza=new TrazasModel();
-						$_nombre_controlador = "TipoCierre";
-						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_tipo_cierre;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					}
-					else
-					{
-						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Tipos de Cierre"
+						$where_to  = $where . $where_0;
+							
+						$resultRes = $clientes->getCondiciones($columnas, $tablas, $where_to, $id);
+							
+							
 					
-						));
-					
-					
-					}
-					
+				
 				}
 		
 				
 				$this->view("TablaAmortizacion",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnt"=>$resultEnt
+						"resultRes"=>$resultRes
 			
 				));
 		

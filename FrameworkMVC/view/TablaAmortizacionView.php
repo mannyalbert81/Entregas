@@ -32,43 +32,35 @@
        
       <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
             <br>
-         
-            
-             
          <div class="col-lg-12">
-          <div class="well">  
-         <h4 style="color:#ec971f; text-align: center;" >BUSQUEDA DE CLEINTES </h4>
-        <hr/>
-		  <div class="well">
-  			<div class="row">
-  			<div class="col-xs-2 col-md-2" style="text-align: center;">
-			  
-            </div>
-		    <div class="col-xs-3 col-md-3" style="text-align: center;">
-			  	<p  class="formulario-subtitulo" >Identificacion:</p>
-			  	<input type="text"  name="identificacion" id="identificacion" value="" class="form-control"/> 
+         <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</center></h4>
+        </br>
+         <?php if ($resultRes !="" ) { foreach($resultRes as $resEdit) {?>  
+         
+         <div class="row">
+  			<div class="form-group" style="margin-top: 25px;">
+		    <div class="col-xs-2 col-md-2" style="text-align: center;">
+			  	 <label for="identificacion" class="control-label">Nro. Identificación:</label>
+			  	<input type="text"  name="identificacion" id="identificacion" value="<?php echo $resEdit->ruc_clientes; ?>" class="form-control"/> 
 			   
             </div>
-		   
-		   <div class="col-xs-3 col-md-3" style="text-align: center;">
-			  	<p  class="formulario-subtitulo" >Deudor:</p>
-			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="" class="form-control"/> 
+            </div>
+		   <div class="form-group">
+		   <div class="col-xs-4 col-md-4" style="text-align: center;">
+			  	<label for="numero_titulo_credito" class="control-label">Razón Social:</label>
+			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="<?php echo $resEdit->razon_social_clientes; ?>" class="form-control"/> 
 			   	
             </div>
+              </div>
 		   
 		   <div class="col-xs-3 col-md-3">
-			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " onClick="notificacion()" style="margin-top: 30px;"/> 	
+			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
 		  
 		  </div>
-		    </div>
-		    </div>
-		      </div>
-             </div>
+		  </div>
          
-            <div class="well">
-		    <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</h4>
-            <hr/>
-            <div class="row">
+         <br>
+          <div class="row">
 		    <div class="col-xs-2 col-md-2">
 		    <div class="form-group">
 		    
@@ -178,7 +170,7 @@
 		    </div>
 		    </div>
 			</div>
-            
+            </div>
             
 		    
 		
@@ -187,12 +179,40 @@
 		    <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
-            					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+            					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Generar</button>
             </div>
             </div>
             </div>
+       .        
+		            
+		
+         
+         <?php } } else {?>
+         
+         <div class="row">
+  			<div class="form-group" style="margin-top: 25px;">
+		    <div class="col-xs-2 col-md-2" style="text-align: center;">
+			  	 <label for="identificacion" class="control-label">Nro. Identificación:</label>
+			  	<input type="text"  name="identificacion" id="identificacion" value="" class="form-control"/> 
+			   
             </div>
-           
+            </div>
+		   <div class="form-group">
+		   <div class="col-xs-4 col-md-4" style="text-align: center;">
+			  	<label for="numero_titulo_credito" class="control-label">Razón Social:</label>
+			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="" class="form-control"/> 
+			   	
+            </div>
+              </div>
+		   
+		   <div class="col-xs-3 col-md-3">
+			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
+		  
+		  </div>
+		    </div>
+         
+         <?php } ?>  
+             
         
        </form>
        <!-- termina el form --> 
