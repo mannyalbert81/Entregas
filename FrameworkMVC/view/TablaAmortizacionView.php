@@ -65,7 +65,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Nro. Crédito</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Nro. Crédito">
+                                  <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value=""  placeholder="Nro. Crédito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -73,7 +73,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Pagare Nro.</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Pagare Nro.">
+                                  <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value=""  placeholder="Pagare Nro.">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -81,7 +81,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Tipo Crédito</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Tipo Crédito">
+                                  <input type="text" class="form-control" id="id_tipo_creditos" name="nombre_tipo_identificacion" value=""  placeholder="Tipo Crédito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -97,7 +97,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Tasa</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Tasa">
+                                  <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="nombre_tipo_identificacion" value=""  placeholder="Tasa">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -209,15 +209,10 @@
 			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
 		  
 		  </div>
-		    </div>
-         
-         <?php } ?>  
-             
-        
-       </form>
+		    </div> 
+		         </form>
        <!-- termina el form --> 
-       
-       <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+		        <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
      		<br>
      		<div class="well">  
             <h4 style="color:#ec971f;">Tipo de Identificacion Registrado</h4>
@@ -337,6 +332,13 @@
         </div>
         </form> 
           
+         
+         <?php } ?>  
+             
+        
+  
+       
+  
           
           
        
