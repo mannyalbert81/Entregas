@@ -30,11 +30,20 @@
            
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
            
-            <div class="well">
-            <h4 style="color:#ec971f;">Clientes</h4>
-            <div class="row">
+           
+           
+           
+             <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Clientes</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     
+             <div class="row">
 		     <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
+		     <div class="form-group">
 		       
 			   					  <label for="ruc_clientes" class="control-label">Ruc</label>
                                   <input type="text" class="form-control" id="ruc_clientes" name="ruc_clientes" value="<?php echo $resEdit->ruc_clientes; ?>"  placeholder="Ruc Clientes">
@@ -49,9 +58,10 @@
                                   <span class="help-block"></span>
 			</div>
 		    </div>
-		    </div>
-		  	
-		  	<div class="row">
+		    </div> 	 
+		    
+		    	  	 
+		   	<div class="row">
 		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
 		       
@@ -60,9 +70,12 @@
                                   <span class="help-block"></span>
 			</div>
 		    </div>
-		  	</div>
+		  	</div>	 
 		  	
-		  	 <div class="row">
+		  	
+		  	
+		  	
+		  	<div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="id_provincias" class="control-label">Provincias</label>
@@ -88,8 +101,9 @@
             </div>
 		    </div>
 			</div>
-            
-            <div class="row">
+			
+			
+			<div class="row">
 		     <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
 		       
@@ -99,8 +113,9 @@
 			</div>
 		    </div>
 		    </div>
-		    
-		    <div class="row">
+			
+		   	 	 
+		   	 <div class="row">
             <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
@@ -119,22 +134,43 @@
                                     <span class="help-block"></span>
 			
 		    </div>
-		    </div>
+		    </div>               
+          	</div> 		
+		 			
+		   	 	 
+         	   	 	
 		    
-            
-           
-			</div>  
-			
 		    </div>
+	        </div>
+	        </div>
+
 		  
             
             
 		     <?php } } else {?>
 		    
 		    
-            <div class="well">
-            <h4 style="color:#ec971f;">Clientes</h4>
-            <div class="row">
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Clientes</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     
+             	    
+		    	 
+		    	 
+		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group ">
 		                          <label for="ruc_clientes" class="control-label">Ruc</label>
@@ -150,10 +186,10 @@
                                   <span class="help-block"></span>
             </div>
 		    </div>
-		    </div>
-		 	
-		 	
-		 	<div class="row">
+		    </div> 	 
+		    
+		    
+		    <div class="row">
 		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
                                   <label for="razon_social_clientes" class="control-label">Razón Social</label>
@@ -162,8 +198,8 @@
             </div>
             </div>
 		 	</div>
-		 	
-		 	<div class="row">
+		    
+		   	<div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="id_provincias" class="control-label">Provincia</label>
@@ -188,9 +224,10 @@
                                   <span class="help-block"></span>
             </div>
 		    </div>
-			</div>
-		       
-		    <div class="row">
+			</div>		 			
+		   	 
+		   	 
+		   	<div class="row">
 		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
                                   <label for="direccion_clientes" class="control-label">Dirección</label>
@@ -198,9 +235,9 @@
                                   <span class="help-block"></span>
             </div>
             </div>
-            </div>
-		       
-		    <div class="row">
+            </div>	 
+            
+            <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="celular_clientes" class="control-label">Celular</label>
@@ -218,35 +255,49 @@
             </div>
 		    </div>
 			</div> 
-			 </div> 
-			
-			
-		   
+            
+         	<div class="row">
+		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:28px">
+		    <div class="form-group">
+                                  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+            </div>
+		    </div>
+		    </div>	
+		    
+		    </div>
+	        </div>
+	        </div>
+		    
+		   	   
 		    
 		   
            
 		     <?php } ?>
 		     
-		    <div class="row">
-		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:40px">
-		    <div class="form-group">
-                                  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
-            </div>
-		    </div>
-		    </div>
+		    
 		     
 		    </form>
        
          
        
        		<form action="<?php echo $helper->url("Clientes","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-7">
-     		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Clientes Registrados</h4>
-                        
-       
-       <div class="datagrid"> 
-       <section style="height:408px; overflow-y:scroll;">
+     		
+     		
+     		
+     		
+     		<div class="col-lg-12">
+	         <br>
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Clientes Registrado</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     
+		     
+		     
+		     <div class="datagrid"> 
+       <section style="height:435px; overflow-y:scroll;">
        <table class="table table-hover ">
        
        <thead>
@@ -358,7 +409,12 @@
       </section>
       
        </div>
-        </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+     		
+     
           </form>
       
       </div>
