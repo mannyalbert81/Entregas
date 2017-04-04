@@ -96,7 +96,7 @@ class TablaAmortizacionController extends ControladorBase{
 				}
 					
 					
-		if(isset($_POST["Generar"]))
+		     	if(isset($_POST["Generar"]))
 					{
 								
 						$interes=0;
