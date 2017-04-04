@@ -25,7 +25,37 @@ class TablaAmortizacionController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
-				
+				if (isset($_POST['ruc_clientes'])){
+						
+					$_numero_ruc_clientes =$_POST['ruc_clientes'];
+					$_razon_social_clientes =$_POST['razon_social_clientes'];
+					$_numero_credito_amortizacion_cabeza =$_POST['numero_credito_amortizacion_cabeza'];
+					$_numero_pagare_amortizacion_cabeza =$_POST['numero_pagare_amortizacion_cabeza'];
+					$_id_tipo_creditos =$_POST['id_tipo_creditos'];
+					$_capital_prestado_amortizacion_cabeza =$_POST['capital_prestado_amortizacion_cabeza'];
+					$_tasa_interes_amortizacion_cabeza =$_POST['tasa_interes_amortizacion_cabeza'];
+					$_plazo_meses_amortizacion_cabeza =$_POST['plazo_meses_amortizacion_cabeza'];
+					$_plazo_dias_amortizacion_cabeza =$_POST['plazo_dias_amortizacion_cabeza'];
+					$_fecha_amortizacion_cabeza =$_POST['fecha_amortizacion_cabeza'];
+					$_cantidad_cuotas_amortizacion_cabeza =$_POST['cantidad_cuotas_amortizacion_cabeza'];
+					$_interes_normal_mensual_amortizacion_cabeza =$_POST['interes_normal_mensual_amortizacion_cabeza'];
+					$_interes_mora_mensual_amortizacion_cabeza =$_POST['interes_mora_mensual_amortizacion_cabeza'];
+					//$resultTipoComprobantes = $tipo_comprobante->getBy("id_tipo_comprobantes='$_id_tipo_comprobantes'");
+					$arrayGet['array_ruc_clientes']=$_ruc_clientes;
+					$arrayGet['array_razon_social_clientes']=$_razon_social_clientes;
+					$arrayGet['array_numero_credito_amortizacion_cabeza']=$_numero_credito_amortizacion_cabeza;
+					$arrayGet['array_numero_pagare_amortizacion_cabeza']=$_numero_pagare_amortizacion_cabeza;
+					$arrayGet['array_id_tipo_creditos']=$_id_tipo_creditos;
+					$arrayGet['array_capital_prestado_amortizacion_cabeza']=$_capital_prestado_amortizacion_cabeza;
+					$arrayGet['array_tasa_interes_amortizacion_cabeza']=$_tasa_interes_amortizacion_cabeza;
+					$arrayGet['array_plazo_meses_amortizacion_cabeza']=$_plazo_meses_amortizacion_cabeza;
+					$arrayGet['array_plazo_dias_amortizacion_cabeza']=$_plazo_dias_amortizacion_cabeza;
+					$arrayGet['array_fecha_amortizacion_cabeza']=$_fecha_amortizacion_cabeza;
+					$arrayGet['array_cantidad_cuotas_amortizacion_cabeza']=$_cantidad_cuotas_amortizacion_cabeza;
+					$arrayGet['array_interes_normal_mensual_amortizacion_cabeza']=$_interes_normal_mensual_amortizacion_cabeza;
+					$arrayGet['array_interes_mora_mensual_amortizacion_cabeza']=$_interes_mora_mensual_amortizacion_cabeza;
+					//$arrayGet['array_nombre_tipo_comprobantes']=$resultTipoComprobantes[0]->nombre_tipo_comprobantes;
+				}	
 				$resultAmortizacion=array();
 				$resultDatos=array();
 				$resultRubros=array();

@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
+		  
 		   
   
     </head>
@@ -23,8 +24,70 @@
        
  <?php
        // variables para tabla de amortizacion
+ $array_get=urlencode(serialize($arrayGet));	
+ $sel_ruc_clientes="";
+ $sel_razon_social_clientes="";
+ $sel_numero_credito_amortizacion_cabeza="";
+ $sel_numero_pagare_amortizacion_cabeza="";
+ $sel_capital_prestado_amortizacion_cabeza="";
+ $sel_tasa_interes_amortizacion_cabeza="";
+ $sel_plazo_meses_amortizacion_cabeza="";
+ $sel_interes_normal_mensual_amortizacion_cabeza="";
+ $sel_plazo_dias_amortizacion_cabeza="";
+ $sel_cantidad_cuotas_amortizacion_cabeza="";
+ $sel_interes_mora_mensual_amortizacion_cabeza="";
+ $sel_interes_normal_mensual_amortizacion_cabeza="";
+ $sel_fecha_amortizacion_cabeza="";
+ 
+ 
+ 
+  
+ if($_SERVER['REQUEST_METHOD']=='POST' )
+ {
+ 	$sel_ruc_clientes=$_POST['ruc_clientes'];
+ 	$sel_razon_social_clientes=$_POST['razon_social_clientes'];
+	$sel_numero_credito_amortizacion_cabeza=$_POST['numero_credito_amortizacion_cabeza'];
+ 	$sel_numero_pagare_amortizacion_cabeza=$_POST['numero_pagare_amortizacion_cabeza'];
+ 	$sel_capital_prestado_amortizacion_cabeza=$_POST['capital_prestado_amortizacion_cabeza'];
+ 	$sel_tasa_interes_amortizacion_cabeza=$_POST['tasa_interes_amortizacion_cabeza'];
+ 	$sel_plazo_meses_amortizacion_cabeza=$_POST['plazo_meses_amortizacion_cabeza'];
+ 	$sel_interes_normal_mensual_amortizacion_cabeza=$_POST['interes_normal_mensual_amortizacion_cabeza'];
+ 	$sel_plazo_dias_amortizacion_cabeza=$_POST['plazo_dias_amortizacion_cabeza'];
+ 	$sel_cantidad_cuotas_amortizacion_cabeza=$_POST['cantidad_cuotas_amortizacion_cabeza'];
+ 	$sel_interes_mora_mensual_amortizacion_cabeza=$_POST['interes_mora_mensual_amortizacion_cabeza'];
+ 	$sel_fecha_amortizacion_cabeza=$_POST['fecha_amortizacion_cabeza'];
+ }
        
-       $interes=null;
+ 
+ 
+ if($_SERVER['REQUEST_METHOD']=='GET')
+ {
+ 
+ 	if(isset($_GET['arrayGet']))
+ 	{
+ 		$a=stripslashes($_GET['arrayGet']);
+ 
+ 		$_dato=urldecode($a);
+ 
+ 		$_dato=unserialize($a);
+ 
+ 		$sel_ruc_clientes=$_dato['array_ruc_clientes'];
+ 		$sel_razon_social_clientes=$_POST['razon_social_clientes'];
+ 		$sel_numero_credito_amortizacion_cabeza=$_dato['array_numero_credito_amortizacion_cabeza'];
+ 		$sel_numero_pagare_amortizacion_cabeza=$_dato['array_numero_pagare_amortizacion_cabeza'];
+ 		$sel_capital_prestado_amortizacion_cabeza=$_dato['array_capital_prestado_amortizacion_cabeza'];
+ 		$sel_tasa_interes_amortizacion_cabeza=$_dato['array_tasa_interes_amortizacion_cabeza'];
+ 		$sel_plazo_meses_amortizacion_cabeza=$_dato['array_plazo_meses_amortizacion_cabeza'];
+ 		$sel_interes_normal_mensual_amortizacion_cabeza=$_dato['array_interes_normal_mensual_amortizacion_cabeza'];
+ 		$sel_plazo_dias_amortizacion_cabeza=$_dato['array_plazo_dias_amortizacion_cabeza'];
+ 		$sel_cantidad_cuotas_amortizacion_cabeza=$_dato['array_cantidad_cuotas_amortizacion_cabeza'];
+ 		$sel_interes_mora_mensual_amortizacion_cabeza=$_dato['array_interes_mora_mensual_amortizacion_cabeza'];
+ 		$sel_fecha_amortizacion_cabeza=$_dato['array_fecha_amortizacion_cabeza'];
+ 
+ 	}
+ 
+ }
+ 		$interes=null;
        $total=null;
        $porcentaje_capital=null;
        $total_capital=0;
@@ -63,21 +126,20 @@
 	         </div>
 	         <div class="panel-body">
   			 <div class="row">
-  	
-  				<div class="form-group" style="margin-top: 25px;">
+  			<div class="form-group" style="margin-top: 25px;">
 		    	<div class="col-xs-2 col-md-2" style="text-align: center;">
-			  	 <label for="identificacion" class="control-label">Nro. Identificación:</label>
-			  	<input type="text"  name="identificacion" id="identificacion" value="<?php echo $resEdit->ruc_clientes; ?>" class="form-control"/> 
+			  	 <label for="ruc_clientes" class="control-label">Nro. Identificación:</label>
+			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="<?php if ($sel_ruc_clientes!=""){echo $sel_ruc_clientes;} else {echo $resEdit->ruc_clientes;} ?>" class="form-control"/> 
 			   
             	</div>
             	</div>
 		   		<div class="form-group">
 		   		<div class="col-xs-4 col-md-4" style="text-align: center;">
-			  	<label for="numero_titulo_credito" class="control-label">Razón Social:</label>
-			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="<?php echo $resEdit->razon_social_clientes; ?>" class="form-control"/> 
+			  	<label for="razon_social_clientes" class="control-label">Razón Social:</label>
+			  	<input type="text"  name="razon_social_clientes" id="razon_social_clientes" value="<?php echo $resEdit->razon_social_clientes; ?>" class="form-control"/> 
 			   	
             	</div>
-              	</div>
+              </div>
 		   
 		   <div class="col-xs-3 col-md-3">
 			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
@@ -91,7 +153,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Nro. Crédito</label>
-                                  <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value=""  placeholder="Nro. Crédito">
+                                  <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value="<?php echo $sel_numero_credito_amortizacion_cabeza	; ?>"  placeholder="Nro. Crédito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -99,7 +161,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Pagare Nro.</label>
-                                  <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value=""  placeholder="Pagare Nro.">
+                                  <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value="<?php echo $sel_numero_pagare_amortizacion_cabeza; ?>"  placeholder="Pagare Nro.">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -107,7 +169,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Tipo Crédito</label>
-                                  <input type="text" class="form-control" id="id_tipo_creditos" name="id_tipo_creditos" value=""  placeholder="Tipo Crédito">
+                                  <input type="text" class="form-control" id="id_tipo_creditos" name="id_tipo_creditos" value="<?php echo $sel_id_tipo_creditos; ?>"  placeholder="Tipo Crédito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -115,7 +177,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Cap. Prestado</label>
-                                  <input type="text" class="form-control" id="capital_prestado_amortizacion_cabeza" name="capital_prestado_amortizacion_cabeza" value=""  placeholder="Cap. Prestado">
+                                  <input type="text" class="form-control" id="capital_prestado_amortizacion_cabeza" name="capital_prestado_amortizacion_cabeza" value="<?php echo $sel_capital_prestado_amortizacion_cabeza;?>"  placeholder="Cap. Prestado">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -123,7 +185,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Tasa</label>
-                                  <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="tasa_interes_amortizacion_cabeza" value=""  placeholder="Tasa">
+                                  <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="tasa_interes_amortizacion_cabeza" value="<?php echo $sel_tasa_interes_amortizacion_cabeza;?>"  placeholder="Tasa">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -131,7 +193,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Plazo</label>
-                                  <input type="text" class="form-control" id="plazo_meses_amortizacion_cabeza" name="plazo_meses_amortizacion_cabeza" value=""  placeholder="Plazo">
+                                  <input type="text" class="form-control" id="plazo_meses_amortizacion_cabeza" name="plazo_meses_amortizacion_cabeza" value="<?php echo $sel_plazo_meses_amortizacion_cabeza;?>"  placeholder="Plazo">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -141,7 +203,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Int. Mensual</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value=""  placeholder="Int. Mensual">
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php echo $sel_interes_normal_mensual_amortizacion_cabeza; ?>"  placeholder="Int. Mensual">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -149,7 +211,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Plazo 2</label>
-                                  <input type="text" class="form-control" id="plazo_dias_amortizacion_cabeza" name="plazo_dias_amortizacion_cabeza" value=""  placeholder="Plazo 2">
+                                  <input type="text" class="form-control" id="plazo_dias_amortizacion_cabeza" name="plazo_dias_amortizacion_cabeza" value="<?php echo $sel_plazo_dias_amortizacion_cabeza; ?>"  placeholder="Plazo 2">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -157,7 +219,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Cuotas</label>
-                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value=""  placeholder="Cuotas">
+                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value="<?php echo $sel_cantidad_cuotas_amortizacion_cabeza; ?>"  placeholder="Cuotas">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -165,7 +227,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">MORA</label>
-                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value=""  placeholder="MORA">
+                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value="<?php echo $sel_interes_mora_mensual_amortizacion_cabeza; ?>"  placeholder="MORA">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -173,7 +235,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">M. Mensual</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value=""  placeholder="M. Mensual">
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php echo $sel_interes_normal_mensual_amortizacion_cabeza; ?>"  placeholder="M. Mensual">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -181,7 +243,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">CUOTA</label>
-                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value=""  placeholder="CUOTA">
+                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value="<?php echo $sel_cantidad_cuotas_amortizacion_cabeza; ?>"  placeholder="CUOTA">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -192,19 +254,13 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Fecha</label>
-                                  <input type="text" class="form-control" id="fecha_amortizacion_cabeza" name="fecha_amortizacion_cabeza" value=""  placeholder="Fecha">
+                                  <input type="date" class="form-control" id="fecha_amortizacion_cabeza" name="fecha_amortizacion_cabeza" value="<?php echo $sel_fecha_amortizacion_cabeza; ?>"  placeholder="Fecha">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
 			 </div>
 			  </div>
-            	
-            
-		    
-		
-		     
-		     
-		    <div class="row">
+           <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
             					
@@ -246,9 +302,7 @@
 			    <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
 		     </div>
 		     </div>
-		    
-		    
-		    </div>
+		     </div>
 	        </div>
 	        </div>
 	     
