@@ -8,7 +8,7 @@ class TipoCreditosController extends ControladorBase{
 
 
 	public function index(){
-		
+
 		session_start();
 		$tipo_creditos = new TipoCreditosModel();
 	    $resultSet=$tipo_creditos->getAll("id_tipo_creditos");
@@ -194,6 +194,6 @@ class TipoCreditosController extends ControladorBase{
 		}
 				
 	}
-			
+
 }
 ?>
