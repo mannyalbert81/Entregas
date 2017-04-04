@@ -62,23 +62,22 @@
 	         <h4><i class='glyphicon glyphicon-edit'></i> Tabla de Amortización</h4>
 	         </div>
 	         <div class="panel-body">
-  			 
-		     <div class="row">
+  			 <div class="row">
   	
-  			<div class="form-group" style="margin-top: 25px;">
-		    <div class="col-xs-2 col-md-2" style="text-align: center;">
+  				<div class="form-group" style="margin-top: 25px;">
+		    	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="identificacion" class="control-label">Nro. Identificación:</label>
 			  	<input type="text"  name="identificacion" id="identificacion" value="<?php echo $resEdit->ruc_clientes; ?>" class="form-control"/> 
 			   
-            </div>
-            </div>
-		   <div class="form-group">
-		   <div class="col-xs-4 col-md-4" style="text-align: center;">
+            	</div>
+            	</div>
+		   		<div class="form-group">
+		   		<div class="col-xs-4 col-md-4" style="text-align: center;">
 			  	<label for="numero_titulo_credito" class="control-label">Razón Social:</label>
 			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="<?php echo $resEdit->razon_social_clientes; ?>" class="form-control"/> 
 			   	
-            </div>
-              </div>
+            	</div>
+              	</div>
 		   
 		   <div class="col-xs-3 col-md-3">
 			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
