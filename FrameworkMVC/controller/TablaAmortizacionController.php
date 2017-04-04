@@ -74,22 +74,10 @@ class TablaAmortizacionController extends ControladorBase{
 					{
 								
 						$interes=0;
-						$total= isset($_POST['total'])?(double)$_POST['total']:0; 
-						$porcentaje_capital=isset($_POST['por_capital'])?(double)$_POST['por_capital']:0;
+						$total= isset($_POST['capital_prestado_amortizacion_cabeza'])?(double)$_POST['capital_prestado_amortizacion_cabeza']:2; 
+						$porcentaje_capital=isset($_POST['tasa_interes_amortizacion_cabeza'])?(double)$_POST['tasa_interes_amortizacion_cabeza']:2;
 						$total_capital=$total-($total*($porcentaje_capital/100));
-						//$fecha_corte=$_POST['fecha_corte'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						$fecha_corte = $_POST['fecha_amortizacion_cabeza'];
-						
+						$fecha_corte=$_POST['fecha_amortizacion_cabeza'];
 						$fecha_emision='';
 							
 							
@@ -103,7 +91,7 @@ class TablaAmortizacionController extends ControladorBase{
 							
 						$saldo_honorarios=0;
 							
-						$resultAmortizacion=$this->tablaAmortizacion($saldo_capital, $numero_cuotas, $fecha_corte);
+						$resultAmortizacion=$this->tablaAmortizacion($saldo_capital, $numero_cuotas, $fecha_corte, $total );
 							
 						$interes=0.812;
 							
@@ -149,7 +137,7 @@ class TablaAmortizacionController extends ControladorBase{
 	
 	}
 	
-	public function tablaAmortizacion($saldo_capital,$numero_cuotas,$fecha_corte)
+	public function tablaAmortizacion($saldo_capital,$numero_cuotas,$fecha_corte, $total)
 	{
 		//array donde guardar tabla amortizacion
 		$resultAmortizacion=array();
