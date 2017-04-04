@@ -21,23 +21,50 @@
        <?php include("view/modulos/menu.php"); ?>
        
        
-
+ <?php
+       // variables para tabla de amortizacion
+       
+       $interes=null;
+       $total=null;
+       $porcentaje_capital=null;
+       $total_capital=0;
+       
+       if(!empty($resultDatos)){
+       	foreach ($resultDatos as $res){
+       		$interes=0;
+       		$total=$res['total'];
+       		$porcentaje_capital=$res['porcentaje_capital'];
+       		$total_capital=$res['total_capital'];
+       	}
+       }
+       
+  
+       
+       $fecha_actual=strtotime(Date("Y-m-d"));
+       $hoy=Date("y-m-d");
+       ?>
  
   
-  <div class="container">
+  <div class="container" >
   
   <div class="row" style="background-color: #FAFAFA;">	
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" style=" padding-bottom:300px;">
             <br>
-         <div class="col-lg-12">
-         <h4 style="color:#ec971f;"><center>TABLA DE AMORTIZACIÓN</center></h4>
-        </br>
-         <?php if ($resultRes !="" ) { foreach($resultRes as $resEdit) {?>  
-         
-         <div class="row">
+          
+           <?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {?> 
+   
+	         <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Tabla de Amortización</h4>
+	         </div>
+	         <div class="panel-body">
+  			 
+		     <div class="row">
+  	
   			<div class="form-group" style="margin-top: 25px;">
 		    <div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="identificacion" class="control-label">Nro. Identificación:</label>
@@ -65,7 +92,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Nro. Crédito</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Nro. Crédito">
+                                  <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value=""  placeholder="Nro. Crédito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -73,7 +100,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Pagare Nro.</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Pagare Nro.">
+                                  <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value=""  placeholder="Pagare Nro.">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -81,7 +108,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Tipo Crédito</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Tipo Crédito">
+                                  <input type="text" class="form-control" id="id_tipo_creditos" name="id_tipo_creditos" value=""  placeholder="Tipo Crédito">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -89,7 +116,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Cap. Prestado</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Cap. Prestado">
+                                  <input type="text" class="form-control" id="capital_prestado_amortizacion_cabeza" name="capital_prestado_amortizacion_cabeza" value=""  placeholder="Cap. Prestado">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -97,7 +124,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Tasa</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Tasa">
+                                  <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="tasa_interes_amortizacion_cabeza" value=""  placeholder="Tasa">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -105,7 +132,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Plazo</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Plazo">
+                                  <input type="text" class="form-control" id="plazo_meses_amortizacion_cabeza" name="plazo_meses_amortizacion_cabeza" value=""  placeholder="Plazo">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -115,7 +142,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Int. Mensual</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Int. Mensual">
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value=""  placeholder="Int. Mensual">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -123,7 +150,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Plazo 2</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Plazo 2">
+                                  <input type="text" class="form-control" id="plazo_dias_amortizacion_cabeza" name="plazo_dias_amortizacion_cabeza" value=""  placeholder="Plazo 2">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -131,7 +158,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Cuotas</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Cuotas">
+                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value=""  placeholder="Cuotas">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -139,7 +166,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">MORA</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="MORA">
+                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value=""  placeholder="MORA">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -147,7 +174,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">M. Mensual</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="M. Mensual">
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value=""  placeholder="M. Mensual">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -155,22 +182,24 @@
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">CUOTA</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="CUOTA">
+                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value=""  placeholder="CUOTA">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
 			</div>
+			
 			<div class="row">
 		    <div class="col-xs-2 col-md-2">
 		    <div class="form-group">
 		    
 		     					  <label for="nombre_tipo_identificacion" class="control-label">Fecha</label>
-                                  <input type="text" class="form-control" id="nombre_tipo_identificacion" name="nombre_tipo_identificacion" value=""  placeholder="Fecha">
+                                  <input type="text" class="form-control" id="fecha_amortizacion_cabeza" name="fecha_amortizacion_cabeza" value=""  placeholder="Fecha">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
-			</div>
-            </div>
+			 </div>
+			  </div>
+            	
             
 		    
 		
@@ -179,169 +208,114 @@
 		    <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
-            					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Generar</button>
+            					
+            					   <input type="submit" id="Generar" name="Generar"  value="Generar" class="btn btn-success " />
             </div>
             </div>
             </div>
-       .        
-		            
-		
-         
-         <?php } } else {?>
-         
-         <div class="row">
-  			<div class="form-group" style="margin-top: 25px;">
-		    <div class="col-xs-2 col-md-2" style="text-align: center;">
+            
+            
+	        </div>
+	        </div>
+	  
+          <?php } } else {?>
+           
+	         <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Tabla de Amortizacion</h4>
+	         </div>
+	         <div class="panel-body">
+  			 
+		     <div class="row">
+             <div class="form-group" style="margin-top: 25px;">
+		     <div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="identificacion" class="control-label">Nro. Identificación:</label>
 			  	<input type="text"  name="identificacion" id="identificacion" value="" class="form-control"/> 
 			   
-            </div>
-            </div>
-		   <div class="form-group">
-		   <div class="col-xs-4 col-md-4" style="text-align: center;">
+             </div>
+             </div>
+		     <div class="form-group">
+		     <div class="col-xs-4 col-md-4" style="text-align: center;">
 			  	<label for="numero_titulo_credito" class="control-label">Razón Social:</label>
 			  	<input type="text"  name="numero_titulo_credito" id="numero_titulo_credito" value="" class="form-control"/> 
 			   	
-            </div>
+              </div>
               </div>
 		   
-		   <div class="col-xs-3 col-md-3">
-			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
-		  
-		  </div>
-		    </div>
-         
-         <?php } ?>  
-             
-        
-       </form>
-       <!-- termina el form --> 
-       
-       <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-     		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Tipo de Identificacion Registrado</h4>
-            
-            <div class="row">
-		    <div class="col-xs-4 col-md-4 col-lg-4">
+		     <div class="col-xs-3 col-md-3">
+			    <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 25px;"/> 	
+		     </div>
+		     </div>
+		    
 		    
 		    </div>
-		  
-		    </div>  
-             
-       
-       <div class="datagrid"> 
-       <section style="height:380px; overflow-y:scroll;">
-       <table class="table table-hover ">
-       
-       <thead>
-           <tr>
-                    <th style="font-size:100%;">Pagos Trimestrales</th>
-		    		<th style="font-size:100%;">Saldo Inicial</th>
-		    		<th style="font-size:100%;">Interes</th>
-		    		<th style="font-size:100%;">Amortización</th>
-		    		<th style="font-size:100%;">Pagos</th>
-		    		<th style="font-size:100%;">Fecha Pago</th>
-		   	</tr>
-	   </thead>
-       <tfoot>
-       		<tr>
-					<td colspan="10">
-						<div id="paging">
-							<ul>
-								<li>
-									<a href="#">
-						<span>Previous</span>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="active">
-						<span>1</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-						<span>2</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-						<span>3</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-						<span>4</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-						<span>5</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-						<span>Next</span>
-									</a>
-								</li>
-								</ul>
-						</div>
-					
-			</tr>
-       				
-       </tfoot>
-       
-                <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-	        	 
-               
-	   <tbody>
-	   		<tr>
-	   		           <td style="font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
-	   		           <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td> 
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
-		               <td style="font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?></td>
-		               <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("TablaAmortizacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			           </td>
-			           <td>   
-			               	<div class="right">
-			                    <a href="<?php echo $helper->url("TablaAmortizacion","borrarId"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			           </td>
-	   		</tr>
-	   
-	   </tbody>	
-	        		
-		        <?php } }else{ ?>
-            <tr>
-            <td></td>
-            <td></td>
-	                   <td colspan="5" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
-	        <td></td>
+	        </div>
+	        </div>
+	     
+         <?php } ?>
+         <?php if(!empty($resultDatos)){?>
+        
+        <div class="col-lg-12 col-xs-6">
+		
+		<section class="col-lg-12 usuario" style=" min-height: 100px; 	max-height: 400px; overflow-y:scroll;">
+        <table class="table table-hover ">
+	         <tr >
+	    		<th style="color:#456789;font-size:80%;"><b>Periodo</b></th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Vencimiento</th>
+	    		<th style="color:#456789;font-size:80%;">Abono Capital</th>
+	    		<th style="color:#456789;font-size:80%;">Interes</th>
+	    		<th style="color:#456789;font-size:80%;">Capital+Interes</th>
+	    		<th style="color:#456789;font-size:80%;">Saldo Capital</th>
+	    		<th style="color:#456789;font-size:80%;">Saldo Honorarios</th>
+	    		<th style="color:#456789;font-size:80%;">Otros Rubros</th>
+	    		<th style="color:#456789;font-size:80%;">Cuota a Cancelar</th>
+	    	</tr>
+	    	
+	      <?php if (!empty($resultAmortizacion)) {
+	      	
+	      	foreach ($resultAmortizacion['tabla'] as $res)	{
+	      		
+	       ?>
+	        		<tr>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['periodo']; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_vencimiento']; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['abono_capital'],2); ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['interes'],2); ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['capital_interes'],2); ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo abs(round($res[0]['saldo_capital'],2)); ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['saldo_honorarios'],2); ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['otros'],2); ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['cuota']; ?>     </td>  
 		               
 		    </tr>
-            <?php 
-		}
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
+		    
+		    
+		    
+		        
+            	<?php }}} ?>
             
-            ?>
             
-       	</table>     
-		</section>
-        </div>
-        </div>
-        </form> 
+       	</table>  
+       	
+       	
+       	  
+      </section>
+		
+		</div>  
+                
+       </form>
+       
+       <!-- termina el form --> 
+       
+     
           
           
           
        
       </div>
       </div>
+      
    </body>  
 
 </html>   
