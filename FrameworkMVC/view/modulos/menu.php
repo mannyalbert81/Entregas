@@ -214,13 +214,7 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("TipoCreditos",$controladores) ?>">
           <a href="index.php?controller=TipoCreditos&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Tipo Creditos</span> </a>
           </li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-         
-=======
-       
-=======
->>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad.git
+
           <li style="<?php echo getcontrolador("Tipo_Operaciones",$controladores) ?>">
 			<a href="index.php?controller=Tipo_Operaciones&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Operaciones</span> </a>
 		  </li>
@@ -236,18 +230,13 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("Intereses",$controladores) ?>">
 			<a href="index.php?controller=Intereses&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Intereses</span> </a>
 		  </li>
-<<<<<<< HEAD
-		 
->>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad.git
-          
-=======
 		  <li style="<?php echo getcontrolador("TablaAmortizacion",$controladores) ?>">
 			<a href="index.php?controller=TablaAmortizacion&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tabla Amortización</span> </a>
 		  </li>
 		  <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
 			<a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Clientes</span> </a>
 		  </li>
->>>>>>> branch 'master' of https://github.com/mannyalbert81/contabilidad.git
+
 </ul>
 </li>
 
