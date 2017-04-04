@@ -451,16 +451,12 @@
 		<section class="col-lg-12 usuario" style=" min-height: 100px; 	max-height: 400px; overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Periodo</b></th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Vencimiento</th>
-	    		<th style="color:#456789;font-size:80%;">Abono Capital</th>
+	    		<th style="color:#456789;font-size:80%;"><b>Pagos</b></th>
 	    		<th style="color:#456789;font-size:80%;">Interes</th>
-	    		<th style="color:#456789;font-size:80%;">Capital+Interes</th>
-	    		<th style="color:#456789;font-size:80%;">Saldo Capital</th>
-	    		<th style="color:#456789;font-size:80%;">Saldo Honorarios</th>
-	    		<th style="color:#456789;font-size:80%;">Otros Rubros</th>
-	    		<th style="color:#456789;font-size:80%;">Cuota a Cancelar</th>
-	    	</tr>
+	    		<th style="color:#456789;font-size:80%;">Amortiación</th>
+	    		<th style="color:#456789;font-size:80%;">Pagos</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Pago</th>
+	    		</tr>
 	    	
 	      <?php if (!empty($resultAmortizacion)) {
 	      	
@@ -469,15 +465,11 @@
 	       ?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['periodo']; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_vencimiento']; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['abono_capital'],2); ?></td>
+	            	  <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['abono_capital'],2); ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['interes'],2); ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['capital_interes'],2); ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo abs(round($res[0]['saldo_capital'],2)); ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['saldo_honorarios'],2); ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['otros'],2); ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['cuota']; ?>     </td>  
-		               
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_vencimiento']; ?></td>
+	                   
 		    </tr>
 		    
 		    
