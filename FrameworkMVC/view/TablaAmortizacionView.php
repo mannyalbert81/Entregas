@@ -242,7 +242,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_mora_mensual_amortizacion_cabeza" class="control-label">Mora:</label>
-                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value="<?php if (!empty($tasa_mora)) { echo number_format($tasa_mora,2); }  else { }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value="<?php if (!empty($tasa_mora)) {  foreach($tasa_mora as $res) {echo number_format($res->valor_intereses,2);} }else { }  ?>"  placeholder="0.00" readonly>
                                   <span class="help-bloc$resultDatos2k"></span>
 		    </div>
 		    </div>
@@ -250,7 +250,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_normal_mensual_amortizacion_cabeza" class="control-label">Mora. Mensual</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if (!empty($mora_mensual)) { echo number_format($mora_mensual,2); } else{  }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if (!empty($mora_mensual)) { echo number_format($mora_mensual,10); } else{  }?>"  placeholder="0.00" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>

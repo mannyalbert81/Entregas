@@ -104,13 +104,29 @@ class TablaAmortizacionController extends ControladorBase{
 						$interes_mensual = $tasa / 12;
 						$plazo_dias = $_plazo_meses_amortizacion_cabeza * 30;
 						$cant_cuotas = $_plazo_meses_amortizacion_cabeza;
-						$tasa_mora = 0;  /// recuperar
-						$mora_mensual = 0;   // recuperar y calcular
+						
+						$_id_usuarios= $_SESSION['id_usuarios'];
+						$usuarios = new UsuariosModel();
+						$resultEnt = $usuarios->getBy("id_usuarios ='$_id_usuarios'");
+						$_id_entidades=$resultEnt[0]->id_entidades;
+						
+						$intereses = new InteresesModel();
+						$columnas ="intereses.id_intereses, 
+									  tipo_intereses.nombre_tipo_intereses, 
+									  intereses.valor_intereses, 
+									  entidades.id_entidades";
+						$tablas="public.intereses, 
+								  public.tipo_intereses, 
+								  public.entidades";
+						$where="tipo_intereses.id_tipo_intereses = intereses.id_tipo_intereses AND
+  								entidades.id_entidades = intereses.id_entidades AND intereses.id_entidades='$_id_entidades' AND tipo_intereses.nombre_tipo_intereses='MORA'";
+						$id="intereses.id_intereses";
+						$tasa_mora = $intereses->getCondiciones($columnas, $tablas, $where, $id);
+						
+						$_valor_intereses=$tasa_mora[0]->valor_intereses;
+						$mora_mensual = $_valor_intereses/360; 
 						$valor_cuota =  ($_capital_prestado_amortizacion_cabeza * $interes_mensual) /  (1- pow((1+$interes_mensual), -$_plazo_meses_amortizacion_cabeza ))  ;
 						
-						//die($valor_cuota);
-						
-						//$interes_mensual = 
 						//pruebas tabla amortizacion
 							
 						$saldo_capital=$total-($total*($porcentaje_capital/100));
@@ -133,8 +149,8 @@ class TablaAmortizacionController extends ControladorBase{
 				
 				$this->view("TablaAmortizacion",array(
 						"resultRes"=>$resultRes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion,'resultRubros'=>$resultRubros,'resultCre'=>$resultCre,
-						"valor_cuota"=>$valor_cuota,'interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual 
-					
+						"valor_cuota"=>$valor_cuota,'interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual
+					    
 				));
 		
 				
