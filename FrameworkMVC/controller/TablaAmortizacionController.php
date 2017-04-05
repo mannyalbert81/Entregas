@@ -43,7 +43,7 @@ class TablaAmortizacionController extends ControladorBase{
 				$resultAmortizacion=array();
 				$resultDatos=array();
 				$resultRubros=array();
-				
+				$resultDatos2=array();
 				if(isset($_POST["buscar"]))
 				{
 				  
@@ -109,7 +109,7 @@ class TablaAmortizacionController extends ControladorBase{
 						
 						
 						
-						$interes_mensual = 
+						//$interes_mensual = 
 						array_push($resultDatos2,array('interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas
 								,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual ,'valor_cuota'=>$valor_cuota  
 								
