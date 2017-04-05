@@ -218,7 +218,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_normal_mensual_amortizacion_cabeza" class="control-label">Int. Mensual:</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($resultDatos2)) {  foreach($resultDatos2 as $resul) {echo $resul->interes_mensual;} }  }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($interes_mensual)) { echo number_format($interes_mensual,4); }  }?>"  placeholder="0.00" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -226,7 +226,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="plazo_dias_amortizacion_cabeza" class="control-label">Plazo Dias:</label>
-                                  <input type="text" class="form-control" id="plazo_dias_amortizacion_cabeza" name="plazo_dias_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($resultDatos2)) {  foreach($resultDatos2 as $resultDatos2) {echo $resultDatos2->interes_mensual;} }  }?>"  placeholder="#" readonly>
+                                  <input type="text" class="form-control" id="plazo_dias_amortizacion_cabeza" name="plazo_dias_amortizacion_cabeza" value="<?php if ($sel_plazo_dias_amortizacion_cabeza!="")  {echo $sel_plazo_dias_amortizacion_cabeza;} else { if (!empty($plazo_dias)) {  echo $plazo_dias; }  }?>"  placeholder="#" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -234,7 +234,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="cantidad_cuotas_amortizacion_cabeza" class="control-label">Can. Cuotas:</label>
-                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($resultDatos2)) {  foreach($resultDatos2 as $resultDatos2) {echo $resultDatos2->plazo_dias;} }  }?>"  placeholder="#" readonly>
+                                  <input type="text" class="form-control" id="cantidad_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" value="<?php if ($sel_cantidad_cuotas_amortizacion_cabeza!="")  {echo $sel_cantidad_cuotas_amortizacion_cabeza;} else { if (!empty($cant_cuotas)) { echo $cant_cuotas; }  }?>"  placeholder="#" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -242,7 +242,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_mora_mensual_amortizacion_cabeza" class="control-label">Mora:</label>
-                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($resultDatos2)) {  foreach($resultDatos2 as $resultDatos2) {echo $resultDatos2->cant_cuotas;} }  }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_mora_mensual_amortizacion_cabeza" name="interes_mora_mensual_amortizacion_cabeza" value="<?php if ($sel_interes_mora_mensual_amortizacion_cabeza!="")  {echo $sel_interes_mora_mensual_amortizacion_cabeza;} else { if (!empty($tasa_mora)) { echo number_format($tasa_mora,2); }  }?>"  placeholder="0.00" readonly>
                                   <span class="help-bloc$resultDatos2k"></span>
 		    </div>
 		    </div>
@@ -250,7 +250,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_normal_mensual_amortizacion_cabeza" class="control-label">Mora. Mensual</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($resultDatos2)) {  foreach($resultDatos2 as $resultDatos2) {echo $resultDatos2->mora_mensual;} }  }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if ($sel_interes_normal_mensual_amortizacion_cabeza!="")  {echo $sel_interes_normal_mensual_amortizacion_cabeza;} else { if (!empty($mora_mensual)) { echo number_format($mora_mensual,2); }  }?>"  placeholder="0.00" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -258,13 +258,12 @@
 		    <div class="form-group">
 		    
 		     					  <label for="valor_cuotas_amortizacion_cabeza" class="control-label">Valor Cuota:</label>
-                                  <input type="text" class="form-control" id="valor_cuotas_amortizacion_cabeza" name="cantidad_cuotas_amortizacion_cabeza" 
-                                  value="<?php if ($sel_valor_cuotas_amortizacion_cabeza!="")  {echo $sel_valor_cuotas_amortizacion_cabeza;} else { if (!empty($resultDatos2)) {  foreach($resultDatos2 as $resEdit) {echo $resEdit->valor_cuota;} }  }?>"  placeholder="$" >
+                                  <input type="text" class="form-control" id="valor_cuotas_amortizacion_cabeza" name="valor_cuotas_amortizacion_cabeza" value="<?php if ($sel_valor_cuotas_amortizacion_cabeza!="")  {echo $sel_valor_cuotas_amortizacion_cabeza;} else { if (!empty($valor_cuota)) { echo number_format($valor_cuota,2);}  }?>"  placeholder="$" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
 			</div>
-	         </div>
+	        </div>
 		    </div>
 			</div>
 	        
@@ -272,7 +271,6 @@
 	         <?php if(!empty($resultDatos)){?>
         
         <div class="col-lg-12 col-xs-6">
-		
 		<section class="col-lg-12 usuario" style=" min-height: 100px; 	max-height: 400px; overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >

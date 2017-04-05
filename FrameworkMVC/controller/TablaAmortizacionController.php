@@ -108,10 +108,9 @@ class TablaAmortizacionController extends ControladorBase{
 						$mora_mensual = 0;   // recuperar y calcular
 						$valor_cuota =  ($_capital_prestado_amortizacion_cabeza * $interes_mensual) /  (1- pow((1+$interes_mensual), -$_plazo_meses_amortizacion_cabeza ))  ;
 						
-						die($valor_cuota);
+						//die($valor_cuota);
 						
 						//$interes_mensual = 
-						array_push($resultDatos2,array('interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual ,'valor_cuota'=>$valor_cuota));
 						//pruebas tabla amortizacion
 							
 						$saldo_capital=$total-($total*($porcentaje_capital/100));
@@ -134,8 +133,8 @@ class TablaAmortizacionController extends ControladorBase{
 				
 				$this->view("TablaAmortizacion",array(
 						"resultRes"=>$resultRes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion,'resultRubros'=>$resultRubros,'resultCre'=>$resultCre,
-						"resultDatos2"=>$resultDatos2
-			
+						"valor_cuota"=>$valor_cuota,'interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual 
+					
 				));
 		
 				
@@ -174,7 +173,7 @@ class TablaAmortizacionController extends ControladorBase{
 	
 		$saldo_honorarios=0;
 		$otros=0;
-		$total_Capital=0;
+		$total_Capital=$total;
 		$total_Honorarios=0;
 		$total_Convenio=0;
 		$total_Interes=0;
