@@ -96,24 +96,22 @@ class TablaAmortizacionController extends ControladorBase{
 						
 						//valores
 						$_tasa_interes_amortizacion_cabeza = $_POST['tasa_interes_amortizacion_cabeza']; 
+						$tasa= $_tasa_interes_amortizacion_cabeza / 100;
 						$_capital_prestado_amortizacion_cabeza = $_POST['capital_prestado_amortizacion_cabeza'];
 						$_plazo_meses_amortizacion_cabeza = $_POST['plazo_meses_amortizacion_cabeza'];
 						
 						////resultados
-						$interes_mensual = $_tasa_interes_amortizacion_cabeza / 12;
+						$interes_mensual = $tasa / 12;
 						$plazo_dias = $_plazo_meses_amortizacion_cabeza * 30;
 						$cant_cuotas = $_plazo_meses_amortizacion_cabeza;
 						$tasa_mora = 0;  /// recuperar
 						$mora_mensual = 0;   // recuperar y calcular
-						$valor_cuota =  ($_capital_prestado_amortizacion_cabeza * $interes_mensual) /  (1-    pow((1+$interes_mensual), -$_plazo_meses_amortizacion_cabeza ))  ;
+						$valor_cuota =  ($_capital_prestado_amortizacion_cabeza * $interes_mensual) /  (1- pow((1+$interes_mensual), -$_plazo_meses_amortizacion_cabeza ))  ;
 						
-						
+						die($valor_cuota);
 						
 						//$interes_mensual = 
-						array_push($resultDatos2,array('interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas
-								,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual ,'valor_cuota'=>$valor_cuota  
-								
-						));
+						array_push($resultDatos2,array('interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas,'tasa_mora'=>$tasa_mora ,'mora_mensual'=>$mora_mensual ,'valor_cuota'=>$valor_cuota));
 						//pruebas tabla amortizacion
 							
 						$saldo_capital=$total-($total*($porcentaje_capital/100));
@@ -135,7 +133,7 @@ class TablaAmortizacionController extends ControladorBase{
 		
 				
 				$this->view("TablaAmortizacion",array(
-						"resultRes"=>$resultRes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion,'resultRubros'=>$resultRubros,'resultCre'=>$resultCre ,
+						"resultRes"=>$resultRes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion,'resultRubros'=>$resultRubros,'resultCre'=>$resultCre,
 						"resultDatos2"=>$resultDatos2
 			
 				));
