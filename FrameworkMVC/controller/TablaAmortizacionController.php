@@ -107,7 +107,7 @@ class TablaAmortizacionController extends ControladorBase{
 						$mora_mensual = 0;   // recuperar y calcular
 						$valor_cuota =  ($_capital_prestado_amortizacion_cabeza * $interes_mensual) /  (1-    pow((1+$interes_mensual), -$_plazo_meses_amortizacion_cabeza ))  ;
 						
-						
+						die($valor_cuota);
 						
 						//$interes_mensual = 
 						array_push($resultDatos2,array('interes_mensual'=> $interes_mensual,'plazo_dias'=>$plazo_dias,'cant_cuotas'=>$cant_cuotas

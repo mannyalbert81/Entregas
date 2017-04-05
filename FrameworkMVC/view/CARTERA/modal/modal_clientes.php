@@ -11,13 +11,19 @@
       </div>
       <div class="modal-body">
 			<div id="datos_ajax_register"></div>
+         
           <div class="form-group">
-            <label for="ruc_clientes0" class="control-label">Ruc:</label>
+            <label for="ruc_clientes0" class="col-sm-3 control-label">Ruc:</label>
+            <div class="col-sm-8">
             <input type="text" class="form-control" id="ruc_clientes0" name="ruc_clientes" required maxlength="200">
+            </div>
 		  </div>
+		  
 		  <div class="form-group">
-            <label for="razon_social_clientes0" class="control-label">Razón Social:</label>
+            <label for="razon_social_clientes0" class="col-sm-3 control-label">Razón Social:</label>
+            <div class="col-sm-8">
             <input type="text" class="form-control" id="razon_social_clientes0" name="razon_social_clientes" required maxlength="400">
+          	</div>
           </div>
           
           <div class="form-group">
@@ -43,23 +49,31 @@
 		  </div>
 			  
           <div class="form-group">
-            <label for="direccion_clientes0" class="control-label">Dirección:</label>
-            <texarea type="text" class="form-control" id="direccion_clientes0" name="direccion_clientes" required maxlength="400"></texarea>
+            <label for="direccion_clientes0" class="col-sm-3 control-label">Dirección:</label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="direccion_clientes0" name="direccion_clientes" required maxlength="400">
+            </div>
           </div>
           
           <div class="form-group">
-            <label for="telefono_clientes0" class="control-label">Teléfono:</label>
+            <label for="telefono_clientes0" class="col-sm-3 control-label">Teléfono:</label>
+            <div class="col-sm-8">
             <input type="text" class="form-control" id="telefono_clientes0" name="telefono_clientes" required maxlength="400">
+            </div>
           </div>
           
            <div class="form-group">
-            <label for="celular_clientes0" class="control-label">Celular:</label>
+            <label for="celular_clientes0" class="col-sm-3 control-label">Celular:</label>
+            <div class="col-sm-8">
             <input type="text" class="form-control" id="celular_clientes0" name="celular_clientes" required maxlength="400">
+          	</div>
           </div>
           
           <div class="form-group">
-            <label for="email_clientes0" class="control-label">Email:</label>
+            <label for="email_clientes0" class="col-sm-3 control-label">Email:</label>
+            <div class="col-sm-8">
             <input type="text" class="form-control" id="email_clientes0" name="email_clientes" required maxlength="400">
+          	</div>
           </div>
 		  
       </div>
