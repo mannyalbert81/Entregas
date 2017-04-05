@@ -276,31 +276,34 @@
 		<section class="col-lg-12 usuario" style=" min-height: 100px; 	max-height: 400px; overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
+	    		<th style="color:#456789;font-size:80%;"><b>Pagos Trimestrales</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Saldo Inicial</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Interes</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Amortizacion</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Pagos</b></th>
-	    		<th style="color:#456789;font-size:80%;">Interes</th>
-	    		<th style="color:#456789;font-size:80%;">Amortiación</th>
-	    		<th style="color:#456789;font-size:80%;">Pagos</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Pago</th>
+	    		<th style="color:#456789;font-size:80%;"><b>Fecha Pago</b></th>
 	    		</tr>
 	    	
 	      <?php if (!empty($resultAmortizacion)) {
-	      	
-	      	foreach ($resultAmortizacion['tabla'] as $res)	{
+	      	?>
+	      	                  
+	      <?php	foreach ($resultAmortizacion['tabla'] as $res)	{
 	      		
 	       ?>
+	               
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['periodo']; ?></td>
-	            	  <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['abono_capital'],2); ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['pagos_trimestrales']; ?></td>
+	            	   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['saldo_inicial'],2); ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['interes'],2); ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['capital_interes'],2); ?>     </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_vencimiento']; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['amortizacion'],2); ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['pagos'],2); ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_pago']; ?></td>
 	                   
 		    </tr>
 		    
-		    
-		    
-		        
-            	<?php }}} ?>
+		
+		  		    
+		  		  <?php }}} ?>
             
             
        	</table>  
