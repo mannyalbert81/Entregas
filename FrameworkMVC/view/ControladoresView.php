@@ -1,6 +1,4 @@
-
-   <?php include("view/modulos/modal.php"); ?>
- <?php include("view/modulos/head.php"); ?>
+<?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
 <html lang="es">
@@ -8,11 +6,13 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Tipo de Comprobantes - Contabilidad 2016</title>
+        <title>Controladores - Contabilidad 2016</title>
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
-		  <script src="view/js/ValidarControladores.js"></script>  
+		  <script src="view/js/ValidarControladores.js"></script>
+		  
+		   
   
     </head>
    <body class="cuerpo">
@@ -34,69 +34,106 @@
             <br>
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-            
-            <div class="well">
-            <h4 style="color:#ec971f;">Insertar Controladores</h4>
-  			 <hr/>
-          
-            <div class="row">
+        	     
+        	     
+        	     
+        	  <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Insertar Controladores</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
-			   					<label for="nombre_tipo_comprobantes" class="control-label">Nombre Controladores</label>
-                                  <input type="text" class="form-control" id="nombre_controladores" name="nombre_controladores" value="<?php echo $resEdit->nombre_controladores; ?>"  placeholder="Nombre de controladores">
+			   					<label for="nombre_controladores" class="control-label">Nombre Controladores</label>
+                                  <input type="text" class="form-control" id="nombre_controladores" name="nombre_controladores" value="<?php echo $resEdit->nombre_controladores; ?>"  placeholder="Nombre Controladores">
+                                    <input type="hidden" class="form-control" id="id_controladores" name="id_controladores" value="<?php echo $resEdit->id_controladores; ?>"  placeholder="">
+                                
                                   <span class="help-block"></span>
 			</div>
 		    </div>
             </div>
-            </div>	
-		    
-		     <?php } } else {?>
-		     
-		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Controladores  </h4>
-            <hr/>
-            <div class="row">
-		    <div class="col-xs-6 col-md-6">
-		    <div class="form-group">
-		    
-		     					  <label for="nombre_controladores" class="control-label">Nombre Controladores</label>
-                                  <input type="text" class="form-control" id="nombre_controladores" name="nombre_controladores" value=""  placeholder="Nombre de controladores">
-                                  <span class="help-block"></span>
-		    </div>
-		    </div>
-            </div>
-            </div>
-		    
-		   
-               	
-		     <?php } ?>
-		     
-		     
-		    <div class="row">
+		       <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
             					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
             </div>
             </div>
             </div>
+		     
+		     
+		    </div>
+	        </div>
+	        </div>
+        	     
+        	     
+        	     
+        	     
+            
+            	
+		    
+		     <?php } } else {?>
+		     
+		     
+		      <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Insertar Controladores</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		    		 <div class="row">
+		    <div class="col-xs-6 col-md-6">
+		    <div class="form-group">
+		    
+		     					  <label for="nombre_controladores" class="control-label">Nombre Controladores</label>
+                                  <input type="text" class="form-control" id="nombre_controladores" name="nombre_controladores" value=""  placeholder="Nombre Controladores">
+                                  <span class="help-block"></span>
+		    </div>
+		    </div>
+            </div>     
+		       <div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
+            <div class="form-group">
+            					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+            </div>
+            </div>
+            </div>
+		    </div>
+	        </div>
+	        </div>
+		     
+		     
+		     
+		     
+		     
+		     
+		 
+               	
+		     <?php } ?>
+		     
+		     
+		  
         
        </form>
        <!-- termina el form --> 
        
        <form action="<?php echo $helper->url("Controladores","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
      		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Controladores Registrados</h4>
-            
-            <div class="row">
-		    <div class="col-xs-4 col-md-4 col-lg-4">
-		    
-		    </div>
-		  
-		    </div>  
-             
-       
+     		
+     		 <div class="col-lg-12">
+	         <br>
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Intereses Registrados</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     
+		           
        <div class="datagrid"> 
        <section style="height:380px; overflow-y:scroll;">
        <table class="table table-hover ">
@@ -196,8 +233,16 @@
             
        	</table>     
 		</section>
-        </div>
-        </div>
+        </div>  
+		     		 
+		    
+		    </div>
+	        </div>
+	        </div>
+ 
+     		
+     		
+     		
         </form> 
           
           

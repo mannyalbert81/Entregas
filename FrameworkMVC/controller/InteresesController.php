@@ -77,7 +77,9 @@ class InteresesController extends ControladorBase{
 						$_id_intereses = $_GET["id_intereses"];
 						
 						$columnas = "     intereses.id_intereses, 
+								           entidades.id_entidades,
 										  entidades.nombre_entidades, 
+							          	  tipo_intereses.id_tipo_intereses,
 										  tipo_intereses.nombre_tipo_intereses, 
 										  intereses.valor_intereses, 
 										  intereses.creado, 
@@ -85,7 +87,7 @@ class InteresesController extends ControladorBase{
 						$tablas   = "public.intereses, 
 									  public.entidades, 
 									  public.tipo_intereses";
-						$where    = " entidades.id_entidades = intereses.id_entidades AND tipo_intereses.id_tipo_intereses = intereses.id_tipo_intereses AND intereses.id_entidades='$_id_intereses'"; 
+						$where    = " entidades.id_entidades = intereses.id_entidades AND tipo_intereses.id_tipo_intereses = intereses.id_tipo_intereses AND intereses.id_intereses='$_id_intereses'"; 
 						$id       = "id_intereses";
 						$resultEdit = $Intereses->getCondiciones($columnas ,$tablas ,$where, $id);
 						

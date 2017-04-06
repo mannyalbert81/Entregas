@@ -14,12 +14,7 @@
 		  <script src="view/js/bootstrapValidator.min.js"></script>
 		    <script src="view/js/ValidarTipoIntereses.js"></script>
 		    
-		    
-		    
-	
-    
-		
-		   
+ 
   
     </head>
    <body class="cuerpo">
@@ -42,11 +37,16 @@
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-            <div class="well">
-            <h4 style="color:#ec971f;">Insertar Tipo de Intereses</h4>
-  			 <hr/>
-          
-            <div class="row">
+            
+            
+             <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Insertar Tipo de Intereses</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
@@ -58,14 +58,37 @@
 			</div>
 		    </div>
             </div>
-            </div>	
+            
+            <div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
+            <div class="form-group">
+            					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+            </div>
+            </div>
+            </div>
+		   	 
+         	   	 	
+		    
+		    </div>
+	        </div>
+	        </div>
+            
+
 		    
 		     <?php } } else {?>
 		     
-		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Tipo de Intereses </h4>
-            <hr/>
-            <div class="row">
+		     
+		     
+		     
+		     
+             <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Insertar Tipo de Intereses</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		    
@@ -75,38 +98,45 @@
 		    </div>
 		    </div>
             </div>
-            </div>
-		    
-		   
-               	
-		     <?php } ?>
-		     
-		     
-		    <div class="row">
+             	
+		   	<div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
             					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
             </div>
             </div>
             </div>
+         	   	 	
+		    
+		    </div>
+	        </div>
+	        </div>
+   
+		   
+               	
+		     <?php } ?>
+		     
+		     
+		    
         
        </form>
        <!-- termina el form --> 
        
        <form action="<?php echo $helper->url("Tipo_Intereses","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
-     		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Tipo de Interes Registrado</h4>
-            
-            <div class="row">
-		    <div class="col-xs-4 col-md-4 col-lg-4">
-		    
-		    </div>
-		  
-		    </div>  
-             
-       
-       <div class="datagrid"> 
+     		
+     		
+     		
+     		
+     		
+     		 <div class="col-lg-12">
+	         <br>
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Tipo de Intereses Registrados	</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     <div class="datagrid"> 
        <section style="height:380px; overflow-y:scroll;">
        <table class="table table-hover ">
        
@@ -206,7 +236,15 @@
        	</table>     
 		</section>
         </div>
-        </div>
+		     	     
+		     		 
+		    
+		    </div>
+	        </div>
+	        </div>
+     		
+ 
+     		
         </form> 
           
           
