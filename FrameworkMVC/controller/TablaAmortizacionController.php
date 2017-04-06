@@ -327,8 +327,8 @@ class TablaAmortizacionController extends ControladorBase{
 				
 			if ($i == 0)
 			{
-				$interes= "";
-				$amortizacion = "";
+				$interes= 0;
+				$amortizacion = 0;
 				$saldo_inicial= $capital;
 				$fecha=strtotime('+0 day',strtotime($fecha_corte));
 				$fecha=date('Y-m-d',$fecha);
