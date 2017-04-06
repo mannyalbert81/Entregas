@@ -257,7 +257,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_normal_mensual_amortizacion_cabeza" class="control-label">Mora. Mensual</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if (!empty($mora_mensual)) { echo number_format($mora_mensual,10); } else{  }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if (!empty($mora_mensual)) { echo $mora_mensual; } else{  }?>"  placeholder="0.00" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>

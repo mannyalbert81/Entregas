@@ -390,30 +390,32 @@ class TablaAmortizacionController extends ControladorBase{
 			
 			
 			$funcion = "ins_amortizacion_cabeza";
-			$parametros = "'$numero_credito_amortizacion_cabeza','$numero_pagare_amortizacion_cabeza', '$id_fc_clientes','$id_tipo_creditos','$_capital_prestado_amortizacion_cabeza' ,'$tasa' ,'$_plazo_meses_amortizacion_cabeza' ,'$plazo_dias', '$_id_intereses', '$fecha_corte', '$valor_cuota', '$mora_mensual', '$tasa_mora', '$_id_entidades'";
+			$parametros = "'$numero_credito_amortizacion_cabeza','$numero_pagare_amortizacion_cabeza', '$id_fc_clientes','$id_tipo_creditos','$_capital_prestado_amortizacion_cabeza' ,'$tasa' ,'$_plazo_meses_amortizacion_cabeza' ,'$plazo_dias', '$_id_intereses', '$fecha_corte', '$valor_cuota', '$mora_mensual', '$_valor_intereses', '$_id_entidades'";
 			$camortizacion->setFuncion($funcion);
 			$camortizacion->setParametros($parametros);
 			$resultado=$camortizacion->Insert();
 			
 			
-			foreach($resultAmortizacion as $res)
+			foreach($resultAmortizacion['tabla'] as $res)
 			{
 				 
 				
 				try
 				{
 					
+					
+					
 					$resultCabeza = $camortizacion->getBy("numero_credito_amortizacion_cabeza ='$numero_credito_amortizacion_cabeza' AND id_entidades ='$_id_entidades' AND numero_pagare_amortizacion_cabeza = '$numero_pagare_amortizacion_cabeza' AND id_fc_clientes='$id_fc_clientes'");
 					$_id_amortizacion_cabeza=$resultCabeza[0]->id_amortizacion_cabeza;
 					
-					$_numero_cuota_amortizacion_detalle = $res->pagos_trimestrales;
-					$_saldo_inicial_amortizacion_detalle = $res->saldo_inicial;
-					$_interes_amortizacion_detalle = $res->interes;
-					$_amortizacion_amortizacion_detalle = $res->amortizacion;
-					$_pagos_amortizacion_detalle = $res->pagos;
-					$_fecha_pagos_amortizacion_detalle = $res->fecha_pago;
+					$_numero_cuota_amortizacion_detalle = $res[0]['pagos_trimestrales'];
+					$_saldo_inicial_amortizacion_detalle = $res[0]['saldo_inicial'];
+					$_interes_amortizacion_detalle = $res[0]['interes'];
+					$_amortizacion_amortizacion_detalle = $res[0]['amortizacion'];
+					$_pagos_amortizacion_detalle = $res[0]['pagos'];
+					$_fecha_pagos_amortizacion_detalle = $res[0]['fecha_pago'];
 					 
-						
+					
 						
 						
 					$funcion = "ins_amortizacion_detalle";
