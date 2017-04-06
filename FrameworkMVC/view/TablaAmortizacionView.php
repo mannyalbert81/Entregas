@@ -46,10 +46,12 @@
  $sel_valor_cuotas_amortizacion_cabeza="";
  $sel_interes_mora_mensual_amortizacion_cabeza="";
  $sel_fecha_amortizacion_cabeza="";
+ $sel_id_fc_clientes="";
  
  if($_SERVER['REQUEST_METHOD']=='POST' )
  {
  	$sel_ruc_clientes=$_POST['ruc_clientes'];
+ 	$sel_id_fc_clientes=$_POST['id_fc_clientes'];
  	$sel_razon_social_clientes=$_POST['razon_social_clientes'];
 	$sel_numero_credito_amortizacion_cabeza=$_POST['numero_credito_amortizacion_cabeza'];
  	$sel_numero_pagare_amortizacion_cabeza=$_POST['numero_pagare_amortizacion_cabeza'];
@@ -108,13 +110,14 @@
 		    	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="ruc_clientes" class="control-label">Nro. Identificación:</label>
 			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="<?php if ($sel_ruc_clientes!="")  {echo $sel_ruc_clientes;} else { if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->ruc_clientes;} }  }?>" class="form-control"/> 
+			   <input type="hidden"  name="id_fc_clientes" id="id_fc_clientes" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->id_clientes;} } else  {echo $sel_id_fc_clientes;} ?>" class="form-control"/> 
 			   
             	</div>
             	</div>
 		   		<div class="form-group">
 		   		<div class="col-xs-4 col-md-4" style="text-align: center;">
 			  	<label for="razon_social_clientes" class="control-label">Razón Social:</label>
-			  	<input type="text"  name="razon_social_clientes" id="razon_social_clientes" value="<?php if ($sel_razon_social_clientes!="")  {echo $sel_razon_social_clientes;} else { if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->razon_social_clientes;} }  }?>" class="form-control"/> 
+			  	<input type="text"  name="razon_social_clientes" id="razon_social_clientes" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->razon_social_clientes;} }  else {echo $sel_razon_social_clientes;} ?>" class="form-control"/> 
 			   	
             	</div>
               </div>
@@ -200,8 +203,12 @@
             <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
-            					
-            					   <input type="submit" id="Generar" name="Generar"  value="Generar" class="btn btn-success " />
+            					   <?php if(!empty($resultRes)){?>
+            					   <input type="submit" id="Generar" name="Generar"  value="Generar" class="btn btn-warning " />
+            					   <?php } ?>
+            					   <?php if(!empty($resultDatos)){?>
+                                   <button type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("TablaAmortizacion","InsertaTablaAmortizacion"); ?>'" class="btn btn-success" >Guardar</button>
+                                   <?php } ?>
             </div>
             </div>
             </div>
@@ -250,7 +257,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="interes_normal_mensual_amortizacion_cabeza" class="control-label">Mora. Mensual</label>
-                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if (!empty($mora_mensual)) { echo number_format($mora_mensual,10); } else{  }?>"  placeholder="0.00" readonly>
+                                  <input type="text" class="form-control" id="interes_normal_mensual_amortizacion_cabeza" name="interes_normal_mensual_amortizacion_cabeza" value="<?php if (!empty($mora_mensual)) { echo $mora_mensual; } else{  }?>"  placeholder="0.00" readonly>
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
