@@ -1,5 +1,4 @@
- <?php include("view/modulos/modal.php"); ?>
- <?php include("view/modulos/head.php"); ?>
+<?php include("view/modulos/head.php"); ?>
       
    <!DOCTYPE HTML>
 <html lang="es">
@@ -22,41 +21,63 @@
    <div class="container">
   
   <div class="row" style="background-color: #FAFAFA;">
-  
-  <div></div>
+ 
        
       <form id="form-permisos-roles" action="<?php echo $helper->url("PermisosRoles","InsertaPermisosRoles"); ?>" method="post" enctype="multipart/form-data" class="col-lg-4">
-            <br>
-            	
-		   		
-            
+<br>
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
+	            
+	         <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Nombres Permisos Roles</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		     	<div class="row">
+		     	
+		     	<div class="col-xs-6 col-md-12">
+		    <div class="form-group">
+               <label for="nombre_permisos_rol" class="control-label">Nombre:</label>
+					  	<input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="<?php echo $resEdit->nombre_permisos_rol; ?>" class="form-control"/>
+					  	<div id="mensaje_nombres" class="errores"></div>
+					  	 <span class="help-block"></span>                 
+            </div>
+		    </div>
+		     	
+			  
 	            	
-	            	<div class="row">
-		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres Permisos Roles</p>
-			  	<input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="<?php echo $resEdit->nombre_permisos_rol; ?>" class="form-control"/>
-			  	 <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			   </div>
 	            	
-	            	
-	            	
-	            	
-	            	Nombre Rol: <select name="id_rol" id="id_rol"  class="form-control">
+	            	<div class="col-xs-6 col-md-12">
+		   			 <div class="form-group">
+	            	<label for="id_rol" class="control-label">Rol:</label>
+	            	 <select name="id_rol" id="id_rol"  class="form-control">
 									<?php foreach($resultRol as $resRol) {?>
 				 						<option value="<?php echo $resRol->id_rol; ?>" <?php if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $resRol->nombre_rol; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
+									<span class="help-block"></span>
+									
+					</div>
+					</div>
+					
+					
+					<div class="col-xs-6 col-md-12">
+		   			 <div class="form-group">
+	            	<label for="id_rol" class="control-label">Controlador:</label>
 		   		   
-	            	 Nombre Controlador: <select name="id_controladores" id="id_controladores"  class="form-control">
+	            	 <select name="id_controladores" id="id_controladores"  class="form-control">
 									<?php foreach($resultCon as $resCon) {?>
 				 						<option value="<?php echo $resCon->id_controladores; ?>" <?php if ($resCon->id_controladores == $resEdit->id_controladores )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCon->nombre_controladores; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
+									
+									
+					</div>
+					</div>
 		   		   
 		   		   <table class="table">
 		   		   	<tr>
@@ -86,14 +107,30 @@
 		   		
 		   		   	</tr>
 		   		   </table>
+		   		    </div>
 		   		   
-		   		
+		   		   
+		   <div class="row">
+		   <div class="col-xs-12 col-md-12" style="text-align: center;" >
+           <input type="submit" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+           </div>
+           </div>
+	    
+		    </div>
+	        </div>
+	        </div>
+    
+	
 		     <?php } } else {?>
 		    
-		     		  <div class="well">
-		    <h4 style="color:#ec971f;">Nombres Permisos Roles</h4>
-            <hr/>
-            <div class="row">
+		    
+		    <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Nombres Permisos Roles</h4>
+	         </div>
+	         <div class="panel-body">
+  			<div class="row">
 		    <div class="col-xs-12 col-md-12">
 		    <div class="form-group">
                                   <label for="nombre_permisos_rol" class="control-label">Nombre</label>
@@ -157,24 +194,31 @@
 		   		   	</tr>
 		   		   </table>
 		   		   </div>
-            	   </div>
-		        
-		     <?php } ?>
-		        
-		        <div class="row">
+		     
+	    <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
            <input type="submit" value="Guardar" onClick="Ok()" class="btn btn-success"/>
            </div>
            </div>
-          </form>
-          <hr>
-       
-       
-        <div class="col-lg-8">
-            <h4 style="color:#ec971f;">Permisos Rol</h4>
-           
-        </div>
-        <section class="col-lg-8 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
+		    </div>
+	        </div>
+	        </div>
+		    
+		       </form>
+		        
+		     <?php } ?>
+		        
+		      <div class="col-lg-8">
+	         <br>
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Permisos Rol</h4>
+	         </div>
+	         <div class="panel-body">
+	         
+	         
+	           			
+		     <section class="col-lg-12 usuario" style="height:370px;overflow-y:scroll; margin-top: 10px;">
         <table class="table table-hover">
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
@@ -220,8 +264,18 @@
             
        	</table>     
       </section>
+		     		 
+		    
+		    </div>
+	        </div>
+	        </div>
+     
+       
+       
+      
+       
       </div>
       </div>
        <?php include("view/modulos/footer.php"); ?>
      </body>  
-    </html>   
+    </html>     

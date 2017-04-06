@@ -9,7 +9,7 @@ class ControladoresController extends ControladorBase{
 
 
 	public function index(){
-	
+	//mYCOL
 		//Creamos el objeto usuario
      	
 		$controladores = new ControladoresModel();
@@ -25,7 +25,7 @@ class ControladoresController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			$controladores = new ControladoresModel();
+			
 			
 			$nombre_controladores = "Controladores";
 			$id_rol= $_SESSION['id_rol'];
@@ -46,10 +46,14 @@ class ControladoresController extends ControladorBase{
 					{
 					
 						$_id_controladores = $_GET["id_controladores"];
+						
 						$columnas = " id_controladores, nombre_controladores";
 						$tablas   = "controladores";
 						$where    = "id_controladores = '$_id_controladores' "; 
-						$id       = "nombre_controladores";
+						$id       = "id_controladores";
+						
+						
+						
 							
 						
 						$resultEdit = $controladores->getCondiciones($columnas ,$tablas ,$where, $id);
@@ -66,7 +70,7 @@ class ControladoresController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Controladores"
+								"resultado"=>"No tiene Permisos de Editar Tipo de Controladores"
 					
 						));
 					
@@ -89,7 +93,7 @@ class ControladoresController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Controladores"
+						"resultado"=>"No tiene Permisos de Acceso a Tipo de Controladores"
 				
 				));
 				
@@ -111,10 +115,11 @@ class ControladoresController extends ControladorBase{
 	public function InsertaControladores(){
 			
 		session_start();
-
+		
+		$controladores = new ControladoresModel();
 		$permisos_rol=new PermisosRolesModel();
 
-		$controladores=new ControladoresModel();
+		
 
 
 		$nombre_controladores = "Controladores";
@@ -134,7 +139,7 @@ class ControladoresController extends ControladorBase{
 		
 			$resultado = null;
 			
-			$controladores=new ControladoresModel();
+		
 		
 			//_nombre_controladores
 			
@@ -145,6 +150,7 @@ class ControladoresController extends ControladorBase{
 				
 				
 				$_nombre_controladores = $_POST["nombre_controladores"];
+				
 				
 				
 				if(isset($_POST["id_controladores"])) 
@@ -197,7 +203,7 @@ class ControladoresController extends ControladorBase{
 		{
 			$this->view("Error",array(
 					
-					"resultado"=>"No tiene Permisos de Insertar Controladores"
+					"resultado"=>"No tiene Permisos de Insertar Tipo de Controladores"
 		
 			));
 		
@@ -222,9 +228,10 @@ class ControladoresController extends ControladorBase{
 			{
 				$id_controladores=(int)$_GET["id_controladores"];
 				
-				$controladores=new ControladoresModel();
 				
-				$controladores->deleteBy(" id_controladores",$id_controladores);
+				$controladores = new ControladoresModel();
+				
+				$controladores->deleteBy("id_controladores",$id_controladores);
 				
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Controladores";
@@ -241,7 +248,7 @@ class ControladoresController extends ControladorBase{
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Controladores"
+				"resultado"=>"No tiene Permisos de Borrar Tipo de Controladores"
 			
 			));
 		}
@@ -249,41 +256,5 @@ class ControladoresController extends ControladorBase{
 	}
 	
 	
-	public function Reporte(){
-	
-		//Creamos el objeto usuario
-		$roles=new RolesModel();
-		//Conseguimos todos los usuarios
-		
-	
-	
-		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario']) )
-		{
-			$resultRep = $roles->getByPDF("id_rol, nombre_rol", " nombre_rol != '' ");
-			$this->report("Roles",array(	"resultRep"=>$resultRep));
-	
-		}
-					
-	
-	}
-	
-	public function verError(){
-		
-	$a=stripslashes ($_GET['dato']);
-	
-	$_dato=urldecode($a);
-	
-	$_dato=unserialize($a);
-		
-		$this->view("error", array('resultado'=>print_r($_dato)));
-	}
-	
-	
-	
-	
-		
 }
 ?>
