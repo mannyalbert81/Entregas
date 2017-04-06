@@ -88,6 +88,7 @@ $controladores=$_SESSION['controladores'];
 			</li>
 			<li style="<?php echo getcontrolador("Tipo_Notificacion",$controladores) ?>">
 			<a href="index.php?controller=Tipo_Notificacion&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Tipo Notificacion</span> </a>
+			</li>
 			<li style="<?php echo getcontrolador("ReportesAsignados",$controladores) ?>">
 			<a href="index.php?controller=ReportesAsignados&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reportes Asignados</span> </a>
 			</li>
@@ -236,6 +237,9 @@ $controladores=$_SESSION['controladores'];
 		  <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
 			<a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Clientes</span> </a>
 		  </li>
+		  <li style="<?php echo getcontrolador("ReporteTablaAmortizacion",$controladores) ?>">
+			<a href="index.php?controller=ReporteTablaAmortizacion&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Reporte Tabla Amortización</span> </a>
+			</li>
 
 </ul>
 </li>

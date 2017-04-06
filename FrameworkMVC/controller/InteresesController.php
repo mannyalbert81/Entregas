@@ -168,11 +168,11 @@ class InteresesController extends ControladorBase{
 				$_id_tipo_intereses = $_POST["id_tipo_intereses"];
 				$_valor_intereses = $_POST["valor_intereses"];
 				
-				
+				$_valor_final=$_valor_intereses/100;
 				
 						
 				$funcion = "ins_intereses";
-				$parametros = " '$_id_entidades', '$_id_tipo_intereses', '$_valor_intereses'";
+				$parametros = " '$_id_entidades', '$_id_tipo_intereses', '$_valor_final'";
 				$Intereses->setFuncion($funcion);
 		        $Intereses->setParametros($parametros);
 		        $resultado=$Intereses->Insert();
