@@ -273,10 +273,10 @@
         
         <div class="col-lg-12 col-xs-6">
 		
-		<section class="col-lg-12 usuario" style=" min-height: 100px; 	max-height: 400px; overflow-y:scroll;">
+		<section class="col-lg-12 usuario" style=" min-height: 100px; 	max-height: 700px; overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Pagos Trimestrales</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Cuota</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Saldo Inicial</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Interes</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Amortizacion</b></th>

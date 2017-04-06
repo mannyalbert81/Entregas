@@ -188,29 +188,50 @@ class TablaAmortizacionController extends ControladorBase{
 		
 		
 		
-		for( $i = 1; $i <= $numero_cuotas; $i++) {
+		for( $i = 0; $i <= $numero_cuotas; $i++) {
 			
-			$interes= $capital * $inter_ant;
-			$amortizacion = $valor_cuota - $interes;
-			$saldo_inicial= $capital - $amortizacion ;
-	
+			if ($i == 0)
+			{
+				$interes= "";
+				$amortizacion = "";
+				$saldo_inicial= $capital;
+				$fecha=strtotime('+0 day',strtotime($fecha_corte));
+				$fecha=date('Y-m-d',$fecha);
+				$fecha_corte=$fecha;
+				$valor = 0;
+				$saldo_inicial_ant = $capital; 
+			}
+			else 
+			{
+				
+				
+				$saldo_inicial_ant = $saldo_inicial_ant - $amortizacion;
+				$interes= $saldo_inicial_ant * $inter_ant;
+				$amortizacion = $valor_cuota - $interes;
+				
+				$saldo_inicial= $saldo_inicial_ant  - $amortizacion;
+				
+				
+				$fecha=strtotime('+30 day',strtotime($fecha_corte));
+				$fecha=date('Y-m-d',$fecha);
+				$fecha_corte=$fecha;
+				$valor = $valor_cuota;
+			
+			
+			
+			}
 		/*	$total_interes = $total_interes + $interes;
 			
 			$total_amortizacion = $total_amortizacion + $amortizacion;
 	    */
-			$fecha=strtotime('+1 month',strtotime($fecha_corte));
-	
-			$fecha=date('Y-m-d',$fecha);
-	
-			$fecha_corte=$fecha;
-				
+					
 				
 			$resultAmortizacion['tabla'][]=array(
 					array('pagos_trimestrales'=> $i,
 							'saldo_inicial'=>$saldo_inicial,
 							'interes'=>$interes,
 							'amortizacion'=>$amortizacion,
-							'pagos'=>$valor_cuota,
+							'pagos'=>$valor,
 							'fecha_pago'=>$fecha
 					));
 		}
