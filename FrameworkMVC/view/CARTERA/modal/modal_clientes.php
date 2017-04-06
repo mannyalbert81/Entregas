@@ -1,6 +1,23 @@
+<?php
+
+	
+	
+	$conn  = pg_connect("user=postgres port=5432 password=.Romina.2012 dbname=contabilidad_des host=186.4.241.148");
+	
+	if(!$conn)
+	{
+		die( "No se pudo conectar");
+	}
+
+	$ciudad   = pg_query($conn,"SELECT ciudad.id_ciudad, ciudad.nombre_ciudad FROM public.ciudad WHERE ciudad.id_ciudad > 0");
+	$provincias   = pg_query($conn,"SELECT  provincias.id_provincias, provincias.nombre_provincias FROM public.provincias WHERE provincias.id_provincias > 0");
 	
 	
 	
+	
+		?>
+		
+			
 	<form id="guardarCliente" class="form-horizontal">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
@@ -30,20 +47,24 @@
 				<label for="id_provincias0" class="col-sm-3 control-label">Provincias:</label>
 				<div class="col-sm-8">
 				 <select class="form-control" id="id_provincias0" name="id_provincias" required>
-					<option value="">-- Seleccione --</option>
-					<option value="1" selected>Activo</option>
-					<option value="0">Inactivo</option>
+					<option value="" selected="selected">-- Seleccione --</option>
+					<?php while($row = pg_fetch_array($provincias)){?>
+							<option value="<?php echo $row['id_provincias']; ?>"  ><?php echo $row['nombre_provincias'];; ?> </option>
+				    <?php } ?>
 				  </select>
 				</div>
 		  </div>
+		  
+		  					   
 		  
 		  <div class="form-group">
 				<label for="id_ciudad0" class="col-sm-3 control-label">Ciudad:</label>
 				<div class="col-sm-8">
 				 <select class="form-control" id="id_ciudad0" name="id_ciudad" required>
-					<option value="">-- Seleccione --</option>
-					<option value="1" selected>Activo</option>
-					<option value="0">Inactivo</option>
+					<option value="" selected="selected">-- Seleccione --</option>
+					<?php while($row = pg_fetch_array($ciudad)){?>
+							<option value="<?php echo $row['id_ciudad']; ?>"  ><?php echo $row['nombre_ciudad'];; ?> </option>
+				    <?php } ?>
 				  </select>
 				</div>
 		  </div>
