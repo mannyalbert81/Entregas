@@ -70,5 +70,9 @@ class ChatController extends ControladorBase{
 	
 	
 	
+	
+	
+	
+	
 }
 ?>
