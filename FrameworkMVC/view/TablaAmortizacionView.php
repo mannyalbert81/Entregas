@@ -22,6 +22,30 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
+		<script src="view/js/ValidarTablaAmortizacion.js"></script>
+		
+		
+		
+		
+      <script >   
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script > 
   
     </head>
    <body class="cuerpo">
@@ -96,7 +120,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" style=" padding-bottom:300px;">
+      <form id="form-tabla-amortizacion" action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" style=" padding-bottom:300px;">
             <br>
    
 	         <div class="col-lg-12">
@@ -109,7 +133,7 @@
   			 <div class="form-group" style="margin-top: 25px;">
 		    	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="ruc_clientes" class="control-label">Nro. Identificación:</label>
-			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="<?php if ($sel_ruc_clientes!="")  {echo $sel_ruc_clientes;} else { if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->ruc_clientes;} }  }?>" class="form-control"/> 
+			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="<?php if ($sel_ruc_clientes!="")  {echo $sel_ruc_clientes;} else { if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->ruc_clientes;} }  }?>" onkeypress="return numeros(event)" class="form-control"/> 
 			   <input type="hidden"  name="id_fc_clientes" id="id_fc_clientes" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->id_clientes;} } else  {echo $sel_id_fc_clientes;} ?>" class="form-control"/> 
 			   
             	</div>
@@ -137,7 +161,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="numero_credito_amortizacion_cabeza" class="control-label">Nro. Crédito:</label>
-                                  <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value="<?php echo $sel_numero_credito_amortizacion_cabeza	; ?>"  placeholder="#">
+                                  <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value="<?php echo $sel_numero_credito_amortizacion_cabeza	; ?>" onkeypress="return numeros(event)"  placeholder="#">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -145,7 +169,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="numero_pagare_amortizacion_cabeza" class="control-label">Nro. Pagare:</label>
-                                  <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value="<?php echo $sel_numero_pagare_amortizacion_cabeza; ?>"  placeholder="#">
+                                  <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value="<?php echo $sel_numero_pagare_amortizacion_cabeza; ?>"  onkeypress="return numeros(event)" placeholder="#">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -165,7 +189,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="capital_prestado_amortizacion_cabeza" class="control-label">Cap. Prestado:</label>
-                                  <input type="text" class="form-control" id="capital_prestado_amortizacion_cabeza" name="capital_prestado_amortizacion_cabeza" value="<?php echo $sel_capital_prestado_amortizacion_cabeza;?>"  placeholder="$">
+                                  <input type="text" class="form-control" id="capital_prestado_amortizacion_cabeza" name="capital_prestado_amortizacion_cabeza" value="<?php echo $sel_capital_prestado_amortizacion_cabeza;?>" onkeypress="return numeros(event)" placeholder="$">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -173,7 +197,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="tasa_interes_amortizacion_cabeza" class="control-label">Tasa:</label>
-                                  <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="tasa_interes_amortizacion_cabeza" value="<?php echo $sel_tasa_interes_amortizacion_cabeza;?>"  placeholder="%">
+                                  <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="tasa_interes_amortizacion_cabeza" value="<?php echo $sel_tasa_interes_amortizacion_cabeza;?>" onkeypress="return numeros(event)" placeholder="%">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>
@@ -181,7 +205,7 @@
 		    <div class="form-group">
 		    
 		     					  <label for="plazo_meses_amortizacion_cabeza" class="control-label">Plazo:</label>
-                                  <input type="text" class="form-control" id="plazo_meses_amortizacion_cabeza" name="plazo_meses_amortizacion_cabeza" value="<?php echo $sel_plazo_meses_amortizacion_cabeza;?>"  placeholder="#">
+                                  <input type="text" class="form-control" id="plazo_meses_amortizacion_cabeza" name="plazo_meses_amortizacion_cabeza" value="<?php echo $sel_plazo_meses_amortizacion_cabeza;?>" onkeypress="return numeros(event)" placeholder="#">
                                   <span class="help-block"></span>
 		    </div>
 		    </div>

@@ -23,10 +23,15 @@
             
             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       
-	        <div class="well">
-	        <h4 style="color:#ec971f;">Registrar Entidades</h4>
-            <hr/>
-	        <div class="row">
+	       <br>
+	        <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Registrar Entidades</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		      <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="ruc_entidades" class="control-label">Ruc</label>
@@ -72,16 +77,39 @@
             </div>
 		    </div>
 		    </div>
+         	   
+         	   
+         	<div class="row">
+		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;">
+		    <div class="form-group">
+                                  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+           
+            </div>
+		    </div>
+		    </div>	 	
+		    
+		    </div>
 	        </div>
+	        </div>
+	       
+	       
+	       
 	     	
 	            	  
             
 		     <?php } } else {?>
 		    
-		    <div class="well">
-		    <h4 style="color:#ec971f;">Registrar Entidades</h4>
-            <hr/>
-		    <div class="row">
+		    <br>
+		    
+		    <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Registrar Entidades</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		      
+         	   <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
                                   <label for="ruc_entidades" class="control-label">Ruc</label>
@@ -133,11 +161,7 @@
                                   <span class="help-block"></span>
             </div>
 		    </div>
-		    </div>
-		    </div>
-		    
-		     <?php } ?>
-		     
+		    </div>	 	
 		    <div class="row">
 		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;">
 		    <div class="form-group">
@@ -146,6 +170,16 @@
             </div>
 		    </div>
 		    </div>
+		    </div>
+	        </div>
+	        </div>
+		    
+		    
+		    
+		    
+		     <?php } ?>
+		     
+		    
             
             
             </form>
@@ -154,10 +188,17 @@
             
             <form action="<?php echo $helper->url("Entidades","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
      		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Entidades Registradas</h4>
-            
-            <div class="row">
+     		
+     			
+     		 <div class="col-lg-12">
+	         <br>
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i> Entidades Registradas</h4>
+	         </div>
+	         <div class="panel-body">
+  			
+		       <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
 		    <div class="form-group">
                                   
@@ -291,7 +332,14 @@
        	</table>     
 		</section>
         </div>
-        </div>
+		     
+		     		 
+		    
+		    </div>
+	        </div>
+	        </div>
+     		
+
         </form>
         </div>
         </div>
