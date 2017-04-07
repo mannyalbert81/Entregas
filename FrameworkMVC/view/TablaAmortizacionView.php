@@ -22,8 +22,7 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
-		<script src="view/js/ValidarTablaAmortizacion.js"></script>
-		
+				
 		
 		
 		
@@ -120,7 +119,7 @@
   
        <!-- empieza el form --> 
        
-      <form id="form-tabla-amortizacion" action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" style=" padding-bottom:300px;">
+      <form  action="<?php echo $helper->url("TablaAmortizacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" style=" padding-bottom:300px;">
             <br>
    
 	         <div class="col-lg-12">
@@ -148,7 +147,7 @@
 		   	
 		   <div class="col-xs-3 col-md-3">
 			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 23px;"/> 	
-		     <button type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal" style="margin-top: 20px;"></button>
+		     <button  type="button" class="btn btn-warning glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal" style="margin-top: 20px;"></button>
 		
 		  </div>
 		  
