@@ -401,10 +401,10 @@
 	               
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['pagos_trimestrales']; ?></td>
-	            	   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['saldo_inicial'],2); ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['interes'],2); ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['amortizacion'],2); ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['pagos'],2); ?></td>
+	            	   <td style="color:#000000;font-size:80%;"> <?php echo number_format($res[0]['saldo_inicial'],2); ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res[0]['interes'],2); ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res[0]['amortizacion'],2); ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res[0]['pagos'],2); ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_pago']; ?></td>
 	                   
 		    </tr>
