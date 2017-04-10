@@ -58,7 +58,14 @@
 			$errors[] = "El email es requerido";
 				
 		}
-		
+	       elseif (strlen($_POST['email_clientes']) > 64) {
+	       	
+			$errors[] = "El correo electrónico no puede ser superior a 64 caracteres";
+			
+		} elseif (!filter_var($_POST['email_clientes'], FILTER_VALIDATE_EMAIL)) {
+			
+			$errors[] = "Su dirección de correo electrónico no está en un formato de correo electrónico válida. ";
+		}
 		
 		
 		$ruc_clientes=pg_escape_string($conn,(strip_tags($_POST["ruc_clientes"],ENT_QUOTES)));
@@ -77,7 +84,7 @@
 		
 		if ($query_check_user == 1) {
 			
-			$errors[] = "Lo sentimos , el ruc ya existe.";
+			$errors[] = "Lo sentimos, el ruc ya existe.";
 		}
 		else 
 		{
