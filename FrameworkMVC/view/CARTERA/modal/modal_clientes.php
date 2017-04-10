@@ -19,10 +19,12 @@
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+        <div class="panel panel-info">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">Agregar Nuevo Cliente</h4>
       </div>
+       </div>
       <div class="modal-body">
 			<div id="datos_ajax_register"></div>
          
