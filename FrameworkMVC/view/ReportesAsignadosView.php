@@ -170,6 +170,7 @@
        
        <thead>
            <tr>
+           			<th style="font-size:100%;">Id</th>
                     <th style="font-size:100%;">Nombre</th>
 		    		<th style="font-size:100%;">Entidad</th>
 		    		<th style="font-size:100%;">Usuario</th>
@@ -231,6 +232,7 @@
                
 	   <tbody>
 	   		<tr>
+	   					<td style="font-size:80%;"> <?php echo $res->id_reportes_asignados; ?>  </td>
 	   					<td style="font-size:80%;"> <?php echo $res->nombre_reportes_asignados; ?>  </td>
 		                <td style="font-size:80%;" > <?php echo $res->nombre_entidades; ?>     </td> 
 		                <td style="font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td>

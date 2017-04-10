@@ -35,11 +35,16 @@
          
         	     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-            <div class="well">
-            <h4 style="color:#ec971f;">Insertar Tipo de Notificacion</h4>
-  			 <hr/>
+            
+            <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Insertar Tipo de Notificación</h4>
+	         </div>
+	         <div class="panel-body">
+			
           
-            <div class="row">
+           <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		       
@@ -83,14 +88,36 @@
 			</div>
 		    </div>
             </div>
-            </div>	
+          
+          
+			     
+		   <div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
+            <div class="form-group">
+            					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+            </div>
+            </div>
+            </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+            
+            
+
 		    
 		     <?php } } else {?>
 		     
-		    <div class="well">
-		    <h4 style="color:#ec971f;">Insertar Tipo de Notificación  </h4>
-            <hr/>
-            <div class="row">
+		     
+		     
+		     <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Insertar Tipo de Notificación</h4>
+	         </div>
+	         <div class="panel-body">
+			
+           <div class="row">
 		    <div class="col-xs-6 col-md-6">
 		    <div class="form-group">
 		    
@@ -129,29 +156,44 @@
 		    </div>
 		    </div>
             </div>
-            </div>
-		    
-		   
-               	
-		     <?php } ?>
-		     
-		     
-		    <div class="row">
+           
+          
+          
+			     
+		   <div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
             <div class="form-group">
             					  <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
             </div>
             </div>
             </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+		     
+
+		   
+               	
+		     <?php } ?>
+		     
+
         
        </form>
        <!-- termina el form --> 
        
        <form action="<?php echo $helper->url("Tipo_Notificacion","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
      		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Tipo Notificacion Registrada</h4>
-            
+     		
+     		<div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Tipo Notificacion Registrada</h4>
+	         </div>
+	         <div class="panel-body">
+			
+          
+           
             <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
 		    
@@ -266,8 +308,14 @@
        	</table>     
 		</section>
         </div>
-        </div>
-        </form> 
+		    
+		    </div>
+	        </div>
+	        </div>
+     		
+
+     		
+            </form> 
           
           
           
