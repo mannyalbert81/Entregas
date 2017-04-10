@@ -38,8 +38,9 @@ class ReporteTablaAmortizacionController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 					
-				if(isset($_POST["ruc_clientes"])){
+				if(isset($_POST["id_entidades"])){
 	
+					$id_entidades=$_POST['id_entidades'];
 					$ruc_clientes=$_POST['ruc_clientes'];
 					$razon_social_clientes=$_POST['razon_social_clientes'];
 					$numero_credito_amortizacion_cabeza=$_POST['numero_credito_amortizacion_cabeza'];
@@ -82,15 +83,17 @@ class ReporteTablaAmortizacionController extends ControladorBase{
 					$where_1 = "";
 					$where_2 = "";
 					$where_3 = "";
+					$where_4 = "";
 	
-	
-					if($ruc_clientes!=""){$where_0=" AND fc_clientes.ruc_clientes = '$ruc_clientes'";}
-	
-					if($razon_social_clientes!=""){$where_1=" AND fc_clientes.razon_social_clientes = '$razon_social_clientes'";}
-	
-					if($numero_credito_amortizacion_cabeza!=""){$where_2=" AND amortizacion_cabeza.numero_credito_amortizacion_cabeza = '$numero_credito_amortizacion_cabeza'";}
+					if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
 					
-					if($numero_pagare_amortizacion_cabeza!=""){$where_3=" AND amortizacion_cabeza.numero_pagare_amortizacion_cabeza = '$numero_pagare_amortizacion_cabeza'";}
+					if($ruc_clientes!=""){$where_1=" AND fc_clientes.ruc_clientes = '$ruc_clientes'";}
+	
+					if($razon_social_clientes!=""){$where_2=" AND fc_clientes.razon_social_clientes = '$razon_social_clientes'";}
+	
+					if($numero_credito_amortizacion_cabeza!=""){$where_3=" AND amortizacion_cabeza.numero_credito_amortizacion_cabeza = '$numero_credito_amortizacion_cabeza'";}
+					
+					if($numero_pagare_amortizacion_cabeza!=""){$where_4=" AND amortizacion_cabeza.numero_pagare_amortizacion_cabeza = '$numero_pagare_amortizacion_cabeza'";}
 					
 					
 					$where_to  = $where . $where_0 . $where_1 . $where_2 . $where_3;
@@ -154,6 +157,8 @@ class ReporteTablaAmortizacionController extends ControladorBase{
 							$html.='<th  class="col-lg-1 col-md-1 col-xs-1" style="text-align: center; font-size: 10px;"><b>Interes</b></th>';
 							$html.='<th  class="col-lg-1 col-md-1 col-xs-1" style="text-align: center; font-size: 10px;">Mora</th>';
 							$html.='<th  class="col-lg-1 col-md-1 col-xs-1" style="text-align: center; font-size: 10px;">Entidad</th>';
+							$html.='<th  class="col-lg-1 col-md-1 col-xs-1" style="text-align: center; font-size: 10px;">Imprimir</th>';
+								
 							$html.='</tr>';
 							$html.='</thead>';
 							$html.='<tbody style="display: block; height: calc(50vh - 1px); min-height: calc(200px + 1 px); overflow-Y: scroll";>';
@@ -181,6 +186,7 @@ class ReporteTablaAmortizacionController extends ControladorBase{
 								$html.='<td class="col-lg-1 col-md-1 col-xs-1" style="font-size: 9px;">'.$res->interes_normal_mensual_amortizacion_cabeza.'</td>';
 								$html.='<td class="col-lg-1 col-md-1 col-xs-1" style="font-size: 9px;">'.$res->interes_mora_mensual_amortizacion_cabeza.'</td>';
 								$html.='<td class="col-lg-1 col-md-1 col-xs-1" style="font-size: 9px;">'.$res->nombre_entidades.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;"><span class="pull-right"><a href="index.php?controller=ReporteTablaAmortizacion&action=ReporteTablaAmortizacionIndividual&id_amortizacion_cabeza='. $res->id_amortizacion_cabeza .'" target="_blank"><i class="glyphicon glyphicon-print"></i></a></span></td>';
 								
 								$html.='<td class="col-lg-1 col-md-1 col-xs-1" style="font-size: 9px;">';
 							
@@ -271,6 +277,36 @@ class ReporteTablaAmortizacionController extends ControladorBase{
 			));
 	
 		}
+	
+	}
+	public function ReporteTablaAmortizacionIndividual()
+	{
+	
+		if(isset($_REQUEST['id_amortizacion_cabeza']))
+		{
+	
+	
+	
+			$parametros = array();
+			$parametros['id_entidades']=isset($_GET['id_entidades'])?trim($_GET['id_entidades']):'';
+			$parametros['id_amortizacion_cabeza']=isset($_GET['id_amortizacion_cabeza'])?trim($_GET['id_amortizacion_cabeza']):'';
+	
+	
+			//aqui poner la pagina
+	
+			$pagina="conTablaAmortizacionIndividual.aspx";
+	
+			$conexion_rpt = array();
+			$conexion_rpt['pagina']=$pagina;
+			//$conexion_rpt['port']="59584";
+	
+			$this->view("ReporteRpt", array(
+					"parametros"=>$parametros,"conexion_rpt"=>$conexion_rpt
+			));
+	
+	
+		}
+	
 	
 	}
 	public function paginate($reload, $page, $tpages, $adjacents) {

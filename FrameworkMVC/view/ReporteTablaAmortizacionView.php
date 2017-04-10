@@ -49,12 +49,15 @@
 	
 	function load_tabla_amortizacion(pagina){
 		//iniciar variables
+		var con_id_entidades=$("#id_entidades").val();
+		var con_ruc_clientes=$("#ruc_clientes").val();
 		 var con_ruc_clientes=$("#ruc_clientes").val();
 		 var con_razon_social_clientes=$("#razon_social_clientes").val();
 		 var con_numero_credito_amortizacion_cabeza=$("#numero_credito_amortizacion_cabeza").val();
 		 var con_numero_pagare_amortizacion_cabeza=$("#numero_pagare_amortizacion_cabeza").val();
 
 		 		  var con_datos={
+		 				id_entidades:con_id_entidades,  
 		 				ruc_clientes:con_ruc_clientes,
 		 				razon_social_clientes:con_razon_social_clientes,
 		 				numero_credito_amortizacion_cabeza:con_numero_credito_amortizacion_cabeza,
