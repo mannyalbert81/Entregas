@@ -23,6 +23,74 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 				
+		<script>
+		$(document).ready(function(){
+
+			$("#Generar").click(function(){
+
+				var numero_credito_amortizacion_cabeza = $("#numero_credito_amortizacion_cabeza").val();
+				var numero_pagare_amortizacion_cabeza = $("#numero_pagare_amortizacion_cabeza").val();
+				var id_tipo_creditos = $("#id_tipo_creditos").val();
+				var capital_prestado_amortizacion_cabeza = $("#capital_prestado_amortizacion_cabeza").val();
+				var capital_prestado_amortizacion_cabeza = $("#capital_prestado_amortizacion_cabeza").val();
+				
+				if (numero_credito_amortizacion_cabeza == "" )
+		    	{
+					$("#mensaje_numero_credito_amortizacion_cabeza").text("Ingrese un número de crédito");
+		    		$("#mensaje_numero_credito_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+				if (numero_pagare_amortizacion_cabeza == "" )
+				{
+					$("#mensaje_numero_pagare_amortizacion_cabeza").text("Ingrese un número de pagaré");
+		    		$("#mensaje_numero_pagare_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}
+				if (id_tipo_creditos == "" )
+		    	{
+					$("#mensaje_id_tipo_creditos").text("Ingrese un tipo de crédito");
+		    		$("#mensaje_id_tipo_creditos").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+				if (capital_prestado_amortizacion_cabeza == "" )
+		    	{
+					$("#mensaje_capital_prestado_amortizacion_cabeza").text("Ingrese un capital");
+		    		$("#mensaje_capital_prestado_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+				if (capital_prestado_amortizacion_cabeza == "" )
+		    	{
+					$("#mensaje_capital_prestado_amortizacion_cabeza").text("Ingrese un capital");
+		    		$("#mensaje_capital_prestado_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+				
+
+				});
+
+			 $( "#numero_credito_amortizacion_cabeza" ).focus(function() {
+				 
+				  $("#mensaje_numero_credito_amortizacion_cabeza").fadeOut("slow");
+				  return true;
+			    });
+				 $( "#numero_pagare_amortizacion_cabeza" ).focus(function() {
+				 
+				  $("#mensaje_numero_pagare_amortizacion_cabeza").fadeOut("slow");
+				  return true;
+			    });
+			 $( "#id_tipo_creditos" ).focus(function() {
+				 
+				  $("#mensaje_id_tipo_creditos").fadeOut("slow");
+				  return true;
+			    });
+			 $( "#capital_prestado_amortizacion_cabeza" ).focus(function() {
+				 
+				  $("#mensaje_capital_prestado_amortizacion_cabeza").fadeOut("slow");
+				  return true;
+			    });
+			 
+        });
+		</script>
 		
 		
 		
@@ -162,6 +230,7 @@
 		     					  <label for="numero_credito_amortizacion_cabeza" class="control-label">Nro. Crédito:</label>
                                   <input type="text" class="form-control" id="numero_credito_amortizacion_cabeza" name="numero_credito_amortizacion_cabeza" value="<?php echo $sel_numero_credito_amortizacion_cabeza	; ?>" onkeypress="return numeros(event)"  placeholder="#">
                                   <span class="help-block"></span>
+                                  <div id="mensaje_numero_credito_amortizacion_cabeza" class="errores"></div>	
 		    </div>
 		    </div>
 		    <div class="col-xs-2 col-md-2">
@@ -170,15 +239,20 @@
 		     					  <label for="numero_pagare_amortizacion_cabeza" class="control-label">Nro. Pagare:</label>
                                   <input type="text" class="form-control" id="numero_pagare_amortizacion_cabeza" name="numero_pagare_amortizacion_cabeza" value="<?php echo $sel_numero_pagare_amortizacion_cabeza; ?>"  onkeypress="return numeros(event)" placeholder="#">
                                   <span class="help-block"></span>
+                                  <div id="mensaje_numero_pagare_amortizacion_cabeza" class="errores"></div>
 		    </div>
 		    </div>
 			  <div class="col-xs-2 col-md-2">
 		    <div class="form-group">
 					            <label for="id_tipo_creditos" class="control-label">Tipo Crédito:</label>
+					           <div id="mensaje_id_tipo_creditos" class="errores"></div>
 					           <select name="id_tipo_creditos" id="id_tipo_creditos"  class="form-control" >
+                                  
                                   <option value="" selected="selected">--Seleccione--</option>
 									<?php foreach($resultCre as $res) {?>
+									
 										<option value="<?php echo $res->id_tipo_creditos; ?>" <?php if($sel_id_tipo_creditos==$res->id_tipo_creditos){echo "selected";}?>   ><?php echo $res->nombre_tipo_creditos; ?> </option>
+							        	
 							        <?php } ?>
 								   </select> 
                                   <span class="help-block"></span>	
@@ -190,7 +264,8 @@
 		     					  <label for="capital_prestado_amortizacion_cabeza" class="control-label">Cap. Prestado:</label>
                                   <input type="text" class="form-control" id="capital_prestado_amortizacion_cabeza" name="capital_prestado_amortizacion_cabeza" value="<?php echo $sel_capital_prestado_amortizacion_cabeza;?>" onkeypress="return numeros(event)" placeholder="$">
                                   <span class="help-block"></span>
-		    </div>
+                                  <div id="mensaje_capital_prestado_amortizacion_cabeza" class="errores"></div>
+		    </div>	
 		    </div>
 			<div class="col-xs-1 col-md-1">
 		    <div class="form-group">
@@ -198,6 +273,7 @@
 		     					  <label for="tasa_interes_amortizacion_cabeza" class="control-label">Tasa:</label>
                                   <input type="text" class="form-control" id="tasa_interes_amortizacion_cabeza" name="tasa_interes_amortizacion_cabeza" value="<?php echo $sel_tasa_interes_amortizacion_cabeza;?>" onkeypress="return numeros(event)" placeholder="%">
                                   <span class="help-block"></span>
+                                  <div id="mensaje_tasa_interes_amortizacion_cabeza" class="errores"></div>
 		    </div>
 		    </div>
 		    <div class="col-xs-1 col-md-1">
@@ -206,6 +282,7 @@
 		     					  <label for="plazo_meses_amortizacion_cabeza" class="control-label">Plazo:</label>
                                   <input type="text" class="form-control" id="plazo_meses_amortizacion_cabeza" name="plazo_meses_amortizacion_cabeza" value="<?php echo $sel_plazo_meses_amortizacion_cabeza;?>" onkeypress="return numeros(event)" placeholder="#">
                                   <span class="help-block"></span>
+                                  <div id="mensaje_plazo_meses_amortizacion_cabeza" class="errores"></div>
 		    </div>
 		    </div>
 		    <div class="col-xs-2 col-md-2">
@@ -214,6 +291,7 @@
 		     					  <label for="fecha_amortizacion_cabeza" class="control-label">Fecha: </label>
                                   <input type="date" class="form-control" id="fecha_amortizacion_cabeza" name="fecha_amortizacion_cabeza" value="<?php echo $sel_fecha_amortizacion_cabeza; ?>" >
                                   <span class="help-block"></span>
+                                  <div id="mensaje_fecha_amortizacion_cabeza" class="errores"></div>
 		    </div>
 		    </div>
 			</div>
