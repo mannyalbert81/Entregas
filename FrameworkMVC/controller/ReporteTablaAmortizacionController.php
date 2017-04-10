@@ -217,6 +217,7 @@ class ReporteTablaAmortizacionController extends ControladorBase{
 						//parametros q van al servidor de reportes
 						
 						$parametros = array();
+						$parametros['id_entidades']=isset($_POST['id_entidades'])?trim($_POST['id_entidades']):'';
 						$parametros['ruc_clientes']=(isset($_POST['ruc_clientes']))?trim($_POST['ruc_clientes']):'';
 						$parametros['razon_social_clientes']=(isset($_POST['razon_social_clientes']))?trim($_POST['razon_social_clientes']):'';
 						$parametros['numero_credito_amortizacion_cabeza']=(isset($_POST['numero_credito_amortizacion_cabeza']))?trim($_POST['numero_credito_amortizacion_cabeza']):'';
