@@ -12,14 +12,11 @@
 	$ciudad   = pg_query($conn,"SELECT ciudad.id_ciudad, ciudad.nombre_ciudad FROM public.ciudad WHERE ciudad.id_ciudad > 0");
 	$provincias   = pg_query($conn,"SELECT  provincias.id_provincias, provincias.nombre_provincias FROM public.provincias WHERE provincias.id_provincias > 0");
 	
-	
-	
-	
-		?>
+?>
 		
 			
-	<form id="guardarCliente" class="form-horizontal">
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <form id="guardarCliente" class="form-horizontal">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -54,8 +51,6 @@
 				  </select>
 				</div>
 		  </div>
-		  
-		  					   
 		  
 		  <div class="form-group">
 				<label for="id_ciudad0" class="col-sm-3 control-label">Ciudad:</label>
@@ -101,7 +96,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
-         
       </div>
     </div>
   </div>
