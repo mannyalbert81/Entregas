@@ -60,9 +60,20 @@
 	        
 	         <?php } } else {?>
 	         
-	        <div class="well">
-            <h4 style="color:#ec971f;">Cierre de Cuentas</h4>
-            <hr/>
+	         
+	         
+	         
+	         
+	         
+	         <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Insertar Tipo de Notificación</h4>
+	         </div>
+	         <div class="panel-body">
+			
+          
+           <hr/>
 	        <div class="row">
 		    <div class="col-xs-6 col-md-6">
             <div class="form-group">
@@ -104,18 +115,20 @@
             </div>
             
             
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+           
             
-	         </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+	         
+	         
+	         
+	         
+	         
+	         
+	         
+	      
 			
 		     <?php } ?>
 		     
@@ -125,10 +138,16 @@
             
             <form action="<?php echo $helper->url("CierreCuentas","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-7">
      		<br>
-     		<div class="well">  
-            <h4 style="color:#ec971f;">Cuentas Cerradas</h4>
-            
-            <div class="row">
+     		
+     		
+     		<div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Cuentas Cerradas</h4>
+	         </div>
+	         <div class="panel-body">
+			
+         	            <div class="row">
 		    <div class="col-xs-4 col-md-4 col-lg-4">
 		    <div class="form-group">
                                   
@@ -306,7 +325,13 @@
        	</table>     
 		</section>
         </div>
-        </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+     		
+     		
+
         </form>
         
         </div>
