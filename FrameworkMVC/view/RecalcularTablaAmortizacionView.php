@@ -90,8 +90,34 @@
         });
 		</script>
 		
-		
-		
+		<script >
+	        $(document).ready(function() {
+			$('#Recuperar').click(function(){
+		        var selected = '';  
+		          
+		        $('.marcados').each(function(){
+		            if (this.checked) {
+		                selected +=$(this)+' esta '+$(this).val()+', ';
+		            }
+		        }); 
+	
+		        if (selected != '') {
+		            return true;
+		        }
+		        else {
+		            alert('Debes seleccionar un Credito.');
+		            return false;
+		        }
+	
+	
+		      
+		    }); 
+	
+		});
+		</script>
+	
+	
+	
       <script >   
     function numeros(e){
     key = e.keyCode || e.which;
@@ -159,6 +185,7 @@
 			  	 <label for="ruc_clientes" class="control-label">Nro. Identificación:</label>
 			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="<?php if ($sel_ruc_clientes!="")  {echo $sel_ruc_clientes;} else { if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->ruc_clientes;} }  }?>" onkeypress="return numeros(event)" class="form-control"/> 
 			    <input type="hidden"  name="id_fc_clientes" id="id_fc_clientes" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->id_clientes;} } else  {echo $sel_id_fc_clientes;} ?>" class="form-control"/> 
+			   <input type="hidden"  name="id_amortizacion_cabeza" id="id_amortizacion_cabeza" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->id_clientes;} } else  {echo $sel_id_fc_clientes;} ?>" class="form-control"/> 
 			   
             	</div>
             	</div>
@@ -183,12 +210,13 @@
 	       
 	      
 	       <?php if(!empty($resultRes)){?>
-	        <div class="panel-body"> 
+	        <div class="panel-body" > 
 	       <section style="overflow-y:scroll;">
            <table class="table table-hover ">
        
        
            <tr>
+                    <th style="color:#456789;font-size:80%;"></th>
 		            <th style="color:#456789;font-size:80%;"><b>Ruc</b></th>
 		    		<th style="color:#456789;font-size:80%;"><b>Nombre</b></th>
 		    		<th style="color:#456789;font-size:80%;"><b># Crédito</b></th>
@@ -204,6 +232,7 @@
             <?php if (!empty($resultRes)) {  foreach($resultRes as $res) {?>
 	        	 
              <tr>
+                       <th style="color:#456789;font-size:80%;"><input type="radio" checked  id="id_amortizacion_cabeza[]"   name="id_amortizacion_cabeza[]"  value="<?php echo $res->id_amortizacion_cabeza; ?>" class="marcados"></th>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->ruc_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->razon_social_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_credito_amortizacion_cabeza; ?>  </td>
@@ -212,18 +241,23 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->capital_prestado_amortizacion_cabeza; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->tasa_interes_amortizacion_cabeza; ?>  </td>
 		           	   <td style="color:#000000;font-size:80%;"> <?php echo $res->plazo_meses_amortizacion_cabeza; echo " meses"; ?>  </td>
-		           	   
-		           	   <td>
-			           			<div class="right">
-			                    	<a href="<?php echo $helper->url("RecalcularTablaAmortizacion","index"); ?>&id_amortizacion_cabeza=<?php echo $res->id_amortizacion_cabeza; ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" style="font-size:70%;">Seleccionar</a>
-			               		</div>
-			           </td>
-	       </tr>
+		    </tr>
 	 	
+	 	 
 	 	
 	      <?php } }?>
 	      </table>     
 		</section>
+		
+		<div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center;" > 
+            <div class="form-group">
+            					   
+            					   <input type="submit" id="Recuperar" name="Recuperar"  value="Recuperar" class="btn btn-warning" style="margin-top: 23px;"/> 	
+		     
+            </div>
+            </div>
+            </div>
         </div> 
 	      <?php }?>
           
@@ -236,13 +270,6 @@
 	    <div class="row">
   		    <div class="form-group" style="margin-top: 25px;">
 		    <div class="col-xs-2 col-md-2" style="text-align: center;">
-			  	 <label for="numero_cuota_recaudacion" class="control-label"># Cuota:</label>
-		 	     <input type="text"  name="numero_cuota_recaudacion" id="numero_cuota_recaudacion" value=""  class="form-control" readonly/> 
-			</div>
-            </div>
-            
-		   	<div class="form-group">
-		   	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	<label for="capital_pagado_recaudacion" class="control-label">Capital Pagado:</label>
 			  	<input type="text"  name="capital_pagado_recaudacion" id="capital_pagado_recaudacion" value="" onkeypress="return numeros(event)" class="form-control"/> 
 			   	
@@ -256,6 +283,11 @@
 			   	
             </div>
             </div>
+            <div class="form-group">
+            <div class="col-xs-1 col-md-1">
+			 <input type="submit" id="Calcular" name="Calcular"  value="Calcular" class="btn btn-warning " style="margin-top: 23px;"/> 	
+		    </div>
+		     </div> 
             <div class="form-group">
 		   	<div class="col-xs-4 col-md-4" style="text-align: center;">
 			  	<label for="nombre_entidad_financiera_recaudacion" class="control-label">Entidad Financiera:</label>
