@@ -168,12 +168,15 @@
        
       <form action="<?php echo $helper->url("Comprobantes","ReporteComprobantes"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
-         <!-- comienxza busqueda  -->
-         <div class="col-lg-12" style="margin-top: 10px">
+         <br>
          
-       	 <h4 style="color:#ec971f;">Reporte Comprobantes</h4>
-       	 
-       	 
+         <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Reporte Comprobantes</h4>
+	         </div>
+	         <div class="panel-body">
+			
        	 <div class="panel panel-default">
   			<div class="panel-body">
   			
@@ -239,8 +242,19 @@
 		  </div>
 		 
 		</div>
-        	
-		 </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+         
+         
+         
+         
+         
+         
+         
+         <!-- comienxza busqueda  -->
+
 		 
 		 
 		 <div class="col-lg-12">

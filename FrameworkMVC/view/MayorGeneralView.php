@@ -145,13 +145,17 @@
        
       <form action="<?php echo $helper->url("MayorGeneral","MayorGeneral"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12" target="_blank">
          
-         <!-- comienxza busqueda  -->
-         <div class="col-lg-12" style="margin-top: 10px">
-         
-       	 <h4 style="color:#ec971f;">Mayor General</h4>
-       	 
-       	 
-       	 <div class="panel panel-default">
+                 <!-- comienxza busqueda  -->
+                 
+                 <br>         
+         <div class="col-lg-12">
+	         <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-edit'></i>Mayor General</h4>
+	         </div>
+	         <div class="panel-body">
+			
+				 	 <div class="panel panel-default">
   			<div class="panel-body">
   			
   					
@@ -211,8 +215,16 @@
 	     </div>
 		 
 		</div>
-        	
-		 </div>
+		    
+		    </div>
+	        </div>
+	        </div>
+         
+         
+         
+         
+ 
+        
 		 
 		 
 		 <div class="col-lg-12">
