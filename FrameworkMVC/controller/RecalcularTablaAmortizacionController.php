@@ -43,7 +43,7 @@ class RecalcularTablaAmortizacionController extends ControladorBase{
 					$identificacion=$_POST['ruc_clientes'];
 					$razon_social=$_POST['razon_social_clientes'];
 						
-					if ($identificacion!=""){
+					if ($identificacion!="" || $razon_social!="" ){
 					
 						$columnas = "fc_clientes.id_clientes, 
 									  fc_clientes.ruc_clientes, 
@@ -90,7 +90,7 @@ class RecalcularTablaAmortizacionController extends ControladorBase{
 				
 				
 						if($identificacion!=""){$where_0=" AND fc_clientes.ruc_clientes='$identificacion'";}
-						if($razon_social!=""){$where_1=" AND fc_clientes.razon_social_clientes LIKE '$razon_social'";}
+						if($razon_social!=""){$where_1=" AND fc_clientes.razon_social_clientes LIKE '%$razon_social%'";}
 				
 				
 							

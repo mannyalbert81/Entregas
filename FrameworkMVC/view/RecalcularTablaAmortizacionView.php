@@ -24,68 +24,36 @@
 		<script>
 		$(document).ready(function(){
 
-			$("#Generar").click(function(){
+			$("#buscar").click(function(){
 
-				var numero_credito_amortizacion_cabeza = $("#numero_credito_amortizacion_cabeza").val();
-				var numero_pagare_amortizacion_cabeza = $("#numero_pagare_amortizacion_cabeza").val();
-				var id_tipo_creditos = $("#id_tipo_creditos").val();
-				var capital_prestado_amortizacion_cabeza = $("#capital_prestado_amortizacion_cabeza").val();
-				var capital_prestado_amortizacion_cabeza = $("#capital_prestado_amortizacion_cabeza").val();
+				var ruc_clientes = $("#ruc_clientes").val();
+				var razon_social_clientes = $("#razon_social_clientes").val();
 				
-				if (numero_credito_amortizacion_cabeza == "" )
-		    	{
-					$("#mensaje_numero_credito_amortizacion_cabeza").text("Ingrese un número de crédito");
-		    		$("#mensaje_numero_credito_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-				if (numero_pagare_amortizacion_cabeza == "" )
+				
+
+				if (ruc_clientes == "" &&  razon_social_clientes == "")
 				{
-					$("#mensaje_numero_pagare_amortizacion_cabeza").text("Ingrese un número de pagaré");
-		    		$("#mensaje_numero_pagare_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
+					$("#mensaje_razon_social_clientes").text("Ingrese una Cedula o un Nombre");
+		    		$("#mensaje_razon_social_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 				}
-				if (id_tipo_creditos == "" )
-		    	{
-					$("#mensaje_id_tipo_creditos").text("Ingrese un tipo de crédito");
-		    		$("#mensaje_id_tipo_creditos").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-				if (capital_prestado_amortizacion_cabeza == "" )
-		    	{
-					$("#mensaje_capital_prestado_amortizacion_cabeza").text("Ingrese un capital");
-		    		$("#mensaje_capital_prestado_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-				if (capital_prestado_amortizacion_cabeza == "" )
-		    	{
-					$("#mensaje_capital_prestado_amortizacion_cabeza").text("Ingrese un capital");
-		    		$("#mensaje_capital_prestado_amortizacion_cabeza").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
 				
 
 				});
 
-			 $( "#numero_credito_amortizacion_cabeza" ).focus(function() {
+			
+				 $( "#razon_social_clientes" ).focus(function() {
+				 $("#mensaje_razon_social_clientes").fadeOut("slow");
 				 
-				  $("#mensaje_numero_credito_amortizacion_cabeza").fadeOut("slow");
 				  return true;
 			    });
-				 $( "#numero_pagare_amortizacion_cabeza" ).focus(function() {
-				 
-				  $("#mensaje_numero_pagare_amortizacion_cabeza").fadeOut("slow");
-				  return true;
-			    });
-			 $( "#id_tipo_creditos" ).focus(function() {
-				 
-				  $("#mensaje_id_tipo_creditos").fadeOut("slow");
-				  return true;
-			    });
-			 $( "#capital_prestado_amortizacion_cabeza" ).focus(function() {
-				 
-				  $("#mensaje_capital_prestado_amortizacion_cabeza").fadeOut("slow");
-				  return true;
-			    });
+
+				 $( "#ruc_clientes" ).focus(function() {
+					 $("#mensaje_razon_social_clientes").fadeOut("slow");
+					 
+					  return true;
+				    });
+			 
 			 
         });
 		</script>
@@ -117,8 +85,99 @@
 		</script>
 	
 	
+	    <script >
+	        $(document).ready(function() {
+			$('#Guardar').click(function(){
+		        var selected = '';  
+		          
+		        $('.marcados').each(function(){
+		            if (this.checked) {
+		                selected +=$(this)+' esta '+$(this).val()+', ';
+		            }
+		        }); 
 	
-      <script >   
+		        if (selected != '') {
+		            return true;
+		        }
+		        else {
+		            alert('Debes seleccionar una Cuota.');
+		            return false;
+		        }
+	
+	
+		      
+		    }); 
+	
+		});
+		</script>
+		
+		
+		<script >
+	        $(document).ready(function() {
+			$('#Calcular').click(function(){
+		        var selected = '';  
+		          
+		        $('.marcados').each(function(){
+		            if (this.checked) {
+		                selected +=$(this)+' esta '+$(this).val()+', ';
+		            }
+		        }); 
+	
+		        if (selected != '') {
+		            return true;
+		        }
+		        else {
+		            alert('Debes seleccionar una Cuota.');
+		            return false;
+		        }
+	
+	
+		      
+		    }); 
+	
+		});
+		</script>
+		
+		
+		
+		<script>
+       $(document).ready(function(){
+    	   $("#capital_pagado_recaudacion").prop("disabled","disabled");
+    	   $("#fecha_pago_recaudacion").prop("disabled","disabled");
+    	   $("#Calcular").prop("disabled","disabled");
+    	   $("#nombre_entidad_financiera_recaudacion").prop("disabled","disabled");
+    	   $("#numero_papeleta_recaudacion").prop("disabled","disabled");
+    	   $("#concepto_pago_amortizacion").prop("disabled","disabled");
+    	 
+ 
+            $(".marcados").click(function(){
+            	var cant = $("input:checked").length;
+            	
+                if(cant!=0)
+                {
+            	 $("#capital_pagado_recaudacion").prop("disabled","");
+            	 $("#fecha_pago_recaudacion").prop("disabled","");
+          	   $("#Calcular").prop("disabled","");
+          	   $("#nombre_entidad_financiera_recaudacion").prop("disabled","");
+          	   $("#numero_papeleta_recaudacion").prop("disabled","");
+          	   $("#concepto_pago_amortizacion").prop("disabled","");
+          	     
+                }else
+                    {
+                	  $("#capital_pagado_recaudacion").prop("disabled","disabled");
+                	  $("#fecha_pago_recaudacion").prop("disabled","disabled");
+               	      $("#Calcular").prop("disabled","disabled");
+               	      $("#nombre_entidad_financiera_recaudacion").prop("disabled","disabled");
+               	      $("#numero_papeleta_recaudacion").prop("disabled","disabled");
+               	      $("#concepto_pago_amortizacion").prop("disabled","disabled");
+               	      
+                    }
+                
+                });
+ 	    });
+       </script>
+	
+    <script >   
     function numeros(e){
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
@@ -137,6 +196,16 @@
         return false;
      }
     </script > 
+  
+  <script language="JavaScript">
+
+var era;
+function uncheckRadio(rbutton){
+if(rbutton.checked==true && era==true){rbutton.checked=false;}
+era=rbutton.checked;
+}
+
+</script>
   
     </head>
    <body class="cuerpo">
@@ -159,6 +228,8 @@
 	
  }
 
+
+ $habilitar="disabled";
  ?>
  
   
@@ -179,26 +250,31 @@
 	         <h4><i class='glyphicon glyphicon-edit'></i> Recalcular Tabla de Amortización</h4>
 	         </div>
 	         <div class="panel-body">
+	         
   			 <div class="row">
+  			
   			 <div class="form-group" style="margin-top: 25px;">
+  			
 		    	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="ruc_clientes" class="control-label">Nro. Identificación:</label>
-			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="<?php if ($sel_ruc_clientes!="")  {echo $sel_ruc_clientes;} else { if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->ruc_clientes;} }  }?>" onkeypress="return numeros(event)" class="form-control"/> 
-			    <input type="hidden"  name="id_fc_clientes" id="id_fc_clientes" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->id_clientes;} } else  {echo $sel_id_fc_clientes;} ?>" class="form-control"/> 
-			   <input type="hidden"  name="id_amortizacion_cabeza" id="id_amortizacion_cabeza" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->id_clientes;} } else  {echo $sel_id_fc_clientes;} ?>" class="form-control"/> 
+			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="" onkeypress="return numeros(event)" class="form-control"/> 
+			    <input type="hidden"  name="id_fc_clientes" id="id_fc_clientes" value="" class="form-control"/> 
+			    <input type="hidden"  name="id_amortizacion_cabeza" id="id_amortizacion_cabeza" value="" class="form-control"/> 
 			   
             	</div>
             	</div>
 		   		<div class="form-group">
-		   		<div class="col-xs-4 col-md-4" style="text-align: center;">
+		   		<div class="col-xs-4 col-md-4">
 			  	<label for="razon_social_clientes" class="control-label">Razón Social:</label>
-			  	<input type="text"  name="razon_social_clientes" id="razon_social_clientes" value="<?php if (!empty($resultRes)) {  foreach($resultRes as $resEdit) {echo $resEdit->razon_social_clientes;} }  else {echo $sel_razon_social_clientes;} ?>" class="form-control"/> 
-			   	
+			  	<input type="text"  name="razon_social_clientes" id="razon_social_clientes" value="" class="form-control"/> 
+			   	  <div id="mensaje_razon_social_clientes" class="errores"></div>
               </div>
+             	  
               </div>
 		   	
 		     <div class="col-xs-3 col-md-3">
 			 <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-info " style="margin-top: 23px;"/> 	
+		    
 		     </div>
 		  
 		
@@ -206,11 +282,9 @@
             </div>
             
           
-			
-	       
 	      
 	       <?php if(!empty($resultRes)){?>
-	        <div class="panel-body" > 
+	       <div class="panel-body" > 
 	       <section style="overflow-y:scroll;">
            <table class="table table-hover ">
        
@@ -232,7 +306,7 @@
             <?php if (!empty($resultRes)) {  foreach($resultRes as $res) {?>
 	        	 
              <tr>
-                       <th style="color:#456789;font-size:80%;"><input type="radio" checked  id="id_amortizacion_cabeza[]"   name="id_amortizacion_cabeza[]"  value="<?php echo $res->id_amortizacion_cabeza; ?>" class="marcados"></th>
+                       <th style="color:#456789;font-size:80%;"><input type="radio"  id="id_amortizacion_cabeza[]"   name="id_amortizacion_cabeza[]"  value="<?php echo $res->id_amortizacion_cabeza; ?>" onclick="uncheckRadio(this)" class="marcados"></th>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->ruc_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->razon_social_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_credito_amortizacion_cabeza; ?>  </td>
@@ -333,7 +407,7 @@
 	      <?php	foreach ($resultSet as $res)	{ ?>
 	               
 	        		<tr>
-	        		   <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_amortizacion_detalle[]"   name="id_amortizacion_detalle[]"  value="<?php echo $res->id_amortizacion_detalle; ?>" class="marcados"></th>
+	        		   <th style="color:#456789;font-size:80%;"><input type="radio" id="id_amortizacion_detalle[]"   name="id_amortizacion_detalle[]"  value="<?php echo $res->id_amortizacion_detalle; ?>" onclick="uncheckRadio(this)" class="marcados"></th>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cuota_amortizacion_detalle; ?></td>
 	            	   <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->saldo_inicial_amortizacion_detalle,2); ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->interes_amortizacion_detalle,2); ?>     </td> 
