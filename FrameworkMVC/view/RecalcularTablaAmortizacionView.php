@@ -157,10 +157,10 @@
                 {
             	 $("#capital_pagado_recaudacion").prop("disabled","");
             	 $("#fecha_pago_recaudacion").prop("disabled","");
-          	   $("#Calcular").prop("disabled","");
-          	   $("#nombre_entidad_financiera_recaudacion").prop("disabled","");
-          	   $("#numero_papeleta_recaudacion").prop("disabled","");
-          	   $("#concepto_pago_amortizacion").prop("disabled","");
+          	     $("#Calcular").prop("disabled","");
+          	     $("#nombre_entidad_financiera_recaudacion").prop("disabled","");
+          	     $("#numero_papeleta_recaudacion").prop("disabled","");
+          	     $("#concepto_pago_amortizacion").prop("disabled","");
           	     
                 }else
                     {
@@ -218,13 +218,26 @@ era=rbutton.checked;
 
  $sel_ruc_clientes="";
  $sel_razon_social_clientes="";
- $sel_id_fc_clientes="";
+/*
+ $sel_capital_pagado_recaudacion="";
+ $sel_fecha_pago_recaudacion="";
+ $sel_nombre_entidad_financiera_recaudacion="";
+ $sel_numero_papeleta_recaudacion="";
+ $sel_concepto_pago_amortizacion="";
+
+ */
  
  if($_SERVER['REQUEST_METHOD']=='POST' )
  {
  	$sel_ruc_clientes=$_POST['ruc_clientes'];
- 	$sel_id_fc_clientes=$_POST['id_fc_clientes'];
- 	$sel_razon_social_clientes=$_POST['razon_social_clientes'];
+    $sel_razon_social_clientes=$_POST['razon_social_clientes'];
+    /*
+    $sel_capital_pagado_recaudacion=$_POST['capital_pagado_recaudacion'];
+    $sel_fecha_pago_recaudacion=$_POST['fecha_pago_recaudacion'];
+    $sel_nombre_entidad_financiera_recaudacion=$_POST['nombre_entidad_financiera_recaudacion'];
+    $sel_numero_papeleta_recaudacion=$_POST['numero_papeleta_recaudacion'];
+    $sel_concepto_pago_amortizacion=$_POST['concepto_pago_amortizacion'];
+    */
 	
  }
 
@@ -258,8 +271,6 @@ era=rbutton.checked;
 		    	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	 <label for="ruc_clientes" class="control-label">Nro. Identificación:</label>
 			  	<input type="text"  name="ruc_clientes" id="ruc_clientes" value="" onkeypress="return numeros(event)" class="form-control"/> 
-			    <input type="hidden"  name="id_fc_clientes" id="id_fc_clientes" value="" class="form-control"/> 
-			    <input type="hidden"  name="id_amortizacion_cabeza" id="id_amortizacion_cabeza" value="" class="form-control"/> 
 			   
             	</div>
             	</div>
@@ -353,7 +364,7 @@ era=rbutton.checked;
             <div class="form-group">
 		   	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	<label for="fecha_pago_recaudacion" class="control-label">Fecha Pago:</label>
-			  	<input type="date"  name="fecha_pago_recaudacion" id="fecha_pago_recaudacion" class="form-control"/> 
+			  	<input type="date"  name="fecha_pago_recaudacion" id="fecha_pago_recaudacion" value="<?php ?>"  class="form-control"/> 
 			   	
             </div>
             </div>
@@ -365,14 +376,14 @@ era=rbutton.checked;
             <div class="form-group">
 		   	<div class="col-xs-4 col-md-4" style="text-align: center;">
 			  	<label for="nombre_entidad_financiera_recaudacion" class="control-label">Entidad Financiera:</label>
-			  	<input type="text"  name="nombre_entidad_financiera_recaudacion" id="nombre_entidad_financiera_recaudacion" class="form-control"/> 
+			  	<input type="text"  name="nombre_entidad_financiera_recaudacion" id="nombre_entidad_financiera_recaudacion" value="<?php  ?>" class="form-control"/> 
 			   	
             </div>
             </div>
             <div class="form-group">
 		   	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	<label for="numero_papeleta_recaudacion" class="control-label"># Papeleta:</label>
-			  	<input type="text"  name="numero_papeleta_recaudacion" id="numero_papeleta_recaudacion" class="form-control"/> 
+			  	<input type="text"  name="numero_papeleta_recaudacion" id="numero_papeleta_recaudacion" value="<?php  ?>" class="form-control"/> 
 			   	
             </div>
             </div>
@@ -382,7 +393,7 @@ era=rbutton.checked;
   		     <div class="form-group" style="margin-top: 15px;">
              <div class="col-xs-12 col-md-12">
 		                          <label for="concepto_pago_amortizacion" class="control-label">Concepto de Pago:</label>
-                                  <textarea type="text" class="form-control" id="concepto_pago_amortizacion" name="concepto_pago_amortizacion" value=""  placeholder="Observaciones"></textarea>
+                                  <input type="text"  id="concepto_pago_amortizacion" name="concepto_pago_amortizacion" value="<?php ?>"  placeholder="Observaciones" class="form-control"/>
                                   <span class="help-block"></span>
              </div>
 		     </div> 
@@ -397,8 +408,9 @@ era=rbutton.checked;
 	            <th style="color:#456789;font-size:80%;"></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Cuota</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Saldo Inicial</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Interes</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Amortizacion</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Interes Normal</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Interes Días</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Amortización</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Pagos</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Fecha Pago</b></th>
 	    	</tr>
@@ -407,10 +419,11 @@ era=rbutton.checked;
 	      <?php	foreach ($resultSet as $res)	{ ?>
 	               
 	        		<tr>
-	        		   <th style="color:#456789;font-size:80%;"><input type="radio" id="id_amortizacion_detalle[]"   name="id_amortizacion_detalle[]"  value="<?php echo $res->id_amortizacion_detalle; ?>" onclick="uncheckRadio(this)" class="marcados"></th>
+	        		   <th style="color:#456789;font-size:80%;"><input type="radio" id="id_amortizacion_detalle[]"   name="id_amortizacion_detalle[]"  value="<?php  echo $res->id_amortizacion_detalle;  ?> " onclick="uncheckRadio(this)" class="marcados"></th>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_cuota_amortizacion_detalle; ?></td>
 	            	   <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->saldo_inicial_amortizacion_detalle,2); ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->interes_amortizacion_detalle,2); ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->interes_dias_amortizacion_detalle,2); ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->amortizacion_amortizacion_detalle,2); ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo number_format($res->pagos_amortizacion_detalle,2); ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_pagos_amortizacion_detalle; ?></td>

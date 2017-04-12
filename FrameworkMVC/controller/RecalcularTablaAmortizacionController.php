@@ -148,7 +148,8 @@ class RecalcularTablaAmortizacionController extends ControladorBase{
 								  amortizacion_detalle.amortizacion_amortizacion_detalle,
 								  amortizacion_detalle.pagos_amortizacion_detalle,
 								  amortizacion_detalle.fecha_pagos_amortizacion_detalle,
-								  amortizacion_detalle.estado_cancelado_amortizacion_detalle";
+								  amortizacion_detalle.estado_cancelado_amortizacion_detalle,
+								  amortizacion_detalle.interes_dias_amortizacion_detalle";
 									
 								$tablas="  public.amortizacion_cabeza,
 								  public.amortizacion_detalle,
@@ -180,6 +181,116 @@ class RecalcularTablaAmortizacionController extends ControladorBase{
 					}
 					
 						
+					
+				}
+				
+				
+				
+				
+				if(isset($_POST["Calcular"]))
+				{
+					$_fecha_pago_recaudacion= $_POST["fecha_pago_recaudacion"];
+					$_capital_pagado_recaudacion= $_POST["capital_pagado_recaudacion"];
+					$_array_amortizacion_detalle = $_POST["id_amortizacion_detalle"];
+					
+					foreach($_array_amortizacion_detalle  as $id  )
+					{
+							
+						if (!empty($id) )
+						{
+								
+							try
+							{
+							$_id_amortizacion_detalle = $id;
+							$resultCabeza = $damortizacion->getBy("id_amortizacion_detalle ='$_id_amortizacion_detalle' AND id_entidades ='$_id_entidades'");
+					        $_id_amortizacion_cabeza=$resultCabeza[0]->id_amortizacion_cabeza;
+					        $_fecha_pagos_amortizacion_detalle=$resultCabeza[0]->fecha_pagos_amortizacion_detalle;
+					        $_pagos_amortizacion_detalle=$resultCabeza[0]->pagos_amortizacion_detalle;
+					        $_interes_amortizacion_detalle=$resultCabeza[0]->interes_amortizacion_detalle;
+					        
+					        if($_capital_pagado_recaudacion == "$_pagos_amortizacion_detalle" && $_fecha_pago_recaudacion== "$_fecha_pagos_amortizacion_detalle"){
+					        	
+					        	
+					        }elseif ($_capital_pagado_recaudacion == "$_pagos_amortizacion_detalle" && $_fecha_pago_recaudacion != "$_fecha_pagos_amortizacion_detalle"){
+					        	
+					        	$_interes_dia = $_interes_amortizacion_detalle / 30;
+					        	
+					        	$_dias_atrazados	= (strtotime($_fecha_pagos_amortizacion_detalle)-strtotime($_fecha_pago_recaudacion))/86400;
+					        	$_dias_atrazados 	= abs($_dias_atrazados); $_dias_atrazados = floor($_dias_atrazados);
+					        	
+					        	
+					        	$_interes_pagar = $_interes_dia * $_dias_atrazados;
+					        	
+					        	
+					        	$damortizacion->UpdateBy("interes_dias_amortizacion_detalle='$_interes_pagar'", "amortizacion_detalle", "id_amortizacion_detalle='$_id_amortizacion_detalle'");
+					        		
+					        	
+					        }
+					        
+					        $resultClientes= $camortizacion->getBy("id_amortizacion_cabeza ='$_id_amortizacion_cabeza' AND id_entidades ='$_id_entidades'");
+					        $_id_clientes=$resultClientes[0]->id_fc_clientes;
+					        
+					        
+					        
+									
+								$columnas = "fc_clientes.id_clientes,
+								  fc_clientes.ruc_clientes,
+								  fc_clientes.razon_social_clientes,
+								  fc_clientes.direccion_clientes,
+								  fc_clientes.telefono_clientes,
+								  fc_clientes.celular_clientes,
+								  fc_clientes.email_clientes,
+								  amortizacion_cabeza.id_amortizacion_cabeza,
+								  amortizacion_cabeza.numero_credito_amortizacion_cabeza,
+								  amortizacion_cabeza.numero_pagare_amortizacion_cabeza,
+								  tipo_creditos.id_tipo_creditos,
+								  tipo_creditos.nombre_tipo_creditos,
+								  amortizacion_cabeza.capital_prestado_amortizacion_cabeza,
+								  amortizacion_cabeza.tasa_interes_amortizacion_cabeza,
+								  amortizacion_cabeza.plazo_meses_amortizacion_cabeza,
+								  amortizacion_cabeza.plazo_dias_amortizacion_cabeza,
+								  intereses.id_intereses,
+								  tipo_intereses.id_tipo_intereses,
+								  tipo_intereses.nombre_tipo_intereses,
+								  intereses.valor_intereses,
+							      amortizacion_detalle.id_amortizacion_detalle,
+								  amortizacion_detalle.numero_cuota_amortizacion_detalle,
+								  amortizacion_detalle.saldo_inicial_amortizacion_detalle,
+								  amortizacion_detalle.interes_amortizacion_detalle,
+								  amortizacion_detalle.amortizacion_amortizacion_detalle,
+								  amortizacion_detalle.pagos_amortizacion_detalle,
+								  amortizacion_detalle.fecha_pagos_amortizacion_detalle,
+								  amortizacion_detalle.estado_cancelado_amortizacion_detalle,
+								  amortizacion_detalle.interes_dias_amortizacion_detalle";
+									
+								$tablas="  public.amortizacion_cabeza,
+								  public.amortizacion_detalle,
+								  public.fc_clientes,
+								  public.intereses,
+								  public.tipo_creditos,
+								  public.tipo_intereses";
+									
+								$where=" amortizacion_cabeza.id_fc_clientes = fc_clientes.id_clientes AND
+								amortizacion_cabeza.id_tipo_creditos = tipo_creditos.id_tipo_creditos AND
+								amortizacion_detalle.id_amortizacion_cabeza = amortizacion_cabeza.id_amortizacion_cabeza AND
+								intereses.id_intereses = amortizacion_cabeza.id_intereses AND
+								tipo_intereses.id_tipo_intereses = intereses.id_tipo_intereses AND fc_clientes.id_clientes='$_id_clientes'  AND amortizacion_cabeza.id_amortizacion_cabeza = '$_id_amortizacion_cabeza' AND amortizacion_detalle.estado_cancelado_amortizacion_detalle = 'FALSE'";
+					
+								$id="amortizacion_detalle.numero_cuota_amortizacion_detalle";
+									
+								$resultSet = $clientes->getCondiciones($columnas, $tablas, $where, $id);
+									
+									
+							} catch (Exception $e)
+							{
+								$this->view("Error",array(
+										"resultado"=>"Eror al Recalcular ->". $id
+								));
+							}
+					
+						}
+							
+					}
 					
 				}
 					
