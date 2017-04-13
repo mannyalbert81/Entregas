@@ -211,18 +211,19 @@ class RecalcularTablaAmortizacionController extends ControladorBase{
 					        if($_capital_pagado_recaudacion == "$_pagos_amortizacion_detalle" && $_fecha_pago_recaudacion== "$_fecha_pagos_amortizacion_detalle"){
 					        	
 					        	
+					        	
 					        }elseif ($_capital_pagado_recaudacion == "$_pagos_amortizacion_detalle" && $_fecha_pago_recaudacion != "$_fecha_pagos_amortizacion_detalle"){
 					        	
 					        	$_interes_dia = $_interes_amortizacion_detalle / 30;
 					        	
 					        	$_dias_atrazados	= (strtotime($_fecha_pagos_amortizacion_detalle)-strtotime($_fecha_pago_recaudacion))/86400;
 					        	$_dias_atrazados 	= abs($_dias_atrazados); $_dias_atrazados = floor($_dias_atrazados);
-					        	
-					        	
 					        	$_interes_pagar = $_interes_dia * $_dias_atrazados;
 					        	
+					        $total = $_pagos_amortizacion_detalle + $_interes_pagar;
 					        	
-					        	$damortizacion->UpdateBy("interes_dias_amortizacion_detalle='$_interes_pagar'", "amortizacion_detalle", "id_amortizacion_detalle='$_id_amortizacion_detalle'");
+					        	
+					        	$damortizacion->UpdateBy("interes_dias_amortizacion_detalle='$_interes_pagar', pagos_amortizacion_detalle='$total'", "amortizacion_detalle", "id_amortizacion_detalle='$_id_amortizacion_detalle'");
 					        		
 					        	
 					        }

@@ -58,6 +58,50 @@
         });
 		</script>
 		
+		
+		<script>
+		$(document).ready(function(){
+
+			$("#Calcular").click(function(){
+
+				var capital_pagado_recaudacion = $("#capital_pagado_recaudacion").val();
+				var fecha_pago_recaudacion = $("#fecha_pago_recaudacion").val();
+				
+				
+
+				if (capital_pagado_recaudacion == "")
+				{
+					$("#mensaje_capital_pagado_recaudacion").text("Ingrese un Valor");
+		    		$("#mensaje_capital_pagado_recaudacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}
+
+				if (fecha_pago_recaudacion == "")
+				{
+					$("#mensaje_fecha_pago_recaudacion").text("Ingrese una Fecha");
+		    		$("#mensaje_fecha_pago_recaudacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}
+
+				});
+
+			
+				 $( "#capital_pagado_recaudacion" ).focus(function() {
+				 $("#mensaje_capital_pagado_recaudacion").fadeOut("slow");
+				 
+				  return true;
+			    });
+
+				 $( "#fecha_pago_recaudacion" ).focus(function() {
+					 $("#mensaje_fecha_pago_recaudacion").fadeOut("slow");
+					 
+					  return true;
+				    });
+			 
+			 
+        });
+		</script>
+		
 		<script >
 	        $(document).ready(function() {
 			$('#Recuperar').click(function(){
@@ -357,7 +401,7 @@ era=rbutton.checked;
 		    <div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	<label for="capital_pagado_recaudacion" class="control-label">Capital Pagado:</label>
 			  	<input type="text"  name="capital_pagado_recaudacion" id="capital_pagado_recaudacion" value="" onkeypress="return numeros(event)" class="form-control"/> 
-			   	
+			   	 <div id="mensaje_capital_pagado_recaudacion" class="errores"></div>
             </div>
             </div>
             
@@ -365,7 +409,7 @@ era=rbutton.checked;
 		   	<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  	<label for="fecha_pago_recaudacion" class="control-label">Fecha Pago:</label>
 			  	<input type="date"  name="fecha_pago_recaudacion" id="fecha_pago_recaudacion" value="<?php ?>"  class="form-control"/> 
-			   	
+			   	 <div id="mensaje_fecha_pago_recaudacion" class="errores"></div>
             </div>
             </div>
             <div class="form-group">
@@ -381,7 +425,7 @@ era=rbutton.checked;
             </div>
             </div>
             <div class="form-group">
-		   	<div class="col-xs-2 col-md-2" style="text-align: center;">
+		   	<div class="col-xs-3 col-md-3" style="text-align: center;">
 			  	<label for="numero_papeleta_recaudacion" class="control-label"># Papeleta:</label>
 			  	<input type="text"  name="numero_papeleta_recaudacion" id="numero_papeleta_recaudacion" value="<?php  ?>" class="form-control"/> 
 			   	
