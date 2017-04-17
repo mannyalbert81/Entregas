@@ -13,7 +13,7 @@ if (isset ($_GET["id_catalogos"]))
 	
 	$image = "";
 	
-	$conn  = pg_connect("user=postgres port=5432 password=.Romina.2012 dbname=contabilidad_des host=186.4.241.148");
+	$conn  = pg_connect("user=postgres port=5432 password=.Romina.2012 dbname=prodimeda host=186.4.241.148");
 	
 	if(!$conn)
 	{
