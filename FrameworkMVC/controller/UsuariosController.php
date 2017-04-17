@@ -630,7 +630,7 @@ public function index(){
     			
     			$resultado=$sesiones->Insert();
     			
-    		    $this->view("Inicio",array(
+    		    $this->view("Bienvenida",array(
     				"allusers"=>$_usuario
 	    		));
     		}
