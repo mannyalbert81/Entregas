@@ -8,7 +8,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Tipo de Persona - Contabilidad 2016</title>
+        <title>Tipo de Persona - Control Entrega - 2017</title>
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>

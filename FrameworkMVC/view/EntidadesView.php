@@ -4,7 +4,7 @@
 <html lang="es">
      <head>
          <meta charset="utf-8"/>
-        <title>Entidades - Contabilidad 2016</title>
+        <title>Entidades - Control Entrega - 2017</title>
         
           <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>

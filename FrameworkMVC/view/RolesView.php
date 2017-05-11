@@ -4,7 +4,7 @@
 <html lang="es">
      <head>
        <meta charset="utf-8"/>
-        <title>Roles - Contabilidad 2016</title>
+        <title>Roles - Control Entrega - 2017</title>
           <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
