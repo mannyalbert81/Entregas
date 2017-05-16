@@ -52,6 +52,22 @@ $(document).ready(function(){
     });
 	</script>
  
+ <style>	
+			.Icon input{
+background: #A8A6A6;
+padding: 0px;
+border-radius: 100px;
+float:left;
+}
+		.Icon{
+	margin-top: 0px;
+	margin-bottom:0px; 
+    color: #FFF;
+    font-size: 40px;
+    text-align: center;
+}	
+	
+			</style>	
 	
 </head>
 <body>
@@ -59,9 +75,9 @@ $(document).ready(function(){
 <div class="container"  style=" -webkit-box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.49);-moz-box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.49); box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.49);">
   
   
-  <div class="row head" >
+  <div class="row head" class="col-xs-6 col-md-8" style="text-align: center;">
   
-  <div style=" margin-top: 10px; "   class="col-xs-6 col-md-8"  >
+  <div style=" margin-top: 10px;  text-align: center;"   class="col-xs-6 col-md-8"  >
   <img src="view/images/logo.png" class="img-responsive" alt="Responsive image" width="350" height="350">
   </div>
   
@@ -110,59 +126,31 @@ $(document).ready(function(){
 			<?php	
 			}*/
 			?>	 
-			
-		  <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?>" width="70" height="60"  style="float:left;" >
- 		
-		  <div class="col-xs-7 col-md-5">
-			
-			<div class="dropdown">
-			
-				  <button id="noti_btn" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=2><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
-				  
+		 <div class="Icon">
+		 <input class="col-xs-2 col-md-2" type="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?> width="70" height="60"">
+ 		 </div>
+		 <div class="col-xs-10 col-md-10" style ="margin-top: 15px;">
+		 <div class="dropdown" class="col-xs-10 col-md-10">
+				  <button id="noti_btn" class="col-xs-10 col-md-10 btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><span class="col-xs-10 col-md-10 glyphicon glyphicon-user" ><?php echo " ".$_SESSION['nombre_usuarios'];?></span>
 				  <span class="caret"></span>
 				  </button>
-				  <ul class="dropdown-menu">
+				  <ul class="dropdown-menu col-xs-10 col-md-10" style ="margin-top: 40px;">
 				    <li><a href="index.php?controller=Usuarios&action=cerrar_sesion">Cerrar Sesión</a></li>
 				    <li><a href="index.php?controller=Usuarios&action=Actualiza">Actualizar Datos de Usuario</a></li>
 				    <li><a href="#">Conectado desde: <?php echo $_SESSION['ip_usuarios']?></a></li>
 				  </ul>
-			</div>
-			
-				
-			
-		</div>
-		
-		 
-		<?php 
-			 }
-			 else 
-			 {     ?>
-		
-		
-			<div class="dropdown">
-					  <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-lock" > Iniciar Sesión </span>
-					  
-					  </button>
-					  
+		 </div>
+		 </div>
+		 <?php  } else { ?>
+			<div class="dropdown" class="col-xs-6 col-md-6">
+				<button class="btn btn-success dropdown-toggle col-xs-6 col-md-6"  style="float:left"; type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-lock col-xs-4 col-md-6"> Iniciar Sesión </span>
+			    </button>
 		    </div>
-		<?php }
-				
-		 ?>
-		 
+		<?php }?>
 		 
    </div>  
-  
-
-<!-- aqui termina la class pull-right -->
-
-
-
- 
-  </div>
-  
-        
-</div>
-
+   </div>
+ </div>
    
 </body>
 </html>

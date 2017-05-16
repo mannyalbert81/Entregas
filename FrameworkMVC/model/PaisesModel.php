@@ -1,5 +1,5 @@
 <?php
-class CiudadModel extends ModeloBase{
+class PaisesModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -17,7 +17,6 @@ class CiudadModel extends ModeloBase{
 	public function getFuncion() {
 		return $this->funcion;
 	}
-	
 	
 	public function setFuncion($funcion) {
 		$this->funcion = $funcion;
@@ -38,7 +37,7 @@ class CiudadModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="ciudad";
+		$this->table="paises";
 		
 		parent::__construct($this->table);
 	}
