@@ -12,6 +12,7 @@
        
        
        <?php
+       //danny
   
 $tablet_browser = 0;
 $mobile_browser = 0;
