@@ -4,7 +4,7 @@
   <head>
       
         <meta charset="utf-8"/>
-        <title>Reportes - Control Entrega - 2017</title>
+        <title>Reporte  - contabilidad 2016</title>
         
    <style type="text/css">
        .pagina {

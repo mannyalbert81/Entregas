@@ -8,7 +8,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Reporte Usuarios - Control Entrega - 2017</title>
+        <title>Reporte Usuarios - contabilidad 2016</title>
         
        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
           <link rel="stylesheet" href="view/css/bootstrap.css">

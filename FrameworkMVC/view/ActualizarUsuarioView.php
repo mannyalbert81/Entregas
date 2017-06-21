@@ -8,7 +8,7 @@
       
         <meta charset="utf-8"/>
         
-        <title>Actualizar Usuarios - Control Entrega - 2017</title>
+        <title>Actualizar Usuarios - Contabilidad 2016</title>
          <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>

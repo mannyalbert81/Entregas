@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8"/>
-        <title>Control Entrega - 2017</title>
+        <title>Contabilidad - 2016</title>
    
        
         </head>
@@ -12,7 +12,6 @@
        
        
        <?php
-       //danny
   
 $tablet_browser = 0;
 $mobile_browser = 0;

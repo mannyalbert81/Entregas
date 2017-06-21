@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
          <meta charset="utf-8"/>
-        <title>Error - Control Entrega - 2017</title>
+        <title>Error - Contabilidad 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -65,20 +65,7 @@
             
      </form>
        
-       
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </div>
-         
+
   </div>
        
        <?php include("view/modulos/footer.php"); ?>

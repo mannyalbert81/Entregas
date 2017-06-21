@@ -6,7 +6,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Controladores - Control Entrega - 2017</title>
+        <title>Controladores - Contabilidad 2016</title>
         <link rel="stylesheet" href="view/css/bootstrap.css">
           <script src="view/js/jquery.js"></script>
 		  <script src="view/js/bootstrapValidator.min.js"></script>
