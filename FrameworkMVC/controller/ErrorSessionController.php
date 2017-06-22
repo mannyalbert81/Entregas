@@ -1,6 +1,6 @@
 <?php
 
-class SubCategoriasController extends ControladorBase{
+class ErrorSessionController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
