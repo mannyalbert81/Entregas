@@ -65,6 +65,16 @@ class ControladorBase{
     
     	require_once 'view/CARTERA/'.$vista.'View.php';
     }
+    
+    public function cartera($vista,$datos){
+    	foreach ($datos as $id_assoc => $valor) {
+    		${$id_assoc}=$valor;
+    	}
+    	require_once 'core/AyudaVistas.php';
+    	$helper=new AyudaVistas();
+    
+    	require_once 'webservices/'.$vista.'Service.php';
+    }
     ///////////////TERMINA FUNCION PARA DIRECCIONAR A CARTERA///////////////////////
     
     public function afuera($vista,$datos){

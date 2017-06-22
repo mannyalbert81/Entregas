@@ -653,6 +653,11 @@ public function index(){
     	
     }
     
+    
+    
+
+    
+    
 	public function  cerrar_sesion ()
 	{
 		session_start();
