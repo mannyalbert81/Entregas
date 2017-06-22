@@ -79,12 +79,17 @@ $controladores=$_SESSION['controladores'];
 			
 </ul>
 </li>
-          
-
-
-   
-
-
+      
+<li class="dropdown" style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Logistica" ;?> </span> <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+       
+        <li style="<?php echo getcontrolador("Pedidos",$controladores) ?>">
+        	<a href="index.php?controller=Pedidos&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pedidos</span> </a>
+		    </li>   
+       	
+	</ul>
+</li>
 
 
 </ul>
