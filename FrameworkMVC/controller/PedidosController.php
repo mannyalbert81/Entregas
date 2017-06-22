@@ -141,6 +141,7 @@ public function index(){
 				if(isset($_POST['agregar']))
 				{
 					$cl_pedidos = new PedidosModel();
+					$cl_temp_pedidos = new PedidosModel("temp_pedidos"); 
 					$varclientes =$_POST['hd_idclientes'];
 					
 					if($varclientes!="")
@@ -154,6 +155,11 @@ public function index(){
 					}
 						
 					$varproductos =$_POST['hd_productoid'];
+					$varDescripcion = $_POST['txt_descripcion'];
+					$varnombre = $_POST['f_productos_au'];
+					$varCantidad = $_POST['txt_cantidad'];
+					$_id_usuarios= $_SESSION['id_usuarios'];
+					
 						
 					if($varproductos!="")
 					{
@@ -167,7 +173,22 @@ public function index(){
 						
 					}
 					
-					if(!empty($dtpedidos))
+					//_id_usuario integer, _id_producto integer, _descripcion character varying, _cantidad integer)
+ 
+						
+					$funcion = "ins_temp_pedidos";
+					$parametros = "'$_id_usuarios','$varproductos','$varDescripcion','$varCantidad','$varnombre','$varclientes'";
+					//die($parametros);
+					$cl_temp_pedidos->setFuncion($funcion);
+					$cl_temp_pedidos->setParametros($parametros);
+					$resultado=$cl_temp_pedidos->Insert();
+					
+					$dttmppedidos=$this->consultemporal($_id_usuarios, $varclientes);
+					
+					
+					//ins_temp_pedidos
+					
+					/*if(!empty($dtpedidos))
 					{
 
 						foreach ($dtpedidos as $res){
@@ -180,7 +201,7 @@ public function index(){
 						
 						}
 						
-					}
+					}*/
 					
 					
 				}
@@ -355,6 +376,20 @@ public function InsertaPedidos($in_clientes,$in_productos,$in_cantidad)
 			
 		}
 	
+	}
+	
+	public function consultemporal($in_usuario,$in_idclientes)
+	{
+		$cl_temp_pedidos = new PedidosModel("temp_pedidos");
+		
+		$columnas="t.id_usuario_registra,t.id_producto,t.descripcion,t.cantidad,t.nombre_producto,t.id_clientes";
+		$tablas = "public.temp_pedidos t";
+		$where = " t.id_usuario='".$in_usuario."' AND t.id_clientes ='".$in_idclientes."'";
+		
+		$dttemppedidos=$cl_temp_pedidos->getCondiciones($columnas, $tablas, $where, "t.id_producto");
+		
+		return $dttemppedidos;
+		
 	}
 	
 	

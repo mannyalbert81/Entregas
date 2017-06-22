@@ -210,19 +210,24 @@
 		        
 		        <!-- para el ingreso del detalle -->
 		        
-		        <div class="col-xs-4 col-md-4">
+		        <div class="col-xs-3 col-md-3">
 		             <label for="f_productos_au" class="control-label" >Producto: </label>
                      <input type="text" class="form-control" id="f_productos_au" name="f_productos_au" value=""  placeholder="Search">
                      <input type="hidden" class="form-control" id="hd_productoid" name="hd_productoid" value="" >
                     
 		        
 		        </div>
-		        <div class="col-xs-4 col-md-4">
+		        <div class="col-xs-3 col-md-3">
 		             <label for="txt_descripcion" class="control-label" >Descripcion: </label>
                      <input type="text" class="form-control" id="txt_descripcion" name="txt_descripcion" value="" >
                    
 		        </div>
-		        <div class="col-xs-4 col-md-4">
+		        <div class="col-xs-3 col-md-3">
+		             <label for="txt_cantidad" class="control-label" >Cantidad: </label>
+                     <input type="text" class="form-control" id="txt_cantidad" name="txt_cantidad" value="" >
+                   
+		        </div>
+		        <div class="col-xs-3 col-md-3">
 		          <div class="form-group">
 		    			  
 				     <button type="submit" id="agregar" style="margin-top: 25px" name="agregar" class="btn btn-info"><i class="glyphicon glyphicon-plus">Agregar</i></button>
