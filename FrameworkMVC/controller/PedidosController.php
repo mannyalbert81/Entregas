@@ -239,6 +239,7 @@ public function index(){
 					
 				}
 				
+				//para realizar cancelacion pedido
 				if(isset($_POST['cancelarpedido']))
 				{
 					$cl_temporal = new TempPedidosModel();
@@ -467,6 +468,88 @@ public function index(){
 		
 		return $respuesta;
 		 
+	}
+	
+	public function  ListarPedidos()
+	{
+		$controladores = new ControladoresModel();
+		
+		$resultEdit = "";
+		$resultSet = "";
+		$dsclientes = "";
+		$dtclientepedidos = "";
+		$dtproductos = "";
+		$dtpedidos = "";
+		$dtpedidosclientes = "";
+		$dttmppedidos = "";
+		$respuesta = 0;
+		
+		
+		session_start();
+		
+		
+		if (isset( $_SESSION['usuario_usuarios']) )
+		{
+				
+			$nombre_controladores = "Pedidos";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $controladores->getPermisosVer("  controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+				
+			if (!empty($resultPer))
+			{
+				
+				if(isset($_POST['buscar']))
+				{
+						
+					$cl_pedidos = new PedidosModel();
+						
+					$identificacion = $_POST['f_clientes'];
+						
+					if($identificacion!="")
+					{
+							
+						$columnas="c.id_clientes, c.ruc_clientes, c.razon_social_clientes";
+						$tablas = "public.fc_clientes c";
+						$where =  "c.ruc_clientes like '".$identificacion."%'";
+							
+						$dsclientes=$cl_pedidos->getCondiciones($columnas, $tablas, $where, "c.id_clientes");
+					}
+						
+				}
+		
+				
+		
+				
+				
+		
+				$this->view("ListadoPedidos",array(
+						"dsclientes"=>$dsclientes,"dtclientepedidos"=>$dtclientepedidos,"dtproductos"=>$dtproductos,
+						"dtpedidosclientes"=>$dtpedidosclientes,"dtpedidos"=>$dtpedidos,"dttmppedidos"=>$dttmppedidos,"respuesta"=>$respuesta
+							
+				));
+		
+		
+		
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Tipo de Controladores"
+		
+				));
+		
+				exit();
+			}
+		
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+		
+			));
+		
+		}
 	}
 	
 }

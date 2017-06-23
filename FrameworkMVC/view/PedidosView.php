@@ -89,9 +89,9 @@
 		       <div class="col-xs-6 col-md-6">
 		          <div class="form-group">
 		    
-		     					  <label for="f_clientes" class="control-label">Ingrese Identificacion</label>
-                                  <input type="text" class="form-control" id="f_clientes" name="f_clientes" value=""  placeholder="Identificacion">
-                                  <span class="help-block"></span>
+		     		<label for="f_clientes" class="control-label">Ingrese Identificacion</label>
+                    <input type="text" class="form-control" id="f_clientes" name="f_clientes" value=""  placeholder="Identificacion">
+                    <span class="help-block"></span>
 		          </div>
 		       </div>
 		       <div class="col-xs-6 col-md-6">

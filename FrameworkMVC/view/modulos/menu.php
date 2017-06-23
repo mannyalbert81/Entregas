@@ -86,6 +86,9 @@ $controladores=$_SESSION['controladores'];
        
         <li style="<?php echo getcontrolador("Pedidos",$controladores) ?>">
         	<a href="index.php?controller=Pedidos&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pedidos</span> </a>
+		    </li> 
+		<li style="<?php echo getcontrolador("Pedidos",$controladores) ?>">
+        	<a href="index.php?controller=Pedidos&action=ListarPedidos"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Listar Pedidos</span> </a>
 		    </li>   
        	
 	</ul>
