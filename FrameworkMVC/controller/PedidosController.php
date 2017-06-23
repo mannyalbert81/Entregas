@@ -470,86 +470,295 @@ public function index(){
 		 
 	}
 	
-	public function  ListarPedidos()
-	{
-		$controladores = new ControladoresModel();
+public function  ListarPedidos()
+{
+	  $cl_pedidos = new PedidosModel();
+				
 		
-		$resultEdit = "";
-		$resultSet = "";
-		$dsclientes = "";
-		$dtclientepedidos = "";
-		$dtproductos = "";
-		$dtpedidos = "";
-		$dtpedidosclientes = "";
-		$dttmppedidos = "";
 		$respuesta = 0;
 		
 		
-		session_start();
-		
-		
+		session_start();	
+
+	
 		if (isset( $_SESSION['usuario_usuarios']) )
-		{
-				
+		{		
+			
 			$nombre_controladores = "Pedidos";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $controladores->getPermisosVer("  controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-				
+			$resultPer = $cl_pedidos->getPermisosVer("  controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			
 			if (!empty($resultPer))
 			{
 				
-				if(isset($_POST['buscar']))
-				{
-						
-					$cl_pedidos = new PedidosModel();
-						
-					$identificacion = $_POST['f_clientes'];
-						
-					if($identificacion!="")
-					{
-							
-						$columnas="c.id_clientes, c.ruc_clientes, c.razon_social_clientes";
-						$tablas = "public.fc_clientes c";
-						$where =  "c.ruc_clientes like '".$identificacion."%'";
-							
-						$dsclientes=$cl_pedidos->getCondiciones($columnas, $tablas, $where, "c.id_clientes");
-					}
-						
-				}
-		
-				
-		
-				
-				
-		
 				$this->view("ListadoPedidos",array(
-						"dsclientes"=>$dsclientes,"dtclientepedidos"=>$dtclientepedidos,"dtproductos"=>$dtproductos,
-						"dtpedidosclientes"=>$dtpedidosclientes,"dtpedidos"=>$dtpedidos,"dttmppedidos"=>$dttmppedidos,"respuesta"=>$respuesta
-							
+						"respuesta"=>$respuesta
+			
 				));
-		
-		
 		
 			}
 			else
 			{
 				$this->view("Error",array(
 						"resultado"=>"No tiene Permisos de Acceso a Tipo de Controladores"
-		
+				
+				));
+				
+				exit();	
+			}
+				
+		}
+		else 
+		{
+				$this->view("ErrorSesion",array(
+						"resultSet"=>""
+			
 				));
 		
-				exit();
-			}
-		
 		}
-		else
+	}
+	
+	public function  traePedidos()
+	{
+		$cl_pedidos = new PedidosModel();
+	
+	
+		//variable que se dibuja en tabla de consulta
+	
+		$html = "";
+	
+		session_start();
+	
+	
+		if (isset( $_SESSION['usuario_usuarios']) )
 		{
-			$this->view("ErrorSesion",array(
-					"resultSet"=>""
-		
-			));
-		
+	
+			$nombre_controladores = "Pedidos";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $cl_pedidos->getPermisosVer("  controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+	
+	
+				if(isset($_POST["buscar"]))
+				{
+					$id_usuario=$_POST['id_usuario'];
+	
+					$columnas = " pc.id_pedidos_cab,pc.numero_pedidos_cab,c.ruc_clientes,c.razon_social_clientes,
+				                  u.nombre_usuarios,date(pc.fcha_pedidos_cab) AS fecha,pc.estado_pedidos_cab,det.cantidad";
+	
+					$tablas=" public.usuarios u
+							INNER JOIN public.rc_pedidos_cab pc
+							ON pc.id_usuarios = u.id_usuarios
+							INNER JOIN public.fc_clientes c
+							ON c.id_clientes = pc.id_clientes
+							INNER JOIN (
+									SELECT pd.id_pedidos_cab,SUM(pd.id_productos) AS cantidad
+									FROM public.rc_pedidos_det pd
+									GROUP BY pd.id_pedidos_cab
+									) det
+						    ON det.id_pedidos_cab =  pc.id_pedidos_cab";
+	
+					$where=" pc.id_usuarios=96
+						    AND pc.estado_pedidos_cab = 'P'";
+	
+					$id=" pc.id_pedidos_cab";
+	
+	
+						
+					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					$where_4 = "";
+					$where_5 = "";
+						
+					/*
+						if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
+						if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas = '$codigo_plan_cuentas'";}
+						if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas = '$nombre_plan_cuentas'";}
+						if($nivel_plan_cuentas!=""){$where_3=" AND plan_cuentas.nivel_plan_cuentas='$nivel_plan_cuentas'";}
+						if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
+						if($n_plan_cuentas!=""){$where_5=" AND plan_cuentas.n_plan_cuentas='$n_plan_cuentas'";}
+						*/
+	
+	
+					$where_to  = $where . $where_0. $where_1. $where_2. $where_3. $where_4. $where_5;
+	
+	
+					$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+	
+					if($action == 'ajax')
+					{
+						$html="";
+						$rs_cantidad=$cl_pedidos->getCantidad("*", $tablas, $where_to);
+						$cantidadResult=(int)$rs_cantidad[0]->total;
+							
+						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+							
+						$per_page = 50; //la cantidad de registros que desea mostrar
+						$adjacents  = 9; //brecha entre páginas después de varios adyacentes
+						$offset = ($page - 1) * $per_page;
+							
+						$limit = " LIMIT   '$per_page' OFFSET '$offset'";
+							
+						$rs_pedidos=$cl_pedidos->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
+							
+						$count_query   = $cantidadResult;
+							
+						$total_pages = ceil($cantidadResult/$per_page);
+							
+						if ($cantidadResult>0)
+						{
+	
+							//<th style="color:#456789;font-size:80%;"></th>
+	
+							$html.='<div class="pull-left">';
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='</div><br>';
+							$html.='<section style="height:auto; overflow-y:scroll;">';
+							$html.='<table class="table table-hover">';
+							$html.='<thead>';
+							$html.='<tr class="info">';
+							$html.='<th>Numero Pedido</th>';
+							$html.='<th>Ruc/ Identificacion</th>';
+							$html.='<th>Razon Social</th>';
+							$html.='<th>Registra</th>';
+							$html.='<th>Fecha Pedido</th>';
+							$html.='<th>Estado</th>';
+							$html.='<th>Cantidad Productos</th>';
+							$html.='<th>Ver Detalle</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+	
+							//var_dump($rs_pedidos);
+							
+							foreach ($rs_pedidos as $res)
+							{
+								//<td style="color:#000000;font-size:80%;"> <?php echo ;</td>
+								
+								//pc.id_pedidos_cab,pc.numero_pedidos_cab,c.ruc_clientes,c.razon_social_clientes,
+								//u.nombre_usuarios,pc.estado_pedidos_cab,det.Cantidad
+									
+								$html.='<tr>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->numero_pedidos_cab.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->ruc_clientes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->razon_social_clientes.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->nombre_usuarios.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->fecha.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->estado_pedidos_cab.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;">'.$res->cantidad.'</td>';
+								$html.='<td style="color:#000000;font-size:80%;"><i class="glyphicon glyphicon-eye-open"></i></td>';
+								$html.='</tr>';
+									
+							}
+	
+							$html.='</tbody>';
+							$html.='</table>';
+							$html.='</section>';
+							$html.='<div class="table-pagination pull-right">';
+							$html.=''. $this->paginate("index.php", $page, $total_pages, $adjacents).'';
+							$html.='</div>';
+							$html.='</section>';
+	
+	
+						}else{
+	
+							$html.='<div class="alert alert-warning alert-dismissable">';
+							$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+							$html.='<h4>Aviso!!!</h4> No hay datos para mostrar';
+							$html.='</div>';
+	
+						}
+							
+	
+	
+					}
+	
+				}
+				else
+				{
+	
+				}
+	
+			}
+			else
+			{
+					
+					
+			}
 		}
+	
+		echo $html;
+	
+	}
+	
+
+	public function paginate($reload, $page, $tpages, $adjacents) {
+	
+		$prevlabel = "&lsaquo; Prev";
+		$nextlabel = "Next &rsaquo;";
+		$out = '<ul class="pagination pagination-large">';
+	
+		// previous label
+	
+		if($page==1) {
+			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+		} else if($page==2) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>$prevlabel</a></span></li>";
+		}else {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(".($page-1).")'>$prevlabel</a></span></li>";
+	
+		}
+	
+		// first label
+		if($page>($adjacents+1)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>1</a></li>";
+		}
+		// interval
+		if($page>($adjacents+2)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// pages
+	
+		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+		for($i=$pmin; $i<=$pmax; $i++) {
+			if($i==$page) {
+				$out.= "<li class='active'><a>$i</a></li>";
+			}else if($i==1) {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>$i</a></li>";
+			}else {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(".$i.")'>$i</a></li>";
+			}
+		}
+	
+		// interval
+	
+		if($page<($tpages-$adjacents-1)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// last
+	
+		if($page<($tpages-$adjacents)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas($tpages)'>$tpages</a></li>";
+		}
+	
+		// next
+	
+		if($page<$tpages) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(".($page+1).")'>$nextlabel</a></span></li>";
+		}else {
+			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+		}
+	
+		$out.= "</ul>";
+		return $out;
 	}
 	
 }

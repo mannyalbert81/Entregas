@@ -30,15 +30,15 @@
 	function load_plan_cuentas(pagina){
 		
 		//iniciar variables
-		 var v_usuario=$("#id_entidades").val();
-		 var con_codigo_plan_cuentas=$("#codigo_plan_cuentas").val();
+		 var v_usuario=$("#hd_idusuario").val();
+		 /*var con_codigo_plan_cuentas=$("#codigo_plan_cuentas").val();
 		 var con_nombre_plan_cuentas=$("#nombre_plan_cuentas").val();
 		 var con_nivel_plan_cuentas=$("#nivel_plan_cuentas").val();
 		 var con_t_plan_cuentas=$("#t_plan_cuentas").val();
 		 var con_n_plan_cuentas=$("#n_plan_cuentas").val();
-		
+		*/
 
-		  var con_datos={
+		  /*var con_datos={
 				  id_entidades:con_id_entidades,
 				  codigo_plan_cuentas:con_codigo_plan_cuentas,
 				  nombre_plan_cuentas:con_nombre_plan_cuentas,
@@ -47,12 +47,18 @@
 				  n_plan_cuentas:con_n_plan_cuentas,
 				  action:'ajax',
 				  page:pagina
-				  };
+				  };*/
 
+	 var con_datos={
+			  buscar:1,
+			  id_usuario:v_usuario,			  
+			  action:'ajax',
+			  page:pagina
+				};
 
 		$("#formpedidos").fadeIn('slow');
 		$.ajax({
-			url:"<?php echo $helper->url("Pedidos","ListarPedidos");?>",
+			url:"<?php echo $helper->url("Pedidos","traePedidos");?>",
             type : "POST",
             async: true,			
 			data: con_datos,
@@ -120,7 +126,7 @@
 		    
 		     		<label for="f_usuario" class="control-label">Usuario</label>
                     <input type="text" class="form-control" id="f_usuario" name="f_usuario" value=""  placeholder="usuario">
-                    <input type="hidden" class="form-control" id="hd_idusuario" name="hd_idusuario" value="" >
+                    <input type="hidden" class="form-control" id="hd_idusuario" name="hd_idusuario" value="96" >
                     <span class="help-block"></span>
 		          </div>
 		       </div>
@@ -151,7 +157,7 @@
 		       <div class="col-xs-12 col-md-12">
 		          <div class="form-group">
 		    			  
-				    <span style="margin-left: auto; margin-right: auto;"><button type="submit" style="margin-top: 10px" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button></span>
+				    <span style="margin-left: auto; margin-right: auto;"> <button type="button" style="margin-top: 10px" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button></span>
 		     		 <!-- <button type="submit" id="reporte" name="reporte" value="reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
 	      			 -->
 		          </div>
