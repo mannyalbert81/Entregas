@@ -1,5 +1,5 @@
 <?php
-class PedidosModel extends ModeloBase{
+class CabPedidosModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +38,7 @@ class PedidosModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="pedidos";
+		$this->table="rc_pedidos_cab";
 		
 		parent::__construct($this->table);
 	}

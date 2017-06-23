@@ -56,10 +56,24 @@
   
   <div class="row" style="background-color: #FAFAFA;">
   
+  <!-- para respuestas -->
+  
+ 
+  
        <!-- empieza el form --> 
        
 <form  action="<?php echo $helper->url("Pedidos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             <br>
+ <?php if($respuesta==1){?> 	
+ 	<div class="alert alert-success " role="alert"> Pedido ingresado correctamente </div> 	
+ <?php //echo '<script language="javascript">alert(" pedido ingresado correctamente");</script>'; 
+ }else if($respuesta==2){  ?>
+  <div class="alert alert-warning" role="alert"> Pedido Cancelado </div>
+  <?php }  else if($respuesta==3){  ?>
+  <div class="alert alert-warning" role="alert">Producto Cancelado </div>
+  <?php }    else if($respuesta==5){  ?>
+  <div class="alert alert-danger" role="alert">Proceso no ejecutado </div>
+  <?php }  ?>
  
  <?php  if(empty($dtclientepedidos)||$dtclientepedidos=="") {?>        
  <?php if ($dsclientes !="" || !empty($dsclientes)) { ?>
@@ -237,7 +251,7 @@
 		       
 		       <!-- para el temporal -->
 		       
-		       <input type="hidden" name="frutas" value='<?php echo serialize($dttmppedidos) ?>'></input>
+		       <input type="hidden" name="frutas" value='<?php echo '1';//serialize($dttmppedidos) ?>'></input>
 		        
 		         
 		       
@@ -250,7 +264,7 @@
 		       
             </div>
             
-            <?php var_dump($dttmppedidos);?>
+            <?php // var_dump($dttmppedidos);?>
        <!-- para la tabla temporal -->     
             <?php  if ((!empty ($dttmppedidos) || $dttmppedidos!="")&& count($dttmppedidos)>0){?>
 		          <table class="table table-hover ">
@@ -258,6 +272,7 @@
            				<tr>
 		                    <th style="font-size:100%;">Nombre</th>
 				    		<th style="font-size:100%;">Descripcion</th>
+				    		<th style="font-size:100%;">Cantidad</th>
 				    		<th style="font-size:100%;">Selecionar</th>
 		    		
 	  					</tr>
@@ -265,11 +280,12 @@
 	         <?php foreach ($dttmppedidos as $rstemp){?>
 	        		<tbody>
 	   					<tr>
-		   					<td style="font-size:80%;"> <?php echo $rstemp->nombre_productos; ?>  </td>
-			                <td style="font-size:80%;" > <?php echo $rstemp->descripcion_productos; ?>     </td> 		             
+		   					<td style="font-size:80%;"> <?php echo $rstemp->nombre_producto; ?>  </td>
+			                <td style="font-size:80%;" > <?php echo $rstemp->descripcion; ?>     </td> 
+			                <td style="font-size:80%;" > <?php echo $rstemp->cantidad; ?>     </td>		             
 				           	<td>   
 				               	<div class="right">
-				                    <a href="<?php echo $helper->url("Pedidos","index"); ?>&clienteid=<?php echo $dtclientepedidos[0]->id_clientes;?>&id_producto=<?php echo $rsproducto->id_productos; ?>"><i class="glyphicon glyphicon-ok"></i></a>
+				                    <a href="<?php echo $helper->url("Pedidos","index"); ?>&acc=delete&clienteid=<?php echo $dtclientepedidos[0]->id_clientes;?>&id_tproducto=<?php echo $rstemp->id_temp_pedidos; ?>"><i class="glyphicon glyphicon-trash"></i></a>
 				                </div>
 				            </td>
 			   			</tr>
@@ -279,9 +295,15 @@
                 </table>
             <?php }?> 
             
-            
+    <span>        
     <button type="submit" style="margin-top: 20px" id="hacerpedido" name="hacerpedido" class="btn btn-success"><i class="glyphicon glyphicon-hand-right"></i> Realizar Pedido</button>
-		    
+	</span>	
+	<span>        
+    <button type="submit" style="margin-top: 20px" id="cancelarpedido" name="cancelarpedido" class="btn btn-warning"><i class="glyphicon glyphicon-remove"></i> Cancelar Pedido</button>
+	</span>	
+	<!-- para las pruebas
+	<button type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Comprobantes","InsertaComprobantes"); ?>'" class="btn btn-success" >Guardar</button>
+	 -->	    
 		  </div>
 </div>
 

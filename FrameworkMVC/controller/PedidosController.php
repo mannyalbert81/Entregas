@@ -21,6 +21,7 @@ public function index(){
 		$dtpedidos = "";
 		$dtpedidosclientes = "";
 		$dttmppedidos = "";
+		$respuesta = 0;
 		
 		
 		session_start();	
@@ -173,9 +174,7 @@ public function index(){
 						
 					}
 					
-					//_id_usuario integer, _id_producto integer, _descripcion character varying, _cantidad integer)
- 
-						
+					
 					$funcion = "ins_temp_pedidos";
 					$parametros = "'$_id_usuarios','$varproductos','$varDescripcion','$varCantidad','$varnombre','$varclientes'";
 					//die($parametros);
@@ -186,34 +185,78 @@ public function index(){
 					$dttmppedidos=$this->consultemporal($_id_usuarios, $varclientes);
 					
 					
-					//ins_temp_pedidos
-					
-					/*if(!empty($dtpedidos))
-					{
-
-						foreach ($dtpedidos as $res){
-						
-							$dttmppedidos[] = array(
-									'codigo' => $res->id_productos,
-									'valor' => $res->nombre_productos,
-									'alias' => $res->descripcion_productos
-							);
-						
-						}
-						
-					}*/
-					
-					
 				}
 				
 				//para realizar los pedidos insertado
 				if(isset($_POST['hacerpedido']))
 				{
 					$varin_clientes= $_POST['hd_idclientes'];
-					$varin_productos= $_POST['hd_idproductos'];
-					$varin_cantidad= $_POST['txt_cantidad'];
+					$_id_usuarios= $_SESSION['id_usuarios'];
 					
-					$this->InsertaPedidos($varin_clientes, $varin_productos, $varin_cantidad);
+					$respuesta=$this->insertaPedidos($_id_usuarios,$varin_clientes);
+					
+				}
+				
+				//para eliminacion temporal
+				
+				if(isset($_GET['acc']))
+				{
+					$cl_temporal = new TempPedidosModel();
+					$var_idtemporal = $_GET['id_tproducto'];
+					$_id_usuarios= $_SESSION['id_usuarios'];
+					
+					$cl_pedidos = new PedidosModel();
+					$cl_temp_pedidos = new PedidosModel("temp_pedidos");
+					$varclientes =$_GET['clienteid'];
+						
+					if($varclientes!="")
+					{
+							
+						$columnas="c.id_clientes, c.ruc_clientes, c.razon_social_clientes, c.email_clientes";
+						$tablas = "public.fc_clientes c";
+						$where =  "c.id_clientes = '".$varclientes."'";
+							
+						$dtclientepedidos=$cl_pedidos->getCondiciones($columnas, $tablas, $where, "c.id_clientes");
+					}
+					
+					
+					
+					$where = "id_usuario_registra = '$_id_usuarios' AND id_temp_pedidos = '$var_idtemporal'";
+				
+					
+					$dttmppedidos=$this->consultemporal($_id_usuarios, $varclientes);
+					
+					
+					try {
+						
+						$rs_deltemp = $cl_temporal->deleteByWhere($where);
+						$respuesta = 3;
+						
+					}catch (Exception $ex)
+					{
+						$respuesta=5;
+					}
+					
+				}
+				
+				if(isset($_POST['cancelarpedido']))
+				{
+					$cl_temporal = new TempPedidosModel();
+					$var_clientes= $_POST['hd_idclientes'];
+					$_id_usuarios= $_SESSION['id_usuarios'];
+					
+					$where = "id_usuario_registra = '$_id_usuarios' AND id_clientes = '$var_clientes'";
+					
+					try {
+					
+						$rs_deltemp = $cl_temporal->deleteByWhere($where);
+						$respuesta = 2;
+					
+					}catch (Exception $ex)
+					{
+						$respuesta=5;
+					}
+					
 				}
 				
 				// para editar los componentes
@@ -236,7 +279,7 @@ public function index(){
 				
 				$this->view("Pedidos",array(
 						"dsclientes"=>$dsclientes,"dtclientepedidos"=>$dtclientepedidos,"dtproductos"=>$dtproductos,
-						"dtpedidosclientes"=>$dtpedidosclientes,"dtpedidos"=>$dtpedidos,"dttmppedidos"=>$dttmppedidos
+						"dtpedidosclientes"=>$dtpedidosclientes,"dtpedidos"=>$dtpedidos,"dttmppedidos"=>$dttmppedidos,"respuesta"=>$respuesta
 			
 				));
 		
@@ -265,82 +308,8 @@ public function index(){
 	
 	}
 	
-
 			
-public function InsertaPedidos($in_clientes,$in_productos,$in_cantidad)
-	{
-		
-		//_id_clientes integer, _id_productos integer, _fcha_pedidos date, _cantidad_pedidos integer, _medida_pedidos character varying
-		
-		//variable de fecha
-		$varfechapedido  = date('Y-m-d G:i:s');
-         
-		
-		$funcion = "ins_pedidos";
-						
-		$parametros = " '$in_clientes','$in_productos','$varfechapedido','$in_cantidad' ";
-							
-		$controladores->setFuncion($funcion);
-						
-		$controladores->setParametros($parametros);
-						
-		$resultado=$controladores->Insert();
-						
-		$traza=new TrazasModel();
-		$_nombre_controlador = "Pedidos";
-		$_accion_trazas  = "Guardar";
-		$_parametros_trazas = $_nombre_controladores;
-		$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					
-	}
-				
-				
-				
-				
-				
 	
-	public function borrarId()
-	{
-
-		session_start();
-		
-		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Controladores";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
-		if (!empty($resultPer))
-		{
-			if(isset($_GET["id_controladores"]))
-			{
-				$id_controladores=(int)$_GET["id_controladores"];
-				
-				
-				$controladores = new ControladoresModel();
-				
-				$controladores->deleteBy("id_controladores",$id_controladores);
-				
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Controladores";
-				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_controladores;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				
-			}
-			
-			$this->redirect("Controladores", "index");
-			
-			
-		}
-		else
-		{
-			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Tipo de Controladores"
-			
-			));
-		}
-				
-	}
 	
 	
 	
@@ -382,9 +351,9 @@ public function InsertaPedidos($in_clientes,$in_productos,$in_cantidad)
 	{
 		$cl_temp_pedidos = new PedidosModel("temp_pedidos");
 		
-		$columnas="t.id_usuario_registra,t.id_producto,t.descripcion,t.cantidad,t.nombre_producto,t.id_clientes";
+		$columnas="t.id_temp_pedidos,t.id_usuario_registra,t.id_producto,t.descripcion,t.cantidad,t.nombre_producto,t.id_clientes";
 		$tablas = "public.temp_pedidos t";
-		$where = " t.id_usuario='".$in_usuario."' AND t.id_clientes ='".$in_idclientes."'";
+		$where = " t.id_usuario_registra='".$in_usuario."' AND t.id_clientes ='".$in_idclientes."'";
 		
 		$dttemppedidos=$cl_temp_pedidos->getCondiciones($columnas, $tablas, $where, "t.id_producto");
 		
@@ -392,6 +361,113 @@ public function InsertaPedidos($in_clientes,$in_productos,$in_cantidad)
 		
 	}
 	
+	public function insertaPedidos($in_idusuario,$in_idclientes)
+	{
+		
+		$respuesta = 0;
+		$cl_secuencia = new SecuenciaModel();
+		$cl_temp_pedidos = new TempPedidosModel();
+		$cl_pedidos_cab = new CabPedidosModel();
+		$cl_pedidos_det = new DetPedidosModel();
+		
+		$columnas="t.id_temp_pedidos,t.id_usuario_registra,t.id_producto,t.descripcion,t.cantidad,t.nombre_producto,t.id_clientes";
+		$tablas = "public.temp_pedidos t";
+		$where = " t.id_usuario_registra='".$in_idusuario."' AND t.id_clientes ='".$in_idclientes."'";
+		
+		$dttemppedidos=$cl_temp_pedidos->getCondiciones($columnas, $tablas, $where, "t.id_producto");
+		
+		$dtsecuencia = $cl_secuencia->getBy("nombre_secuencia LIKE '%PEDIDOS%'");
+		$varidsecuencia=$dtsecuencia[0]->id_secuencia;
+		$varvalorsecuencia = $dtsecuencia[0]->valor_secuencia;
+		
+		$id=$dttemppedidos[0]->id_temp_pedidos;
+		
+		//insertamos LA cabecera pedido
+		try
+		{
+			$varfechapedido  = date('Y-m-d G:i:s');
+			$numeracion = str_pad($varvalorsecuencia, 5, "0", STR_PAD_LEFT);
+			$varnumeracionpedido = "PDDO".$numeracion;			
+			$funcion = "ins_pedidos_cab";
+			//_numero_pedidos_cab character varying, _id_clientes integer,_id_usuarios integer ,_fcha_pedidos_cab timestamp
+			$parametros = "'$varnumeracionpedido','$in_idclientes', '$in_idusuario','$varfechapedido'";
+			$cl_pedidos_cab->setFuncion($funcion);
+			$cl_pedidos_cab->setParametros($parametros);
+			
+			$resultado=$cl_pedidos_cab->Insert();
+				
+			$rsSecuencia=$cl_secuencia->UpdateBy("valor_secuencia=valor_secuencia+1", "secuencia", "id_secuencia='$varidsecuencia'");
+			
+			///insertamos el detalle
+			foreach($dttemppedidos as $res)
+			{
+				//PRINT (count($dttemppedidos));
+				//busco si existe este nuevo id
+				try
+				{
+					$var_numeropedidoscab = $varnumeracionpedido;
+					$var_idproductos = $res->id_producto;
+					$var_nombreproducto = $res->nombre_producto;
+					$var_cantidad = $res->cantidad;
+					
+					$columnas="pc.id_pedidos_cab";
+					$tablas = "public.rc_pedidos_cab pc";
+					$where = " numero_pedidos_cab ='$var_numeropedidoscab'";
+					
+					$dt_pedidos_cab=$cl_pedidos_cab->getCondiciones($columnas, $tablas, $where, "pc.id_pedidos_cab");
+					
+					$_id_pedidos_cab=$dt_pedidos_cab[0]->id_pedidos_cab;
+					
+					$funcion_det = "ins_pedidos_det";
+					//_numero_pedidos_cab character varying, _id_pedidos_cab integer, _id_productos integer, _cantidad_pedidos_det integer)
+					$parametros_det = "'$var_numeropedidoscab','$_id_pedidos_cab','$var_idproductos', '$var_cantidad'";
+					$cl_pedidos_det->setFuncion($funcion_det);
+					$cl_pedidos_det->setParametros($parametros_det);
+					$resultado=$cl_pedidos_det->Insert();
+					
+				} catch (Exception $e)
+				{
+					$where_del = "numero_pedidos_cab= '$var_numeropedidoscab'";
+					$cl_pedidos_cab->deleteByWhere($where_del);
+					
+					$respuesta =0;
+					
+						exit();
+				}
+					
+			}
+			
+			//vaciado de la tabla temporal
+			///LAS TRAZAS
+			/*$traza=new TrazasModel();
+			$_nombre_controlador = "Comprobantes";
+			$_accion_trazas  = "Guardar";
+			$_parametros_trazas = $_id_plan_cuentas;
+			$resulta = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+			*/
+			
+				
+			///borro pedidos
+			$varborrado_idusuario =  $dttemppedidos[0]->id_usuario_registra;
+			$varborrado_idcliente =  $dttemppedidos[0]->id_clientes;
+			$where_del = "id_usuario_registra= '$varborrado_idusuario' AND  id_clientes = '$varborrado_idcliente'";
+			$cl_temp_pedidos->deleteByWhere($where_del);
+			
+			$respuesta=1;
+			
+		} catch (Exception $e)
+		{
+			
+		  $this->view("Error",array(
+					"resultado"=>"Eror al Insertar Comprobantes ->". $id
+					));
+		  $respuesta =0;
+					exit();
+		}
+		
+		return $respuesta;
+		 
+	}
 	
 }
 ?>
