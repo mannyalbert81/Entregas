@@ -1,27 +1,28 @@
-	$(document).ready(function(){ 	
-		$( "#id_plan_cuentas" ).autocomplete({
-      		source: "index.php?controller=Comprobantes&action=AutocompleteComprobantesCodigo",
-      		minLength: 1
-    	});
+$(document).ready(function(){ 
+	
+	$('input').on('input', function(){
+		  
+	    $('.form-control .pedidos').each(function() {
+	      
+	        if ($(this).prop('value') === ''){        
+	           
+	           $('#agregar').prop('disabled',true);
+	        
+	        } else {
+	          
+	          $('#agregar').prop('disabled',false);
+	        }
+	    });
+	});
 
-	    $("#id_plan_cuentas").focusout(function(){
-    	$.ajax({
-    			url:'<?php echo $helper->url("Comprobantes","AutocompleteComprobantesDevuelveNombre"); ?>',
-    			type:'POST',
-    			dataType:'json',
-    			data:{codigo_plan_cuentas:$('#id_plan_cuentas').val()}
-    				}).done(function(respuesta){
-
-    					$('#nombre_plan_cuentas').val(respuesta.nombre_plan_cuentas);
-    					$('#plan_cuentas').val(respuesta.id_plan_cuentas);
-    				
-        			});
-    				 
-    				
-    			});   
+	$("#agregar").click(function(){
+		
+		var value=$.trim($("#txt_cantidad").val());
+		return false;
+	});
 				
-    });
+});
 
 	//"<?php echo $helper->url("Comprobantes","AutocompleteComprobantesCodigo"); ?>"
-
+//source: "index.php?controller=Comprobantes&action=AutocompleteComprobantesCodigo",
 	

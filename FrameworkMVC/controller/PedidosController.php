@@ -554,7 +554,7 @@ public function  ListarPedidos()
 							INNER JOIN public.fc_clientes c
 							ON c.id_clientes = pc.id_clientes
 							INNER JOIN (
-									SELECT pd.id_pedidos_cab,SUM(pd.id_productos) AS cantidad
+									SELECT pd.id_pedidos_cab,COUNT(pd.id_productos) AS cantidad
 									FROM public.rc_pedidos_det pd
 									GROUP BY pd.id_pedidos_cab
 									) det

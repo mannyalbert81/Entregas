@@ -78,7 +78,7 @@
           <div class="modal-body">
               
               <div class="row" >
-               <div class="col-lg-6 col-md-3" >
+               <div class="col-lg-6 col-md-6 col-xs-6" >
                       <div class="well">
                               <div class="form-group">
                                   <label for="usuarios" class="control-label">Usuario</label>
@@ -96,7 +96,7 @@
                       </div>
                   </div>
                   
-                		  <div class="col-lg-6 col-md-3">
+                		  <div class="col-lg-6 col-md-6 col-xs-6">
 		                      <p class="lead">Consejos de Seguridad <span class="text-success"></span></p>
 		                      <ul class="list-unstyled" style="line-height: 2">
 		                          <li><span class="fa fa-check text-success"></span> Recuerda tu usuario y tu clave.</li>

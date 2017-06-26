@@ -1,4 +1,5 @@
 <?php include("view/modulos/head.php"); ?>
+<?php include("view/modulos/menu.php"); ?>
       
    <!DOCTYPE HTML>
 <html lang="es">
@@ -7,23 +8,18 @@
       
         <meta charset="utf-8"/>
         
-       
-		  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-          <link rel="stylesheet" href="view/css/bootstrap.css">
-          <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	      <link rel="stylesheet" href="view/css/bootstrap.css">
+	       <link rel="stylesheet" href="view/css/pedidos_style.css">
+	       <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>  
+         
           <script src="view/js/jquery.js"></script>
-		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		  <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
-		
-		<script>
-		    webshims.setOptions('forms-ext', {types: 'date'});
-			webshims.polyfill('forms forms-ext');
-		</script>
-		  
-	
-	
+		  <script src="view/js/bootstrapValidator.min.js"></script>
+		  <script src="view/js/ValidarComprobantesTemporal.js"></script>
+	      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 	
 	<script>
 	       	$(document).ready(function(){ 	
@@ -49,7 +45,7 @@
 </head>
  <body class="cuerpo">
      
-  <?php include("view/modulos/menu.php"); ?>
+
        
 
   <div class="container">
@@ -226,20 +222,20 @@
 		        
 		        <div class="col-xs-3 col-md-3">
 		             <label for="f_productos_au" class="control-label" >Producto: </label>
-                     <input type="text" class="form-control" id="f_productos_au" name="f_productos_au" value=""  placeholder="Search">
+                     <input type="text" class="form-control pedidos" id="f_productos_au" name="f_productos_au" value=""  placeholder="Search">
                      <input type="hidden" class="form-control" id="hd_productoid" name="hd_productoid" value="" >
-                    
+                    <span class="valida_frm"></span>
 		        
 		        </div>
 		        <div class="col-xs-3 col-md-3">
 		             <label for="txt_descripcion" class="control-label" >Descripcion: </label>
-                     <input type="text" class="form-control" id="txt_descripcion" name="txt_descripcion" value="" >
-                   
+                     <input type="text" class="form-control pedidos" id="txt_descripcion" name="txt_descripcion" value="" >
+                     <span class="valida_frm"></span>
 		        </div>
 		        <div class="col-xs-3 col-md-3">
 		             <label for="txt_cantidad" class="control-label" >Cantidad: </label>
-                     <input type="text" class="form-control" id="txt_cantidad" name="txt_cantidad" value="" >
-                   
+                     <input type="text" class="form-control pedidos " id="txt_cantidad" name="txt_cantidad" value=""  >
+                     <span class="valida_frm"></span>
 		        </div>
 		        <div class="col-xs-3 col-md-3">
 		          <div class="form-group">
@@ -249,7 +245,7 @@
 		          </div>
 		       </div>
 		       
-		       <!-- para el temporal -->
+		       <!-- para el temporal x code -->
 		       
 		       <input type="hidden" name="frutas" value='<?php echo '1';//serialize($dttmppedidos) ?>'></input>
 		        
