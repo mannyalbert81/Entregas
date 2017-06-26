@@ -630,8 +630,25 @@ public function index(){
     			
     			$resultado=$sesiones->Insert();
     			
+    			$entregas=new EntregasModel();
+    			
+    			$columnas = " entregas_cabezas.id_entregas_cabezas,
+						  entregas_cabezas.latitud_entregas_cabezas,
+						  entregas_cabezas.longitud_entregas_cabezas,
+						  usuarios.id_usuarios,
+						  usuarios.nombre_usuarios,
+						  entregas_cabezas.creado";
+    			
+    			$tablas   = "public.entregas_cabezas,
+ 						 public.usuarios";
+    			
+    			$where    = "usuarios.id_usuarios = entregas_cabezas.id_usuarios";
+    			
+    			$id       = "entregas_cabezas.id_entregas_cabezas";
+    			$resultDatos=$entregas->getCondiciones($columnas ,$tablas ,$where, $id);
+    			
     		    $this->view("Bienvenida",array(
-    				"allusers"=>$_usuario
+    				"allusers"=>$_usuario, "resultDatos"=>$resultDatos
 	    		));
     		}
     		else

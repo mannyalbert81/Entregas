@@ -26,6 +26,31 @@
 		    }
 		  </style>
 		  
+		  
+		  <script>
+	     $(document).ready(function(){
+
+		//alert("hola");
+		$("#div_nombre").hide();
+
+		$("#ddl_criterio").change(function(){
+
+			var ddl_criterio=$(this).val();
+
+			if(ddl_criterio==3){
+				//alert("hola");
+				$("#div_ddl_accion").show();
+				$("#div_contenido").hide();
+				}else{
+					$("#div_ddl_accion").hide();
+					$("#div_contenido").show();
+					}
+
+			});
+		
+		});
+
+		</script>
 		   
 	</head>
 	

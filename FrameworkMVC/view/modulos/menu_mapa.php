@@ -79,7 +79,21 @@ $controladores=$_SESSION['controladores'];
 			
 </ul>
 </li>
-          
+   
+   
+   <li class="dropdown" style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Logistica" ;?> </span> <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+       
+        <li style="<?php echo getcontrolador("Pedidos",$controladores) ?>">
+        	<a href="index.php?controller=Pedidos&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pedidos</span> </a>
+		    </li> 
+		<li style="<?php echo getcontrolador("Pedidos",$controladores) ?>">
+        	<a href="index.php?controller=Pedidos&action=ListarPedidos"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Listar Pedidos</span> </a>
+		    </li>   
+       	
+	</ul>
+</li>       
 
 </ul>
 
@@ -93,11 +107,19 @@ $controladores=$_SESSION['controladores'];
   		    <div class="row">
 		    
 		    
-		    <div class="col-xs-12 col-md-2">
+		    <div class="col-xs-12 col-md-2" id="div_nombre">
 		    <div class="form-group">
                                 <input type="text" class="form-control" id="contenido_busqueda" name="contenido_busqueda" value=""  placeholder="Texto a Buscar">
             </div>
             </div>
+            
+            <div class="col-xs-12 col-md-2" id="div_fecha">
+		    <div class="form-group">
+                                <input type="date" class="form-control" id="contenido_busqueda" name="contenido_busqueda" value=""  placeholder="Texto a Buscar">
+            </div>
+            </div>
+          
+            
             <div class="col-xs-12 col-md-2">
             <div class="form-group">
                                  
