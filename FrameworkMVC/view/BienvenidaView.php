@@ -26,31 +26,7 @@
 		    }
 		  </style>
 		  
-		  
-		  <script>
-	     $(document).ready(function(){
-
-		//alert("hola");
-		$("#div_nombre").hide();
-
-		$("#ddl_criterio").change(function(){
-
-			var ddl_criterio=$(this).val();
-
-			if(ddl_criterio==3){
-				//alert("hola");
-				$("#div_ddl_accion").show();
-				$("#div_contenido").hide();
-				}else{
-					$("#div_ddl_accion").hide();
-					$("#div_contenido").show();
-					}
-
-			});
-		
-		});
-
-		</script>
+	
 		   
 	</head>
 	
@@ -98,7 +74,11 @@
      
      
        <script type="text/javascript">
-    function initialize() {
+    function initialize()  {
+
+
+
+    	 
      /* var marcadores = [
 				['Quito', -0.1804991, -78.46786299999997],
 				['Cayambe', 0.0329091, -78.14970210000001],
@@ -119,19 +99,22 @@
 
       var marcadores = <?php echo $marcadores;?>
 
-      //console.log(marcadores);
+      
       
       var map = new google.maps.Map(document.getElementById('mymap'), {
         zoom: 7,
         center: new google.maps.LatLng(-1.9438015, -77.99350960000004),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
+
+      
       var infowindow = new google.maps.InfoWindow();
       var marker, i;
       for (i = 0; i < marcadores.length; i++) {  
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
-          map: map
+          map: map,
+          icon: 'view/images/icon_map.jpg'
         });
 
 
@@ -149,6 +132,8 @@
       }
     }
     google.maps.event.addDomListener(window, 'load', initialize);
+
+    
     </script>
      
      
@@ -164,7 +149,7 @@
              <div class="col-xs-12 col-md-12 col-lg-12">
              <div class="row">
       			<div id="mymap"></div>
-      			
+      			<div id="vista"></div>
              </div>
 		  </div>
 		    </div>

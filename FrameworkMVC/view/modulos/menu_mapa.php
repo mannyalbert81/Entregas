@@ -22,6 +22,31 @@ $controladores=$_SESSION['controladores'];
 
 ?>
 
+	  <script>
+	     $(document).ready(function(){
+
+		//alert("hola");
+		$("#div_fecha").hide();
+
+		$("#criterio_busqueda").change(function(){
+
+			var ddl_criterio=$(this).val();
+
+			if(ddl_criterio==2){
+				//alert("hola");
+				$("#div_fecha").show();
+				$("#div_nombre").hide();
+				}else{
+					
+					$("#div_nombre").show();
+					$("#div_fecha").hide();
+					}
+
+			});
+		
+		});
+
+		</script>
 
 <div class="container" style="margin-top: 15px; " >
 <div class="row">
@@ -120,7 +145,7 @@ $controladores=$_SESSION['controladores'];
             </div>
           
             
-            <div class="col-xs-12 col-md-2">
+            <div class="col-xs-12 col-md-2" id="ddl_criterio">
             <div class="form-group">
                                  
                                   <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
@@ -137,7 +162,6 @@ $controladores=$_SESSION['controladores'];
             </div>
 			</div> 
   			
-  		
   		
 		
         </form>
