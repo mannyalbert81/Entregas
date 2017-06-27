@@ -145,6 +145,8 @@ public function index(){
 					$cl_temp_pedidos = new PedidosModel("temp_pedidos"); 
 					$varclientes =$_POST['hd_idclientes'];
 					
+					//validar campos para guardar					
+									
 					if($varclientes!="")
 					{
 							
@@ -155,34 +157,39 @@ public function index(){
 						$dtclientepedidos=$cl_pedidos->getCondiciones($columnas, $tablas, $where, "c.id_clientes");
 					}
 						
-					$varproductos =$_POST['hd_productoid'];
-					$varDescripcion = $_POST['txt_descripcion'];
-					$varnombre = $_POST['f_productos_au'];
-					$varCantidad = $_POST['txt_cantidad'];
-					$_id_usuarios= $_SESSION['id_usuarios'];
+				    //campos a validar para guardar temporal
+					$varproductos =isset($_POST['hd_productoid'])?$_POST['hd_productoid']:"";
+					$varDescripcion = isset($_POST['txt_descripcion'])?$_POST['txt_descripcion']:"";
+					$varnombre = isset($_POST['f_productos_au'])?$_POST['f_productos_au']:"";
+					$varCantidad = isset($_POST['txt_cantidad'])?$_POST['txt_cantidad']:"";
+					$_id_usuarios= isset($_SESSION['id_usuarios'])?$_SESSION['id_usuarios']:"";
 					
+					if($varproductos!="" && $varDescripcion!="" && $varnombre!="" && $varCantidad!="" && $_id_usuarios!="")
+					{						
 						
-					if($varproductos!="")
-					{
+						if($varproductos!="")
+						{
+								
+							$columnas="p.id_productos, p.nombre_productos, p.descripcion_productos";
+							$tablas = "public.fc_productos p";
+							$where =  " p.id_productos = '".$varproductos."'";
+								
+							$dtpedidos=$cl_pedidos->getCondiciones($columnas, $tablas, $where, "p.id_productos");
 							
-						$columnas="p.id_productos, p.nombre_productos, p.descripcion_productos";
-						$tablas = "public.fc_productos p";
-						$where =  " p.id_productos = '".$varproductos."'";
 							
-						$dtpedidos=$cl_pedidos->getCondiciones($columnas, $tablas, $where, "p.id_productos");
+						}
 						
+						
+						$funcion = "ins_temp_pedidos";
+						$parametros = "'$_id_usuarios','$varproductos','$varDescripcion','$varCantidad','$varnombre','$varclientes'";
+						//die($parametros);
+						$cl_temp_pedidos->setFuncion($funcion);
+						$cl_temp_pedidos->setParametros($parametros);
+						$resultado=$cl_temp_pedidos->Insert();
+						
+						$dttmppedidos=$this->consultemporal($_id_usuarios, $varclientes);
 						
 					}
-					
-					
-					$funcion = "ins_temp_pedidos";
-					$parametros = "'$_id_usuarios','$varproductos','$varDescripcion','$varCantidad','$varnombre','$varclientes'";
-					//die($parametros);
-					$cl_temp_pedidos->setFuncion($funcion);
-					$cl_temp_pedidos->setParametros($parametros);
-					$resultado=$cl_temp_pedidos->Insert();
-					
-					$dttmppedidos=$this->consultemporal($_id_usuarios, $varclientes);
 					
 					
 				}
