@@ -27,7 +27,7 @@ $diccionariocab = array(
 		'usuario'=>$dt_cabpedido[0]->usuario_usuarios
 );
 
-$template = file_get_contents('./report/template/pedidos.html');
+$template = file_get_contents('./report/template/test.html');
 
 foreach ($diccionario as $clave=>$valor) {
 	$template = str_replace('{'.$clave.'}', $valor, $template);
