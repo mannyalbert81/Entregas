@@ -13,11 +13,7 @@ $desc=array (
 );
 $up=-63;
 $ut=44;
-<<<<<<< HEAD
-$ttffile='C:/Users/Steven/git/Entregas/FrameworkMVC/MPDF57/ttfonts/DejaVuSerifCondensed.ttf';
-=======
-$ttffile='C:/Users/Masoft/git/Entregas/FrameworkMVC/MPDF57/ttfonts/DejaVuSerifCondensed.ttf';
->>>>>>> branch 'master' of https://github.com/mannyalbert81/Entregas.git
+
 $TTCfontID='0';
 $originalsize=296976;
 $sip=false;
