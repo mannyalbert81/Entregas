@@ -55,7 +55,7 @@ foreach ($dic_detalle as $res)
 	$detalle.='<td>'.$res->id_unidades_medida.'</td>';
 	$detalle.='<td>'.$res->cantidad_pedidos_det.'</td>';
 	$detalle.='<td>'.$res->precio_uno_productos.'</td>';
-	$detalle.='<td style="color:#000000;font-size:80%;">'.$res->$total.'</td>';
+	$detalle.='<td style="color:#000000;font-size:80%;">'.$total.'</td>';
 	$detalle.='</tr>';
 		
 }

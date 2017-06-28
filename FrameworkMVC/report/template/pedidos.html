@@ -3,57 +3,61 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>{titulopag}</title>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<style type="text/css" media="all">
+td {
+border:hidden;
+}
+table {
+border: 1px solid #000000;
+}
+</style> 
  </head>
 <body>
 
-<div class="container">
- <div class="row">
-  <div class="col-lg-12">
-   <div class="col-md-4">
-   	<p><img src="logorpt" alt="" width="50" height="50" /></p>
-    <p><strong>All</strong>delivery</p>
-   </div>
-   <div class="col-md-4">
-   <h2>&nbsp;{empresa}</h2>
-   <p>&nbsp;</p>
-   </div>
-   <div class="col-md-4">
-   <p>Total paginas:{numpag}</p>
-   <p>Total registros:{totregistros}</p>
-   <p>Impreso:{datetoday}</p>
-  </div>
- </div>
- </div>
-</div>
-<div class="container">
-</div>
-<hr />
-<table style="height: 21px; float: left; width:494">
-<tbody>
-<tr>
-<td>Ruc/Identificacion:{identificacion}</td>
-<td>Cliente:{cliente}</td>
-<td>Pedido Num:{numpedido}</td>
-<td>Fecha:{fecha}</td>
-</tr>
-<tr>
-<td>Direccion:{direccion}</td>
-<td>Telefono:{telefono}</td>
-<td>&nbsp;</td>
-<td>Vendedor:{usuario}</td>
-</tr>
-</tbody>
+<table align="center" border="0" height=60 width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="5%" height="60" valign="top"></td>
+		<td width="30%" height="60" valign="top">
+		<p><img src="logorpt" alt="" width="50" height="50" /></p>
+    	<p><strong>All</strong>delivery</p></td>
+		<td width="30%" height="60" valign="top">
+		<h2>&nbsp;{empresa}</h2>
+   		<p>&nbsp;</p>
+   		</td>
+		<td width="30%" height="60" valign="top">
+		<p>Total paginas:{numpag}</p>
+		<p>Total registros:{totregistros}</p>
+		<p>Impreso:{datetoday}</p>
+		</td>
+		<td width="5%" height="60" valign="top"></td>
+	</tr>
 </table>
-<br>
-<br>
-<br>
+
+
 <hr />
-<p>&nbsp;</p>
-<table style="height: 21px; width:494">
-<tbody>
-<tr>
+
+<table align="center" border="0" height=60 width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="25%" height="60" valign="top">Ruc/Identificacion:{identificacion}</td>
+		<td width="25%" height="60" valign="top">Cliente:{cliente}</td>
+		<td width="25%" height="60" valign="top">Pedido Num:{numpedido}	<p>&nbsp;</p></td>
+		<td width="25%" height="60" valign="top">Fecha:{fecha}</td>
+		<td width="25%" height="60" valign="top"></td>
+	</tr>
+	<tr>
+		<td width="25%" height="60" valign="top">Direccion:{direccion}</td>
+		<td width="25%" height="60" valign="top">Telefono:{telefono}</td>
+		<td width="25%" height="60" valign="top">&nbsp;<p>&nbsp;</p></td>
+		<td width="25%" height="60" valign="top">Fecha:Vendedor:{usuario}</td>
+		<td width="25%" height="60" valign="top"></td>
+	</tr>
+	
+</table>
+
+<hr />
+
+<table align="center" border="0" height=60 width="100%" cellpadding="0" cellspacing="0">
+	<tr>
 <td>&nbsp;Codigo</td>
 <td>Nombre</td>
 <td>Imp</td>
@@ -62,14 +66,9 @@
 <td>P. Unitario</td>
 <td>P. Total&nbsp;</td>
 </tr>
-</tbody>
-</table>
-<div><br />
-<table style="height: 21px; width:494" >
-<tbody>
 {detalle}
-</tbody>
 </table>
+
 <div>&nbsp;</div>
 </div>
 </body>
