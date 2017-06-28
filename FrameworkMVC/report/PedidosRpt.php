@@ -27,7 +27,7 @@ $diccionariocab = array(
 		'usuario'=>$dt_cabpedido[0]->usuario_usuarios
 );
 
-$template = file_get_contents('./report/template/pedidos.html');
+$template = file_get_contents('./report/template/test.html');
 
 foreach ($diccionario as $clave=>$valor) {
 	$template = str_replace('{'.$clave.'}', $valor, $template);
@@ -65,6 +65,10 @@ $template = str_replace('{detalle}', $detalle, $template);
 //creacion del pdf
 $mpdf=new mPDF();
 $mpdf->Bookmark('inicio del pagina');
+//$stylesheet = '<style>'.file_get_contents('./view/css/bootstrap.css').'</style>'; // la ruta a tu css
+//print $stylesheet; die();
+//$mpdf->WriteHTML($stylesheet,1);
+//$mpdf->WriteHTML($template,2);
 $mpdf->WriteHTML($template);
 $mpdf->SetDisplayMode('default');
  

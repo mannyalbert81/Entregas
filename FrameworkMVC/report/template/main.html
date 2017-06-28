@@ -3,24 +3,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>{titulopag}</title>
- <!-- <link rel="stylesheet" href="../../view/css/bootstrap.css"> -->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+ <style type="text/css">
+.columna{
+float:left;
+background:#CC6600;
+}
+.fila{
+clear:both;
+background:#000FFF;
+}
+
+</style>
  </head>
 <body>
 
 <div class="container">
  <div class="row">
   <div class="col-lg-12">
-   <div class="col-md-4">
+   <div class="columna">
    	<p><img src="logorpt" alt="" width="50" height="50" /></p>
     <p><strong>All</strong>delivery</p>
    </div>
-   <div class="col-md-4">
+   <div class="columna">
    <h2>&nbsp;{empresa}</h2>
    <p>&nbsp;</p>
    </div>
-   <div class="col-md-4">
+   <div class="columna ">
    <p>Total paginas:{numpag}</p>
    <p>Total registros:{totregistros}</p>
    <p>Impreso:{datetoday}</p>
@@ -28,10 +36,10 @@
  </div>
  </div>
 </div>
-<div class="container">
+<div class=" fila">
 </div>
 <hr />
-<table style="height: 21px; float: left; width:494">
+<table class=" fila" style="height: 21px; float: left; width:494">
 <tbody>
 <tr>
 <td>Ruc/Identificacion:{identificacion}</td>

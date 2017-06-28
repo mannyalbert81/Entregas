@@ -1,0 +1,9 @@
+.columna{
+float:left;
+background:#CC6600;
+}
+
+.columna .fila{
+clear:both;
+background:#000FFF;
+}
