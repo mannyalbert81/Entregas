@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-63;
 $ut=44;
-$ttffile='C:/Users/Masoft/git/Entregas/FrameworkMVC/MPDF57/ttfonts/DejaVuSerifCondensed-Bold.ttf';
+
 $TTCfontID='0';
 $originalsize=283140;
 $sip=false;
