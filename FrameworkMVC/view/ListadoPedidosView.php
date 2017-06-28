@@ -6,12 +6,14 @@
         <meta charset="utf-8"/>
         <title>Listar Pedidos</title>
         
-       <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-          <link rel="stylesheet" href="view/css/bootstrap.css">
-          <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	      <link rel="stylesheet" href="view/css/bootstrap.css">
+	      <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>  
           <script src="view/js/jquery.js"></script>
+		  <script src="view/js/listadopedidos.js"></script>
+	      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		  <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 		
@@ -21,71 +23,11 @@
 		</script>
 		
         
-    <script type="text/javascript">
-	$(document).ready(function(){
-		//load_juicios(1);
-
-		$("#buscar").click(function(){
-
-			load_plan_cuentas(1);
-			
-			});
-	});
-
-	
-	function load_plan_cuentas(pagina){
-		
-		//iniciar variables
-		 var v_usuario=$("#hd_idusuario").val();
-		 /*var con_codigo_plan_cuentas=$("#codigo_plan_cuentas").val();
-		 var con_nombre_plan_cuentas=$("#nombre_plan_cuentas").val();
-		 var con_nivel_plan_cuentas=$("#nivel_plan_cuentas").val();
-		 var con_t_plan_cuentas=$("#t_plan_cuentas").val();
-		 var con_n_plan_cuentas=$("#n_plan_cuentas").val();
-		*/
-
-		  /*var con_datos={
-				  id_entidades:con_id_entidades,
-				  codigo_plan_cuentas:con_codigo_plan_cuentas,
-				  nombre_plan_cuentas:con_nombre_plan_cuentas,
-				  nivel_plan_cuentas:con_nivel_plan_cuentas,
-				  t_plan_cuentas:con_t_plan_cuentas,
-				  n_plan_cuentas:con_n_plan_cuentas,
-				  action:'ajax',
-				  page:pagina
-				  };*/
-
-	 var con_datos={
-			  buscar:1,
-			  id_usuario:v_usuario,			  
-			  action:'ajax',
-			  page:pagina
-				};
-
-		$("#formpedidos").fadeIn('slow');
-		$.ajax({
-			url:"<?php echo $helper->url("Pedidos","traePedidos");?>",
-            type : "POST",
-            async: true,			
-			data: con_datos,
-			 beforeSend: function(objeto){
-			$("#formpedidos").html('<img src="view/images/ajax-loader.gif"> Cargando...');
-			},
-			success:function(data){
-				$(".div_pedidos").html(data).fadeIn('slow');
-				$("#formpedidos").html("");
-			}
-		})
-	}
-	
-	</script>
+    
      
       <script>
 	       	$(document).ready(function(){ 	
-				$( "#codigo_plan_cuentas" ).autocomplete({
-      				source: "<?php echo $helper->url("PlanCuentasAdmin","AutocompleteCodigo"); ?>",
-      				minLength: 1
-    			});
+				
 	
     		});
 
@@ -130,25 +72,26 @@
 		       <div class="col-xs-6 col-md-3">
 		          <div class="form-group">
 		    
-		     		<label for="f_usuario" class="control-label">Usuario</label>
-                    <input type="text" class="form-control" id="f_usuario" name="f_usuario" value=""  placeholder="usuario">
-                    <input type="hidden" class="form-control" id="hd_idusuario" name="hd_idusuario" value="96" >
-                    <span class="help-block"></span>
-		          </div>
-		       </div>
-		        <div class="col-xs-6 col-md-3">
-		          <div class="form-group">
-		    
 		     		<label for="f_clientes" class="control-label">Cliente</label>
                     <input type="text" class="form-control" id="f_clientes" name="f_clientes" value=""  placeholder="cliente">
+                    <input type="hidden" class="form-control" id="hd_idusuario" name="hd_idusuario" value="<?php  $varsession = isset($_SESSION['id_usuarios'])?$_SESSION['id_usuarios']:-1; echo $varsession;  ?>" >
+                    <input type="hidden" class="form-control" id="hd_idclientes" name="hd_idclientes" value="" >
+                    <span class="help-block"></span>
+		          </div>
+		       </div>
+		       <div class="col-xs-6 col-md-3">
+		          <div class="form-group">
+		    
+		     		<label for="f_identificacion" class="control-label">Ruc/Identificacion</label>
+                    <input type="text" class="form-control" id="f_identificacion" name="f_identificacion" value=""  placeholder="ruc/identificacion">
                     <span class="help-block"></span>
 		          </div>
 		       </div>
 		        <div class="col-xs-6 col-md-3">
 		          <div class="form-group">
 		    
-		     		<label for="f_producto" class="control-label">Producto</label>
-                    <input type="text" class="form-control" id="f_producto" name="f_producto" value=""  placeholder="producto">
+		     		<label for="f_numpedido" class="control-label">Num. Pedido</label>
+                    <input type="text" class="form-control" id="f_numpedido" name="f_numpedido" value=""  placeholder="num">
                     <span class="help-block"></span>
 		          </div>
 		       </div>
@@ -161,12 +104,18 @@
 		          </div>
 		       </div>
 		       <div class="col-xs-12 col-md-12">
-		          <div class="form-group">
+		       <div class="col-xs-6 col-md-5">
+		       </div>
+		         <div class="col-xs-6 col-md-2"> 
+		            <div class="form-group">
 		    			  
-				    <span style="margin-left: auto; margin-right: auto;"> <button type="button" style="margin-top: 10px" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button></span>
+				     <button type="button" style="margin-top: 10px" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"> Buscar</i></button>
 		     		 <!-- <button type="submit" id="reporte" name="reporte" value="reporte"   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-print"></i></button>         
 	      			 -->
-		          </div>
+		           </div>
+		        </div>
+		        <div class="col-xs-6 col-md-5">
+		        </div>
 		       </div>
             </div>     
 		    

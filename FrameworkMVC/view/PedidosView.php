@@ -280,9 +280,9 @@
 			                <td style="font-size:80%;" > <?php echo $rstemp->descripcion; ?>     </td> 
 			                <td style="font-size:80%;" > <?php echo $rstemp->cantidad; ?>     </td>		             
 				           	<td>   
-				               	<div class="right">
-				                    <a href="<?php echo $helper->url("Pedidos","index"); ?>&acc=delete&clienteid=<?php echo $dtclientepedidos[0]->id_clientes;?>&id_tproducto=<?php echo $rstemp->id_temp_pedidos; ?>"><i class="glyphicon glyphicon-trash"></i></a>
-				                </div>
+				              <div class="right">
+				                <a href="<?php echo $helper->url("Pedidos","index"); ?>&acc=delete&clienteid=<?php echo $dtclientepedidos[0]->id_clientes;?>&id_tproducto=<?php echo $rstemp->id_temp_pedidos; ?>"><i class="glyphicon glyphicon-trash"></i></a>
+				              </div>
 				            </td>
 			   			</tr>
 			        </tbody>

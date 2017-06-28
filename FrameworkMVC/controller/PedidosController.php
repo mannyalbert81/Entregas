@@ -477,6 +477,12 @@ public function index(){
 		 
 	}
 	
+//-----------------------------------------------------------------------------------------------------------//
+//---------------------------para el listado----------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------//
+	
+//para la vista de listado de pedidos
+	
 public function  ListarPedidos()
 {
 	  $cl_pedidos = new PedidosModel();
@@ -507,7 +513,7 @@ public function  ListarPedidos()
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Tipo de Controladores"
+						"resultado"=>"No tiene Permisos de Acceso a Ver los pedidos"
 				
 				));
 				
@@ -529,8 +535,7 @@ public function  ListarPedidos()
 	{
 		$cl_pedidos = new PedidosModel();
 	
-	
-		//variable que se dibuja en tabla de consulta
+	//variable que se dibuja en tabla de consulta
 	
 		$html = "";
 	
@@ -546,7 +551,6 @@ public function  ListarPedidos()
 	
 			if (!empty($resultPer))
 			{
-	
 	
 				if(isset($_POST["buscar"]))
 				{
@@ -567,12 +571,15 @@ public function  ListarPedidos()
 									) det
 						    ON det.id_pedidos_cab =  pc.id_pedidos_cab";
 	
-					$where=" pc.id_usuarios=96
-						    AND pc.estado_pedidos_cab = 'P'";
+					$where=" 1=1 AND pc.estado_pedidos_cab = 'P'";
 	
 					$id=" pc.id_pedidos_cab";
-	
-	
+					
+					//variables por post
+					$id_usuario=isset($_POST['id_usuario'])?$_POST['id_usuario']:"";
+					$identificacion=isset($_POST['identificacion'])?$_POST['identificacion']:"";
+					$numpedido=isset($_POST['numpedido'])?$_POST['numpedido']:"";
+					$fecha=isset($_POST['fecha'])?$_POST['fecha']:"";
 						
 					$where_0 = "";
 					$where_1 = "";
@@ -581,15 +588,14 @@ public function  ListarPedidos()
 					$where_4 = "";
 					$where_5 = "";
 						
-					/*
-						if($id_entidades!=0){$where_0=" AND entidades.id_entidades='$id_entidades'";}
-						if($codigo_plan_cuentas!=""){$where_1=" AND plan_cuentas.codigo_plan_cuentas = '$codigo_plan_cuentas'";}
-						if($nombre_plan_cuentas!=""){$where_2=" AND plan_cuentas.nombre_plan_cuentas = '$nombre_plan_cuentas'";}
-						if($nivel_plan_cuentas!=""){$where_3=" AND plan_cuentas.nivel_plan_cuentas='$nivel_plan_cuentas'";}
-						if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
-						if($n_plan_cuentas!=""){$where_5=" AND plan_cuentas.n_plan_cuentas='$n_plan_cuentas'";}
-						*/
-	
+					
+						if($id_usuario!=0){$where_0=" AND  pc.id_usuarios='$id_usuario'";}
+						if($numpedido!=""){$where_1=" AND pc.numero_pedidos_cab = '$numpedido'";}
+						if($identificacion!=""){$where_2=" AND c.ruc_clientes = '$identificacion'";}
+						if($fecha!=""){$where_3=" AND date(pc.fcha_pedidos_cab) =date('$fecha')";}
+						//if($t_plan_cuentas!=""){$where_4=" AND plan_cuentas.t_plan_cuentas='$t_plan_cuentas'";}
+						//if($n_plan_cuentas!=""){$where_5=" AND plan_cuentas.n_plan_cuentas='$n_plan_cuentas'";}
+					
 	
 					$where_to  = $where . $where_0. $where_1. $where_2. $where_3. $where_4. $where_5;
 	
@@ -618,9 +624,6 @@ public function  ListarPedidos()
 							
 						if ($cantidadResult>0)
 						{
-	
-							//<th style="color:#456789;font-size:80%;"></th>
-	
 							$html.='<div class="pull-left">';
 							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
 							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
@@ -628,7 +631,7 @@ public function  ListarPedidos()
 							$html.='<section style="height:auto; overflow-y:scroll;">';
 							$html.='<table class="table table-hover">';
 							$html.='<thead>';
-							$html.='<tr class="info">';
+							$html.='<tr class="bg-success">';
 							$html.='<th>Numero Pedido</th>';
 							$html.='<th>Ruc/ Identificacion</th>';
 							$html.='<th>Razon Social</th>';
@@ -640,15 +643,10 @@ public function  ListarPedidos()
 							$html.='</tr>';
 							$html.='</thead>';
 							$html.='<tbody>';
-	
-							//var_dump($rs_pedidos);
 							
 							foreach ($rs_pedidos as $res)
 							{
-								//<td style="color:#000000;font-size:80%;"> <?php echo ;</td>
 								
-								//pc.id_pedidos_cab,pc.numero_pedidos_cab,c.ruc_clientes,c.razon_social_clientes,
-								//u.nombre_usuarios,pc.estado_pedidos_cab,det.Cantidad
 									
 								$html.='<tr>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->numero_pedidos_cab.'</td>';
@@ -658,7 +656,7 @@ public function  ListarPedidos()
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->fecha.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->estado_pedidos_cab.'</td>';
 								$html.='<td style="color:#000000;font-size:80%;">'.$res->cantidad.'</td>';
-								$html.='<td style="color:#000000;font-size:80%;"><i class="glyphicon glyphicon-eye-open"></i></td>';
+								$html.='<td style="color:#000000;font-size:80%;"><span class="center-block"><a href="index.php?controller=Pedidos&action=generadetalle&pedidocab='. $res->id_pedidos_cab .' " target="_blank"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
 								$html.='</tr>';
 									
 							}
@@ -715,15 +713,15 @@ public function  ListarPedidos()
 		if($page==1) {
 			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
 		} else if($page==2) {
-			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>$prevlabel</a></span></li>";
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_list_pedidos(1)'>$prevlabel</a></span></li>";
 		}else {
-			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(".($page-1).")'>$prevlabel</a></span></li>";
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_list_pedidos(".($page-1).")'>$prevlabel</a></span></li>";
 	
 		}
 	
 		// first label
 		if($page>($adjacents+1)) {
-			$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>1</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='load_list_pedidos(1)'>1</a></li>";
 		}
 		// interval
 		if($page>($adjacents+2)) {
@@ -738,9 +736,9 @@ public function  ListarPedidos()
 			if($i==$page) {
 				$out.= "<li class='active'><a>$i</a></li>";
 			}else if($i==1) {
-				$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(1)'>$i</a></li>";
+				$out.= "<li><a href='javascript:void(0);' onclick='load_list_pedidos(1)'>$i</a></li>";
 			}else {
-				$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas(".$i.")'>$i</a></li>";
+				$out.= "<li><a href='javascript:void(0);' onclick='load_list_pedidos(".$i.")'>$i</a></li>";
 			}
 		}
 	
@@ -753,13 +751,13 @@ public function  ListarPedidos()
 		// last
 	
 		if($page<($tpages-$adjacents)) {
-			$out.= "<li><a href='javascript:void(0);' onclick='load_plan_cuentas($tpages)'>$tpages</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='load_list_pedidos($tpages)'>$tpages</a></li>";
 		}
 	
 		// next
 	
 		if($page<$tpages) {
-			$out.= "<li><span><a href='javascript:void(0);' onclick='load_plan_cuentas(".($page+1).")'>$nextlabel</a></span></li>";
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_list_pedidos(".($page+1).")'>$nextlabel</a></span></li>";
 		}else {
 			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
 		}
@@ -768,5 +766,111 @@ public function  ListarPedidos()
 		return $out;
 	}
 	
+	
+//para traer autocomplete de listados
+public  function consultaClientes_nom()
+{
+
+	$c_clientes = new ClientesModel();
+	
+	$varclientes = isset($_GET['term'])?$_GET['term']:" ";
+		
+	$columnas="c.id_clientes,c.razon_social_clientes";	
+	$tablas="public.fc_clientes c";
+	$where=" c.razon_social_clientes like '".$varclientes."%'";
+		
+	$dtclientes=$c_clientes->getCondiciones($columnas, $tablas, $where, "c.id_clientes");;
+	
+	
+	if(!empty($dtclientes)){
+	
+		foreach ($dtclientes as $res){
+	
+			$jq_dtclientes[] = array(
+					'id' => $res->id_clientes,
+					'value' => $res->razon_social_clientes
+			);
+	
+		}
+		echo json_encode($jq_dtclientes);
+			
+	}
+}
+
+public  function consultaClientes_ruc()
+{
+
+	$c_clientes = new ClientesModel();
+
+	$varclientes = isset($_GET['term'])?$_GET['term']:" ";
+
+	$columnas="c.id_clientes,c.ruc_clientes";
+	$tablas="public.fc_clientes c";
+	$where=" c.ruc_clientes like '".$varclientes."%'";
+
+	$dtclientes=$c_clientes->getCondiciones($columnas, $tablas, $where, "c.id_clientes");;
+
+
+	if(!empty($dtclientes)){
+
+		foreach ($dtclientes as $res){
+
+			$jq_dtclientes[] = array(
+					'id' => $res->id_clientes,
+					'value' => $res->ruc_clientes
+			);
+
+		}
+		echo json_encode($jq_dtclientes);
+			
+	}
+}
+
+//-----------------------------------------------------------------------------------------------------------//
+//---------------------------para la reporteria----------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------//
+	
+public function generadetalle()
+{
+	$datos = array();
+	
+	//variables de clses
+	$c_pedidosCab = new CabPedidosModel();
+	
+	//variables que viene de web
+	$var_idpedido = isset($_GET['pedidocab'])?$_GET['pedidocab']:'';
+	
+	//consultas
+	$columnas="	c.id_clientes,pc.id_pedidos_cab,c.ruc_clientes,	c.razon_social_clientes,
+				c.direccion_clientes,c.telefono_clientes,pc.numero_pedidos_cab,	pc.fcha_pedidos_cab,
+				u.usuario_usuarios";
+	$tablas = " public.fc_clientes c
+				INNER JOIN  public.rc_pedidos_cab pc ON c.id_clientes=pc.id_clientes
+				INNER JOIN public.usuarios u ON pc.id_usuarios = u.id_usuarios";
+	$where=" 1=1 AND pc.estado_pedidos_cab = 'P'";
+	
+	$columnasdet=" pd.id_pedidos_det,	pd.id_pedidos_cab,	p.codigo_productos,	p.nombre_productos,
+				p.iva_productos,	p.id_unidades_medida,	pd.cantidad_pedidos_det,	p.precio_uno_productos";
+	$tablasdet =" public.rc_pedidos_det pd
+				INNER JOIN public.fc_productos p ON pd.id_productos=p.id_productos";				
+	$wheredet = "1=1 ";
+	
+	//AND pc.id_pedidos_cab=9
+	
+	if($var_idpedido!='')
+	{
+		$where.=" AND pc.id_pedidos_cab= '".$var_idpedido."'";
+		$wheredet.=" AND pd.id_pedidos_cab='".$var_idpedido."'";
+	}
+	
+	//resultados
+	$dt_cabpedido = $c_pedidosCab->getCondiciones($columnas, $tablas, $where, "pc.id_pedidos_cab");
+	
+	$dt_detpedido = $c_pedidosCab->getCondiciones($columnasdet, $tablasdet, $wheredet, "pd.id_pedidos_det");
+	
+	
+	$this->report("Pedidos", array("datos"=>$datos,"dt_cabpedido"=>$dt_cabpedido,"dt_detpedido"=>$dt_detpedido));
+}
+
 }
 ?>
