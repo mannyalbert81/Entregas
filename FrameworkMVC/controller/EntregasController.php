@@ -35,7 +35,9 @@ class EntregasController extends ControladorBase{
 						  entregas_cabezas.longitud_entregas_cabezas,
 						  usuarios.id_usuarios,
 						  usuarios.nombre_usuarios,
-						  entregas_cabezas.creado";
+						  entregas_cabezas.creado,
+						  entregas_cabezas.nombre_empresa_entrega,
+  						  entregas_cabezas.detalle_productos_entregados";
 		
 		$tablas   = "public.entregas_cabezas,
  						 public.usuarios";
@@ -58,7 +60,9 @@ class EntregasController extends ControladorBase{
 						  entregas_cabezas.longitud_entregas_cabezas, 
 						  usuarios.id_usuarios, 
 						  usuarios.nombre_usuarios, 
-						  entregas_cabezas.creado";
+						  entregas_cabezas.creado,
+						  entregas_cabezas.nombre_empresa_entrega,
+  						  entregas_cabezas.detalle_productos_entregados";
 				
 			$tablas   = "public.entregas_cabezas, 
  						 public.usuarios";

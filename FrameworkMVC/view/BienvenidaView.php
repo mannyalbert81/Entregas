@@ -57,13 +57,13 @@
         	foreach($resultDatos as $res) {
         	
         		$marcadores.="['";
-        		$marcadores.=$res->nombre_usuarios."',".$res->latitud_entregas_cabezas.",".$res->longitud_entregas_cabezas."],";
+        		$marcadores.=$res->nombre_usuarios."',".$res->latitud_entregas_cabezas.",".$res->longitud_entregas_cabezas.",'".$res->nombre_empresa_entrega."','".$res->detalle_productos_entregados."'],";
         	
          }
          
          $marcadores.="]";
          
-       //  echo ($marcadores);
+        // echo ($marcadores);
          
         }else{ 
           
@@ -99,6 +99,7 @@
 
       var marcadores = <?php echo $marcadores;?>
 
+     
       
       
       var map = new google.maps.Map(document.getElementById('mymap'), {
@@ -108,29 +109,41 @@
       });
 
       
-      var infowindow = new google.maps.InfoWindow();
+      
       var marker, i;
       for (i = 0; i < marcadores.length; i++) {  
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
           map: map,
-          icon: 'view/images/icon_map.jpg'
+         // icon: 'view/images/icon_map.png'
         });
 
 
-        infowindow = new google.maps.InfoWindow({
-            content: marcadores[i][0]
+        var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h5 id="firstHeading" class="firstHeading">'+marcadores[i][0]+'</h5>'+
+        '<div id="bodyContent">'+
+        '<p><b>Entregado a: </b>'+marcadores[i][3]+', '+marcadores[i][4]+'.</p>'+
+        '</div>'+
+        '</div>';
+        
+        var infowindow = new google.maps.InfoWindow({
+         content: contentString,
+         maxWidth: 150
+         
+         });
 
-        });
-        google.maps.event.addListener(marker, "click", function () {
-
-            infowindow.open(map, marker);
-        });
-
+       
         infowindow.open(map, marker);
   
       }
+
+
+    
     }
+
+  
     google.maps.event.addDomListener(window, 'load', initialize);
 
     
@@ -138,7 +151,7 @@
      
      
        <?php include("view/modulos/modal.php"); ?>
-         <?php include("view/modulos/head.php"); ?>
+       <?php include("view/modulos/head.php"); ?>
        <?php include("view/modulos/menu_mapa.php"); ?>
 
 		
@@ -149,7 +162,7 @@
              <div class="col-xs-12 col-md-12 col-lg-12">
              <div class="row">
       			<div id="mymap"></div>
-      			<div id="vista"></div>
+      			
              </div>
 		  </div>
 		    </div>

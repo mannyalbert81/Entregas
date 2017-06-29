@@ -571,7 +571,7 @@ public function  ListarPedidos()
 									) det
 						    ON det.id_pedidos_cab =  pc.id_pedidos_cab";
 	
-					$where=" 1=1 AND pc.estado_pedidos_cab = 'P'";
+					$where=" pc.estado_pedidos_cab = 'P'";
 	
 					$id=" pc.id_pedidos_cab";
 					
