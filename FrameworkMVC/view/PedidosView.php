@@ -140,7 +140,7 @@
  <?php }} else {?>		     
 		     
 	<div class=" col-md-12 col-lg-12">
-	   <div class=" panel panel-info">
+	   <div class="panel panel-info">
 	      <div class="panel-heading">
 	         <h4><i class='glyphicon glyphicon-edit'></i> Clientes</h4>
 	      </div>

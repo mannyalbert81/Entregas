@@ -850,9 +850,10 @@ public function generadetalle()
 	$where=" 1=1 AND pc.estado_pedidos_cab = 'P'";
 	
 	$columnasdet=" pd.id_pedidos_det,	pd.id_pedidos_cab,	p.codigo_productos,	p.nombre_productos,
-				p.iva_productos,	p.id_unidades_medida,	pd.cantidad_pedidos_det,	p.precio_uno_productos";
+				p.iva_productos,	um.nombre_unidades_medida,	pd.cantidad_pedidos_det,	p.precio_uno_productos";
 	$tablasdet =" public.rc_pedidos_det pd
-				INNER JOIN public.fc_productos p ON pd.id_productos=p.id_productos";				
+				INNER JOIN public.fc_productos p ON pd.id_productos=p.id_productos
+			    INNER JOIN public.fc_unidades_medida um ON um.id_unidades_medida=p.id_unidades_medida";				
 	$wheredet = "1=1 ";
 	
 	//AND pc.id_pedidos_cab=9
