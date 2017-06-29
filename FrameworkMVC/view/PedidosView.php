@@ -58,7 +58,7 @@
   
        <!-- empieza el form --> 
        
-<form  action="<?php echo $helper->url("Pedidos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+<form  action="<?php echo $helper->url("Pedidos","index"); ?>" method="post" enctype="multipart/form-data" >
             <br>
  <?php if($respuesta==1){?> 	
  	<div class="alert alert-success " role="alert"> Pedido ingresado correctamente </div> 	
@@ -74,13 +74,12 @@
  <?php  if(empty($dtclientepedidos)||$dtclientepedidos=="") {?>        
  <?php if ($dsclientes !="" || !empty($dsclientes)) { ?>
  
- <div class="col-lg-12">
+ <div class="col-md-12 col-lg-12">
 	   <div class="panel panel-info">
 	      <div class="panel-heading">
 	         <h4><i class='glyphicon glyphicon-edit'></i> Clientes</h4>
 	      </div>
 	      <div class="panel-body">  			
-		    
 		    <div class="row">
 		       <div class="col-xs-6 col-md-6">
 		          <div class="form-group">
@@ -106,6 +105,8 @@
 	
  <?php  if (!empty ($dsclientes)){?>
  
+ <div class="col-md-12 col-lg-12">
+  <div class="panel panel-info">
 	<table class="table table-hover ">
            <thead>
            <tr>
@@ -133,10 +134,13 @@
  	
  <?php }?>
       </table>
+      </div>
+      </div>
+      
  <?php }} else {?>		     
 		     
-	<div class="col-lg-12">
-	   <div class="panel panel-info">
+	<div class=" col-md-12 col-lg-12">
+	   <div class=" panel panel-info">
 	      <div class="panel-heading">
 	         <h4><i class='glyphicon glyphicon-edit'></i> Clientes</h4>
 	      </div>

@@ -27,7 +27,7 @@ $diccionariocab = array(
 		'usuario'=>$dt_cabpedido[0]->usuario_usuarios
 );
 
-$template = file_get_contents('./report/template/test.html');
+$template = file_get_contents('./report/template/pedidos.html');
 
 foreach ($diccionario as $clave=>$valor) {
 	$template = str_replace('{'.$clave.'}', $valor, $template);
@@ -69,11 +69,21 @@ $mpdf->Bookmark('inicio del pagina');
 //print $stylesheet; die();
 //$mpdf->WriteHTML($stylesheet,1);
 //$mpdf->WriteHTML($template,2);
+//$mpdf->Image('files/images/frontcover.jpg',0,0,210,297,'jpg','',true, false);
 $mpdf->WriteHTML($template);
+$mpdf->showImageErrors = true;
 $mpdf->SetDisplayMode('default');
  
 $mpdf->Output();
 
 exit();
+/*
+$mpdf = new mPDF();
+$mpdf->showImageErrors = true;
+$html = '<img src="https://www.google.pl/images/srpr/logo11w.png"/>';
+$mpdf->WriteHTML($html);
+$mpdf->debug = true;
+$mpdf->Output();
+exit();*/
  
 ?>
