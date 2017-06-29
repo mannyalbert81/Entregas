@@ -85,7 +85,9 @@ class ControladorBase{
     }
     
     //Métodos para los controladores
-    public function report($reporte,$datos){
+    
+    
+    public function report($vista,$datos){
     	foreach ($datos as $id_assoc => $valor) {
     		${$id_assoc}=$valor;
     	}
@@ -93,8 +95,10 @@ class ControladorBase{
     	require_once 'core/AyudaVistas.php';
     	$helper=new AyudaVistas();
     
-    	require_once 'report/'.$reporte.'Rpt.php';
+    	require_once 'view/reportes/'.$vista.'Report.php';
     }
+    
+   
 
 }
 ?>
