@@ -131,13 +131,13 @@ if ($dt_detpedido !="")
 	$codigo_productos							= $res->codigo_productos;
 	$nombre_productos 							= $res->nombre_productos;
 	$iva_productos 								= $res->iva_productos;
-	$id_unidades_medida 						= $res->id_unidades_medida;
+	$id_unidades_medida 						= $res->nombre_unidades_medida;
 	$cantidad_pedidos_det 						= $res->cantidad_pedidos_det;
 	$precio_uno_productos 						= $res->precio_uno_productos;
 	$Total = $cantidad_pedidos_det * $precio_uno_productos;
 	
 
-	$texto_detalle = $texto_detalle . "<tr style='text-align: center;'>";
+	$texto_detalle = $texto_detalle . "<tr style='text-align: left;'>";
 	$texto_detalle = $texto_detalle ."<td>";
 	$texto_detalle = $texto_detalle .$codigo_productos;
 	$texto_detalle = $texto_detalle ."</td>";
@@ -145,7 +145,7 @@ if ($dt_detpedido !="")
 	$texto_detalle = $texto_detalle .$nombre_productos;
 	$texto_detalle = $texto_detalle ."</td>";
 	$texto_detalle = $texto_detalle ."<td>";
-	$texto_detalle = $texto_detalle .$iva_productos;
+	$texto_detalle = $texto_detalle .$id_unidades_medida;
 	$texto_detalle = $texto_detalle ."</td>";
 	$texto_detalle = $texto_detalle ."<td>";
 	$texto_detalle = $texto_detalle .$cantidad_pedidos_det;
@@ -210,19 +210,11 @@ $html =
   		'<center>'.
   		'<table border="1"   style="width:100%;" >'.
   
-  
-  		
   		'<tr>'.
-  		'<th align="center">'. '<strong>'.'<font size=2>'.  'IMPULSOR '. '<font>'. '</strong>'.'</th>'.
-  		
-  		'<th align="center">'. '<strong>'.'<font size=2>'.  'LIQUIDADOR '. '<font>'. '</strong>'.'</th>'.
-  		
+  		'<th style="text-align: left;">'.'Comentarios: '.$numero_pedidos_cab.'</th>';
+  		'<th style="text-align: left;">'.'Prueba'.'</th>';
   		'</tr>'.
-  		'<tr>'.
-  		'<td align="center">'.'<font size=2>'.'Ab. '. $numero_pedidos_cab. '<font>'.'</td>'.
-  		'<td align="center">'.'<font size=2>'.'Ab. '. $numero_pedidos_cab. '<font>'.'</td>'.
   		
-  		'</tr>'.
   
   		'</table>'.
   		'</center>'.
