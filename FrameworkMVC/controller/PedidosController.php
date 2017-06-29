@@ -870,7 +870,7 @@ public function generadetalle()
 	$dt_detpedido = $c_pedidosCab->getCondiciones($columnasdet, $tablasdet, $wheredet, "pd.id_pedidos_det");
 	
 	
-	$this->report("Pedidos", array("datos"=>$datos,"dt_cabpedido"=>$dt_cabpedido,"dt_detpedido"=>$dt_detpedido));
+	$this->report("Ficha", array("dt_cabpedido"=>$dt_cabpedido,"dt_detpedido"=>$dt_detpedido));
 }
 
 }
