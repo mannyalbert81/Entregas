@@ -96,6 +96,10 @@ $tabla_cabeza = $texto_inicio;
 $tabla_detalle = "";
 $texto_detalle = "";
 $Total ="";
+$SubTotal =0;
+$Iva =0;
+$TotalTotal =0;
+
 if ($dt_detpedido !="")
 {
 
@@ -133,8 +137,11 @@ if ($dt_detpedido !="")
 	$iva_productos 								= $res->iva_productos;
 	$id_unidades_medida 						= $res->nombre_unidades_medida;
 	$cantidad_pedidos_det 						= $res->cantidad_pedidos_det;
-	$precio_uno_productos 						= $res->precio_uno_productos;
-	$Total = $cantidad_pedidos_det * $precio_uno_productos;
+	$precio_uno_productos 						= number_format($res->precio_uno_productos, 2);
+	$Total = number_format($cantidad_pedidos_det * $precio_uno_productos, 2);
+	$SubTotal=  number_format($SubTotal+$Total, 2) ;
+	$Iva=  number_format($SubTotal*0.12, 2);
+	$TotalTotal=  number_format($SubTotal + $Iva, 2);
 	
 
 	$texto_detalle = $texto_detalle . "<tr style='text-align: left;'>";
@@ -171,26 +178,24 @@ $tabla_detalle = $texto_detalle;
 $directorio=$_SERVER['DOCUMENT_ROOT'].'/Entregas/FrameworkMVC';
 require_once($directorio.'/view/dompdf/dompdf_config.inc.php');
 $logo=$directorio.'/view/images/logo.png';	
-$logo_imagen='<img src="'.$logo.'" alt="Responsive image" width="200" height="70">';
-
-
+$logo_imagen='<img src="'.$logo.'" alt="Responsive image" width="200" height="60">';
 
 
 $html =
   '<html>'.
   '<head>'.
+  
   	'<meta charset="utf-8"/>'.
-  	'<title> '. $numero_pedidos_cab  .' Entregas 2017</title>'.
+  	'<title>Entregas 2017</title>'.
+  	
   	
   '</head>'.
   '<body>'.
   
-  '<div style="margin-top:10px;   font-family: sans-serif; font-size:75%; width:100%;">'.
-  '<strong>'.'<center>'.'DETALLE DE PEDIDO No: '.$numero_pedidos_cab  .'</center>'.'</strong>'.
+  '<div style="margin-top:10px; text-align: left; border-style: double; font-family: sans-serif; font-size:60%; width:100%;">'.
+  '<div style="font-family: sans-serif; text-align: left; ">'.$logo_imagen.'<strong>'.'<center>'.'<H1>'.'DETALLE DE PEDIDO No: '.$numero_pedidos_cab  .'<H1>'.'</center>'.'</strong>'.
   '</div>'.
-  
-  '<div style="font-family: sans-serif;  whidth: 100%; text-align: left; ">'.$logo_imagen.'</div>'.
-  
+  '</div>'.
   '<div style=" position: absolute;  margin-left: 0%; width:100%;">'.
   	    
   '<div style="text-align: center; width:100%;" >'.
@@ -206,18 +211,22 @@ $html =
   
   
   
-  '<div  style= "margin-top:70%">'.
+  '<div  style= "margin-top:65%">'.
   		'<center>'.
-  		'<table border="1"   style="width:100%;" >'.
+  		'<table border="1" style="width:100%; height:10%;" >'.
   
   		'<tr>'.
-  		'<th style="text-align: left;">'.'Comentarios: '.$numero_pedidos_cab.'</th>';
-  		'<th style="text-align: left;">'.'Prueba'.'</th>';
+  		'<td VALIGN="TOP" '.'<th style="text-align: left;">'.'Comentarios: '.$SubTotal.'<BR>'.'<BR><center>'.$usuario_usuarios.'<BR>'.'____________________'.'<BR>'.'ELABORADO POR'. '</th>'.'</td>'.
+  		'<td VALIGN="TOP" '.'<th style="text-align: right;">'.'Subtotal: <span style="color:#ffffff">--------------------</span>' .$SubTotal.'<BR>'.'Descuento 0%: <span style="color:#ffffff">----------------------</span> 0.00'.'<BR>'.'NETO: <span style="color:#ffffff">--------------------</span>'.$SubTotal.'<BR>'.'IVA 12%: <span style="color:#ffffff">---------------------</span>'.$Iva.'<BR>'.'TOTAL: <span style="color:#ffffff">--------------------</span>'.$TotalTotal.
+  		'</th>'.
+  		'</td>'.
+  		  			
   		'</tr>'.
-  		
   
+  		
   		'</table>'.
   		'</center>'.
+  		'<br>'.
   		'</div>'.
   
   
